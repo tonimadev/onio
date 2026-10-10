@@ -1,0 +1,169 @@
+module,key,quantity,english,translation
+app,nav_home,,Home,Início
+app,nav_search,,Search,Buscar
+app,nav_cart,,Cart,Carrinho
+app,nav_orders,,Orders,Pedidos
+app,nav_savings,,Savings,Economia
+core/data,notif_channel_name,,Order updates,Atualizações de pedidos
+core/data,notif_cancelled_title,,Order %1$s cancelled,Pedido %1$s cancelado
+core/data,notif_cancelled_text,,You were not charged. You saved %1$s.,Você não foi cobrado. Você economizou %1$s.
+core/data,notif_cancelled_text_named,,"Good call, %1$s! You were not charged and saved %2$s.","Boa decisão, %1$s! Você não foi cobrado e economizou %2$s."
+core/ui,action_retry,,Retry,Tentar novamente
+core/ui,error_generic,,Something went wrong. Please try again.,Algo deu errado. Tente novamente.
+core/ui,action_add_to_cart,,Add to cart,Adicionar ao carrinho
+core/ui,action_back,,Back,Voltar
+core/ui,action_close,,Close,Fechar
+core/ui,label_empty_results,,Nothing found,Nada encontrado
+core/ui,category_beauty,,Beauty,Beleza
+core/ui,category_fragrances,,Fragrances,Fragrâncias
+core/ui,category_furniture,,Furniture,Móveis
+core/ui,category_groceries,,Groceries,Mercearia
+core/ui,category_home_decoration,,Home decor,Decoração
+core/ui,category_kitchen_accessories,,Kitchen,Cozinha
+core/ui,category_laptops,,Laptops,Notebooks
+core/ui,category_mens_shirts,,Men's shirts,Camisas masculinas
+core/ui,category_mens_shoes,,Men's shoes,Sapatos masculinos
+core/ui,category_mens_watches,,Men's watches,Relógios masculinos
+core/ui,category_mobile_accessories,,Mobile accessories,Acessórios para celular
+core/ui,category_motorcycle,,Motorcycles,Motocicletas
+core/ui,category_skin_care,,Skin care,Cuidados com a pele
+core/ui,category_smartphones,,Smartphones,Smartphones
+core/ui,category_sports_accessories,,Sports,Esportes
+core/ui,category_sunglasses,,Sunglasses,Óculos de sol
+core/ui,category_tablets,,Tablets,Tablets
+core/ui,category_tops,,Tops,Blusas
+core/ui,category_vehicle,,Vehicles,Veículos
+core/ui,category_womens_bags,,Women's bags,Bolsas femininas
+core/ui,category_womens_dresses,,Women's dresses,Vestidos femininos
+core/ui,category_womens_jewellery,,Women's jewellery,Joias femininas
+core/ui,category_womens_shoes,,Women's shoes,Sapatos femininos
+core/ui,category_womens_watches,,Women's watches,Relógios femininos
+core/ui,msg_added_to_cart,,Added to your cart,Adicionado ao carrinho
+core/ui,action_view_cart,,View cart,Ver carrinho
+core/ui,label_free_shipping,,Free shipping,Frete grátis
+core/ui,label_search_hint,,Search products,Buscar produtos
+core/ui,delay_custom_label,,Custom time,Tempo personalizado
+core/ui,delay_custom_hint,,From 1 minute up to 7 days,De 1 minuto a 7 dias
+core/ui,delay_unit_minutes,,minutes,minutos
+core/ui,delay_unit_hours,,hours,horas
+core/ui,delay_unit_days,,days,dias
+core/ui,fav_add,,Add to favorites,Adicionar aos favoritos
+core/ui,fav_remove,,Remove from favorites,Remover dos favoritos
+feature/cart/impl,cart_title,,Cart,Carrinho
+feature/cart/impl,cart_empty,,Your cart is empty,Seu carrinho está vazio
+feature/cart/impl,cart_subtotal,,Subtotal,Subtotal
+feature/cart/impl,cart_shipping,,Shipping,Frete
+feature/cart/impl,cart_shipping_free,,Free,Grátis
+feature/cart/impl,cart_checkout,,Proceed to checkout,Finalizar compra
+feature/cart/impl,cart_increase,,Increase quantity,Aumentar quantidade
+feature/cart/impl,cart_decrease,,Decrease quantity,Diminuir quantidade
+feature/cart/impl,cart_remove,,Remove,Remover
+feature/checkout/impl,checkout_title,,Checkout,Finalizar compra
+feature/checkout/impl,checkout_shipping,,Shipping details,Dados de entrega
+feature/checkout/impl,checkout_payment,,Payment,Pagamento
+feature/checkout/impl,checkout_name,,Full name,Nome completo
+feature/checkout/impl,checkout_address,,Address,Endereço
+feature/checkout/impl,checkout_card_number,,Card number,Número do cartão
+feature/checkout/impl,checkout_expiry,,MM/YY,MM/AA
+feature/checkout/impl,checkout_cvv,,CVV,CVV
+feature/checkout/impl,checkout_invalid,,Please check this field,Verifique este campo
+feature/checkout/impl,checkout_pay,,Pay now,Pagar agora
+feature/checkout/impl,checkout_processing,,Processing your payment…,Processando seu pagamento…
+feature/checkout/impl,checkout_total_items,one,Total (%1$d item),Total (%1$d item)
+feature/checkout/impl,checkout_total_items,other,Total (%1$d items),Total (%1$d itens)
+feature/checkout/impl,checkout_summary,,Order summary,Resumo do pedido
+feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,Seus dados de pagamento são criptografados e seguros
+feature/home/impl,home_recommended,,Recommended for you,Recomendados para você
+feature/home/impl,home_deals,,Deals of the day,Ofertas do dia
+feature/home/impl,home_ends_in,,Ends in %1$s,Termina em %1$s
+feature/home/impl,home_banner1_title,,Mega Sale,Mega Promoção
+feature/home/impl,home_banner1_sub,,Up to 50% off today,Até 50% off hoje
+feature/home/impl,home_banner2_title,,Free shipping,Frete grátis
+feature/home/impl,home_banner2_sub,,"On every order, no minimum","Em todos os pedidos, sem mínimo"
+feature/home/impl,home_banner3_title,,New arrivals,Novidades
+feature/home/impl,home_banner3_sub,,Fresh picks every day,Novas escolhas todo dia
+feature/home/impl,home_greeting,,"Hi, %1$s","Olá, %1$s"
+feature/onboarding/impl,onb_skip,,Skip,Pular
+feature/onboarding/impl,onb_next,,Next,Próximo
+feature/onboarding/impl,onb_start,,Get started,Começar
+feature/onboarding/impl,onb_prefer_not,,I'd rather not say,Prefiro não dizer
+feature/onboarding/impl,onb_p1_title,,Welcome to Onio,Bem-vindo ao Onio
+feature/onboarding/impl,onb_p1_body,,"Browse a full store, fill your cart and check out, just like the real thing.","Navegue por uma loja completa, encha o carrinho e finalize, como em uma loja de verdade."
+feature/onboarding/impl,onb_p2_title,,Every order gets cancelled,Todo pedido é cancelado
+feature/onboarding/impl,onb_p2_body,,"Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.","Pouco depois de pagar, o pedido é cancelado automaticamente. Nada é cobrado."
+feature/onboarding/impl,onb_p3_title,,See what you saved,Veja quanto você economizou
+feature/onboarding/impl,onb_p3_body,,Your Savings tab shows all the money that stayed in your pocket.,A aba Economia mostra todo o dinheiro que ficou no seu bolso.
+feature/onboarding/impl,onb_p4_title,,What should we call you?,Como gostaria de ser chamado?
+feature/onboarding/impl,onb_p4_body,,We'll use it to greet you. It stays on your device.,Vamos usá-lo para te cumprimentar. Ele fica só no seu dispositivo.
+feature/onboarding/impl,onb_name_label,,Your name,Seu nome
+feature/onboarding/impl,onb_regret_title,,How soon do you usually regret your purchases?,Em quanto tempo você costuma se arrepender das suas compras?
+feature/onboarding/impl,onb_regret_body,,We'll cancel your orders after this time. You can change it later in Settings.,Vamos cancelar seus pedidos depois desse tempo. Você pode mudar depois em Configurações.
+feature/onboarding/impl,onb_minutes,one,%1$d min,%1$d min
+feature/onboarding/impl,onb_minutes,other,%1$d min,%1$d min
+feature/onboarding/impl,onb_hours,one,%1$d hour,%1$d hora
+feature/onboarding/impl,onb_hours,other,%1$d hours,%1$d horas
+feature/orders/impl,orders_title,,My orders,Meus pedidos
+feature/orders/impl,orders_empty,,You haven't placed any orders yet,Você ainda não fez pedidos
+feature/orders/impl,orders_status_processing,,Processing,Em processamento
+feature/orders/impl,orders_status_cancelled,,Cancelled,Cancelado
+feature/orders/impl,orders_processing_title,,Verifying your payment,Verificando seu pagamento
+feature/orders/impl,orders_processing_body,,We'll let you know as soon as there's an update.,Avisaremos assim que houver novidades.
+feature/orders/impl,orders_countdown,,Update expected in %1$s,Atualização em %1$s
+feature/orders/impl,orders_cancelled_title,,Order cancelled,Pedido cancelado
+feature/orders/impl,orders_cancelled_body,,The payment was not completed and you were not charged. Good call!,O pagamento não foi concluído e você não foi cobrado. Boa decisão!
+feature/orders/impl,orders_you_saved,,You saved,Você economizou
+feature/orders/impl,orders_total,,Total,Total
+feature/orders/impl,orders_ship_to,,"Ship to: %1$s, %2$s","Enviar para: %1$s, %2$s"
+feature/orders/impl,orders_paid_with,,Card ending in %1$s,Cartão final %1$s
+feature/orders/impl,orders_items,one,%1$d item,%1$d item
+feature/orders/impl,orders_items,other,%1$d items,%1$d itens
+feature/orders/impl,orders_cancelled_body_named,,"The payment was not completed and you were not charged. Good call, %1$s!","O pagamento não foi concluído e você não foi cobrado. Boa decisão, %1$s!"
+feature/product/impl,product_buy_now,,Buy now,Comprar agora
+feature/product/impl,product_added,,Added to your cart,Adicionado ao carrinho
+feature/product/impl,product_discount,,%1$d%% off,%1$d%% off
+feature/product/impl,product_reviews,,Reviews,Avaliações
+feature/product/impl,product_out_of_stock,,Out of stock,Esgotado
+feature/product/impl,product_in_stock,one,%1$d item in stock,%1$d item em estoque
+feature/product/impl,product_in_stock,other,%1$d items in stock,%1$d itens em estoque
+feature/product/impl,product_delivery_free,,Free delivery,Entrega grátis
+feature/product/impl,product_delivery_eta,,Arrives by %1$s,Chega até %1$s
+feature/product/impl,product_returns,,30-day free returns,Devolução grátis em 30 dias
+feature/product/impl,product_secure,,Secure payment,Pagamento seguro
+feature/savings/impl,savings_title,,Savings,Economia
+feature/savings/impl,savings_settings,,Settings,Configurações
+feature/savings/impl,savings_headline,,You didn't spend,Você não gastou
+feature/savings/impl,savings_none_yet,,Your first saved purchase will show up here.,Sua primeira economia aparecerá aqui.
+feature/savings/impl,savings_motivation,,Every cancelled order is money that stays in your pocket. Keep going!,Cada pedido cancelado é dinheiro que fica no seu bolso. Continue assim!
+feature/savings/impl,savings_see_orders,,See my orders,Ver meus pedidos
+feature/savings/impl,savings_summary,one,from %1$d cancelled order,de %1$d pedido cancelado
+feature/savings/impl,savings_summary,other,from %1$d cancelled orders,de %1$d pedidos cancelados
+feature/savings/impl,savings_items_not_bought,one,%1$d item you didn't need,%1$d item de que você não precisava
+feature/savings/impl,savings_items_not_bought,other,%1$d items you didn't need,%1$d itens de que você não precisava
+feature/savings/impl,savings_headline_named,,"%1$s, you didn't spend","%1$s, você não gastou"
+feature/search/impl,search_title,,Search,Buscar
+feature/search/impl,search_hint,,Search products,Buscar produtos
+feature/search/impl,search_filters,,Filters,Filtros
+feature/search/impl,search_favorites,,Favorites,Favoritos
+feature/search/impl,search_no_favorites,,No favorites yet. Tap the heart on a product to save it.,Nenhum favorito ainda. Toque no coração de um produto para salvá-lo.
+feature/search/impl,search_sort,,Sort by,Ordenar por
+feature/search/impl,sort_relevance,,Relevance,Relevância
+feature/search/impl,sort_price_asc,,Price: low to high,Preço: menor para maior
+feature/search/impl,sort_price_desc,,Price: high to low,Preço: maior para menor
+feature/search/impl,sort_discount,,Biggest discount,Maior desconto
+feature/search/impl,sort_rating,,Top rated,Mais bem avaliados
+feature/search/impl,filter_on_sale,,On sale,Em oferta
+feature/search/impl,filter_top_rated,,4★ & up,4★ ou mais
+feature/search/impl,filter_price_range,,Price range,Faixa de preço
+feature/search/impl,filter_reset,,Reset filters,Limpar filtros
+feature/settings/impl,settings_title,,Settings,Configurações
+feature/settings/impl,settings_cancel_after,,Cancel orders after,Cancelar pedidos após
+feature/settings/impl,settings_cancel_after_hint,,Applies to new orders only.,Vale apenas para novos pedidos.
+feature/settings/impl,settings_currency,,Currency,Moeda
+feature/settings/impl,settings_automatic,,Automatic,Automática
+feature/settings/impl,settings_language,,Language,Idioma
+feature/settings/impl,settings_about,,About Onio,Sobre o Onio
+feature/settings/impl,settings_about_body,,"Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.","O Onio é um espaço de prática para pessoas com compulsão por compras. Parece uma loja de verdade, mas nenhuma compra real é feita e nenhum dinheiro é cobrado: todo pedido é cancelado automaticamente, para você curtir a emoção e manter suas economias."
+feature/settings/impl,settings_minutes,one,%1$d min,%1$d min
+feature/settings/impl,settings_minutes,other,%1$d min,%1$d min
+feature/settings/impl,settings_hours,one,%1$d hour,%1$d hora
+feature/settings/impl,settings_hours,other,%1$d hours,%1$d horas

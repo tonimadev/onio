@@ -6,7 +6,7 @@
     <string name="orders_status_cancelled">Cancelado</string>
     <string name="orders_processing_title">Verificando tu pago</string>
     <string name="orders_processing_body">Te avisaremos en cuanto haya novedades.</string>
-    <string name="orders_countdown">Novedades en %1$s</string>
+    <string name="orders_countdown">Actualización prevista en %1$s</string>
     <string name="orders_cancelled_title">Pedido cancelado</string>
     <string name="orders_cancelled_body">El pago no se completó y no se te cobró nada. ¡Buena decisión!</string>
     <string name="orders_you_saved">Has ahorrado</string>

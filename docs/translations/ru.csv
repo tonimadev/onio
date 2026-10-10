@@ -1,0 +1,169 @@
+module,key,quantity,english,translation
+app,nav_home,,Home,Главная
+app,nav_search,,Search,Поиск
+app,nav_cart,,Cart,Корзина
+app,nav_orders,,Orders,Заказы
+app,nav_savings,,Savings,Экономия
+core/data,notif_channel_name,,Order updates,Статусы заказов
+core/data,notif_cancelled_title,,Order %1$s cancelled,Заказ %1$s отменён
+core/data,notif_cancelled_text,,You were not charged. You saved %1$s.,Деньги не списаны. Вы сэкономили %1$s.
+core/data,notif_cancelled_text_named,,"Good call, %1$s! You were not charged and saved %2$s.","Отличное решение, %1$s! Деньги не списаны, вы сэкономили %2$s."
+core/ui,action_retry,,Retry,Повторить
+core/ui,error_generic,,Something went wrong. Please try again.,Что-то пошло не так. Попробуйте ещё раз.
+core/ui,action_add_to_cart,,Add to cart,В корзину
+core/ui,action_back,,Back,Назад
+core/ui,action_close,,Close,Закрыть
+core/ui,label_empty_results,,Nothing found,Ничего не найдено
+core/ui,category_beauty,,Beauty,Красота
+core/ui,category_fragrances,,Fragrances,Ароматы
+core/ui,category_furniture,,Furniture,Мебель
+core/ui,category_groceries,,Groceries,Продукты
+core/ui,category_home_decoration,,Home decor,Декор для дома
+core/ui,category_kitchen_accessories,,Kitchen,Кухня
+core/ui,category_laptops,,Laptops,Ноутбуки
+core/ui,category_mens_shirts,,Men's shirts,Мужские рубашки
+core/ui,category_mens_shoes,,Men's shoes,Мужская обувь
+core/ui,category_mens_watches,,Men's watches,Мужские часы
+core/ui,category_mobile_accessories,,Mobile accessories,Аксессуары для телефонов
+core/ui,category_motorcycle,,Motorcycles,Мотоциклы
+core/ui,category_skin_care,,Skin care,Уход за кожей
+core/ui,category_smartphones,,Smartphones,Смартфоны
+core/ui,category_sports_accessories,,Sports,Спорттовары
+core/ui,category_sunglasses,,Sunglasses,Солнцезащитные очки
+core/ui,category_tablets,,Tablets,Планшеты
+core/ui,category_tops,,Tops,Топы
+core/ui,category_vehicle,,Vehicles,Автомобили
+core/ui,category_womens_bags,,Women's bags,Женские сумки
+core/ui,category_womens_dresses,,Women's dresses,Женские платья
+core/ui,category_womens_jewellery,,Women's jewellery,Женские украшения
+core/ui,category_womens_shoes,,Women's shoes,Женская обувь
+core/ui,category_womens_watches,,Women's watches,Женские часы
+core/ui,msg_added_to_cart,,Added to your cart,Добавлено в корзину
+core/ui,action_view_cart,,View cart,Открыть корзину
+core/ui,label_free_shipping,,Free shipping,Бесплатная доставка
+core/ui,label_search_hint,,Search products,Поиск товаров
+core/ui,delay_custom_label,,Custom time,Своё время
+core/ui,delay_custom_hint,,From 1 minute up to 7 days,От 1 минуты до 7 дней
+core/ui,delay_unit_minutes,,minutes,минуты
+core/ui,delay_unit_hours,,hours,часы
+core/ui,delay_unit_days,,days,дни
+core/ui,fav_add,,Add to favorites,Добавить в избранное
+core/ui,fav_remove,,Remove from favorites,Убрать из избранного
+feature/cart/impl,cart_title,,Cart,Корзина
+feature/cart/impl,cart_empty,,Your cart is empty,Корзина пуста
+feature/cart/impl,cart_subtotal,,Subtotal,Подытог
+feature/cart/impl,cart_shipping,,Shipping,Доставка
+feature/cart/impl,cart_shipping_free,,Free,Бесплатно
+feature/cart/impl,cart_checkout,,Proceed to checkout,Оформить заказ
+feature/cart/impl,cart_increase,,Increase quantity,Увеличить количество
+feature/cart/impl,cart_decrease,,Decrease quantity,Уменьшить количество
+feature/cart/impl,cart_remove,,Remove,Удалить
+feature/checkout/impl,checkout_title,,Checkout,Оформление заказа
+feature/checkout/impl,checkout_shipping,,Shipping details,Данные доставки
+feature/checkout/impl,checkout_payment,,Payment,Оплата
+feature/checkout/impl,checkout_name,,Full name,Полное имя
+feature/checkout/impl,checkout_address,,Address,Адрес
+feature/checkout/impl,checkout_card_number,,Card number,Номер карты
+feature/checkout/impl,checkout_expiry,,MM/YY,ММ/ГГ
+feature/checkout/impl,checkout_cvv,,CVV,CVV
+feature/checkout/impl,checkout_invalid,,Please check this field,Проверьте это поле
+feature/checkout/impl,checkout_pay,,Pay now,Оплатить
+feature/checkout/impl,checkout_processing,,Processing your payment…,Обработка платежа…
+feature/checkout/impl,checkout_total_items,one,Total (%1$d item),Итого (%1$d товар)
+feature/checkout/impl,checkout_total_items,other,Total (%1$d items),Итого (%1$d товара)
+feature/checkout/impl,checkout_summary,,Order summary,Ваш заказ
+feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,Данные платежа зашифрованы и защищены
+feature/home/impl,home_recommended,,Recommended for you,Рекомендуем вам
+feature/home/impl,home_deals,,Deals of the day,Предложения дня
+feature/home/impl,home_ends_in,,Ends in %1$s,Закончится через %1$s
+feature/home/impl,home_banner1_title,,Mega Sale,Мегараспродажа
+feature/home/impl,home_banner1_sub,,Up to 50% off today,Скидки до 50% сегодня
+feature/home/impl,home_banner2_title,,Free shipping,Бесплатная доставка
+feature/home/impl,home_banner2_sub,,"On every order, no minimum","На все заказы, без минимума"
+feature/home/impl,home_banner3_title,,New arrivals,Новинки
+feature/home/impl,home_banner3_sub,,Fresh picks every day,Свежие находки каждый день
+feature/home/impl,home_greeting,,"Hi, %1$s","Привет, %1$s"
+feature/onboarding/impl,onb_skip,,Skip,Пропустить
+feature/onboarding/impl,onb_next,,Next,Далее
+feature/onboarding/impl,onb_start,,Get started,Начать
+feature/onboarding/impl,onb_prefer_not,,I'd rather not say,Не хочу указывать
+feature/onboarding/impl,onb_p1_title,,Welcome to Onio,Добро пожаловать в Onio
+feature/onboarding/impl,onb_p1_body,,"Browse a full store, fill your cart and check out, just like the real thing.","Просматривайте полноценный магазин, наполняйте корзину и оформляйте заказ — как в настоящем."
+feature/onboarding/impl,onb_p2_title,,Every order gets cancelled,Каждый заказ отменяется
+feature/onboarding/impl,onb_p2_body,,"Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.",Вскоре после оплаты заказ автоматически отменяется. Деньги не списываются.
+feature/onboarding/impl,onb_p3_title,,See what you saved,"Смотрите, сколько сэкономили"
+feature/onboarding/impl,onb_p3_body,,Your Savings tab shows all the money that stayed in your pocket.,"Во вкладке «Экономия» видно все деньги, оставшиеся в вашем кармане."
+feature/onboarding/impl,onb_p4_title,,What should we call you?,Как к вам обращаться?
+feature/onboarding/impl,onb_p4_body,,We'll use it to greet you. It stays on your device.,Мы будем использовать его для приветствия. Он хранится только на вашем устройстве.
+feature/onboarding/impl,onb_name_label,,Your name,Ваше имя
+feature/onboarding/impl,onb_regret_title,,How soon do you usually regret your purchases?,Через какое время вы обычно жалеете о своих покупках?
+feature/onboarding/impl,onb_regret_body,,We'll cancel your orders after this time. You can change it later in Settings.,Мы отменим ваши заказы по истечении этого времени. Позже его можно изменить в настройках.
+feature/onboarding/impl,onb_minutes,one,%1$d min,%1$d мин
+feature/onboarding/impl,onb_minutes,other,%1$d min,%1$d мин
+feature/onboarding/impl,onb_hours,one,%1$d hour,%1$d час
+feature/onboarding/impl,onb_hours,other,%1$d hours,%1$d часа
+feature/orders/impl,orders_title,,My orders,Мои заказы
+feature/orders/impl,orders_empty,,You haven't placed any orders yet,У вас пока нет заказов
+feature/orders/impl,orders_status_processing,,Processing,В обработке
+feature/orders/impl,orders_status_cancelled,,Cancelled,Отменён
+feature/orders/impl,orders_processing_title,,Verifying your payment,Проверяем ваш платёж
+feature/orders/impl,orders_processing_body,,We'll let you know as soon as there's an update.,"Мы сообщим, как только появятся новости."
+feature/orders/impl,orders_countdown,,Update expected in %1$s,Обновление через %1$s
+feature/orders/impl,orders_cancelled_title,,Order cancelled,Заказ отменён
+feature/orders/impl,orders_cancelled_body,,The payment was not completed and you were not charged. Good call!,"Платёж не был завершён, деньги не списаны. Отличное решение!"
+feature/orders/impl,orders_you_saved,,You saved,Вы сэкономили
+feature/orders/impl,orders_total,,Total,Итого
+feature/orders/impl,orders_ship_to,,"Ship to: %1$s, %2$s","Доставка: %1$s, %2$s"
+feature/orders/impl,orders_paid_with,,Card ending in %1$s,Карта •••• %1$s
+feature/orders/impl,orders_items,one,%1$d item,%1$d товар
+feature/orders/impl,orders_items,other,%1$d items,%1$d товара
+feature/orders/impl,orders_cancelled_body_named,,"The payment was not completed and you were not charged. Good call, %1$s!","Платёж не был завершён, деньги не списаны. Отличное решение, %1$s!"
+feature/product/impl,product_buy_now,,Buy now,Купить сейчас
+feature/product/impl,product_added,,Added to your cart,Добавлено в корзину
+feature/product/impl,product_discount,,%1$d%% off,−%1$d%%
+feature/product/impl,product_reviews,,Reviews,Отзывы
+feature/product/impl,product_out_of_stock,,Out of stock,Нет в наличии
+feature/product/impl,product_in_stock,one,%1$d item in stock,В наличии %1$d шт.
+feature/product/impl,product_in_stock,other,%1$d items in stock,В наличии %1$d шт.
+feature/product/impl,product_delivery_free,,Free delivery,Бесплатная доставка
+feature/product/impl,product_delivery_eta,,Arrives by %1$s,Доставим до %1$s
+feature/product/impl,product_returns,,30-day free returns,Бесплатный возврат в течение 30 дней
+feature/product/impl,product_secure,,Secure payment,Безопасная оплата
+feature/savings/impl,savings_title,,Savings,Экономия
+feature/savings/impl,savings_settings,,Settings,Настройки
+feature/savings/impl,savings_headline,,You didn't spend,Вы не потратили
+feature/savings/impl,savings_none_yet,,Your first saved purchase will show up here.,Ваша первая сэкономленная покупка появится здесь.
+feature/savings/impl,savings_motivation,,Every cancelled order is money that stays in your pocket. Keep going!,"Каждый отменённый заказ — деньги, оставшиеся в вашем кармане. Так держать!"
+feature/savings/impl,savings_see_orders,,See my orders,Мои заказы
+feature/savings/impl,savings_summary,one,from %1$d cancelled order,за %1$d отменённый заказ
+feature/savings/impl,savings_summary,other,from %1$d cancelled orders,за %1$d отменённого заказа
+feature/savings/impl,savings_items_not_bought,one,%1$d item you didn't need,"%1$d товар, который вам не нужен"
+feature/savings/impl,savings_items_not_bought,other,%1$d items you didn't need,"%1$d товара, которые вам не нужны"
+feature/savings/impl,savings_headline_named,,"%1$s, you didn't spend","%1$s, вы не потратили"
+feature/search/impl,search_title,,Search,Поиск
+feature/search/impl,search_hint,,Search products,Поиск товаров
+feature/search/impl,search_filters,,Filters,Фильтры
+feature/search/impl,search_favorites,,Favorites,Избранное
+feature/search/impl,search_no_favorites,,No favorites yet. Tap the heart on a product to save it.,"Избранного пока нет. Нажмите на сердечко у товара, чтобы сохранить его."
+feature/search/impl,search_sort,,Sort by,Сортировка
+feature/search/impl,sort_relevance,,Relevance,По релевантности
+feature/search/impl,sort_price_asc,,Price: low to high,Цена: по возрастанию
+feature/search/impl,sort_price_desc,,Price: high to low,Цена: по убыванию
+feature/search/impl,sort_discount,,Biggest discount,Максимальная скидка
+feature/search/impl,sort_rating,,Top rated,С высоким рейтингом
+feature/search/impl,filter_on_sale,,On sale,Со скидкой
+feature/search/impl,filter_top_rated,,4★ & up,4★ и выше
+feature/search/impl,filter_price_range,,Price range,Диапазон цен
+feature/search/impl,filter_reset,,Reset filters,Сбросить фильтры
+feature/settings/impl,settings_title,,Settings,Настройки
+feature/settings/impl,settings_cancel_after,,Cancel orders after,Отменять заказы через
+feature/settings/impl,settings_cancel_after_hint,,Applies to new orders only.,Применяется только к новым заказам.
+feature/settings/impl,settings_currency,,Currency,Валюта
+feature/settings/impl,settings_automatic,,Automatic,Автоматически
+feature/settings/impl,settings_language,,Language,Язык
+feature/settings/impl,settings_about,,About Onio,Об Onio
+feature/settings/impl,settings_about_body,,"Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.","Onio — это тренировочное пространство для людей с компульсивным шопингом. Оно выглядит как настоящий магазин, но реальных покупок не происходит и деньги не списываются: каждый заказ автоматически отменяется, так что вы получаете азарт покупок и сохраняете сбережения."
+feature/settings/impl,settings_minutes,one,%1$d min,%1$d мин
+feature/settings/impl,settings_minutes,other,%1$d min,%1$d мин
+feature/settings/impl,settings_hours,one,%1$d hour,%1$d час
+feature/settings/impl,settings_hours,other,%1$d hours,%1$d часа

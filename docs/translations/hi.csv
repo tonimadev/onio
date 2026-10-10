@@ -1,0 +1,169 @@
+module,key,quantity,english,translation
+app,nav_home,,Home,होम
+app,nav_search,,Search,खोजें
+app,nav_cart,,Cart,कार्ट
+app,nav_orders,,Orders,ऑर्डर
+app,nav_savings,,Savings,बचत
+core/data,notif_channel_name,,Order updates,ऑर्डर अपडेट
+core/data,notif_cancelled_title,,Order %1$s cancelled,ऑर्डर %1$s रद्द हुआ
+core/data,notif_cancelled_text,,You were not charged. You saved %1$s.,आपसे कोई शुल्क नहीं लिया गया। आपने %1$s बचाए।
+core/data,notif_cancelled_text_named,,"Good call, %1$s! You were not charged and saved %2$s.","बढ़िया फ़ैसला, %1$s! आपसे कोई शुल्क नहीं लिया गया और आपने %2$s बचाए।"
+core/ui,action_retry,,Retry,पुनः प्रयास करें
+core/ui,error_generic,,Something went wrong. Please try again.,कुछ गलत हो गया। कृपया पुनः प्रयास करें।
+core/ui,action_add_to_cart,,Add to cart,कार्ट में जोड़ें
+core/ui,action_back,,Back,वापस
+core/ui,action_close,,Close,बंद करें
+core/ui,label_empty_results,,Nothing found,कुछ नहीं मिला
+core/ui,category_beauty,,Beauty,सौंदर्य
+core/ui,category_fragrances,,Fragrances,इत्र
+core/ui,category_furniture,,Furniture,फर्नीचर
+core/ui,category_groceries,,Groceries,किराना
+core/ui,category_home_decoration,,Home decor,घर की सजावट
+core/ui,category_kitchen_accessories,,Kitchen,रसोई का सामान
+core/ui,category_laptops,,Laptops,लैपटॉप
+core/ui,category_mens_shirts,,Men's shirts,पुरुषों की शर्ट
+core/ui,category_mens_shoes,,Men's shoes,पुरुषों के जूते
+core/ui,category_mens_watches,,Men's watches,पुरुषों की घड़ियाँ
+core/ui,category_mobile_accessories,,Mobile accessories,मोबाइल एक्सेसरीज़
+core/ui,category_motorcycle,,Motorcycles,मोटरसाइकिल
+core/ui,category_skin_care,,Skin care,त्वचा की देखभाल
+core/ui,category_smartphones,,Smartphones,स्मार्टफोन
+core/ui,category_sports_accessories,,Sports,खेल का सामान
+core/ui,category_sunglasses,,Sunglasses,धूप के चश्मे
+core/ui,category_tablets,,Tablets,टैबलेट
+core/ui,category_tops,,Tops,टॉप्स
+core/ui,category_vehicle,,Vehicles,वाहन
+core/ui,category_womens_bags,,Women's bags,महिलाओं के बैग
+core/ui,category_womens_dresses,,Women's dresses,महिलाओं की ड्रेस
+core/ui,category_womens_jewellery,,Women's jewellery,महिलाओं के गहने
+core/ui,category_womens_shoes,,Women's shoes,महिलाओं के जूते
+core/ui,category_womens_watches,,Women's watches,महिलाओं की घड़ियाँ
+core/ui,msg_added_to_cart,,Added to your cart,कार्ट में जोड़ा गया
+core/ui,action_view_cart,,View cart,कार्ट देखें
+core/ui,label_free_shipping,,Free shipping,मुफ़्त शिपिंग
+core/ui,label_search_hint,,Search products,उत्पाद खोजें
+core/ui,delay_custom_label,,Custom time,अपना समय
+core/ui,delay_custom_hint,,From 1 minute up to 7 days,1 मिनट से 7 दिन तक
+core/ui,delay_unit_minutes,,minutes,मिनट
+core/ui,delay_unit_hours,,hours,घंटे
+core/ui,delay_unit_days,,days,दिन
+core/ui,fav_add,,Add to favorites,पसंदीदा में जोड़ें
+core/ui,fav_remove,,Remove from favorites,पसंदीदा से हटाएँ
+feature/cart/impl,cart_title,,Cart,कार्ट
+feature/cart/impl,cart_empty,,Your cart is empty,आपकी कार्ट खाली है
+feature/cart/impl,cart_subtotal,,Subtotal,उप-योग
+feature/cart/impl,cart_shipping,,Shipping,शिपिंग
+feature/cart/impl,cart_shipping_free,,Free,मुफ़्त
+feature/cart/impl,cart_checkout,,Proceed to checkout,चेकआउट करें
+feature/cart/impl,cart_increase,,Increase quantity,मात्रा बढ़ाएँ
+feature/cart/impl,cart_decrease,,Decrease quantity,मात्रा घटाएँ
+feature/cart/impl,cart_remove,,Remove,हटाएँ
+feature/checkout/impl,checkout_title,,Checkout,चेकआउट
+feature/checkout/impl,checkout_shipping,,Shipping details,शिपिंग विवरण
+feature/checkout/impl,checkout_payment,,Payment,भुगतान
+feature/checkout/impl,checkout_name,,Full name,पूरा नाम
+feature/checkout/impl,checkout_address,,Address,पता
+feature/checkout/impl,checkout_card_number,,Card number,कार्ड नंबर
+feature/checkout/impl,checkout_expiry,,MM/YY,मा/व
+feature/checkout/impl,checkout_cvv,,CVV,CVV
+feature/checkout/impl,checkout_invalid,,Please check this field,कृपया इस फ़ील्ड की जाँच करें
+feature/checkout/impl,checkout_pay,,Pay now,अभी भुगतान करें
+feature/checkout/impl,checkout_processing,,Processing your payment…,आपका भुगतान प्रोसेस हो रहा है…
+feature/checkout/impl,checkout_total_items,one,Total (%1$d item),कुल (%1$d आइटम)
+feature/checkout/impl,checkout_total_items,other,Total (%1$d items),कुल (%1$d आइटम)
+feature/checkout/impl,checkout_summary,,Order summary,ऑर्डर सारांश
+feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,आपकी भुगतान जानकारी एन्क्रिप्टेड और सुरक्षित है
+feature/home/impl,home_recommended,,Recommended for you,आपके लिए सुझाव
+feature/home/impl,home_deals,,Deals of the day,आज के ऑफ़र
+feature/home/impl,home_ends_in,,Ends in %1$s,%1$s में समाप्त
+feature/home/impl,home_banner1_title,,Mega Sale,मेगा सेल
+feature/home/impl,home_banner1_sub,,Up to 50% off today,आज 50% तक की छूट
+feature/home/impl,home_banner2_title,,Free shipping,मुफ़्त शिपिंग
+feature/home/impl,home_banner2_sub,,"On every order, no minimum","हर ऑर्डर पर, कोई न्यूनतम राशि नहीं"
+feature/home/impl,home_banner3_title,,New arrivals,नई आमद
+feature/home/impl,home_banner3_sub,,Fresh picks every day,हर दिन नई पसंद
+feature/home/impl,home_greeting,,"Hi, %1$s","नमस्ते, %1$s"
+feature/onboarding/impl,onb_skip,,Skip,छोड़ें
+feature/onboarding/impl,onb_next,,Next,आगे
+feature/onboarding/impl,onb_start,,Get started,शुरू करें
+feature/onboarding/impl,onb_prefer_not,,I'd rather not say,बताना नहीं चाहता
+feature/onboarding/impl,onb_p1_title,,Welcome to Onio,Onio में आपका स्वागत है
+feature/onboarding/impl,onb_p1_body,,"Browse a full store, fill your cart and check out, just like the real thing.","असली स्टोर की तरह ब्राउज़ करें, कार्ट भरें और चेकआउट करें।"
+feature/onboarding/impl,onb_p2_title,,Every order gets cancelled,हर ऑर्डर रद्द हो जाता है
+feature/onboarding/impl,onb_p2_body,,"Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.",भुगतान के कुछ देर बाद ऑर्डर अपने-आप रद्द हो जाता है। कोई पैसा नहीं कटता।
+feature/onboarding/impl,onb_p3_title,,See what you saved,देखें आपने कितना बचाया
+feature/onboarding/impl,onb_p3_body,,Your Savings tab shows all the money that stayed in your pocket.,बचत टैब में वह सारा पैसा दिखता है जो आपकी जेब में रहा।
+feature/onboarding/impl,onb_p4_title,,What should we call you?,हम आपको क्या कहकर बुलाएँ?
+feature/onboarding/impl,onb_p4_body,,We'll use it to greet you. It stays on your device.,हम इसका उपयोग आपका अभिवादन करने के लिए करेंगे। यह आपके डिवाइस पर ही रहता है।
+feature/onboarding/impl,onb_name_label,,Your name,आपका नाम
+feature/onboarding/impl,onb_regret_title,,How soon do you usually regret your purchases?,आप अपनी खरीदारी पर आमतौर पर कितनी जल्दी पछताते हैं?
+feature/onboarding/impl,onb_regret_body,,We'll cancel your orders after this time. You can change it later in Settings.,हम इतने समय बाद आपके ऑर्डर रद्द कर देंगे। इसे बाद में सेटिंग्स में बदला जा सकता है।
+feature/onboarding/impl,onb_minutes,one,%1$d min,%1$d मिनट
+feature/onboarding/impl,onb_minutes,other,%1$d min,%1$d मिनट
+feature/onboarding/impl,onb_hours,one,%1$d hour,%1$d घंटा
+feature/onboarding/impl,onb_hours,other,%1$d hours,%1$d घंटे
+feature/orders/impl,orders_title,,My orders,मेरे ऑर्डर
+feature/orders/impl,orders_empty,,You haven't placed any orders yet,आपने अभी तक कोई ऑर्डर नहीं किया
+feature/orders/impl,orders_status_processing,,Processing,प्रोसेस हो रहा है
+feature/orders/impl,orders_status_cancelled,,Cancelled,रद्द
+feature/orders/impl,orders_processing_title,,Verifying your payment,आपका भुगतान सत्यापित हो रहा है
+feature/orders/impl,orders_processing_body,,We'll let you know as soon as there's an update.,अपडेट मिलते ही हम आपको बताएँगे।
+feature/orders/impl,orders_countdown,,Update expected in %1$s,अपडेट %1$s में अपेक्षित
+feature/orders/impl,orders_cancelled_title,,Order cancelled,ऑर्डर रद्द हो गया
+feature/orders/impl,orders_cancelled_body,,The payment was not completed and you were not charged. Good call!,भुगतान पूरा नहीं हुआ और आपसे कोई शुल्क नहीं लिया गया। बढ़िया फ़ैसला!
+feature/orders/impl,orders_you_saved,,You saved,आपने बचाए
+feature/orders/impl,orders_total,,Total,कुल
+feature/orders/impl,orders_ship_to,,"Ship to: %1$s, %2$s","भेजा जाएगा: %1$s, %2$s"
+feature/orders/impl,orders_paid_with,,Card ending in %1$s,कार्ड जिसका अंत %1$s है
+feature/orders/impl,orders_items,one,%1$d item,%1$d आइटम
+feature/orders/impl,orders_items,other,%1$d items,%1$d आइटम
+feature/orders/impl,orders_cancelled_body_named,,"The payment was not completed and you were not charged. Good call, %1$s!","भुगतान पूरा नहीं हुआ और आपसे कोई शुल्क नहीं लिया गया। बढ़िया फ़ैसला, %1$s!"
+feature/product/impl,product_buy_now,,Buy now,अभी खरीदें
+feature/product/impl,product_added,,Added to your cart,कार्ट में जोड़ा गया
+feature/product/impl,product_discount,,%1$d%% off,%1$d%% छूट
+feature/product/impl,product_reviews,,Reviews,समीक्षाएँ
+feature/product/impl,product_out_of_stock,,Out of stock,स्टॉक में नहीं
+feature/product/impl,product_in_stock,one,%1$d item in stock,स्टॉक में %1$d आइटम
+feature/product/impl,product_in_stock,other,%1$d items in stock,स्टॉक में %1$d आइटम
+feature/product/impl,product_delivery_free,,Free delivery,मुफ़्त डिलीवरी
+feature/product/impl,product_delivery_eta,,Arrives by %1$s,%1$s तक पहुँचेगा
+feature/product/impl,product_returns,,30-day free returns,30 दिन की मुफ़्त वापसी
+feature/product/impl,product_secure,,Secure payment,सुरक्षित भुगतान
+feature/savings/impl,savings_title,,Savings,बचत
+feature/savings/impl,savings_settings,,Settings,सेटिंग्स
+feature/savings/impl,savings_headline,,You didn't spend,आपने खर्च नहीं किया
+feature/savings/impl,savings_none_yet,,Your first saved purchase will show up here.,आपकी पहली बचत यहाँ दिखेगी।
+feature/savings/impl,savings_motivation,,Every cancelled order is money that stays in your pocket. Keep going!,हर रद्द ऑर्डर आपकी जेब में बचा पैसा है। लगे रहिए!
+feature/savings/impl,savings_see_orders,,See my orders,मेरे ऑर्डर देखें
+feature/savings/impl,savings_summary,one,from %1$d cancelled order,%1$d रद्द ऑर्डर से
+feature/savings/impl,savings_summary,other,from %1$d cancelled orders,%1$d रद्द ऑर्डर से
+feature/savings/impl,savings_items_not_bought,one,%1$d item you didn't need,%1$d आइटम जिसकी आपको ज़रूरत नहीं थी
+feature/savings/impl,savings_items_not_bought,other,%1$d items you didn't need,%1$d आइटम जिनकी आपको ज़रूरत नहीं थी
+feature/savings/impl,savings_headline_named,,"%1$s, you didn't spend","%1$s, आपने खर्च नहीं किया"
+feature/search/impl,search_title,,Search,खोजें
+feature/search/impl,search_hint,,Search products,उत्पाद खोजें
+feature/search/impl,search_filters,,Filters,फ़िल्टर
+feature/search/impl,search_favorites,,Favorites,पसंदीदा
+feature/search/impl,search_no_favorites,,No favorites yet. Tap the heart on a product to save it.,अभी कोई पसंदीदा नहीं। सहेजने के लिए उत्पाद पर दिल दबाएँ।
+feature/search/impl,search_sort,,Sort by,इसके अनुसार क्रमबद्ध करें
+feature/search/impl,sort_relevance,,Relevance,प्रासंगिकता
+feature/search/impl,sort_price_asc,,Price: low to high,कीमत: कम से ज़्यादा
+feature/search/impl,sort_price_desc,,Price: high to low,कीमत: ज़्यादा से कम
+feature/search/impl,sort_discount,,Biggest discount,सबसे ज़्यादा छूट
+feature/search/impl,sort_rating,,Top rated,सबसे अधिक रेटिंग
+feature/search/impl,filter_on_sale,,On sale,छूट पर
+feature/search/impl,filter_top_rated,,4★ & up,4★ और ऊपर
+feature/search/impl,filter_price_range,,Price range,कीमत सीमा
+feature/search/impl,filter_reset,,Reset filters,फ़िल्टर रीसेट करें
+feature/settings/impl,settings_title,,Settings,सेटिंग्स
+feature/settings/impl,settings_cancel_after,,Cancel orders after,ऑर्डर रद्द होने का समय
+feature/settings/impl,settings_cancel_after_hint,,Applies to new orders only.,केवल नए ऑर्डर पर लागू।
+feature/settings/impl,settings_currency,,Currency,मुद्रा
+feature/settings/impl,settings_automatic,,Automatic,स्वचालित
+feature/settings/impl,settings_language,,Language,भाषा
+feature/settings/impl,settings_about,,About Onio,Onio के बारे में
+feature/settings/impl,settings_about_body,,"Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.","Onio उन लोगों के लिए अभ्यास की जगह है जो बाध्यकारी खरीदारी से जूझते हैं। यह असली स्टोर जैसा दिखता है, लेकिन कोई असली खरीदारी नहीं होती और कोई पैसा नहीं कटता: हर ऑर्डर अपने-आप रद्द हो जाता है, ताकि आप खरीदारी का मज़ा लें और बचत बनाए रखें।"
+feature/settings/impl,settings_minutes,one,%1$d min,%1$d मिनट
+feature/settings/impl,settings_minutes,other,%1$d min,%1$d मिनट
+feature/settings/impl,settings_hours,one,%1$d hour,%1$d घंटा
+feature/settings/impl,settings_hours,other,%1$d hours,%1$d घंटे

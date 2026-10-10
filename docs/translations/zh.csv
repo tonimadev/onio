@@ -1,0 +1,169 @@
+module,key,quantity,english,translation
+app,nav_home,,Home,首页
+app,nav_search,,Search,搜索
+app,nav_cart,,Cart,购物车
+app,nav_orders,,Orders,订单
+app,nav_savings,,Savings,节省
+core/data,notif_channel_name,,Order updates,订单动态
+core/data,notif_cancelled_title,,Order %1$s cancelled,订单 %1$s 已取消
+core/data,notif_cancelled_text,,You were not charged. You saved %1$s.,没有产生任何扣款，您节省了 %1$s。
+core/data,notif_cancelled_text_named,,"Good call, %1$s! You were not charged and saved %2$s.",%1$s，做得好！没有产生任何扣款，您节省了 %2$s。
+core/ui,action_retry,,Retry,重试
+core/ui,error_generic,,Something went wrong. Please try again.,出了点问题，请重试。
+core/ui,action_add_to_cart,,Add to cart,加入购物车
+core/ui,action_back,,Back,返回
+core/ui,action_close,,Close,关闭
+core/ui,label_empty_results,,Nothing found,未找到任何内容
+core/ui,category_beauty,,Beauty,美妆
+core/ui,category_fragrances,,Fragrances,香水
+core/ui,category_furniture,,Furniture,家具
+core/ui,category_groceries,,Groceries,杂货
+core/ui,category_home_decoration,,Home decor,家居装饰
+core/ui,category_kitchen_accessories,,Kitchen,厨房用品
+core/ui,category_laptops,,Laptops,笔记本电脑
+core/ui,category_mens_shirts,,Men's shirts,男士衬衫
+core/ui,category_mens_shoes,,Men's shoes,男鞋
+core/ui,category_mens_watches,,Men's watches,男士手表
+core/ui,category_mobile_accessories,,Mobile accessories,手机配件
+core/ui,category_motorcycle,,Motorcycles,摩托车
+core/ui,category_skin_care,,Skin care,护肤
+core/ui,category_smartphones,,Smartphones,智能手机
+core/ui,category_sports_accessories,,Sports,运动配件
+core/ui,category_sunglasses,,Sunglasses,太阳镜
+core/ui,category_tablets,,Tablets,平板电脑
+core/ui,category_tops,,Tops,上衣
+core/ui,category_vehicle,,Vehicles,车辆
+core/ui,category_womens_bags,,Women's bags,女士包包
+core/ui,category_womens_dresses,,Women's dresses,女士连衣裙
+core/ui,category_womens_jewellery,,Women's jewellery,女士首饰
+core/ui,category_womens_shoes,,Women's shoes,女鞋
+core/ui,category_womens_watches,,Women's watches,女士手表
+core/ui,msg_added_to_cart,,Added to your cart,已加入购物车
+core/ui,action_view_cart,,View cart,查看购物车
+core/ui,label_free_shipping,,Free shipping,免运费
+core/ui,label_search_hint,,Search products,搜索商品
+core/ui,delay_custom_label,,Custom time,自定义时间
+core/ui,delay_custom_hint,,From 1 minute up to 7 days,从 1 分钟到 7 天
+core/ui,delay_unit_minutes,,minutes,分钟
+core/ui,delay_unit_hours,,hours,小时
+core/ui,delay_unit_days,,days,天
+core/ui,fav_add,,Add to favorites,加入收藏
+core/ui,fav_remove,,Remove from favorites,取消收藏
+feature/cart/impl,cart_title,,Cart,购物车
+feature/cart/impl,cart_empty,,Your cart is empty,购物车是空的
+feature/cart/impl,cart_subtotal,,Subtotal,小计
+feature/cart/impl,cart_shipping,,Shipping,运费
+feature/cart/impl,cart_shipping_free,,Free,免费
+feature/cart/impl,cart_checkout,,Proceed to checkout,去结算
+feature/cart/impl,cart_increase,,Increase quantity,增加数量
+feature/cart/impl,cart_decrease,,Decrease quantity,减少数量
+feature/cart/impl,cart_remove,,Remove,移除
+feature/checkout/impl,checkout_title,,Checkout,结算
+feature/checkout/impl,checkout_shipping,,Shipping details,收货信息
+feature/checkout/impl,checkout_payment,,Payment,支付方式
+feature/checkout/impl,checkout_name,,Full name,姓名
+feature/checkout/impl,checkout_address,,Address,地址
+feature/checkout/impl,checkout_card_number,,Card number,银行卡号
+feature/checkout/impl,checkout_expiry,,MM/YY,月/年
+feature/checkout/impl,checkout_cvv,,CVV,安全码
+feature/checkout/impl,checkout_invalid,,Please check this field,请检查此项
+feature/checkout/impl,checkout_pay,,Pay now,立即支付
+feature/checkout/impl,checkout_processing,,Processing your payment…,正在处理付款…
+feature/checkout/impl,checkout_total_items,one,Total (%1$d item),
+feature/checkout/impl,checkout_total_items,other,Total (%1$d items),合计（%1$d 件商品）
+feature/checkout/impl,checkout_summary,,Order summary,订单摘要
+feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,您的支付信息已加密，安全无忧
+feature/home/impl,home_recommended,,Recommended for you,为你推荐
+feature/home/impl,home_deals,,Deals of the day,每日特惠
+feature/home/impl,home_ends_in,,Ends in %1$s,%1$s 后结束
+feature/home/impl,home_banner1_title,,Mega Sale,超级大促
+feature/home/impl,home_banner1_sub,,Up to 50% off today,今日最高 5 折
+feature/home/impl,home_banner2_title,,Free shipping,免运费
+feature/home/impl,home_banner2_sub,,"On every order, no minimum",所有订单，无门槛
+feature/home/impl,home_banner3_title,,New arrivals,新品上市
+feature/home/impl,home_banner3_sub,,Fresh picks every day,每日精选上新
+feature/home/impl,home_greeting,,"Hi, %1$s",你好，%1$s
+feature/onboarding/impl,onb_skip,,Skip,跳过
+feature/onboarding/impl,onb_next,,Next,下一步
+feature/onboarding/impl,onb_start,,Get started,开始使用
+feature/onboarding/impl,onb_prefer_not,,I'd rather not say,暂不透露
+feature/onboarding/impl,onb_p1_title,,Welcome to Onio,欢迎来到 Onio
+feature/onboarding/impl,onb_p1_body,,"Browse a full store, fill your cart and check out, just like the real thing.",像真实商店一样浏览商品、加入购物车并结算。
+feature/onboarding/impl,onb_p2_title,,Every order gets cancelled,每个订单都会被取消
+feature/onboarding/impl,onb_p2_body,,"Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.",付款后不久，订单会自动取消，不会产生任何扣款。
+feature/onboarding/impl,onb_p3_title,,See what you saved,看看您节省了多少
+feature/onboarding/impl,onb_p3_body,,Your Savings tab shows all the money that stayed in your pocket.,“节省”页面会显示留在您口袋里的所有钱。
+feature/onboarding/impl,onb_p4_title,,What should we call you?,我们该怎么称呼您？
+feature/onboarding/impl,onb_p4_body,,We'll use it to greet you. It stays on your device.,我们会用它来问候您，它只保存在您的设备上。
+feature/onboarding/impl,onb_name_label,,Your name,您的名字
+feature/onboarding/impl,onb_regret_title,,How soon do you usually regret your purchases?,您通常多久会后悔自己的购物？
+feature/onboarding/impl,onb_regret_body,,We'll cancel your orders after this time. You can change it later in Settings.,我们会在这段时间后取消您的订单，之后可在“设置”中修改。
+feature/onboarding/impl,onb_minutes,one,%1$d min,
+feature/onboarding/impl,onb_minutes,other,%1$d min,%1$d 分钟
+feature/onboarding/impl,onb_hours,one,%1$d hour,
+feature/onboarding/impl,onb_hours,other,%1$d hours,%1$d 小时
+feature/orders/impl,orders_title,,My orders,我的订单
+feature/orders/impl,orders_empty,,You haven't placed any orders yet,您还没有订单
+feature/orders/impl,orders_status_processing,,Processing,处理中
+feature/orders/impl,orders_status_cancelled,,Cancelled,已取消
+feature/orders/impl,orders_processing_title,,Verifying your payment,正在验证您的付款
+feature/orders/impl,orders_processing_body,,We'll let you know as soon as there's an update.,有更新时我们会第一时间通知您。
+feature/orders/impl,orders_countdown,,Update expected in %1$s,预计 %1$s 后更新
+feature/orders/impl,orders_cancelled_title,,Order cancelled,订单已取消
+feature/orders/impl,orders_cancelled_body,,The payment was not completed and you were not charged. Good call!,付款未完成，您没有被扣款。做得好！
+feature/orders/impl,orders_you_saved,,You saved,您节省了
+feature/orders/impl,orders_total,,Total,合计
+feature/orders/impl,orders_ship_to,,"Ship to: %1$s, %2$s",收货人：%1$s，%2$s
+feature/orders/impl,orders_paid_with,,Card ending in %1$s,尾号 %1$s 的银行卡
+feature/orders/impl,orders_items,one,%1$d item,
+feature/orders/impl,orders_items,other,%1$d items,%1$d 件商品
+feature/orders/impl,orders_cancelled_body_named,,"The payment was not completed and you were not charged. Good call, %1$s!",付款未完成，您没有被扣款。做得好，%1$s！
+feature/product/impl,product_buy_now,,Buy now,立即购买
+feature/product/impl,product_added,,Added to your cart,已加入购物车
+feature/product/impl,product_discount,,%1$d%% off,优惠 %1$d%%
+feature/product/impl,product_reviews,,Reviews,评价
+feature/product/impl,product_out_of_stock,,Out of stock,缺货
+feature/product/impl,product_in_stock,one,%1$d item in stock,
+feature/product/impl,product_in_stock,other,%1$d items in stock,库存 %1$d 件
+feature/product/impl,product_delivery_free,,Free delivery,免费配送
+feature/product/impl,product_delivery_eta,,Arrives by %1$s,预计 %1$s 送达
+feature/product/impl,product_returns,,30-day free returns,30 天免费退货
+feature/product/impl,product_secure,,Secure payment,安全支付
+feature/savings/impl,savings_title,,Savings,节省
+feature/savings/impl,savings_settings,,Settings,设置
+feature/savings/impl,savings_headline,,You didn't spend,您没有花掉
+feature/savings/impl,savings_none_yet,,Your first saved purchase will show up here.,您节省的第一笔消费会显示在这里。
+feature/savings/impl,savings_motivation,,Every cancelled order is money that stays in your pocket. Keep going!,每一笔取消的订单，都是留在您口袋里的钱。继续加油！
+feature/savings/impl,savings_see_orders,,See my orders,查看我的订单
+feature/savings/impl,savings_summary,one,from %1$d cancelled order,
+feature/savings/impl,savings_summary,other,from %1$d cancelled orders,来自 %1$d 笔已取消的订单
+feature/savings/impl,savings_items_not_bought,one,%1$d item you didn't need,
+feature/savings/impl,savings_items_not_bought,other,%1$d items you didn't need,%1$d 件您其实不需要的商品
+feature/savings/impl,savings_headline_named,,"%1$s, you didn't spend",%1$s，您没有花掉
+feature/search/impl,search_title,,Search,搜索
+feature/search/impl,search_hint,,Search products,搜索商品
+feature/search/impl,search_filters,,Filters,筛选
+feature/search/impl,search_favorites,,Favorites,收藏
+feature/search/impl,search_no_favorites,,No favorites yet. Tap the heart on a product to save it.,还没有收藏。点击商品上的爱心即可保存。
+feature/search/impl,search_sort,,Sort by,排序方式
+feature/search/impl,sort_relevance,,Relevance,相关度
+feature/search/impl,sort_price_asc,,Price: low to high,价格从低到高
+feature/search/impl,sort_price_desc,,Price: high to low,价格从高到低
+feature/search/impl,sort_discount,,Biggest discount,折扣最大
+feature/search/impl,sort_rating,,Top rated,评分最高
+feature/search/impl,filter_on_sale,,On sale,特价
+feature/search/impl,filter_top_rated,,4★ & up,4★ 及以上
+feature/search/impl,filter_price_range,,Price range,价格区间
+feature/search/impl,filter_reset,,Reset filters,重置筛选
+feature/settings/impl,settings_title,,Settings,设置
+feature/settings/impl,settings_cancel_after,,Cancel orders after,订单取消时间
+feature/settings/impl,settings_cancel_after_hint,,Applies to new orders only.,仅适用于新订单。
+feature/settings/impl,settings_currency,,Currency,货币
+feature/settings/impl,settings_automatic,,Automatic,自动
+feature/settings/impl,settings_language,,Language,语言
+feature/settings/impl,settings_about,,About Onio,关于 Onio
+feature/settings/impl,settings_about_body,,"Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.",Onio 是为强迫性购物者设计的练习空间。它看起来像真实的商店，但不会产生任何真实购买，也不会扣除任何款项：每个订单都会自动取消，让您既享受购物的快感，又保住积蓄。
+feature/settings/impl,settings_minutes,one,%1$d min,
+feature/settings/impl,settings_minutes,other,%1$d min,%1$d 分钟
+feature/settings/impl,settings_hours,one,%1$d hour,
+feature/settings/impl,settings_hours,other,%1$d hours,%1$d 小时

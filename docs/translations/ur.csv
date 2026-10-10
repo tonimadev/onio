@@ -1,0 +1,169 @@
+module,key,quantity,english,translation
+app,nav_home,,Home,ہوم
+app,nav_search,,Search,تلاش
+app,nav_cart,,Cart,کارٹ
+app,nav_orders,,Orders,آرڈرز
+app,nav_savings,,Savings,بچت
+core/data,notif_channel_name,,Order updates,آرڈر اپ ڈیٹس
+core/data,notif_cancelled_title,,Order %1$s cancelled,آرڈر %1$s منسوخ ہو گیا
+core/data,notif_cancelled_text,,You were not charged. You saved %1$s.,آپ سے کچھ نہیں کاٹا گیا۔ آپ نے %1$s بچائے۔
+core/data,notif_cancelled_text_named,,"Good call, %1$s! You were not charged and saved %2$s.",بہترین فیصلہ، %1$s! آپ سے کچھ نہیں کاٹا گیا اور آپ نے %2$s بچائے۔
+core/ui,action_retry,,Retry,دوبارہ کوشش کریں
+core/ui,error_generic,,Something went wrong. Please try again.,کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔
+core/ui,action_add_to_cart,,Add to cart,کارٹ میں شامل کریں
+core/ui,action_back,,Back,واپس
+core/ui,action_close,,Close,بند کریں
+core/ui,label_empty_results,,Nothing found,کچھ نہیں ملا
+core/ui,category_beauty,,Beauty,خوبصورتی
+core/ui,category_fragrances,,Fragrances,خوشبوئیں
+core/ui,category_furniture,,Furniture,فرنیچر
+core/ui,category_groceries,,Groceries,گروسری
+core/ui,category_home_decoration,,Home decor,گھر کی سجاوٹ
+core/ui,category_kitchen_accessories,,Kitchen,باورچی خانہ
+core/ui,category_laptops,,Laptops,لیپ ٹاپ
+core/ui,category_mens_shirts,,Men's shirts,مردانہ قمیضیں
+core/ui,category_mens_shoes,,Men's shoes,مردانہ جوتے
+core/ui,category_mens_watches,,Men's watches,مردانہ گھڑیاں
+core/ui,category_mobile_accessories,,Mobile accessories,موبائل لوازمات
+core/ui,category_motorcycle,,Motorcycles,موٹر سائیکلیں
+core/ui,category_skin_care,,Skin care,جلد کی دیکھ بھال
+core/ui,category_smartphones,,Smartphones,اسمارٹ فونز
+core/ui,category_sports_accessories,,Sports,کھیلوں کا سامان
+core/ui,category_sunglasses,,Sunglasses,دھوپ کے چشمے
+core/ui,category_tablets,,Tablets,ٹیبلیٹس
+core/ui,category_tops,,Tops,ٹاپس
+core/ui,category_vehicle,,Vehicles,گاڑیاں
+core/ui,category_womens_bags,,Women's bags,خواتین کے بیگ
+core/ui,category_womens_dresses,,Women's dresses,خواتین کے لباس
+core/ui,category_womens_jewellery,,Women's jewellery,خواتین کے زیورات
+core/ui,category_womens_shoes,,Women's shoes,خواتین کے جوتے
+core/ui,category_womens_watches,,Women's watches,خواتین کی گھڑیاں
+core/ui,msg_added_to_cart,,Added to your cart,آپ کی کارٹ میں شامل ہو گیا
+core/ui,action_view_cart,,View cart,کارٹ دیکھیں
+core/ui,label_free_shipping,,Free shipping,مفت شپنگ
+core/ui,label_search_hint,,Search products,مصنوعات تلاش کریں
+core/ui,delay_custom_label,,Custom time,اپنی مرضی کا وقت
+core/ui,delay_custom_hint,,From 1 minute up to 7 days,1 منٹ سے 7 دن تک
+core/ui,delay_unit_minutes,,minutes,منٹ
+core/ui,delay_unit_hours,,hours,گھنٹے
+core/ui,delay_unit_days,,days,دن
+core/ui,fav_add,,Add to favorites,پسندیدہ میں شامل کریں
+core/ui,fav_remove,,Remove from favorites,پسندیدہ سے ہٹائیں
+feature/cart/impl,cart_title,,Cart,کارٹ
+feature/cart/impl,cart_empty,,Your cart is empty,آپ کی کارٹ خالی ہے
+feature/cart/impl,cart_subtotal,,Subtotal,ذیلی کل
+feature/cart/impl,cart_shipping,,Shipping,شپنگ
+feature/cart/impl,cart_shipping_free,,Free,مفت
+feature/cart/impl,cart_checkout,,Proceed to checkout,چیک آؤٹ کریں
+feature/cart/impl,cart_increase,,Increase quantity,مقدار بڑھائیں
+feature/cart/impl,cart_decrease,,Decrease quantity,مقدار کم کریں
+feature/cart/impl,cart_remove,,Remove,ہٹائیں
+feature/checkout/impl,checkout_title,,Checkout,چیک آؤٹ
+feature/checkout/impl,checkout_shipping,,Shipping details,شپنگ کی تفصیلات
+feature/checkout/impl,checkout_payment,,Payment,ادائیگی
+feature/checkout/impl,checkout_name,,Full name,پورا نام
+feature/checkout/impl,checkout_address,,Address,پتہ
+feature/checkout/impl,checkout_card_number,,Card number,کارڈ نمبر
+feature/checkout/impl,checkout_expiry,,MM/YY,ماہ/سال
+feature/checkout/impl,checkout_cvv,,CVV,CVV
+feature/checkout/impl,checkout_invalid,,Please check this field,براہ کرم اس خانے کو چیک کریں
+feature/checkout/impl,checkout_pay,,Pay now,ابھی ادائیگی کریں
+feature/checkout/impl,checkout_processing,,Processing your payment…,آپ کی ادائیگی پر کارروائی ہو رہی ہے…
+feature/checkout/impl,checkout_total_items,one,Total (%1$d item),کل (%1$d آئٹم)
+feature/checkout/impl,checkout_total_items,other,Total (%1$d items),کل (%1$d آئٹمز)
+feature/checkout/impl,checkout_summary,,Order summary,آرڈر کا خلاصہ
+feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,آپ کی ادائیگی کی معلومات انکرپٹڈ اور محفوظ ہیں
+feature/home/impl,home_recommended,,Recommended for you,آپ کے لیے تجویز کردہ
+feature/home/impl,home_deals,,Deals of the day,آج کی ڈیلز
+feature/home/impl,home_ends_in,,Ends in %1$s,%1$s میں ختم
+feature/home/impl,home_banner1_title,,Mega Sale,میگا سیل
+feature/home/impl,home_banner1_sub,,Up to 50% off today,آج 50% تک رعایت
+feature/home/impl,home_banner2_title,,Free shipping,مفت شپنگ
+feature/home/impl,home_banner2_sub,,"On every order, no minimum",ہر آرڈر پر، کم از کم کے بغیر
+feature/home/impl,home_banner3_title,,New arrivals,نئی آمد
+feature/home/impl,home_banner3_sub,,Fresh picks every day,ہر روز نئی پسند
+feature/home/impl,home_greeting,,"Hi, %1$s",ہیلو، %1$s
+feature/onboarding/impl,onb_skip,,Skip,چھوڑیں
+feature/onboarding/impl,onb_next,,Next,اگلا
+feature/onboarding/impl,onb_start,,Get started,شروع کریں
+feature/onboarding/impl,onb_prefer_not,,I'd rather not say,میں نہیں بتانا چاہتا
+feature/onboarding/impl,onb_p1_title,,Welcome to Onio,Onio میں خوش آمدید
+feature/onboarding/impl,onb_p1_body,,"Browse a full store, fill your cart and check out, just like the real thing.",اصل دکان کی طرح پورا اسٹور براؤز کریں، کارٹ بھریں اور چیک آؤٹ کریں۔
+feature/onboarding/impl,onb_p2_title,,Every order gets cancelled,ہر آرڈر منسوخ ہو جاتا ہے
+feature/onboarding/impl,onb_p2_body,,"Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.",ادائیگی کے کچھ دیر بعد آرڈر خود بخود منسوخ ہو جاتا ہے۔ کوئی رقم نہیں کٹتی۔
+feature/onboarding/impl,onb_p3_title,,See what you saved,دیکھیں آپ نے کتنا بچایا
+feature/onboarding/impl,onb_p3_body,,Your Savings tab shows all the money that stayed in your pocket.,بچت ٹیب میں وہ سارا پیسہ نظر آتا ہے جو آپ کی جیب میں رہا۔
+feature/onboarding/impl,onb_p4_title,,What should we call you?,ہم آپ کو کیا کہہ کر بلائیں؟
+feature/onboarding/impl,onb_p4_body,,We'll use it to greet you. It stays on your device.,ہم اسے آپ کو سلام کرنے کے لیے استعمال کریں گے۔ یہ صرف آپ کے آلے پر رہتا ہے۔
+feature/onboarding/impl,onb_name_label,,Your name,آپ کا نام
+feature/onboarding/impl,onb_regret_title,,How soon do you usually regret your purchases?,آپ عموماً اپنی خریداری پر کتنی جلدی پچھتاتے ہیں؟
+feature/onboarding/impl,onb_regret_body,,We'll cancel your orders after this time. You can change it later in Settings.,ہم اس مدت کے بعد آپ کے آرڈرز منسوخ کر دیں گے۔ آپ اسے بعد میں ترتیبات میں بدل سکتے ہیں۔
+feature/onboarding/impl,onb_minutes,one,%1$d min,%1$d منٹ
+feature/onboarding/impl,onb_minutes,other,%1$d min,%1$d منٹ
+feature/onboarding/impl,onb_hours,one,%1$d hour,%1$d گھنٹہ
+feature/onboarding/impl,onb_hours,other,%1$d hours,%1$d گھنٹے
+feature/orders/impl,orders_title,,My orders,میرے آرڈرز
+feature/orders/impl,orders_empty,,You haven't placed any orders yet,آپ نے ابھی تک کوئی آرڈر نہیں دیا
+feature/orders/impl,orders_status_processing,,Processing,زیر کارروائی
+feature/orders/impl,orders_status_cancelled,,Cancelled,منسوخ
+feature/orders/impl,orders_processing_title,,Verifying your payment,آپ کی ادائیگی کی تصدیق ہو رہی ہے
+feature/orders/impl,orders_processing_body,,We'll let you know as soon as there's an update.,کوئی اپ ڈیٹ آتے ہی ہم آپ کو بتائیں گے۔
+feature/orders/impl,orders_countdown,,Update expected in %1$s,اپ ڈیٹ %1$s میں متوقع
+feature/orders/impl,orders_cancelled_title,,Order cancelled,آرڈر منسوخ ہو گیا
+feature/orders/impl,orders_cancelled_body,,The payment was not completed and you were not charged. Good call!,ادائیگی مکمل نہیں ہوئی اور آپ سے کچھ نہیں کاٹا گیا۔ بہترین فیصلہ!
+feature/orders/impl,orders_you_saved,,You saved,آپ نے بچایا
+feature/orders/impl,orders_total,,Total,کل
+feature/orders/impl,orders_ship_to,,"Ship to: %1$s, %2$s",بھیجنے کا پتہ: %1$s، %2$s
+feature/orders/impl,orders_paid_with,,Card ending in %1$s,کارڈ جس کے آخر میں %1$s ہے
+feature/orders/impl,orders_items,one,%1$d item,%1$d آئٹم
+feature/orders/impl,orders_items,other,%1$d items,%1$d آئٹمز
+feature/orders/impl,orders_cancelled_body_named,,"The payment was not completed and you were not charged. Good call, %1$s!",ادائیگی مکمل نہیں ہوئی اور آپ سے کچھ نہیں کاٹا گیا۔ بہترین فیصلہ، %1$s!
+feature/product/impl,product_buy_now,,Buy now,ابھی خریدیں
+feature/product/impl,product_added,,Added to your cart,آپ کی کارٹ میں شامل ہو گیا
+feature/product/impl,product_discount,,%1$d%% off,%1$d%% رعایت
+feature/product/impl,product_reviews,,Reviews,جائزے
+feature/product/impl,product_out_of_stock,,Out of stock,اسٹاک ختم
+feature/product/impl,product_in_stock,one,%1$d item in stock,اسٹاک میں %1$d آئٹم
+feature/product/impl,product_in_stock,other,%1$d items in stock,اسٹاک میں %1$d آئٹمز
+feature/product/impl,product_delivery_free,,Free delivery,مفت ڈیلیوری
+feature/product/impl,product_delivery_eta,,Arrives by %1$s,%1$s تک پہنچے گا
+feature/product/impl,product_returns,,30-day free returns,30 دن میں مفت واپسی
+feature/product/impl,product_secure,,Secure payment,محفوظ ادائیگی
+feature/savings/impl,savings_title,,Savings,بچت
+feature/savings/impl,savings_settings,,Settings,ترتیبات
+feature/savings/impl,savings_headline,,You didn't spend,آپ نے خرچ نہیں کیا
+feature/savings/impl,savings_none_yet,,Your first saved purchase will show up here.,آپ کی پہلی بچت یہاں نظر آئے گی۔
+feature/savings/impl,savings_motivation,,Every cancelled order is money that stays in your pocket. Keep going!,ہر منسوخ آرڈر آپ کی جیب میں بچا ہوا پیسہ ہے۔ جاری رکھیں!
+feature/savings/impl,savings_see_orders,,See my orders,میرے آرڈرز دیکھیں
+feature/savings/impl,savings_summary,one,from %1$d cancelled order,%1$d منسوخ آرڈر سے
+feature/savings/impl,savings_summary,other,from %1$d cancelled orders,%1$d منسوخ آرڈرز سے
+feature/savings/impl,savings_items_not_bought,one,%1$d item you didn't need,%1$d آئٹم جس کی آپ کو ضرورت نہیں تھی
+feature/savings/impl,savings_items_not_bought,other,%1$d items you didn't need,%1$d آئٹمز جن کی آپ کو ضرورت نہیں تھی
+feature/savings/impl,savings_headline_named,,"%1$s, you didn't spend",%1$s، آپ نے خرچ نہیں کیا
+feature/search/impl,search_title,,Search,تلاش
+feature/search/impl,search_hint,,Search products,مصنوعات تلاش کریں
+feature/search/impl,search_filters,,Filters,فلٹرز
+feature/search/impl,search_favorites,,Favorites,پسندیدہ
+feature/search/impl,search_no_favorites,,No favorites yet. Tap the heart on a product to save it.,ابھی کوئی پسندیدہ نہیں۔ محفوظ کرنے کے لیے پروڈکٹ پر دل کو دبائیں۔
+feature/search/impl,search_sort,,Sort by,ترتیب دیں
+feature/search/impl,sort_relevance,,Relevance,مطابقت
+feature/search/impl,sort_price_asc,,Price: low to high,قیمت: کم سے زیادہ
+feature/search/impl,sort_price_desc,,Price: high to low,قیمت: زیادہ سے کم
+feature/search/impl,sort_discount,,Biggest discount,سب سے زیادہ رعایت
+feature/search/impl,sort_rating,,Top rated,سب سے زیادہ ریٹنگ
+feature/search/impl,filter_on_sale,,On sale,رعایت پر
+feature/search/impl,filter_top_rated,,4★ & up,4★ اور اس سے اوپر
+feature/search/impl,filter_price_range,,Price range,قیمت کی حد
+feature/search/impl,filter_reset,,Reset filters,فلٹرز ری سیٹ کریں
+feature/settings/impl,settings_title,,Settings,ترتیبات
+feature/settings/impl,settings_cancel_after,,Cancel orders after,آرڈرز منسوخ ہوں گے
+feature/settings/impl,settings_cancel_after_hint,,Applies to new orders only.,صرف نئے آرڈرز پر لاگو ہوگا۔
+feature/settings/impl,settings_currency,,Currency,کرنسی
+feature/settings/impl,settings_automatic,,Automatic,خودکار
+feature/settings/impl,settings_language,,Language,زبان
+feature/settings/impl,settings_about,,About Onio,Onio کے بارے میں
+feature/settings/impl,settings_about_body,,"Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.",Onio ان لوگوں کے لیے مشق کی جگہ ہے جو جبری خریداری سے نمٹ رہے ہیں۔ یہ اصل اسٹور جیسا لگتا ہے، لیکن کوئی حقیقی خریداری نہیں ہوتی اور کوئی رقم نہیں کٹتی: ہر آرڈر خود بخود منسوخ ہو جاتا ہے، تاکہ آپ خریداری کا لطف بھی لیں اور بچت بھی برقرار رکھیں۔
+feature/settings/impl,settings_minutes,one,%1$d min,%1$d منٹ
+feature/settings/impl,settings_minutes,other,%1$d min,%1$d منٹ
+feature/settings/impl,settings_hours,one,%1$d hour,%1$d گھنٹہ
+feature/settings/impl,settings_hours,other,%1$d hours,%1$d گھنٹے

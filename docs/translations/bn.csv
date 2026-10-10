@@ -1,0 +1,169 @@
+module,key,quantity,english,translation
+app,nav_home,,Home,হোম
+app,nav_search,,Search,খুঁজুন
+app,nav_cart,,Cart,কার্ট
+app,nav_orders,,Orders,অর্ডার
+app,nav_savings,,Savings,সঞ্চয়
+core/data,notif_channel_name,,Order updates,অর্ডার আপডেট
+core/data,notif_cancelled_title,,Order %1$s cancelled,অর্ডার %1$s বাতিল হয়েছে
+core/data,notif_cancelled_text,,You were not charged. You saved %1$s.,আপনার কাছ থেকে কিছু কাটা হয়নি। আপনি %1$s বাঁচিয়েছেন।
+core/data,notif_cancelled_text_named,,"Good call, %1$s! You were not charged and saved %2$s.","দারুণ সিদ্ধান্ত, %1$s! আপনার কাছ থেকে কিছু কাটা হয়নি, আপনি %2$s বাঁচিয়েছেন।"
+core/ui,action_retry,,Retry,আবার চেষ্টা করুন
+core/ui,error_generic,,Something went wrong. Please try again.,কিছু ভুল হয়েছে। আবার চেষ্টা করুন।
+core/ui,action_add_to_cart,,Add to cart,কার্টে যোগ করুন
+core/ui,action_back,,Back,পিছনে
+core/ui,action_close,,Close,বন্ধ করুন
+core/ui,label_empty_results,,Nothing found,কিছু পাওয়া যায়নি
+core/ui,category_beauty,,Beauty,সৌন্দর্য
+core/ui,category_fragrances,,Fragrances,সুগন্ধি
+core/ui,category_furniture,,Furniture,আসবাব
+core/ui,category_groceries,,Groceries,মুদিখানা
+core/ui,category_home_decoration,,Home decor,ঘর সাজানো
+core/ui,category_kitchen_accessories,,Kitchen,রান্নাঘরের জিনিস
+core/ui,category_laptops,,Laptops,ল্যাপটপ
+core/ui,category_mens_shirts,,Men's shirts,পুরুষদের শার্ট
+core/ui,category_mens_shoes,,Men's shoes,পুরুষদের জুতা
+core/ui,category_mens_watches,,Men's watches,পুরুষদের ঘড়ি
+core/ui,category_mobile_accessories,,Mobile accessories,মোবাইল অ্যাক্সেসরিজ
+core/ui,category_motorcycle,,Motorcycles,মোটরসাইকেল
+core/ui,category_skin_care,,Skin care,ত্বকের যত্ন
+core/ui,category_smartphones,,Smartphones,স্মার্টফোন
+core/ui,category_sports_accessories,,Sports,খেলার সরঞ্জাম
+core/ui,category_sunglasses,,Sunglasses,সানগ্লাস
+core/ui,category_tablets,,Tablets,ট্যাবলেট
+core/ui,category_tops,,Tops,টপস
+core/ui,category_vehicle,,Vehicles,যানবাহন
+core/ui,category_womens_bags,,Women's bags,মহিলাদের ব্যাগ
+core/ui,category_womens_dresses,,Women's dresses,মহিলাদের পোশাক
+core/ui,category_womens_jewellery,,Women's jewellery,মহিলাদের গয়না
+core/ui,category_womens_shoes,,Women's shoes,মহিলাদের জুতা
+core/ui,category_womens_watches,,Women's watches,মহিলাদের ঘড়ি
+core/ui,msg_added_to_cart,,Added to your cart,আপনার কার্টে যোগ হয়েছে
+core/ui,action_view_cart,,View cart,কার্ট দেখুন
+core/ui,label_free_shipping,,Free shipping,ফ্রি শিপিং
+core/ui,label_search_hint,,Search products,পণ্য খুঁজুন
+core/ui,delay_custom_label,,Custom time,নিজের সময়
+core/ui,delay_custom_hint,,From 1 minute up to 7 days,১ মিনিট থেকে ৭ দিন পর্যন্ত
+core/ui,delay_unit_minutes,,minutes,মিনিট
+core/ui,delay_unit_hours,,hours,ঘণ্টা
+core/ui,delay_unit_days,,days,দিন
+core/ui,fav_add,,Add to favorites,পছন্দের তালিকায় যোগ করুন
+core/ui,fav_remove,,Remove from favorites,পছন্দের তালিকা থেকে সরান
+feature/cart/impl,cart_title,,Cart,কার্ট
+feature/cart/impl,cart_empty,,Your cart is empty,আপনার কার্ট খালি
+feature/cart/impl,cart_subtotal,,Subtotal,উপমোট
+feature/cart/impl,cart_shipping,,Shipping,শিপিং
+feature/cart/impl,cart_shipping_free,,Free,বিনামূল্যে
+feature/cart/impl,cart_checkout,,Proceed to checkout,চেকআউট করুন
+feature/cart/impl,cart_increase,,Increase quantity,পরিমাণ বাড়ান
+feature/cart/impl,cart_decrease,,Decrease quantity,পরিমাণ কমান
+feature/cart/impl,cart_remove,,Remove,সরান
+feature/checkout/impl,checkout_title,,Checkout,চেকআউট
+feature/checkout/impl,checkout_shipping,,Shipping details,শিপিং তথ্য
+feature/checkout/impl,checkout_payment,,Payment,পেমেন্ট
+feature/checkout/impl,checkout_name,,Full name,পূর্ণ নাম
+feature/checkout/impl,checkout_address,,Address,ঠিকানা
+feature/checkout/impl,checkout_card_number,,Card number,কার্ড নম্বর
+feature/checkout/impl,checkout_expiry,,MM/YY,মা/বছ
+feature/checkout/impl,checkout_cvv,,CVV,CVV
+feature/checkout/impl,checkout_invalid,,Please check this field,অনুগ্রহ করে এই ঘরটি যাচাই করুন
+feature/checkout/impl,checkout_pay,,Pay now,এখনই পরিশোধ করুন
+feature/checkout/impl,checkout_processing,,Processing your payment…,আপনার পেমেন্ট প্রক্রিয়া হচ্ছে…
+feature/checkout/impl,checkout_total_items,one,Total (%1$d item),মোট (%1$dটি পণ্য)
+feature/checkout/impl,checkout_total_items,other,Total (%1$d items),মোট (%1$dটি পণ্য)
+feature/checkout/impl,checkout_summary,,Order summary,অর্ডারের সারাংশ
+feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,আপনার পেমেন্ট তথ্য এনক্রিপ্টেড ও নিরাপদ
+feature/home/impl,home_recommended,,Recommended for you,আপনার জন্য সুপারিশ
+feature/home/impl,home_deals,,Deals of the day,আজকের অফার
+feature/home/impl,home_ends_in,,Ends in %1$s,শেষ হবে %1$s এ
+feature/home/impl,home_banner1_title,,Mega Sale,মেগা সেল
+feature/home/impl,home_banner1_sub,,Up to 50% off today,আজ ৫০% পর্যন্ত ছাড়
+feature/home/impl,home_banner2_title,,Free shipping,ফ্রি শিপিং
+feature/home/impl,home_banner2_sub,,"On every order, no minimum","প্রতিটি অর্ডারে, ন্যূনতম ছাড়াই"
+feature/home/impl,home_banner3_title,,New arrivals,নতুন পণ্য
+feature/home/impl,home_banner3_sub,,Fresh picks every day,প্রতিদিন নতুন বাছাই
+feature/home/impl,home_greeting,,"Hi, %1$s","হ্যালো, %1$s"
+feature/onboarding/impl,onb_skip,,Skip,এড়িয়ে যান
+feature/onboarding/impl,onb_next,,Next,পরবর্তী
+feature/onboarding/impl,onb_start,,Get started,শুরু করুন
+feature/onboarding/impl,onb_prefer_not,,I'd rather not say,বলতে চাই না
+feature/onboarding/impl,onb_p1_title,,Welcome to Onio,Onio-তে স্বাগতম
+feature/onboarding/impl,onb_p1_body,,"Browse a full store, fill your cart and check out, just like the real thing.","আসল দোকানের মতোই পুরো স্টোর ঘুরে দেখুন, কার্ট ভরুন এবং চেকআউট করুন।"
+feature/onboarding/impl,onb_p2_title,,Every order gets cancelled,প্রতিটি অর্ডার বাতিল হয়
+feature/onboarding/impl,onb_p2_body,,"Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.",পেমেন্টের কিছুক্ষণ পরেই অর্ডার নিজে থেকে বাতিল হয়ে যায়। কোনো টাকা কাটা হয় না।
+feature/onboarding/impl,onb_p3_title,,See what you saved,দেখুন কত বাঁচালেন
+feature/onboarding/impl,onb_p3_body,,Your Savings tab shows all the money that stayed in your pocket.,সঞ্চয় ট্যাবে দেখা যায় আপনার পকেটে থেকে যাওয়া সব টাকা।
+feature/onboarding/impl,onb_p4_title,,What should we call you?,আপনাকে কী নামে ডাকব?
+feature/onboarding/impl,onb_p4_body,,We'll use it to greet you. It stays on your device.,আমরা এটি দিয়ে আপনাকে স্বাগত জানাব। এটি আপনার ডিভাইসেই থাকে।
+feature/onboarding/impl,onb_name_label,,Your name,আপনার নাম
+feature/onboarding/impl,onb_regret_title,,How soon do you usually regret your purchases?,আপনি সাধারণত কত তাড়াতাড়ি নিজের কেনাকাটার জন্য আফসোস করেন?
+feature/onboarding/impl,onb_regret_body,,We'll cancel your orders after this time. You can change it later in Settings.,এই সময় পরে আমরা আপনার অর্ডার বাতিল করব। পরে সেটিংসে এটি বদলাতে পারবেন।
+feature/onboarding/impl,onb_minutes,one,%1$d min,%1$d মিনিট
+feature/onboarding/impl,onb_minutes,other,%1$d min,%1$d মিনিট
+feature/onboarding/impl,onb_hours,one,%1$d hour,%1$d ঘণ্টা
+feature/onboarding/impl,onb_hours,other,%1$d hours,%1$d ঘণ্টা
+feature/orders/impl,orders_title,,My orders,আমার অর্ডার
+feature/orders/impl,orders_empty,,You haven't placed any orders yet,আপনি এখনও কোনো অর্ডার করেননি
+feature/orders/impl,orders_status_processing,,Processing,প্রক্রিয়াধীন
+feature/orders/impl,orders_status_cancelled,,Cancelled,বাতিল
+feature/orders/impl,orders_processing_title,,Verifying your payment,আপনার পেমেন্ট যাচাই হচ্ছে
+feature/orders/impl,orders_processing_body,,We'll let you know as soon as there's an update.,আপডেট এলেই আমরা জানাব।
+feature/orders/impl,orders_countdown,,Update expected in %1$s,আপডেট আসবে %1$s এর মধ্যে
+feature/orders/impl,orders_cancelled_title,,Order cancelled,অর্ডার বাতিল হয়েছে
+feature/orders/impl,orders_cancelled_body,,The payment was not completed and you were not charged. Good call!,পেমেন্ট সম্পন্ন হয়নি এবং আপনার কাছ থেকে কিছু কাটা হয়নি। দারুণ সিদ্ধান্ত!
+feature/orders/impl,orders_you_saved,,You saved,আপনি বাঁচিয়েছেন
+feature/orders/impl,orders_total,,Total,মোট
+feature/orders/impl,orders_ship_to,,"Ship to: %1$s, %2$s","পাঠানো হবে: %1$s, %2$s"
+feature/orders/impl,orders_paid_with,,Card ending in %1$s,"কার্ড, শেষ %1$s"
+feature/orders/impl,orders_items,one,%1$d item,%1$dটি পণ্য
+feature/orders/impl,orders_items,other,%1$d items,%1$dটি পণ্য
+feature/orders/impl,orders_cancelled_body_named,,"The payment was not completed and you were not charged. Good call, %1$s!","পেমেন্ট সম্পন্ন হয়নি এবং আপনার কাছ থেকে কিছু কাটা হয়নি। দারুণ সিদ্ধান্ত, %1$s!"
+feature/product/impl,product_buy_now,,Buy now,এখনই কিনুন
+feature/product/impl,product_added,,Added to your cart,আপনার কার্টে যোগ হয়েছে
+feature/product/impl,product_discount,,%1$d%% off,%1$d%% ছাড়
+feature/product/impl,product_reviews,,Reviews,রিভিউ
+feature/product/impl,product_out_of_stock,,Out of stock,স্টক শেষ
+feature/product/impl,product_in_stock,one,%1$d item in stock,স্টকে %1$d টি আইটেম
+feature/product/impl,product_in_stock,other,%1$d items in stock,স্টকে %1$d টি আইটেম
+feature/product/impl,product_delivery_free,,Free delivery,ফ্রি ডেলিভারি
+feature/product/impl,product_delivery_eta,,Arrives by %1$s,পৌঁছাবে %1$s এর মধ্যে
+feature/product/impl,product_returns,,30-day free returns,৩০ দিনের ফ্রি রিটার্ন
+feature/product/impl,product_secure,,Secure payment,নিরাপদ পেমেন্ট
+feature/savings/impl,savings_title,,Savings,সঞ্চয়
+feature/savings/impl,savings_settings,,Settings,সেটিংস
+feature/savings/impl,savings_headline,,You didn't spend,আপনি খরচ করেননি
+feature/savings/impl,savings_none_yet,,Your first saved purchase will show up here.,আপনার প্রথম সঞ্চয় এখানে দেখা যাবে।
+feature/savings/impl,savings_motivation,,Every cancelled order is money that stays in your pocket. Keep going!,প্রতিটি বাতিল অর্ডার মানে টাকা আপনার পকেটেই থাকল। চালিয়ে যান!
+feature/savings/impl,savings_see_orders,,See my orders,আমার অর্ডার দেখুন
+feature/savings/impl,savings_summary,one,from %1$d cancelled order,%1$dটি বাতিল অর্ডার থেকে
+feature/savings/impl,savings_summary,other,from %1$d cancelled orders,%1$dটি বাতিল অর্ডার থেকে
+feature/savings/impl,savings_items_not_bought,one,%1$d item you didn't need,%1$dটি পণ্য যা আপনার দরকার ছিল না
+feature/savings/impl,savings_items_not_bought,other,%1$d items you didn't need,%1$dটি পণ্য যা আপনার দরকার ছিল না
+feature/savings/impl,savings_headline_named,,"%1$s, you didn't spend","%1$s, আপনি খরচ করেননি"
+feature/search/impl,search_title,,Search,অনুসন্ধান
+feature/search/impl,search_hint,,Search products,পণ্য খুঁজুন
+feature/search/impl,search_filters,,Filters,ফিল্টার
+feature/search/impl,search_favorites,,Favorites,পছন্দের
+feature/search/impl,search_no_favorites,,No favorites yet. Tap the heart on a product to save it.,এখনও কোনো পছন্দের পণ্য নেই। সংরক্ষণ করতে পণ্যের হার্টে ট্যাপ করুন।
+feature/search/impl,search_sort,,Sort by,সাজান
+feature/search/impl,sort_relevance,,Relevance,প্রাসঙ্গিকতা
+feature/search/impl,sort_price_asc,,Price: low to high,দাম: কম থেকে বেশি
+feature/search/impl,sort_price_desc,,Price: high to low,দাম: বেশি থেকে কম
+feature/search/impl,sort_discount,,Biggest discount,সবচেয়ে বেশি ছাড়
+feature/search/impl,sort_rating,,Top rated,সর্বোচ্চ রেটিং
+feature/search/impl,filter_on_sale,,On sale,ছাড়ে
+feature/search/impl,filter_top_rated,,4★ & up,৪★ ও তার বেশি
+feature/search/impl,filter_price_range,,Price range,দামের সীমা
+feature/search/impl,filter_reset,,Reset filters,ফিল্টার রিসেট করুন
+feature/settings/impl,settings_title,,Settings,সেটিংস
+feature/settings/impl,settings_cancel_after,,Cancel orders after,অর্ডার বাতিল হবে
+feature/settings/impl,settings_cancel_after_hint,,Applies to new orders only.,শুধু নতুন অর্ডারের জন্য প্রযোজ্য।
+feature/settings/impl,settings_currency,,Currency,মুদ্রা
+feature/settings/impl,settings_automatic,,Automatic,স্বয়ংক্রিয়
+feature/settings/impl,settings_language,,Language,ভাষা
+feature/settings/impl,settings_about,,About Onio,Onio সম্পর্কে
+feature/settings/impl,settings_about_body,,"Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.","Onio হলো কমপালসিভ শপিংয়ে ভোগা মানুষের জন্য অনুশীলনের জায়গা। এটি আসল দোকানের মতো দেখতে, কিন্তু কোনো আসল কেনাকাটা হয় না এবং কোনো টাকা কাটা হয় না: প্রতিটি অর্ডার স্বয়ংক্রিয়ভাবে বাতিল হয়, যাতে আপনি শপিংয়ের উত্তেজনা উপভোগ করে সঞ্চয় বাঁচাতে পারেন।"
+feature/settings/impl,settings_minutes,one,%1$d min,%1$d মিনিট
+feature/settings/impl,settings_minutes,other,%1$d min,%1$d মিনিট
+feature/settings/impl,settings_hours,one,%1$d hour,%1$d ঘণ্টা
+feature/settings/impl,settings_hours,other,%1$d hours,%1$d ঘণ্টা

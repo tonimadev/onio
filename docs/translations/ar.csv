@@ -1,0 +1,169 @@
+module,key,quantity,english,translation
+app,nav_home,,Home,الرئيسية
+app,nav_search,,Search,بحث
+app,nav_cart,,Cart,السلة
+app,nav_orders,,Orders,الطلبات
+app,nav_savings,,Savings,المدخرات
+core/data,notif_channel_name,,Order updates,تحديثات الطلبات
+core/data,notif_cancelled_title,,Order %1$s cancelled,تم إلغاء الطلب %1$s
+core/data,notif_cancelled_text,,You were not charged. You saved %1$s.,لم يتم خصم أي مبلغ. لقد وفّرت %1$s.
+core/data,notif_cancelled_text_named,,"Good call, %1$s! You were not charged and saved %2$s.",قرار موفق يا %1$s! لم يتم خصم أي مبلغ ووفّرت %2$s.
+core/ui,action_retry,,Retry,إعادة المحاولة
+core/ui,error_generic,,Something went wrong. Please try again.,حدث خطأ ما. يرجى المحاولة مرة أخرى.
+core/ui,action_add_to_cart,,Add to cart,أضف إلى السلة
+core/ui,action_back,,Back,رجوع
+core/ui,action_close,,Close,إغلاق
+core/ui,label_empty_results,,Nothing found,لم يتم العثور على شيء
+core/ui,category_beauty,,Beauty,جمال
+core/ui,category_fragrances,,Fragrances,عطور
+core/ui,category_furniture,,Furniture,أثاث
+core/ui,category_groceries,,Groceries,بقالة
+core/ui,category_home_decoration,,Home decor,ديكور المنزل
+core/ui,category_kitchen_accessories,,Kitchen,مستلزمات المطبخ
+core/ui,category_laptops,,Laptops,حواسيب محمولة
+core/ui,category_mens_shirts,,Men's shirts,قمصان رجالية
+core/ui,category_mens_shoes,,Men's shoes,أحذية رجالية
+core/ui,category_mens_watches,,Men's watches,ساعات رجالية
+core/ui,category_mobile_accessories,,Mobile accessories,إكسسوارات الجوال
+core/ui,category_motorcycle,,Motorcycles,دراجات نارية
+core/ui,category_skin_care,,Skin care,العناية بالبشرة
+core/ui,category_smartphones,,Smartphones,هواتف ذكية
+core/ui,category_sports_accessories,,Sports,مستلزمات رياضية
+core/ui,category_sunglasses,,Sunglasses,نظارات شمسية
+core/ui,category_tablets,,Tablets,أجهزة لوحية
+core/ui,category_tops,,Tops,بلوزات
+core/ui,category_vehicle,,Vehicles,مركبات
+core/ui,category_womens_bags,,Women's bags,حقائب نسائية
+core/ui,category_womens_dresses,,Women's dresses,فساتين نسائية
+core/ui,category_womens_jewellery,,Women's jewellery,مجوهرات نسائية
+core/ui,category_womens_shoes,,Women's shoes,أحذية نسائية
+core/ui,category_womens_watches,,Women's watches,ساعات نسائية
+core/ui,msg_added_to_cart,,Added to your cart,تمت الإضافة إلى سلتك
+core/ui,action_view_cart,,View cart,عرض السلة
+core/ui,label_free_shipping,,Free shipping,شحن مجاني
+core/ui,label_search_hint,,Search products,ابحث عن منتجات
+core/ui,delay_custom_label,,Custom time,وقت مخصص
+core/ui,delay_custom_hint,,From 1 minute up to 7 days,من دقيقة واحدة إلى 7 أيام
+core/ui,delay_unit_minutes,,minutes,دقائق
+core/ui,delay_unit_hours,,hours,ساعات
+core/ui,delay_unit_days,,days,أيام
+core/ui,fav_add,,Add to favorites,أضف إلى المفضلة
+core/ui,fav_remove,,Remove from favorites,إزالة من المفضلة
+feature/cart/impl,cart_title,,Cart,السلة
+feature/cart/impl,cart_empty,,Your cart is empty,سلتك فارغة
+feature/cart/impl,cart_subtotal,,Subtotal,المجموع الفرعي
+feature/cart/impl,cart_shipping,,Shipping,الشحن
+feature/cart/impl,cart_shipping_free,,Free,مجاني
+feature/cart/impl,cart_checkout,,Proceed to checkout,متابعة الدفع
+feature/cart/impl,cart_increase,,Increase quantity,زيادة الكمية
+feature/cart/impl,cart_decrease,,Decrease quantity,تقليل الكمية
+feature/cart/impl,cart_remove,,Remove,إزالة
+feature/checkout/impl,checkout_title,,Checkout,الدفع
+feature/checkout/impl,checkout_shipping,,Shipping details,بيانات الشحن
+feature/checkout/impl,checkout_payment,,Payment,الدفع
+feature/checkout/impl,checkout_name,,Full name,الاسم الكامل
+feature/checkout/impl,checkout_address,,Address,العنوان
+feature/checkout/impl,checkout_card_number,,Card number,رقم البطاقة
+feature/checkout/impl,checkout_expiry,,MM/YY,شهر/سنة
+feature/checkout/impl,checkout_cvv,,CVV,رمز الأمان
+feature/checkout/impl,checkout_invalid,,Please check this field,يرجى التحقق من هذا الحقل
+feature/checkout/impl,checkout_pay,,Pay now,ادفع الآن
+feature/checkout/impl,checkout_processing,,Processing your payment…,جارٍ معالجة الدفع…
+feature/checkout/impl,checkout_total_items,one,Total (%1$d item),الإجمالي (منتج واحد)
+feature/checkout/impl,checkout_total_items,other,Total (%1$d items),الإجمالي (%1$d منتج)
+feature/checkout/impl,checkout_summary,,Order summary,ملخص الطلب
+feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,بيانات الدفع الخاصة بك مشفّرة وآمنة
+feature/home/impl,home_recommended,,Recommended for you,موصى به لك
+feature/home/impl,home_deals,,Deals of the day,عروض اليوم
+feature/home/impl,home_ends_in,,Ends in %1$s,ينتهي خلال %1$s
+feature/home/impl,home_banner1_title,,Mega Sale,تخفيضات ضخمة
+feature/home/impl,home_banner1_sub,,Up to 50% off today,خصم يصل إلى 50% اليوم
+feature/home/impl,home_banner2_title,,Free shipping,شحن مجاني
+feature/home/impl,home_banner2_sub,,"On every order, no minimum",على كل الطلبات بدون حد أدنى
+feature/home/impl,home_banner3_title,,New arrivals,وصل حديثًا
+feature/home/impl,home_banner3_sub,,Fresh picks every day,اختيارات جديدة كل يوم
+feature/home/impl,home_greeting,,"Hi, %1$s",مرحبًا، %1$s
+feature/onboarding/impl,onb_skip,,Skip,تخطي
+feature/onboarding/impl,onb_next,,Next,التالي
+feature/onboarding/impl,onb_start,,Get started,ابدأ
+feature/onboarding/impl,onb_prefer_not,,I'd rather not say,أفضّل عدم الإفصاح
+feature/onboarding/impl,onb_p1_title,,Welcome to Onio,مرحبًا بك في Onio
+feature/onboarding/impl,onb_p1_body,,"Browse a full store, fill your cart and check out, just like the real thing.",تصفّح متجرًا متكاملًا واملأ سلتك وأتمم الدفع تمامًا كما في المتجر الحقيقي.
+feature/onboarding/impl,onb_p2_title,,Every order gets cancelled,يُلغى كل طلب
+feature/onboarding/impl,onb_p2_body,,"Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.",بعد الدفع بقليل يُلغى الطلب تلقائيًا ولا يتم خصم أي مبلغ.
+feature/onboarding/impl,onb_p3_title,,See what you saved,اعرف كم وفّرت
+feature/onboarding/impl,onb_p3_body,,Your Savings tab shows all the money that stayed in your pocket.,يعرض تبويب المدخرات كل المال الذي بقي في جيبك.
+feature/onboarding/impl,onb_p4_title,,What should we call you?,بماذا تحب أن نناديك؟
+feature/onboarding/impl,onb_p4_body,,We'll use it to greet you. It stays on your device.,سنستخدمه لتحيّتك، ويبقى على جهازك فقط.
+feature/onboarding/impl,onb_name_label,,Your name,اسمك
+feature/onboarding/impl,onb_regret_title,,How soon do you usually regret your purchases?,بعد كم من الوقت تندم عادةً على مشترياتك؟
+feature/onboarding/impl,onb_regret_body,,We'll cancel your orders after this time. You can change it later in Settings.,سنلغي طلباتك بعد هذه المدة. يمكنك تغييرها لاحقًا من الإعدادات.
+feature/onboarding/impl,onb_minutes,one,%1$d min,دقيقة
+feature/onboarding/impl,onb_minutes,other,%1$d min,%1$d دقيقة
+feature/onboarding/impl,onb_hours,one,%1$d hour,ساعة
+feature/onboarding/impl,onb_hours,other,%1$d hours,%1$d ساعة
+feature/orders/impl,orders_title,,My orders,طلباتي
+feature/orders/impl,orders_empty,,You haven't placed any orders yet,لم تقم بأي طلب بعد
+feature/orders/impl,orders_status_processing,,Processing,قيد المعالجة
+feature/orders/impl,orders_status_cancelled,,Cancelled,ملغى
+feature/orders/impl,orders_processing_title,,Verifying your payment,جارٍ التحقق من الدفع
+feature/orders/impl,orders_processing_body,,We'll let you know as soon as there's an update.,سنخبرك فور حدوث أي تحديث.
+feature/orders/impl,orders_countdown,,Update expected in %1$s,التحديث المتوقع خلال %1$s
+feature/orders/impl,orders_cancelled_title,,Order cancelled,تم إلغاء الطلب
+feature/orders/impl,orders_cancelled_body,,The payment was not completed and you were not charged. Good call!,لم يكتمل الدفع ولم يتم خصم أي مبلغ. قرار موفق!
+feature/orders/impl,orders_you_saved,,You saved,لقد وفّرت
+feature/orders/impl,orders_total,,Total,الإجمالي
+feature/orders/impl,orders_ship_to,,"Ship to: %1$s, %2$s",الشحن إلى: %1$s، %2$s
+feature/orders/impl,orders_paid_with,,Card ending in %1$s,بطاقة تنتهي بـ %1$s
+feature/orders/impl,orders_items,one,%1$d item,منتج واحد
+feature/orders/impl,orders_items,other,%1$d items,%1$d منتج
+feature/orders/impl,orders_cancelled_body_named,,"The payment was not completed and you were not charged. Good call, %1$s!",لم يكتمل الدفع ولم يتم خصم أي مبلغ. قرار موفق يا %1$s!
+feature/product/impl,product_buy_now,,Buy now,اشترِ الآن
+feature/product/impl,product_added,,Added to your cart,تمت الإضافة إلى سلتك
+feature/product/impl,product_discount,,%1$d%% off,خصم %1$d%%
+feature/product/impl,product_reviews,,Reviews,التقييمات
+feature/product/impl,product_out_of_stock,,Out of stock,نفد المخزون
+feature/product/impl,product_in_stock,one,%1$d item in stock,قطعة واحدة في المخزون
+feature/product/impl,product_in_stock,other,%1$d items in stock,%1$d قطعة في المخزون
+feature/product/impl,product_delivery_free,,Free delivery,توصيل مجاني
+feature/product/impl,product_delivery_eta,,Arrives by %1$s,يصل بحلول %1$s
+feature/product/impl,product_returns,,30-day free returns,إرجاع مجاني خلال 30 يومًا
+feature/product/impl,product_secure,,Secure payment,دفع آمن
+feature/savings/impl,savings_title,,Savings,المدخرات
+feature/savings/impl,savings_settings,,Settings,الإعدادات
+feature/savings/impl,savings_headline,,You didn't spend,لم تنفق
+feature/savings/impl,savings_none_yet,,Your first saved purchase will show up here.,ستظهر أول عملية توفير هنا.
+feature/savings/impl,savings_motivation,,Every cancelled order is money that stays in your pocket. Keep going!,كل طلب ملغى هو مال يبقى في جيبك. واصل!
+feature/savings/impl,savings_see_orders,,See my orders,عرض طلباتي
+feature/savings/impl,savings_summary,one,from %1$d cancelled order,من طلب ملغى واحد
+feature/savings/impl,savings_summary,other,from %1$d cancelled orders,من %1$d طلب ملغى
+feature/savings/impl,savings_items_not_bought,one,%1$d item you didn't need,منتج واحد لم تكن بحاجة إليه
+feature/savings/impl,savings_items_not_bought,other,%1$d items you didn't need,%1$d منتج لم تكن بحاجة إليه
+feature/savings/impl,savings_headline_named,,"%1$s, you didn't spend",%1$s، لم تنفق
+feature/search/impl,search_title,,Search,بحث
+feature/search/impl,search_hint,,Search products,ابحث عن منتجات
+feature/search/impl,search_filters,,Filters,تصفية
+feature/search/impl,search_favorites,,Favorites,المفضلة
+feature/search/impl,search_no_favorites,,No favorites yet. Tap the heart on a product to save it.,لا توجد مفضلات بعد. اضغط على القلب في أي منتج لحفظه.
+feature/search/impl,search_sort,,Sort by,ترتيب حسب
+feature/search/impl,sort_relevance,,Relevance,الأكثر صلة
+feature/search/impl,sort_price_asc,,Price: low to high,السعر: من الأقل إلى الأعلى
+feature/search/impl,sort_price_desc,,Price: high to low,السعر: من الأعلى إلى الأقل
+feature/search/impl,sort_discount,,Biggest discount,أكبر خصم
+feature/search/impl,sort_rating,,Top rated,الأعلى تقييمًا
+feature/search/impl,filter_on_sale,,On sale,عليه خصم
+feature/search/impl,filter_top_rated,,4★ & up,4★ فأكثر
+feature/search/impl,filter_price_range,,Price range,نطاق السعر
+feature/search/impl,filter_reset,,Reset filters,إعادة ضبط التصفية
+feature/settings/impl,settings_title,,Settings,الإعدادات
+feature/settings/impl,settings_cancel_after,,Cancel orders after,إلغاء الطلبات بعد
+feature/settings/impl,settings_cancel_after_hint,,Applies to new orders only.,ينطبق على الطلبات الجديدة فقط.
+feature/settings/impl,settings_currency,,Currency,العملة
+feature/settings/impl,settings_automatic,,Automatic,تلقائي
+feature/settings/impl,settings_language,,Language,اللغة
+feature/settings/impl,settings_about,,About Onio,حول Onio
+feature/settings/impl,settings_about_body,,"Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.",Onio مساحة تدريب لمن يعانون من التسوق القهري. يبدو كمتجر حقيقي، لكن لا تتم أي عملية شراء فعلية ولا يُخصم أي مبلغ: يتم إلغاء كل طلب تلقائيًا، لتستمتع بالإثارة وتحافظ على مدخراتك.
+feature/settings/impl,settings_minutes,one,%1$d min,دقيقة
+feature/settings/impl,settings_minutes,other,%1$d min,%1$d دقيقة
+feature/settings/impl,settings_hours,one,%1$d hour,ساعة
+feature/settings/impl,settings_hours,other,%1$d hours,%1$d ساعة

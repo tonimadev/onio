@@ -92,6 +92,9 @@ No user-facing text is hardcoded: every module has `res/values/strings.xml` (Eng
 all 10 languages. Money is formatted with the locale's `NumberFormat`, using fixed, built-in exchange rates
 (`ExchangeRates`) since no real money moves.
 
+Translations have not been reviewed by native speakers yet. The review workflow (CSV export/import and an
+automated checker) lives in [`docs/translations`](docs/translations/README.md) and `tools/i18n/`.
+
 ## Play Store listing
 
 Store assets live in `fastlane/metadata/android/<locale>/` (title, descriptions, 512 px icon and 1024×500
