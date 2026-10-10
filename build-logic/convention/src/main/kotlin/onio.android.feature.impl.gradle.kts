@@ -14,4 +14,11 @@ dependencies {
     "testImplementation"(lib("junit"))
     "testImplementation"(lib("kotlinx-coroutines-test"))
     "testImplementation"(lib("turbine"))
+    "testImplementation"(project(":core:testing"))
+    "androidTestImplementation"(platform(lib("androidx-compose-bom")))
+    "androidTestImplementation"(lib("androidx-compose-ui-test-junit4"))
+    "androidTestImplementation"(lib("androidx-junit"))
+    // Newer Espresso: older versions crash on current Android releases (InputManager.getInstance).
+    "androidTestImplementation"(lib("androidx-espresso-core"))
+    "debugImplementation"(lib("androidx-compose-ui-test-manifest"))
 }

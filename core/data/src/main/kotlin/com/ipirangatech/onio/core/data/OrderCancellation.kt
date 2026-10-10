@@ -12,9 +12,14 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.concurrent.TimeUnit
 
-/** Schedules the "magic" cancellation; survives process death via WorkManager. */
-internal class OrderCancellationScheduler(private val workManager: WorkManager) {
-    fun schedule(orderId: Long, delayMillis: Long) {
+/** Schedules the "magic" cancellation of an order after [delayMillis]. */
+internal fun interface OrderCancellationScheduler {
+    fun schedule(orderId: Long, delayMillis: Long)
+}
+
+/** WorkManager-backed scheduler: survives process death. */
+internal class WorkManagerCancellationScheduler(private val workManager: WorkManager) : OrderCancellationScheduler {
+    override fun schedule(orderId: Long, delayMillis: Long) {
         // A tiny grace period guarantees the deadline has passed when the worker runs.
         val request = OneTimeWorkRequestBuilder<OrderCancellationWorker>()
             .setInitialDelay(delayMillis.coerceAtLeast(0) + 1_000, TimeUnit.MILLISECONDS)

@@ -77,7 +77,8 @@ Studio).
 ```sh
 ./gradlew assembleDebug          # build the debug APK
 ./gradlew installDebug           # install on the connected device/emulator
-./gradlew testDebugUnitTest      # unit tests
+./gradlew testDebugUnitTest      # unit tests (ViewModels, repositories, filters; fakes live in :core:testing)
+./gradlew connectedDebugAndroidTest  # instrumented tests (cancellation worker, checkout screen); needs a device
 ./gradlew :app:lintDebug         # lint (missing translations fail the build)
 ```
 

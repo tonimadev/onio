@@ -58,7 +58,7 @@ internal object DataModule {
     ): OrderRepository = OrderRepositoryImpl(
         dao = dao,
         settings = settings,
-        scheduler = OrderCancellationScheduler(WorkManager.getInstance(context)),
+        scheduler = WorkManagerCancellationScheduler(WorkManager.getInstance(context)),
         notifier = AndroidCancelledOrderNotifier(context, settings),
     )
 }

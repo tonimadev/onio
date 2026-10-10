@@ -1,10 +1,8 @@
 package com.ipirangatech.onio.feature.onboarding.impl
 
-import com.ipirangatech.onio.core.model.AppSettings
-import com.ipirangatech.onio.core.model.SettingsRepository
+import com.ipirangatech.onio.core.testing.FakeSettingsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -18,26 +16,12 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class OnboardingViewModelTest {
-    private class FakeSettings : SettingsRepository {
-        val state = MutableStateFlow(AppSettings())
-        override val settings = state
-        override suspend fun setCancelAfterMinutes(minutes: Int) = Unit
-        override suspend fun setCurrencyOverride(code: String?) = Unit
-        override suspend fun completeOnboarding(userName: String?, cancelAfterMinutes: Int) {
-            state.value = state.value.copy(
-                userName = userName?.trim()?.ifEmpty { null },
-                cancelAfterMinutes = cancelAfterMinutes,
-                onboardingCompleted = true,
-            )
-        }
-    }
-
-    private lateinit var settings: FakeSettings
+    private lateinit var settings: FakeSettingsRepository
     private lateinit var viewModel: OnboardingViewModel
 
     @Before fun setUp() {
         Dispatchers.setMain(UnconfinedTestDispatcher())
-        settings = FakeSettings()
+        settings = FakeSettingsRepository()
         viewModel = OnboardingViewModel(settings)
     }
 
