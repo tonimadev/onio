@@ -1,5 +1,11 @@
 package com.ipirangatech.onio.feature.checkout.impl
 
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import com.ipirangatech.onio.core.model.Countries
+import java.util.Locale
+
 import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.LocalShipping
@@ -164,7 +170,8 @@ internal fun CheckoutScreen(state: CheckoutState, onIntent: (CheckoutIntent) -> 
                     Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
                         Text(stringResource(R.string.checkout_shipping), style = MaterialTheme.typography.titleMedium)
                         Field(state, CheckoutField.NAME, state.name, R.string.checkout_name, onIntent, KeyboardType.Text)
-                        CepField(state, onIntent)
+                        CountryPicker(state, onIntent)
+                        PostalCodeField(state, onIntent)
                         Field(state, CheckoutField.ADDRESS, state.address, R.string.checkout_address, onIntent, KeyboardType.Text)
                         DeliveryEstimateRow(state)
                     }
@@ -459,38 +466,77 @@ private fun CouponSheet(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit
 
 private val CepTransformation = DigitSeparatorTransformation('-', listOf(5))
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CepField(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit) {
+private fun CountryPicker(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit) {
+    var expanded by remember { mutableStateOf(false) }
+    val locale = androidx.compose.ui.platform.LocalConfiguration.current.locales[0] ?: Locale.getDefault()
+    // Sorted by the name in the user's own language.
+    val countries = remember(locale) { Countries.all.sortedBy { it.displayName(locale) } }
+    val selected = Countries.byCode(state.country)
+    ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = it && !state.isProcessing }) {
+        OutlinedTextField(
+            value = selected.flag + "  " + selected.displayName(locale),
+            onValueChange = {},
+            readOnly = true,
+            label = { Text(stringResource(R.string.checkout_country)) },
+            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded) },
+            modifier = Modifier.menuAnchor(androidx.compose.material3.MenuAnchorType.PrimaryNotEditable).fillMaxWidth(),
+        )
+        ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            countries.forEach { country ->
+                DropdownMenuItem(
+                    text = { Text(country.flag + "  " + country.displayName(locale)) },
+                    onClick = {
+                        onIntent(CheckoutIntent.CountryChanged(country.code))
+                        expanded = false
+                    },
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun PostalCodeField(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit) {
+    val brazil = state.country == Countries.BRAZIL
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         OutlinedTextField(
-            value = state.cep,
-            onValueChange = { onIntent(CheckoutIntent.CepChanged(it)) },
-            label = { Text(stringResource(R.string.checkout_cep)) },
+            value = state.postalCode,
+            onValueChange = { onIntent(CheckoutIntent.PostalCodeChanged(it)) },
+            label = { Text(stringResource(if (brazil) R.string.checkout_cep else R.string.checkout_postal_code)) },
             singleLine = true,
-            visualTransformation = CepTransformation,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            visualTransformation = if (brazil) CepTransformation else VisualTransformation.None,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = if (brazil) KeyboardType.Number else KeyboardType.Text,
+                capitalization = androidx.compose.ui.text.input.KeyboardCapitalization.Characters,
+            ),
             textStyle = TextStyle(textDirection = TextDirection.Ltr),
             enabled = !state.isProcessing,
-            isError = state.cepStatus == CepStatus.NOT_FOUND,
+            isError = state.postalStatus == PostalStatus.NOT_FOUND,
             trailingIcon = {
-                when (state.cepStatus) {
-                    CepStatus.LOADING -> CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
-                    CepStatus.FOUND -> Icon(Icons.Filled.CheckCircle, null, tint = OnioTheme.colors.freeShipping)
+                when (state.postalStatus) {
+                    PostalStatus.LOADING -> CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
+                    PostalStatus.FOUND -> Icon(Icons.Filled.CheckCircle, null, tint = OnioTheme.colors.freeShipping)
                     else -> Unit
                 }
             },
             modifier = Modifier.fillMaxWidth(),
         )
-        when (state.cepStatus) {
-            CepStatus.FOUND -> state.resolvedAddress?.let {
-                Text("${it.city} - ${it.state}", style = MaterialTheme.typography.bodySmall, color = OnioTheme.colors.freeShipping)
+        when (state.postalStatus) {
+            PostalStatus.FOUND -> state.resolvedAddress?.let {
+                Text(listOf(it.city, it.state.takeIf { st -> st.isNotBlank() && st != it.city }).filterNotNull().joinToString(if (brazil) " - " else ", "), style = MaterialTheme.typography.bodySmall, color = OnioTheme.colors.freeShipping)
             }
-            CepStatus.NOT_FOUND -> Text(stringResource(R.string.checkout_cep_not_found), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
-            CepStatus.ERROR -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            PostalStatus.NOT_FOUND -> Text(stringResource(R.string.checkout_cep_not_found), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+            PostalStatus.ERROR -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(stringResource(R.string.checkout_cep_error), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error, modifier = Modifier.weight(1f, fill = false))
-                TextButton(onClick = { onIntent(CheckoutIntent.RetryCep) }) { Text(stringResource(UiR.string.action_retry)) }
+                TextButton(onClick = { onIntent(CheckoutIntent.RetryPostalCode) }) { Text(stringResource(UiR.string.action_retry)) }
             }
-            else -> Text(stringResource(R.string.checkout_cep_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            else -> Text(
+                stringResource(if (brazil) R.string.checkout_cep_hint else R.string.checkout_postal_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }

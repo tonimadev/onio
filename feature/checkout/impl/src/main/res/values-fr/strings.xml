@@ -46,4 +46,7 @@
     <string name="checkout_delivery_between">Livraison entre le %1$s et le %2$s</string>
     <string name="checkout_delivery_estimate">Estimation selon la région</string>
     <string name="checkout_delivery_official">Confirmé par les Correios</string>
+    <string name="checkout_country">Pays</string>
+    <string name="checkout_postal_code">Code postal</string>
+    <string name="checkout_postal_hint">Nous complétons la ville et estimons la livraison</string>
 </resources>

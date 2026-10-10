@@ -1,8 +1,9 @@
 package com.ipirangatech.onio.core.network.cep
 
 import com.ipirangatech.onio.core.model.Address
-import com.ipirangatech.onio.core.model.Cep
-import com.ipirangatech.onio.core.model.CepSource
+import com.ipirangatech.onio.core.model.Countries
+import com.ipirangatech.onio.core.model.PostalCodeSource
+import com.ipirangatech.onio.core.model.PostalCodes
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -49,11 +50,11 @@ internal fun ViaCepDto.toDomain(requested: String): Address? =
     if (erro != null || localidade.isNullOrBlank() || uf.isNullOrBlank()) {
         null
     } else {
-        Address(requested, logradouro.orEmpty(), bairro.orEmpty(), localidade, uf)
+        Address(Countries.BRAZIL, requested, logradouro.orEmpty(), bairro.orEmpty(), localidade, uf)
     }
 
 internal fun BrasilApiDto.toDomain(requested: String): Address? =
-    if (city.isNullOrBlank() || state.isNullOrBlank()) null else Address(requested, street.orEmpty(), neighborhood.orEmpty(), city, state)
+    if (city.isNullOrBlank() || state.isNullOrBlank()) null else Address(Countries.BRAZIL, requested, street.orEmpty(), neighborhood.orEmpty(), city, state)
 
 private fun retrofit(baseUrl: String): Retrofit {
     val json = Json { ignoreUnknownKeys = true }
@@ -63,12 +64,11 @@ private fun retrofit(baseUrl: String): Retrofit {
 }
 
 /** ViaCEP first (it also knows the region); BrasilAPI is the fallback when ViaCEP is down or rate limited. */
-internal class FallbackCepSource(
+internal class BrazilCepSource(
     private val viaCep: ViaCepApi,
     private val brasilApi: BrasilApiApi,
-) : CepSource {
-    override suspend fun find(cep: String): Address? {
-        val digits = Cep.digits(cep)
+) {
+    suspend fun find(digits: String): Address? {
         val primary = runCatching { viaCep.find(digits).toDomain(digits) to true }
         primary.getOrNull()?.let { (address, answered) -> if (answered) return address }
         return try {
@@ -79,7 +79,58 @@ internal class FallbackCepSource(
     }
 }
 
-fun createCepSource(): CepSource = FallbackCepSource(
-    viaCep = retrofit("https://viacep.com.br/ws/").create(ViaCepApi::class.java),
-    brasilApi = retrofit("https://brasilapi.com.br/").create(BrasilApiApi::class.java),
+// ---------------- the rest of the world: Zippopotam.us (free, no key) ----------------
+
+@Serializable
+internal data class ZippoPlaceDto(
+    @kotlinx.serialization.SerialName("place name") val placeName: String? = null,
+    val state: String? = null,
+    @kotlinx.serialization.SerialName("state abbreviation") val stateAbbreviation: String? = null,
+)
+
+@Serializable
+internal data class ZippoDto(
+    @kotlinx.serialization.SerialName("post code") val postCode: String? = null,
+    val places: List<ZippoPlaceDto> = emptyList(),
+)
+
+internal interface ZippoApi {
+    @GET("{country}/{code}")
+    suspend fun find(@Path("country") country: String, @Path("code") code: String): ZippoDto
+}
+
+internal fun ZippoDto.toDomain(country: String, requested: String): Address? {
+    val place = places.firstOrNull() ?: return null
+    val city = place.placeName?.takeIf(String::isNotBlank) ?: return null
+    val state = place.state?.takeIf(String::isNotBlank) ?: place.stateAbbreviation.orEmpty()
+    return Address(country.uppercase(), requested, "", "", city, state)
+}
+
+internal class WorldPostalSource(private val zippo: ZippoApi) {
+    suspend fun find(country: String, requested: String): Address? = try {
+        zippo.find(country.lowercase(), PostalCodes.lookupKey(country, requested)).toDomain(country, requested)
+    } catch (e: HttpException) {
+        if (e.code() == 404) null else throw e
+    }
+}
+
+/** Brazil goes to ViaCEP/BrasilAPI (richer: street and district); everything else to Zippopotam.us. */
+internal class RoutingPostalCodeSource(
+    private val brazil: BrazilCepSource,
+    private val world: WorldPostalSource,
+) : PostalCodeSource {
+    override suspend fun find(country: String, postalCode: String): Address? =
+        if (country.equals(Countries.BRAZIL, ignoreCase = true)) {
+            brazil.find(PostalCodes.normalize(country, postalCode))
+        } else {
+            world.find(country, postalCode)
+        }
+}
+
+fun createPostalCodeSource(): PostalCodeSource = RoutingPostalCodeSource(
+    brazil = BrazilCepSource(
+        viaCep = retrofit("https://viacep.com.br/ws/").create(ViaCepApi::class.java),
+        brasilApi = retrofit("https://brasilapi.com.br/").create(BrasilApiApi::class.java),
+    ),
+    world = WorldPostalSource(retrofit("https://api.zippopotam.us/").create(ZippoApi::class.java)),
 )

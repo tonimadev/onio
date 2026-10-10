@@ -11,7 +11,7 @@ import com.ipirangatech.onio.core.data.db.MIGRATION_2_3
 import com.ipirangatech.onio.core.data.db.OnioDatabase
 import com.ipirangatech.onio.core.data.db.OrderDao
 import com.ipirangatech.onio.core.model.CartRepository
-import com.ipirangatech.onio.core.model.CepSource
+import com.ipirangatech.onio.core.model.PostalCodeSource
 import com.ipirangatech.onio.core.model.ShippingRepository
 import com.ipirangatech.onio.core.model.CouponRepository
 import com.ipirangatech.onio.core.model.RewardsRepository
@@ -20,7 +20,7 @@ import com.ipirangatech.onio.core.model.OrderRepository
 import com.ipirangatech.onio.core.model.ProductRepository
 import com.ipirangatech.onio.core.model.SettingsRepository
 import com.ipirangatech.onio.core.network.ProductRemoteSource
-import com.ipirangatech.onio.core.network.cep.createCepSource
+import com.ipirangatech.onio.core.network.cep.createPostalCodeSource
 import com.ipirangatech.onio.core.network.dummyjson.createDummyJsonSource
 import dagger.Module
 import dagger.Provides
@@ -57,12 +57,12 @@ internal object DataModule {
     fun remoteSource(): ProductRemoteSource = createDummyJsonSource()
 
     @Provides @Singleton
-    fun cepSource(): CepSource = createCepSource()
+    fun postalCodeSource(): PostalCodeSource = createPostalCodeSource()
 
-    /** Official Correios quotes need a contract and a backend; bind a real source here once one exists. */
+    /** Carrier quotes (Correios, DHL, EasyPost...) need credentials and a backend; bind a real source here once one exists. */
     @Provides @Singleton
-    fun shippingRepository(@ApplicationContext context: Context, cepSource: CepSource): ShippingRepository =
-        ShippingRepositoryImpl(shippingStore(context), cepSource, quoteSource = null)
+    fun shippingRepository(@ApplicationContext context: Context, postalSource: PostalCodeSource): ShippingRepository =
+        ShippingRepositoryImpl(shippingStore(context), postalSource, quoteSource = null)
 
     @Provides @Singleton
     fun productRepository(remote: ProductRemoteSource): ProductRepository = ProductRepositoryImpl(remote)

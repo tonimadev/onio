@@ -44,4 +44,7 @@
     <string name="checkout_delivery_between">%1$s اور %2$s کے درمیان پہنچے گا</string>
     <string name="checkout_delivery_estimate">علاقے کے مطابق اندازہ</string>
     <string name="checkout_delivery_official">Correios کی تصدیق شدہ</string>
+    <string name="checkout_country">ملک</string>
+    <string name="checkout_postal_code">پوسٹل کوڈ</string>
+    <string name="checkout_postal_hint">ہم شہر بھر دیں گے اور ڈیلیوری کا اندازہ بتائیں گے</string>
 </resources>

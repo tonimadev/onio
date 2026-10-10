@@ -39,9 +39,12 @@
     </plurals>
     <string name="checkout_cep">ZIP code (CEP)</string>
     <string name="checkout_cep_hint">Brazilian ZIP code: we fill in your address and estimate the delivery</string>
-    <string name="checkout_cep_not_found">We couldn\'t find this ZIP code</string>
+    <string name="checkout_cep_not_found">We couldn\'t find this postal code</string>
     <string name="checkout_cep_error">Couldn\'t look up the ZIP code</string>
     <string name="checkout_delivery_between">Arrives between %1$s and %2$s</string>
     <string name="checkout_delivery_estimate">Estimated by region</string>
     <string name="checkout_delivery_official">Confirmed by Correios</string>
+    <string name="checkout_country">Country</string>
+    <string name="checkout_postal_code">ZIP / postal code</string>
+    <string name="checkout_postal_hint">We\'ll fill in your city and estimate the delivery</string>
 </resources>

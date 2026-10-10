@@ -98,11 +98,14 @@ feature/checkout/impl,checkout_coins_available,one,%1$d coin available,
 feature/checkout/impl,checkout_coins_available,other,%1$d coins available,可用 %1$d 金币
 feature/checkout/impl,checkout_cep,,ZIP code (CEP),邮编 (CEP)
 feature/checkout/impl,checkout_cep_hint,,Brazilian ZIP code: we fill in your address and estimate the delivery,巴西邮编：自动填写地址并估算送达时间
-feature/checkout/impl,checkout_cep_not_found,,We couldn't find this ZIP code,找不到该邮编
+feature/checkout/impl,checkout_cep_not_found,,We couldn't find this postal code,找不到该邮政编码
 feature/checkout/impl,checkout_cep_error,,Couldn't look up the ZIP code,无法查询邮编
 feature/checkout/impl,checkout_delivery_between,,Arrives between %1$s and %2$s,预计 %1$s 至 %2$s 送达
 feature/checkout/impl,checkout_delivery_estimate,,Estimated by region,按地区估算
 feature/checkout/impl,checkout_delivery_official,,Confirmed by Correios,邮政确认
+feature/checkout/impl,checkout_country,,Country,国家/地区
+feature/checkout/impl,checkout_postal_code,,ZIP / postal code,邮政编码
+feature/checkout/impl,checkout_postal_hint,,We'll fill in your city and estimate the delivery,我们会自动填写城市并估算送达时间
 feature/home/impl,home_recommended,,Recommended for you,为你推荐
 feature/home/impl,home_deals,,Deals of the day,每日特惠
 feature/home/impl,home_ends_in,,Ends in %1$s,%1$s 后结束

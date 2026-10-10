@@ -74,11 +74,11 @@ class ProductViewModelTest {
     }
 
     @Test fun aSavedCepGivesAnEstimateForThatCityAndFollowsChanges() {
-        shipping.state.value = com.ipirangatech.onio.core.model.Address("69900000", "Rua X", "Centro", "Rio Branco", "AC")
+        shipping.state.value = com.ipirangatech.onio.core.model.Address("BR", "69900000", "Rua X", "Centro", "Rio Branco", "AC")
         val vm = viewModel()
         assertEquals("Rio Branco", vm.uiState.value.deliveryCity)
         assertTrue(vm.uiState.value.delivery!!.maxDays >= 10)
-        shipping.state.value = com.ipirangatech.onio.core.model.Address("01001000", "Praça da Sé", "Sé", "São Paulo", "SP")
+        shipping.state.value = com.ipirangatech.onio.core.model.Address("BR", "01001000", "Praça da Sé", "Sé", "São Paulo", "SP")
         assertTrue(vm.uiState.value.delivery!!.maxDays <= 5)
     }
 }

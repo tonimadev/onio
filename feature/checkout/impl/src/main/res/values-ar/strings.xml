@@ -52,4 +52,7 @@
     <string name="checkout_delivery_between">يصل بين %1$s و%2$s</string>
     <string name="checkout_delivery_estimate">تقدير حسب المنطقة</string>
     <string name="checkout_delivery_official">مؤكد من Correios</string>
+    <string name="checkout_country">الدولة</string>
+    <string name="checkout_postal_code">الرمز البريدي</string>
+    <string name="checkout_postal_hint">نملأ مدينتك ونقدّر موعد التسليم</string>
 </resources>

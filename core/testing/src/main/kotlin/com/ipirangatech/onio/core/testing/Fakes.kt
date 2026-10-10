@@ -266,19 +266,25 @@ class FakeRewardsRepository(initial: RewardsWallet = RewardsWallet()) : RewardsR
     }
 }
 
-class FakeShippingRepository(var addresses: Map<String, Address> = mapOf("01001000" to Address("01001000", "Praça da Sé", "Sé", "São Paulo", "SP"))) : ShippingRepository {
+class FakeShippingRepository(
+    /** Keyed by "COUNTRY:postalCode" (postal code already normalised). */
+    var addresses: Map<String, Address> = mapOf(
+        "BR:01001000" to Address("BR", "01001000", "Praça da Sé", "Sé", "São Paulo", "SP"),
+        "US:90210" to Address("US", "90210", "", "", "Beverly Hills", "California"),
+    ),
+) : ShippingRepository {
     val state = MutableStateFlow<Address?>(null)
     var failure: Throwable? = null
     val lookups = mutableListOf<String>()
     override val savedAddress: Flow<Address?> = state
 
-    override suspend fun lookup(cep: String): Address? {
-        lookups += cep
+    override suspend fun lookup(country: String, postalCode: String): Address? {
+        lookups += "$country:$postalCode"
         failure?.let { throw it }
-        return addresses[cep]
+        return addresses["$country:$postalCode"]
     }
 
-    override suspend fun estimate(address: Address): DeliveryEstimate = DeliveryEstimator.estimate(address.state)
+    override suspend fun estimate(address: Address): DeliveryEstimate = DeliveryEstimator.estimate(address)
 
     override suspend fun save(address: Address) {
         state.value = address

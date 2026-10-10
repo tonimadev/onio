@@ -48,4 +48,7 @@
     <string name="checkout_delivery_between">Доставим с %1$s по %2$s</string>
     <string name="checkout_delivery_estimate">Оценка по региону</string>
     <string name="checkout_delivery_official">Подтверждено Correios</string>
+    <string name="checkout_country">Страна</string>
+    <string name="checkout_postal_code">Почтовый индекс</string>
+    <string name="checkout_postal_hint">Заполним город и оценим срок доставки</string>
 </resources>

@@ -14,7 +14,9 @@ import com.ipirangatech.onio.core.testing.MainDispatcherRule
 import com.ipirangatech.onio.core.testing.walletCoupon
 import com.ipirangatech.onio.core.model.RewardsWallet
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runCurrent
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -197,42 +199,88 @@ class CheckoutViewModelTest {
         assertEquals(CouponCodeMessage.UNKNOWN, vm.uiState.value.couponCodeMessage)
     }
 
-    // ---- CEP and delivery ----
+    // ---- postal code, country and delivery ----
 
-    @Test fun aCompleteCepFillsTheAddressAndShowsADeliveryEstimate() {
+    private fun CheckoutViewModel.brazil() = onIntent(CheckoutIntent.CountryChanged("BR"))
+
+    @Test fun aBrazilianCepFillsTheAddressAndShowsADeliveryEstimate() {
         val vm = viewModel()
-        vm.onIntent(CheckoutIntent.CepChanged("01001-000"))
+        vm.brazil()
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("01001-000"))
         val state = vm.uiState.value
-        assertEquals("01001000", state.cep)
-        assertEquals(CepStatus.FOUND, state.cepStatus)
+        assertEquals("01001000", state.postalCode)
+        assertEquals(PostalStatus.FOUND, state.postalStatus)
         assertEquals("Praça da Sé, Sé, São Paulo - SP", state.address)
-        assertEquals(2, state.delivery!!.minDays)
-        assertEquals("01001000", shipping.state.value!!.cep) // remembered for next time
+        assertEquals(1, state.delivery!!.minDays) // São Paulo itself: same-city shipping
+        assertEquals("01001000", shipping.state.value!!.postalCode)
     }
 
-    @Test fun anIncompleteCepDoesNotCallTheNetworkAndAnUnknownOneSaysSo() {
+    @Test fun otherCountriesWaitForThePauseThenLookTheCodeUp() {
         val vm = viewModel()
-        vm.onIntent(CheckoutIntent.CepChanged("0100"))
+        vm.onIntent(CheckoutIntent.CountryChanged("US"))
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("90210"))
+        assertEquals(PostalStatus.LOADING, vm.uiState.value.postalStatus)
+        assertTrue(shipping.lookups.isEmpty()) // debounced
+        main.scheduler.advanceTimeBy(500)
+        main.scheduler.runCurrent()
+        val state = vm.uiState.value
+        assertEquals(PostalStatus.FOUND, state.postalStatus)
+        assertEquals("Beverly Hills, California", state.address)
+        assertEquals(7, state.delivery!!.minDays) // international estimate
+        assertEquals(listOf("US:90210"), shipping.lookups)
+    }
+
+    @Test fun typingFastOnlyLooksUpTheFinalValue() {
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.CountryChanged("US"))
+        listOf("902", "9021", "90210").forEach {
+            vm.onIntent(CheckoutIntent.PostalCodeChanged(it))
+            main.scheduler.advanceTimeBy(100)
+        }
+        main.scheduler.advanceTimeBy(600)
+        main.scheduler.runCurrent()
+        assertEquals(listOf("US:90210"), shipping.lookups)
+    }
+
+    @Test fun changingTheCountryClearsTheCodeAndTheEstimate() {
+        val vm = viewModel()
+        vm.brazil()
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("01001000"))
+        vm.onIntent(CheckoutIntent.CountryChanged("DE"))
+        val state = vm.uiState.value
+        assertEquals("DE", state.country)
+        assertEquals("", state.postalCode)
+        assertNull(state.delivery)
+        assertEquals(PostalStatus.IDLE, state.postalStatus)
+        vm.onIntent(CheckoutIntent.CountryChanged("ZZ")) // unsupported: ignored
+        assertEquals("DE", vm.uiState.value.country)
+    }
+
+    @Test fun incompleteBrazilianCepsDoNotCallTheNetworkAndUnknownOnesSaySo() {
+        val vm = viewModel()
+        vm.brazil()
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("0100"))
         assertTrue(shipping.lookups.isEmpty())
-        assertEquals(CepStatus.IDLE, vm.uiState.value.cepStatus)
-        vm.onIntent(CheckoutIntent.CepChanged("99999999"))
-        assertEquals(CepStatus.NOT_FOUND, vm.uiState.value.cepStatus)
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("99999999"))
+        assertEquals(PostalStatus.NOT_FOUND, vm.uiState.value.postalStatus)
         assertNull(vm.uiState.value.delivery)
     }
 
     @Test fun whatTheUserTypedInTheAddressIsNeverOverwritten() {
         val vm = viewModel()
+        vm.brazil()
         vm.onIntent(CheckoutIntent.FieldChanged(CheckoutField.ADDRESS, "Av. Paulista, 1000"))
-        vm.onIntent(CheckoutIntent.CepChanged("01001000"))
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("01001000"))
         assertEquals("Av. Paulista, 1000", vm.uiState.value.address)
-        assertEquals(CepStatus.FOUND, vm.uiState.value.cepStatus)
+        assertEquals(PostalStatus.FOUND, vm.uiState.value.postalStatus)
     }
 
-    @Test fun aSuggestedAddressIsReplacedWhenTheCepChanges() {
-        shipping.addresses = shipping.addresses + ("20000000" to com.ipirangatech.onio.core.model.Address("20000000", "Rua B", "Centro", "Rio de Janeiro", "RJ"))
+    @Test fun aSuggestedAddressIsReplacedWhenTheCodeChanges() {
+        shipping.addresses = shipping.addresses + ("BR:20000000" to com.ipirangatech.onio.core.model.Address("BR", "20000000", "Rua B", "Centro", "Rio de Janeiro", "RJ"))
         val vm = viewModel()
-        vm.onIntent(CheckoutIntent.CepChanged("01001000"))
-        vm.onIntent(CheckoutIntent.CepChanged("20000000"))
+        vm.brazil()
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("01001000"))
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("20000000"))
         assertEquals("Rua B, Centro, Rio de Janeiro - RJ", vm.uiState.value.address)
         assertTrue(vm.uiState.value.delivery!!.maxDays > 4)
     }
@@ -240,17 +288,19 @@ class CheckoutViewModelTest {
     @Test fun aNetworkFailureOffersARetry() {
         shipping.failure = java.io.IOException("offline")
         val vm = viewModel()
-        vm.onIntent(CheckoutIntent.CepChanged("01001000"))
-        assertEquals(CepStatus.ERROR, vm.uiState.value.cepStatus)
+        vm.brazil()
+        vm.onIntent(CheckoutIntent.PostalCodeChanged("01001000"))
+        assertEquals(PostalStatus.ERROR, vm.uiState.value.postalStatus)
         shipping.failure = null
-        vm.onIntent(CheckoutIntent.RetryCep)
-        assertEquals(CepStatus.FOUND, vm.uiState.value.cepStatus)
+        vm.onIntent(CheckoutIntent.RetryPostalCode)
+        assertEquals(PostalStatus.FOUND, vm.uiState.value.postalStatus)
     }
 
-    @Test fun aSavedCepIsLookedUpAutomatically() {
-        shipping.state.value = com.ipirangatech.onio.core.model.Address("01001000", "Praça da Sé", "Sé", "São Paulo", "SP")
+    @Test fun aSavedAddressRestoresItsCountryAndIsLookedUpAgain() {
+        shipping.state.value = com.ipirangatech.onio.core.model.Address("BR", "01001000", "Praça da Sé", "Sé", "São Paulo", "SP")
         val vm = viewModel()
-        assertEquals("01001000", vm.uiState.value.cep)
-        assertEquals(CepStatus.FOUND, vm.uiState.value.cepStatus)
+        assertEquals("BR", vm.uiState.value.country)
+        assertEquals("01001000", vm.uiState.value.postalCode)
+        assertEquals(PostalStatus.FOUND, vm.uiState.value.postalStatus)
     }
 }

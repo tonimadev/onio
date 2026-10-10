@@ -41,9 +41,12 @@
     </plurals>
     <string name="checkout_cep">CEP</string>
     <string name="checkout_cep_hint">CEP do Brasil: preenchemos seu endereço e estimamos a entrega</string>
-    <string name="checkout_cep_not_found">Não encontramos esse CEP</string>
+    <string name="checkout_cep_not_found">Não encontramos esse código postal</string>
     <string name="checkout_cep_error">Não foi possível consultar o CEP</string>
     <string name="checkout_delivery_between">Chega entre %1$s e %2$s</string>
     <string name="checkout_delivery_estimate">Estimativa por região</string>
     <string name="checkout_delivery_official">Confirmado pelos Correios</string>
+    <string name="checkout_country">País</string>
+    <string name="checkout_postal_code">Código postal</string>
+    <string name="checkout_postal_hint">Preenchemos sua cidade e estimamos a entrega</string>
 </resources>

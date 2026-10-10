@@ -105,12 +105,17 @@ The artwork carries no prices, "free", "sale" or calls to action, in line with P
 
 ## Shipping address and delivery time
 
-Checkout asks for a Brazilian ZIP code (CEP): it is looked up in public registries (ViaCEP, with BrasilAPI as a
-fallback; no keys), fills in the address and shows an estimated delivery window. The product page reuses the last CEP.
-The window is an **estimate by region** and is labelled as such. The official Correios *Prazo* API needs a
-commercial contract, a posting card and an API password, and its token must never ship inside the APK, so it would
-have to run behind your own backend. `ShippingQuoteSource` (`:core:model`) is the plug-in point: bind an
-implementation in `DataModule` and the UI switches to "Confirmed by Correios" automatically.
+Checkout has a country picker (flags and names in the user's language; the device region is preselected) and a postal
+code field. Typing the code looks it up and fills in the city, and an estimated delivery window is shown, also on the
+product page. No API keys are involved:
+
+- **Brazil:** CEP via ViaCEP, with BrasilAPI as a fallback (also gives street and district).
+- **~65 other countries:** [Zippopotam.us](https://api.zippopotam.us) (city and state/region only).
+
+The window is an **estimate** (Brazil by state, the rest of the world by region) and is labelled as such. Real carrier
+quotes (Correios, DHL, EasyPost...) need credentials, and a token must never ship inside the APK, so they would run
+behind your own backend. `ShippingQuoteSource` (`:core:model`) is the plug-in point: bind an implementation in
+`DataModule` and the UI switches to "Confirmed by the carrier".
 
 ## Real prices
 

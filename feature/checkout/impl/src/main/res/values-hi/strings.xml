@@ -39,9 +39,12 @@
     </plurals>
     <string name="checkout_cep">पिन कोड (CEP)</string>
     <string name="checkout_cep_hint">ब्राज़ील का पिन कोड: हम पता भर देंगे और डिलीवरी का अनुमान बताएँगे</string>
-    <string name="checkout_cep_not_found">यह पिन कोड नहीं मिला</string>
+    <string name="checkout_cep_not_found">यह डाक कोड नहीं मिला</string>
     <string name="checkout_cep_error">पिन कोड खोजा नहीं जा सका</string>
     <string name="checkout_delivery_between">%1$s से %2$s के बीच पहुँचेगा</string>
     <string name="checkout_delivery_estimate">क्षेत्र के आधार पर अनुमान</string>
     <string name="checkout_delivery_official">Correios द्वारा पुष्ट</string>
+    <string name="checkout_country">देश</string>
+    <string name="checkout_postal_code">पिन / डाक कोड</string>
+    <string name="checkout_postal_hint">हम शहर भर देंगे और डिलीवरी का अनुमान बताएँगे</string>
 </resources>

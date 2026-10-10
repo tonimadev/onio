@@ -37,9 +37,12 @@
     </plurals>
     <string name="checkout_cep">邮编 (CEP)</string>
     <string name="checkout_cep_hint">巴西邮编：自动填写地址并估算送达时间</string>
-    <string name="checkout_cep_not_found">找不到该邮编</string>
+    <string name="checkout_cep_not_found">找不到该邮政编码</string>
     <string name="checkout_cep_error">无法查询邮编</string>
     <string name="checkout_delivery_between">预计 %1$s 至 %2$s 送达</string>
     <string name="checkout_delivery_estimate">按地区估算</string>
     <string name="checkout_delivery_official">邮政确认</string>
+    <string name="checkout_country">国家/地区</string>
+    <string name="checkout_postal_code">邮政编码</string>
+    <string name="checkout_postal_hint">我们会自动填写城市并估算送达时间</string>
 </resources>

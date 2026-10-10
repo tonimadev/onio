@@ -98,11 +98,14 @@ feature/checkout/impl,checkout_coins_available,one,%1$d coin available,%1$d piè
 feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$d pièces disponibles
 feature/checkout/impl,checkout_cep,,ZIP code (CEP),Code postal (CEP)
 feature/checkout/impl,checkout_cep_hint,,Brazilian ZIP code: we fill in your address and estimate the delivery,Code postal brésilien : nous complétons l'adresse et estimons la livraison
-feature/checkout/impl,checkout_cep_not_found,,We couldn't find this ZIP code,Code postal introuvable
+feature/checkout/impl,checkout_cep_not_found,,We couldn't find this postal code,Code postal introuvable
 feature/checkout/impl,checkout_cep_error,,Couldn't look up the ZIP code,Impossible de rechercher le code postal
 feature/checkout/impl,checkout_delivery_between,,Arrives between %1$s and %2$s,Livraison entre le %1$s et le %2$s
 feature/checkout/impl,checkout_delivery_estimate,,Estimated by region,Estimation selon la région
 feature/checkout/impl,checkout_delivery_official,,Confirmed by Correios,Confirmé par les Correios
+feature/checkout/impl,checkout_country,,Country,Pays
+feature/checkout/impl,checkout_postal_code,,ZIP / postal code,Code postal
+feature/checkout/impl,checkout_postal_hint,,We'll fill in your city and estimate the delivery,Nous complétons la ville et estimons la livraison
 feature/home/impl,home_recommended,,Recommended for you,Recommandé pour vous
 feature/home/impl,home_deals,,Deals of the day,Offres du jour
 feature/home/impl,home_ends_in,,Ends in %1$s,Se termine dans %1$s

@@ -16,7 +16,8 @@ import com.ipirangatech.onio.core.model.PurchaseReward
 import com.ipirangatech.onio.core.model.RedeemResult
 import com.ipirangatech.onio.core.model.RewardsRepository
 import com.ipirangatech.onio.core.model.ShippingRepository
-import com.ipirangatech.onio.core.model.Cep
+import com.ipirangatech.onio.core.model.Countries
+import com.ipirangatech.onio.core.model.PostalCodes
 import kotlinx.coroutines.Job
 import com.ipirangatech.onio.core.model.SettingsRepository
 import com.ipirangatech.onio.core.model.WalletCoupon
@@ -47,7 +48,7 @@ class CheckoutViewModel @Inject constructor(
     /** Time source for coupon expiry; tests replace it. */
     internal var clock: () -> Long = System::currentTimeMillis
 
-    private val _uiState = MutableStateFlow(CheckoutState())
+    private val _uiState = MutableStateFlow(CheckoutState(country = Countries.defaultFor(Locale.getDefault())))
     val uiState: StateFlow<CheckoutState> = _uiState.asStateFlow()
     val effect = uiState.map { it.effect }.distinctUntilChanged()
 
@@ -76,7 +77,10 @@ class CheckoutViewModel @Inject constructor(
         // Remember the last CEP so returning customers do not retype it.
         viewModelScope.launch {
             runCatching { shipping.savedAddress.first() }.getOrNull()?.let { saved ->
-                if (_uiState.value.cep.isEmpty()) onIntent(CheckoutIntent.CepChanged(saved.cep))
+                if (_uiState.value.postalCode.isEmpty()) {
+                    _uiState.update { it.copy(country = saved.country) }
+                    onIntent(CheckoutIntent.PostalCodeChanged(saved.postalCode))
+                }
             }
         }
         viewModelScope.launch {
@@ -101,8 +105,9 @@ class CheckoutViewModel @Inject constructor(
         when (intent) {
             is CheckoutIntent.FieldChanged -> onField(intent.field, intent.value)
             CheckoutIntent.Submit -> submit()
-            is CheckoutIntent.CepChanged -> onCep(intent.raw)
-            CheckoutIntent.RetryCep -> lookupCep(_uiState.value.cep)
+            is CheckoutIntent.PostalCodeChanged -> onPostalCode(intent.raw)
+            is CheckoutIntent.CountryChanged -> onCountry(intent.code)
+            CheckoutIntent.RetryPostalCode -> lookupPostalCode()
             CheckoutIntent.OpenCoupons -> _uiState.update { it.copy(couponSheetOpen = true, couponCodeMessage = null) }
             CheckoutIntent.CloseCoupons -> _uiState.update { it.copy(couponSheetOpen = false) }
             is CheckoutIntent.SelectCoupon -> {
@@ -160,22 +165,33 @@ class CheckoutViewModel @Inject constructor(
         }
     }
 
-    private fun onCep(raw: String) {
-        val digits = Cep.digits(raw)
+    private fun onCountry(code: String) {
+        if (!Countries.isSupported(code) || code.equals(_uiState.value.country, true)) return
         cepJob?.cancel()
-        _uiState.update { it.copy(cep = digits, cepStatus = CepStatus.IDLE, resolvedAddress = null, delivery = null) }
-        if (digits.length == 8) lookupCep(digits)
+        _uiState.update { it.copy(country = code.uppercase(), postalCode = "", postalStatus = PostalStatus.IDLE, resolvedAddress = null, delivery = null) }
     }
 
-    private fun lookupCep(digits: String) {
-        if (digits.length != 8) return
+    private fun onPostalCode(raw: String) {
+        val code = PostalCodes.normalize(_uiState.value.country, raw)
         cepJob?.cancel()
-        _uiState.update { it.copy(cepStatus = CepStatus.LOADING) }
+        _uiState.update { it.copy(postalCode = code, postalStatus = PostalStatus.IDLE, resolvedAddress = null, delivery = null) }
+        if (PostalCodes.isLookupReady(_uiState.value.country, code)) lookupPostalCode(debounce = _uiState.value.country != Countries.BRAZIL)
+    }
+
+    private fun lookupPostalCode(debounce: Boolean = false) {
+        val s = _uiState.value
+        if (!PostalCodes.isLookupReady(s.country, s.postalCode)) return
+        val country = s.country
+        val code = s.postalCode
+        cepJob?.cancel()
+        _uiState.update { it.copy(postalStatus = PostalStatus.LOADING) }
         cepJob = viewModelScope.launch {
-            runCatching { shipping.lookup(digits) }
+            // Free-text codes are looked up while typing, so wait for the user to pause.
+            if (debounce) delay(POSTAL_DEBOUNCE_MILLIS)
+            runCatching { shipping.lookup(country, code) }
                 .onSuccess { address ->
                     if (address == null) {
-                        _uiState.update { it.copy(cepStatus = CepStatus.NOT_FOUND, resolvedAddress = null, delivery = null) }
+                        _uiState.update { it.copy(postalStatus = PostalStatus.NOT_FOUND, resolvedAddress = null, delivery = null) }
                         return@onSuccess
                     }
                     val estimate = runCatching { shipping.estimate(address) }.getOrNull()
@@ -186,7 +202,7 @@ class CheckoutViewModel @Inject constructor(
                         val replace = s.address.isBlank() || s.address == autoFilledLine
                         if (replace) autoFilledLine = line
                         s.copy(
-                            cepStatus = CepStatus.FOUND,
+                            postalStatus = PostalStatus.FOUND,
                             resolvedAddress = address,
                             delivery = estimate,
                             address = if (replace) line else s.address,
@@ -196,7 +212,7 @@ class CheckoutViewModel @Inject constructor(
                 }
                 .onFailure { error ->
                     if (error is kotlinx.coroutines.CancellationException) throw error
-                    _uiState.update { it.copy(cepStatus = CepStatus.ERROR) }
+                    _uiState.update { it.copy(postalStatus = PostalStatus.ERROR) }
                 }
         }
     }
@@ -278,6 +294,7 @@ class CheckoutViewModel @Inject constructor(
 
     private companion object {
         const val PROCESSING_MILLIS = 2_500L
+        const val POSTAL_DEBOUNCE_MILLIS = 450L
         const val MAX_CODE = 24
     }
 }
