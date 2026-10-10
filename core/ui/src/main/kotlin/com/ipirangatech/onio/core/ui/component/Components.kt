@@ -51,7 +51,7 @@ fun MessageState(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(title, style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center)
-        if (actionLabel != null && onAction != null) Button(onClick = onAction) { Text(actionLabel) }
+        if (actionLabel != null && onAction != null) OnioButton(onClick = onAction) { Text(actionLabel) }
     }
 }
 

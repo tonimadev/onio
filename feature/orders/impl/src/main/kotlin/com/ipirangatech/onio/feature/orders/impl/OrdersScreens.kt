@@ -39,7 +39,9 @@ import com.ipirangatech.onio.core.ui.LaunchedUiEffectHandler
 import com.ipirangatech.onio.core.ui.R as UiR
 import com.ipirangatech.onio.core.ui.component.LoadingBox
 import com.ipirangatech.onio.core.ui.component.MessageState
+import com.ipirangatech.onio.core.ui.component.OnioTopBar
 import com.ipirangatech.onio.core.ui.component.Pill
+import com.ipirangatech.onio.core.ui.component.SectionCard
 import com.ipirangatech.onio.core.ui.component.PriceText
 import com.ipirangatech.onio.core.ui.component.ProductImage
 import com.ipirangatech.onio.core.ui.formatCountdown
@@ -82,14 +84,18 @@ internal fun OrdersScreen(state: OrdersState, onIntent: (OrdersIntent) -> Unit, 
     LaunchedEffect(pendingDeadline, pendingDeadline != null && now >= pendingDeadline) {
         if (pendingDeadline != null && now >= pendingDeadline) onIntent(OrdersIntent.DeadlineReached)
     }
-    Scaffold(modifier = modifier, topBar = { TopAppBar(title = { Text(stringResource(R.string.orders_title)) }) }) { padding ->
+    Scaffold(
+        modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
+        topBar = { OnioTopBar(title = { Text(stringResource(R.string.orders_title)) }) },
+    ) { padding ->
         when {
             state.isLoading -> LoadingBox(Modifier.padding(padding))
             state.orders.isEmpty() -> MessageState(stringResource(R.string.orders_empty), Modifier.padding(padding))
             else -> LazyColumn(
                 Modifier.padding(padding),
                 contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(state.orders, key = UiOrder::id) { order ->
                     OrderCard(order, now, onClick = { onIntent(OrdersIntent.OrderClicked(order.id)) })
@@ -102,7 +108,7 @@ internal fun OrdersScreen(state: OrdersState, onIntent: (OrdersIntent) -> Unit, 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OrderCard(order: UiOrder, now: Long, onClick: () -> Unit) {
-    Card(onClick = onClick, modifier = Modifier.fillMaxWidth(), elevation = CardDefaults.cardElevation(2.dp)) {
+    SectionCard(Modifier.fillMaxWidth(), onClick = onClick) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                 Text(order.number, style = MaterialTheme.typography.titleMedium)
@@ -153,8 +159,9 @@ internal fun OrderDetailScreen(state: OrderDetailState, onIntent: (OrderDetailIn
     }
     Scaffold(
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
+            OnioTopBar(
                 title = { Text(order?.number.orEmpty()) },
                 navigationIcon = {
                     IconButton(onClick = { onIntent(OrderDetailIntent.BackClicked) }) {
@@ -173,7 +180,7 @@ internal fun OrderDetailScreen(state: OrderDetailState, onIntent: (OrderDetailIn
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 item {
-                    Card(Modifier.fillMaxWidth()) {
+                    SectionCard(Modifier.fillMaxWidth()) {
                         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             if (order.isCancelled) {
                                 Text(stringResource(R.string.orders_cancelled_title), style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.tertiary)

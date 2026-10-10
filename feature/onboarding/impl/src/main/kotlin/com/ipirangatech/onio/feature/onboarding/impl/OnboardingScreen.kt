@@ -1,5 +1,13 @@
 package com.ipirangatech.onio.feature.onboarding.impl
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.graphicsLayer
+import com.ipirangatech.onio.core.ui.component.OnioButton
+import com.ipirangatech.onio.core.ui.component.OnioChip
+import com.ipirangatech.onio.core.ui.motion.OnioMotion
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -61,7 +69,7 @@ import com.ipirangatech.onio.core.ui.R as UiR
 private class Slide(val icon: ImageVector, val title: Int, val body: Int, val colors: List<Color>)
 
 private val Slides = listOf(
-    Slide(Icons.Filled.Storefront, R.string.onb_p1_title, R.string.onb_p1_body, listOf(Color(0xFF8A5CFF), Color(0xFF4A20C4))),
+    Slide(Icons.Filled.Storefront, R.string.onb_p1_title, R.string.onb_p1_body, listOf(Color(0xFFFF7A59), Color(0xFFF23F5D))),
     Slide(Icons.Filled.EventBusy, R.string.onb_p2_title, R.string.onb_p2_body, listOf(Color(0xFFFF9A3D), Color(0xFFE5532D))),
     Slide(Icons.Filled.Savings, R.string.onb_p3_title, R.string.onb_p3_body, listOf(Color(0xFF2BC48A), Color(0xFF0E8F6A))),
 )
@@ -111,21 +119,22 @@ internal fun OnboardingScreen(state: OnboardingState, onIntent: (OnboardingInten
                 Row {
                     repeat(LAST_PAGE + 1) { index ->
                         val selected = state.page == index
+                        val dotWidth by animateDpAsState(if (selected) 22.dp else 8.dp, OnioMotion.snappy(), label = "dot")
                         Box(
-                            Modifier.padding(3.dp).size(if (selected) 22.dp else 8.dp, 8.dp).clip(CircleShape)
+                            Modifier.padding(3.dp).size(dotWidth, 8.dp).clip(CircleShape)
                                 .background(if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant),
                         )
                     }
                 }
                 if (state.isLastPage) {
-                    Button(onClick = { onIntent(OnboardingIntent.SubmitClicked) }, enabled = state.canSubmit, modifier = Modifier.fillMaxWidth().height(52.dp)) {
+                    OnioButton(onClick = { onIntent(OnboardingIntent.SubmitClicked) }, enabled = state.canSubmit, modifier = Modifier.fillMaxWidth().height(52.dp)) {
                         Text(stringResource(R.string.onb_start))
                     }
                     TextButton(onClick = { onIntent(OnboardingIntent.PreferNotToSayClicked) }, enabled = !state.isSaving) {
                         Text(stringResource(R.string.onb_prefer_not))
                     }
                 } else {
-                    Button(onClick = { onIntent(OnboardingIntent.NextClicked) }, modifier = Modifier.fillMaxWidth().height(52.dp)) {
+                    OnioButton(onClick = { onIntent(OnboardingIntent.NextClicked) }, modifier = Modifier.fillMaxWidth().height(52.dp)) {
                         Text(stringResource(R.string.onb_next))
                     }
                 }
@@ -136,8 +145,14 @@ internal fun OnboardingScreen(state: OnboardingState, onIntent: (OnboardingInten
 
 @Composable
 private fun Illustration(icon: ImageVector, colors: List<Color>) {
+    val scale = remember { Animatable(0.55f) }
+    LaunchedEffect(Unit) { scale.animateTo(1f, OnioMotion.bouncy()) }
     Box(
-        Modifier.size(180.dp).clip(CircleShape).background(Brush.linearGradient(colors)),
+        Modifier
+            .size(180.dp)
+            .graphicsLayer { scaleX = scale.value; scaleY = scale.value; alpha = scale.value.coerceIn(0f, 1f) }
+            .clip(CircleShape)
+            .background(Brush.linearGradient(colors)),
         contentAlignment = Alignment.Center,
     ) { Icon(icon, null, Modifier.size(88.dp), tint = Color.White) }
 }
@@ -162,7 +177,7 @@ private fun NamePage(state: OnboardingState, onIntent: (OnboardingIntent) -> Uni
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterVertically),
     ) {
-        Illustration(Icons.Filled.Person, listOf(Color(0xFFE040A0), Color(0xFF6C3CE9)))
+        Illustration(Icons.Filled.Person, listOf(Color(0xFFFF7A59), Color(0xFFF23F5D)))
         Text(stringResource(R.string.onb_p4_title), style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
         OutlinedTextField(
             value = state.name,
@@ -190,14 +205,14 @@ private fun RegretPage(state: OnboardingState, onIntent: (OnboardingIntent) -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterVertically),
     ) {
-        Illustration(Icons.Filled.Schedule, listOf(Color(0xFFFFB400), Color(0xFFFF7A1A)))
+        Illustration(Icons.Filled.Schedule, listOf(Color(0xFF4A4A4F), Color(0xFF1C1C1E)))
         Text(stringResource(R.string.onb_regret_title), style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             modifier = Modifier.fillMaxWidth(),
         ) {
             AppSettings.CANCEL_DELAY_OPTIONS_MINUTES.forEach { minutes ->
-                FilterChip(
+                OnioChip(
                     selected = state.cancelAfterMinutes == minutes,
                     onClick = { onIntent(OnboardingIntent.CancelMinutesSelected(minutes)) },
                     label = {

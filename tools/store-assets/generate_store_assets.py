@@ -137,9 +137,9 @@ def feature_svg(font, rtl, line1, line2):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="500" viewBox="0 0 1024 500">
 <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1024" y2="500" gradientUnits="userSpaceOnUse">
-    <stop offset="0" stop-color="#8A5CFF"/><stop offset="1" stop-color="#4A20C4"/>
+    <stop offset="0" stop-color="#FF7A59"/><stop offset="1" stop-color="#F23F5D"/>
   </linearGradient>
-  <linearGradient id="bag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8A5CFF"/><stop offset="1" stop-color="#4A20C4"/></linearGradient>
+  <linearGradient id="bag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A59"/><stop offset="1" stop-color="#F23F5D"/></linearGradient>
 </defs>
 <rect width="1024" height="500" fill="url(#bg)"/>
 <circle cx="{960 if not rtl else 64}" cy="60" r="190" fill="#fff" fill-opacity="0.07"/>
@@ -171,7 +171,7 @@ def main():
                 f.write(feature_svg(font, rtl, line1, line2))
             subprocess.run(["rsvg-convert", "-w", "1024", "-h", "500", svg, "-o", png], check=True)
             # Play requires a 24-bit PNG/JPEG without alpha.
-            subprocess.run(["magick", png, "-background", "#4A20C4", "-alpha", "remove", "-alpha", "off",
+            subprocess.run(["magick", png, "-background", "#F23F5D", "-alpha", "remove", "-alpha", "off",
                             os.path.join(images, "featureGraphic.png")], check=True)
             shutil.copyfile(ICON_SRC, os.path.join(images, "icon.png"))
             for name, text in (("title.txt", "Onio"), ("short_description.txt", short), ("full_description.txt", full)):

@@ -1,5 +1,10 @@
 package com.ipirangatech.onio.feature.home.impl
 
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,8 +30,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FlashOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -47,7 +52,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -57,15 +64,18 @@ import com.ipirangatech.onio.core.ui.LaunchedUiEffectHandler
 import com.ipirangatech.onio.core.ui.R as UiR
 import com.ipirangatech.onio.core.ui.categoryIcon
 import com.ipirangatech.onio.core.ui.categoryLabel
-import com.ipirangatech.onio.core.ui.component.CircleIcon
+import com.ipirangatech.onio.core.ui.component.FlashCountdown
+import com.ipirangatech.onio.core.ui.component.IconTile
 import com.ipirangatech.onio.core.ui.component.MessageState
 import com.ipirangatech.onio.core.ui.component.ProductCard
 import com.ipirangatech.onio.core.ui.component.ProductCardSkeleton
-import com.ipirangatech.onio.core.ui.component.SaleRed
-import com.ipirangatech.onio.core.ui.formatCountdown
+import com.ipirangatech.onio.core.ui.component.StatusBarIcons
+import com.ipirangatech.onio.core.ui.motion.staggeredEntrance
+import com.ipirangatech.onio.core.ui.theme.Dimens
+import com.ipirangatech.onio.core.ui.theme.OnioTheme
 import kotlinx.coroutines.delay
 import java.util.Calendar
-import java.util.Locale
+import kotlin.math.absoluteValue
 
 @Composable
 fun HomeRoute(
@@ -99,12 +109,12 @@ fun HomeRoute(
     HomeScreen(state = state, snackbar = snackbar, onIntent = viewModel::onIntent, modifier = modifier)
 }
 
-private data class Banner(val title: Int, val subtitle: Int, val colors: List<Color>)
+private data class Banner(val title: Int, val subtitle: Int, val start: Color, val end: Color)
 
 private val Banners = listOf(
-    Banner(R.string.home_banner1_title, R.string.home_banner1_sub, listOf(Color(0xFF6C3CE9), Color(0xFFE040A0))),
-    Banner(R.string.home_banner2_title, R.string.home_banner2_sub, listOf(Color(0xFFFF7A1A), Color(0xFFFFB400))),
-    Banner(R.string.home_banner3_title, R.string.home_banner3_sub, listOf(Color(0xFF0E9F6E), Color(0xFF2BB0D8))),
+    Banner(R.string.home_banner1_title, R.string.home_banner1_sub, Color(0xFFFF7A59), Color(0xFFF23F5D)),
+    Banner(R.string.home_banner2_title, R.string.home_banner2_sub, Color(0xFFFFB84D), Color(0xFFFF7A59)),
+    Banner(R.string.home_banner3_title, R.string.home_banner3_sub, Color(0xFF00A890), Color(0xFF007A8A)),
 )
 
 /** Milliseconds left until local midnight, ticking every second. */
@@ -130,6 +140,7 @@ internal fun HomeScreen(
 ) {
     Scaffold(
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
         snackbarHost = { SnackbarHost(snackbar) },
         contentWindowInsets = WindowInsets(0),
     ) { padding ->
@@ -146,69 +157,22 @@ internal fun HomeScreen(
             columns = GridCells.Adaptive(minSize = 160.dp),
             modifier = Modifier.padding(padding).fillMaxSize(),
             contentPadding = PaddingValues(bottom = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(Dimens.SectionGap),
+            verticalArrangement = Arrangement.spacedBy(Dimens.SectionGap),
         ) {
             item(span = { GridItemSpan(maxLineSpan) }) { Header(userName = state.userName, onSearch = { onIntent(HomeIntent.SearchClicked) }) }
             item(span = { GridItemSpan(maxLineSpan) }) { PromoPager() }
             if (state.isLoading) {
-                items(6) { ProductCardSkeleton(Modifier.padding(horizontal = 16.dp)) }
+                items(6) { ProductCardSkeleton(Modifier.padding(horizontal = Dimens.Space8)) }
                 return@LazyVerticalGrid
             }
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                LazyRow(contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    items(state.categories, key = UiCategory::slug) { category ->
-                        Column(
-                            Modifier.width(72.dp).clickable { onIntent(HomeIntent.CategoryClicked(category.slug)) },
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(6.dp),
-                        ) {
-                            CircleIcon {
-                                Icon(categoryIcon(category.slug), null, tint = MaterialTheme.colorScheme.primary)
-                            }
-                            Text(
-                                categoryLabel(category.slug, category.name),
-                                style = MaterialTheme.typography.labelSmall,
-                                maxLines = 2,
-                                minLines = 2,
-                                textAlign = TextAlign.Center,
-                                overflow = TextOverflow.Ellipsis,
-                            )
-                        }
-                    }
-                }
-            }
+            item(span = { GridItemSpan(maxLineSpan) }) { CategoryStrip(state, onIntent) }
             if (state.deals.isNotEmpty()) {
-                item(span = { GridItemSpan(maxLineSpan) }) { DealsHeader() }
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    LazyRow(contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        items(state.deals, key = UiProduct::id) { product ->
-                            ProductCard(
-                                title = product.title,
-                                thumbnailUrl = product.thumbnailUrl,
-                                price = product.price,
-                                originalPrice = product.originalPrice,
-                                rating = product.rating,
-                                discountPercent = product.discountPercent,
-                                onClick = { onIntent(HomeIntent.ProductClicked(product.id)) },
-                                onAddToCart = { onIntent(HomeIntent.AddToCart(product.id)) },
-                                isFavorite = product.id in state.favoriteIds,
-                                onToggleFavorite = { onIntent(HomeIntent.ToggleFavorite(product.id)) },
-                                modifier = Modifier.width(160.dp),
-                            )
-                        }
-                    }
-                }
+                item(span = { GridItemSpan(maxLineSpan) }) { FlashSale(state, onIntent) }
             }
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                Text(
-                    stringResource(R.string.home_recommended),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
-                )
-            }
-            items(state.products, key = UiProduct::id) { product ->
+            item(span = { GridItemSpan(maxLineSpan) }) { SectionTitle(stringResource(R.string.home_recommended)) }
+            items(state.products.size, key = { state.products[it].id }) { index ->
+                val product = state.products[index]
                 ProductCard(
                     title = product.title,
                     thumbnailUrl = product.thumbnailUrl,
@@ -220,7 +184,7 @@ internal fun HomeScreen(
                     onAddToCart = { onIntent(HomeIntent.AddToCart(product.id)) },
                     isFavorite = product.id in state.favoriteIds,
                     onToggleFavorite = { onIntent(HomeIntent.ToggleFavorite(product.id)) },
-                    modifier = Modifier.padding(horizontal = 8.dp),
+                    modifier = Modifier.padding(horizontal = Dimens.Space8).staggeredEntrance(index % 6),
                 )
             }
             if (state.canLoadMore) {
@@ -235,38 +199,55 @@ internal fun HomeScreen(
 
 @Composable
 private fun Header(userName: String?, onSearch: () -> Unit) {
+    StatusBarIcons(light = true)
     Column(
         Modifier
             .fillMaxWidth()
-            .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.primary.copy(alpha = 0.85f))))
+            .background(Brush.verticalGradient(listOf(OnioTheme.colors.headerStart, OnioTheme.colors.headerEnd)))
             .statusBarsPadding()
-            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 14.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+            .padding(start = Dimens.Space12, end = Dimens.Space12, top = Dimens.Space8, bottom = Dimens.Space12),
+        verticalArrangement = Arrangement.spacedBy(Dimens.Space8),
     ) {
-        Text(
-            stringResource(R.string.home_title),
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.ExtraBold,
-            color = Color.White,
-        )
-        if (!userName.isNullOrBlank()) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
             Text(
-                stringResource(R.string.home_greeting, userName),
-                style = MaterialTheme.typography.titleMedium,
-                color = Color.White.copy(alpha = 0.92f),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                stringResource(R.string.home_title),
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.ExtraBold,
+                fontStyle = FontStyle.Italic,
+                color = Color.White,
             )
+            if (!userName.isNullOrBlank()) {
+                Text(
+                    stringResource(R.string.home_greeting, userName),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White.copy(alpha = 0.92f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f),
+                )
+            }
         }
         Surface(
             onClick = onSearch,
-            shape = RoundedCornerShape(50),
+            shape = MaterialTheme.shapes.small,
             color = Color.White,
-            modifier = Modifier.fillMaxWidth().height(48.dp),
+            modifier = Modifier.fillMaxWidth().height(40.dp),
         ) {
-            Row(Modifier.padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                Icon(Icons.Filled.Search, null, tint = Color.Gray)
-                Text(stringResource(UiR.string.label_search_hint), color = Color.Gray, style = MaterialTheme.typography.bodyLarge)
+            Row(
+                Modifier.padding(horizontal = Dimens.Space12),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(Dimens.Space8),
+            ) {
+                Text(
+                    stringResource(UiR.string.label_search_hint),
+                    color = Color(0xFF8A8A8A),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.weight(1f),
+                    maxLines = 1,
+                )
+                Box(Modifier.size(28.dp).background(MaterialTheme.colorScheme.primary, MaterialTheme.shapes.extraSmall), contentAlignment = Alignment.Center) {
+                    Icon(Icons.Filled.Search, null, tint = Color.White, modifier = Modifier.size(18.dp))
+                }
             }
         }
     }
@@ -281,33 +262,46 @@ private fun PromoPager() {
             pager.animateScrollToPage((pager.currentPage + 1) % Banners.size)
         }
     }
-    Column(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        HorizontalPager(pager, contentPadding = PaddingValues(horizontal = 16.dp), pageSpacing = 12.dp) { page ->
+    Box(Modifier.fillMaxWidth()) {
+        HorizontalPager(
+            pager,
+            contentPadding = PaddingValues(horizontal = Dimens.Space12),
+            pageSpacing = Dimens.Space8,
+        ) { page ->
             val banner = Banners[page]
+            // Side banners shrink and fade a little: a cheap carousel/parallax feel.
+            val offset = ((pager.currentPage - page) + pager.currentPageOffsetFraction).absoluteValue.coerceIn(0f, 1f)
             Box(
                 Modifier
+                    .graphicsLayer {
+                        val scale = 1f - 0.06f * offset
+                        scaleX = scale
+                        scaleY = scale
+                        alpha = 1f - 0.35f * offset
+                    }
                     .fillMaxWidth()
-                    .height(130.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(Brush.linearGradient(banner.colors))
-                    .padding(20.dp),
+                    .height(124.dp)
+                    .clip(MaterialTheme.shapes.small)
+                    .background(Brush.linearGradient(listOf(banner.start, banner.end)))
+                    .padding(Dimens.Space16),
                 contentAlignment = Alignment.CenterStart,
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(stringResource(banner.title), style = MaterialTheme.typography.headlineSmall, color = Color.White, fontWeight = FontWeight.ExtraBold)
-                    Text(stringResource(banner.subtitle), style = MaterialTheme.typography.bodyLarge, color = Color.White.copy(alpha = 0.92f))
+                    Text(stringResource(banner.subtitle), style = MaterialTheme.typography.bodyMedium, color = Color.White.copy(alpha = 0.95f))
                 }
             }
         }
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Row(Modifier.align(Alignment.BottomCenter).padding(bottom = 8.dp)) {
             repeat(Banners.size) { index ->
                 val selected = pager.currentPage == index
+                val width by androidx.compose.animation.core.animateDpAsState(if (selected) 14.dp else 5.dp, label = "dot")
                 Box(
                     Modifier
-                        .padding(3.dp)
-                        .size(if (selected) 18.dp else 6.dp, 6.dp)
+                        .padding(2.dp)
+                        .size(width, 5.dp)
                         .clip(CircleShape)
-                        .background(if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant),
+                        .background(if (selected) Color.White else Color.White.copy(alpha = 0.5f)),
                 )
             }
         }
@@ -315,22 +309,101 @@ private fun PromoPager() {
 }
 
 @Composable
-private fun DealsHeader() {
+private fun CategoryStrip(state: HomeState, onIntent: (HomeIntent) -> Unit) {
+    Surface(color = MaterialTheme.colorScheme.surface) {
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = Dimens.Space12, vertical = Dimens.Space12),
+            horizontalArrangement = Arrangement.spacedBy(Dimens.Space12),
+        ) {
+            items(state.categories.size, key = { state.categories[it].slug }) { index ->
+                val category = state.categories[index]
+                Column(
+                    Modifier
+                        .width(64.dp)
+                        .clickable { onIntent(HomeIntent.CategoryClicked(category.slug)) }
+                        .staggeredEntrance(index),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    IconTile { Icon(categoryIcon(category.slug), null, tint = MaterialTheme.colorScheme.primary) }
+                    Text(
+                        categoryLabel(category.slug, category.name),
+                        style = MaterialTheme.typography.labelSmall,
+                        maxLines = 2,
+                        minLines = 2,
+                        textAlign = TextAlign.Center,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FlashSale(state: HomeState, onIntent: (HomeIntent) -> Unit) {
     val left by rememberTimeLeftToday()
-    Row(
-        Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
-        Text(stringResource(R.string.home_deals), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-        Spacer(Modifier.weight(1f))
-        Surface(shape = RoundedCornerShape(8.dp), color = SaleRed) {
+    val pulse = rememberInfiniteTransition(label = "bolt")
+    val scale by pulse.animateFloat(
+        initialValue = 0.9f,
+        targetValue = 1.15f,
+        animationSpec = infiniteRepeatable(tween(700), RepeatMode.Reverse),
+        label = "boltScale",
+    )
+    Surface(color = MaterialTheme.colorScheme.surface) {
+        Column(Modifier.padding(vertical = Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+            Row(
+                Modifier.fillMaxWidth().padding(horizontal = Dimens.Space12),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(Dimens.Space8),
+            ) {
+                Icon(
+                    Icons.Filled.FlashOn,
+                    null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(22.dp).graphicsLayer { scaleX = scale; scaleY = scale },
+                )
+                Text(
+                    stringResource(R.string.home_deals),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontStyle = FontStyle.Italic,
+                    color = OnioTheme.colors.priceText,
+                )
+                Spacer(Modifier.weight(1f))
+                FlashCountdown(left)
+            }
+            LazyRow(contentPadding = PaddingValues(horizontal = Dimens.Space12), horizontalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+                items(state.deals, key = UiProduct::id) { product ->
+                    ProductCard(
+                        title = product.title,
+                        thumbnailUrl = product.thumbnailUrl,
+                        price = product.price,
+                        originalPrice = product.originalPrice,
+                        rating = product.rating,
+                        discountPercent = product.discountPercent,
+                        onClick = { onIntent(HomeIntent.ProductClicked(product.id)) },
+                        onAddToCart = { onIntent(HomeIntent.AddToCart(product.id)) },
+                        isFavorite = product.id in state.favoriteIds,
+                        onToggleFavorite = { onIntent(HomeIntent.ToggleFavorite(product.id)) },
+                        modifier = Modifier.width(152.dp),
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SectionTitle(text: String) {
+    Surface(color = MaterialTheme.colorScheme.surface, modifier = Modifier.fillMaxWidth()) {
+        Row(Modifier.padding(horizontal = Dimens.Space12, vertical = Dimens.Space12), verticalAlignment = Alignment.CenterVertically) {
+            Box(Modifier.size(3.dp, 16.dp).background(MaterialTheme.colorScheme.primary))
             Text(
-                stringResource(R.string.home_ends_in, formatCountdown(left, Locale.getDefault())),
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                style = MaterialTheme.typography.labelLarge,
-                color = Color.White,
+                text,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = Dimens.Space8),
             )
         }
     }

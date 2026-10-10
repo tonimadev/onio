@@ -31,12 +31,12 @@ class CheckoutScreenTest {
 
     @Test fun payIsDisabledForAnEmptyCartAndEnabledOtherwise() {
         show(CheckoutState(itemCount = 0))
-        compose.onNodeWithText(text(R.string.checkout_pay)).performScrollTo().assertIsNotEnabled()
+        compose.onNodeWithText(text(R.string.checkout_pay)).assertIsNotEnabled()
     }
 
     @Test fun payButtonSubmitsTheForm() {
         show(CheckoutState(itemCount = 1, total = Money.usd(1_000)))
-        compose.onNodeWithText(text(R.string.checkout_pay)).performScrollTo().assertIsEnabled().performClick()
+        compose.onNodeWithText(text(R.string.checkout_pay)).assertIsEnabled().performClick()
         assertTrue(CheckoutIntent.Submit in intents)
     }
 
@@ -68,6 +68,6 @@ class CheckoutScreenTest {
     @Test fun whileProcessingTheFormShowsProgressAndCannotBeResubmitted() {
         show(CheckoutState(itemCount = 1, isProcessing = true))
         compose.onNodeWithText(text(R.string.checkout_processing)).assertExists()
-        compose.onNodeWithText(text(R.string.checkout_pay)).performScrollTo().assertIsNotEnabled()
+        compose.onNodeWithText(text(R.string.checkout_pay)).assertIsNotEnabled()
     }
 }

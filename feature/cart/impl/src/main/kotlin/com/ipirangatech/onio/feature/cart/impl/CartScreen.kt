@@ -1,5 +1,25 @@
 package com.ipirangatech.onio.feature.cart.impl
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.height
+import androidx.compose.ui.graphics.vector.ImageVector
+import com.ipirangatech.onio.core.ui.component.OnioButton
+import com.ipirangatech.onio.core.ui.component.OnioTopBar
+import com.ipirangatech.onio.core.ui.component.SectionCard
+import com.ipirangatech.onio.core.ui.motion.AnimatedCountText
+import com.ipirangatech.onio.core.ui.motion.animateMoneyAsState
+import com.ipirangatech.onio.core.ui.theme.Dimens
+import com.ipirangatech.onio.core.ui.theme.OnioTheme
+import androidx.compose.ui.text.style.TextOverflow
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -66,27 +86,36 @@ fun CartRoute(
     CartScreen(state = state, onIntent = viewModel::onIntent, modifier = modifier)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun CartScreen(state: CartState, onIntent: (CartIntent) -> Unit, modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier,
-        topBar = { TopAppBar(title = { Text(stringResource(R.string.cart_title)) }) },
+        containerColor = MaterialTheme.colorScheme.background,
+        topBar = { OnioTopBar(title = { Text(stringResource(R.string.cart_title)) }) },
         bottomBar = {
-            if (state.items.isNotEmpty()) {
-                Surface(tonalElevation = 3.dp) {
-                    Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Text(stringResource(R.string.cart_subtotal), style = MaterialTheme.typography.titleMedium)
-                            PriceText(state.subtotal, style = MaterialTheme.typography.titleLarge)
+            AnimatedVisibility(
+                visible = state.items.isNotEmpty(),
+                enter = slideInVertically { it } + fadeIn(),
+                exit = slideOutVertically { it } + fadeOut(),
+            ) {
+                Surface(color = MaterialTheme.colorScheme.surface, shadowElevation = 8.dp) {
+                    Row(
+                        Modifier.fillMaxWidth().padding(start = Dimens.Space12),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Column(Modifier.weight(1f).padding(vertical = Dimens.Space8)) {
+                            Text(stringResource(R.string.cart_subtotal), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            PriceText(animateMoneyAsState(state.subtotal), style = MaterialTheme.typography.titleLarge)
+                            Text(
+                                stringResource(R.string.cart_shipping) + ": " + stringResource(R.string.cart_shipping_free),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = OnioTheme.colors.freeShipping,
+                            )
                         }
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Text(stringResource(R.string.cart_shipping))
-                            Text(stringResource(R.string.cart_shipping_free), color = MaterialTheme.colorScheme.tertiary)
-                        }
-                        Button(onClick = { onIntent(CartIntent.CheckoutClicked) }, modifier = Modifier.fillMaxWidth()) {
-                            Text(stringResource(R.string.cart_checkout))
-                        }
+                        OnioButton(
+                            onClick = { onIntent(CartIntent.CheckoutClicked) },
+                            modifier = Modifier.padding(Dimens.Space8).height(48.dp),
+                        ) { Text(stringResource(R.string.cart_checkout), maxLines = 1) }
                     }
                 }
             }
@@ -100,11 +129,11 @@ internal fun CartScreen(state: CartState, onIntent: (CartIntent) -> Unit, modifi
             )
             else -> LazyColumn(
                 Modifier.padding(padding),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = PaddingValues(Dimens.Space8),
+                verticalArrangement = Arrangement.spacedBy(Dimens.SectionGap),
             ) {
                 items(state.items, key = UiCartItem::productId) { item ->
-                    CartRow(item, onIntent)
+                    CartRow(item, onIntent, Modifier.animateItem())
                 }
             }
         }
@@ -112,35 +141,47 @@ internal fun CartScreen(state: CartState, onIntent: (CartIntent) -> Unit, modifi
 }
 
 @Composable
-private fun CartRow(item: UiCartItem, onIntent: (CartIntent) -> Unit) {
-    Card(
-        Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-    ) {
-        Row(
-            Modifier.clickable { onIntent(CartIntent.OpenProduct(item.productId)) }.padding(12.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            ProductImage(item.thumbnailUrl, Modifier.size(88.dp).clip(RoundedCornerShape(12.dp)).background(Color(0xFFF3F1F8)))
-            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(item.title, maxLines = 2, style = MaterialTheme.typography.bodyMedium)
-                PriceText(item.lineTotal)
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    IconButton(onClick = { onIntent(CartIntent.Decrement(item.productId)) }) {
-                        Icon(Icons.Filled.Remove, stringResource(R.string.cart_decrease))
-                    }
-                    Text(NumberFormat.getIntegerInstance().format(item.quantity), style = MaterialTheme.typography.titleMedium)
-                    IconButton(onClick = { onIntent(CartIntent.Increment(item.productId)) }) {
-                        Icon(Icons.Filled.Add, stringResource(R.string.cart_increase))
+private fun CartRow(item: UiCartItem, onIntent: (CartIntent) -> Unit, modifier: Modifier = Modifier) {
+    SectionCard(modifier.fillMaxWidth(), onClick = { onIntent(CartIntent.OpenProduct(item.productId)) }) {
+        Row(Modifier.padding(Dimens.Space8), horizontalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+            ProductImage(item.thumbnailUrl, Modifier.size(88.dp).clip(MaterialTheme.shapes.extraSmall).background(Color.White))
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(verticalAlignment = Alignment.Top) {
+                    Text(item.title, maxLines = 2, overflow = TextOverflow.Ellipsis, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+                    IconButton(onClick = { onIntent(CartIntent.Remove(item.productId)) }, modifier = Modifier.size(28.dp)) {
+                        Icon(Icons.Filled.Delete, stringResource(R.string.cart_remove), tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
                     }
                 }
-            }
-            IconButton(onClick = { onIntent(CartIntent.Remove(item.productId)) }) {
-                Icon(Icons.Filled.Delete, stringResource(R.string.cart_remove))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    PriceText(item.lineTotal, modifier = Modifier.weight(1f))
+                    QuantityStepper(item, onIntent)
+                }
             }
         }
+    }
+}
+
+/** Rectangular "- 2 +" control with a hairline border, the way marketplace carts draw it. */
+@Composable
+private fun QuantityStepper(item: UiCartItem, onIntent: (CartIntent) -> Unit) {
+    Row(
+        Modifier.border(Dimens.Hairline, MaterialTheme.colorScheme.outline, MaterialTheme.shapes.extraSmall),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        StepButton(Icons.Filled.Remove, stringResource(R.string.cart_decrease)) { onIntent(CartIntent.Decrement(item.productId)) }
+        Box(
+            Modifier.width(34.dp).height(28.dp).border(Dimens.Hairline, MaterialTheme.colorScheme.outlineVariant),
+            contentAlignment = Alignment.Center,
+        ) {
+            AnimatedCountText(NumberFormat.getIntegerInstance().format(item.quantity), style = MaterialTheme.typography.labelLarge)
+        }
+        StepButton(Icons.Filled.Add, stringResource(R.string.cart_increase)) { onIntent(CartIntent.Increment(item.productId)) }
+    }
+}
+
+@Composable
+private fun StepButton(icon: ImageVector, description: String, onClick: () -> Unit) {
+    IconButton(onClick = onClick, modifier = Modifier.size(28.dp)) {
+        Icon(icon, description, modifier = Modifier.size(16.dp))
     }
 }

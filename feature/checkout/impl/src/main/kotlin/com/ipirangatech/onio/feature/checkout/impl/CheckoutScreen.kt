@@ -1,11 +1,31 @@
 package com.ipirangatech.onio.feature.checkout.impl
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.graphicsLayer
+import com.ipirangatech.onio.core.ui.component.OnioButton
+import com.ipirangatech.onio.core.ui.component.OnioTopBar
+import com.ipirangatech.onio.core.ui.component.SectionCard
+import com.ipirangatech.onio.core.ui.motion.animateMoneyAsState
+import com.ipirangatech.onio.core.ui.theme.Dimens
+import com.ipirangatech.onio.core.ui.theme.OnioTheme
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.filled.CreditCard
 import androidx.compose.material.icons.filled.Lock
@@ -75,13 +95,14 @@ fun CheckoutRoute(
     CheckoutScreen(state = state, onIntent = viewModel::onIntent, modifier = modifier)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun CheckoutScreen(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit, modifier: Modifier = Modifier) {
+    var cvvFocused by remember { mutableStateOf(false) }
     Scaffold(
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
+            OnioTopBar(
                 title = { Text(stringResource(R.string.checkout_title)) },
                 navigationIcon = {
                     IconButton(onClick = { onIntent(CheckoutIntent.BackClicked) }, enabled = !state.isProcessing) {
@@ -90,50 +111,74 @@ internal fun CheckoutScreen(state: CheckoutState, onIntent: (CheckoutIntent) -> 
                 },
             )
         },
+        bottomBar = {
+            Surface(color = MaterialTheme.colorScheme.surface, shadowElevation = 8.dp) {
+                Row(
+                    Modifier.fillMaxWidth().navigationBarsPadding().padding(start = Dimens.Space12),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            pluralStringResource(R.plurals.checkout_total_items, state.itemCount, state.itemCount),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        PriceText(animateMoneyAsState(state.total), style = MaterialTheme.typography.titleLarge)
+                    }
+                    OnioButton(
+                        onClick = { onIntent(CheckoutIntent.Submit) },
+                        enabled = !state.isProcessing && state.itemCount > 0,
+                        modifier = Modifier.padding(Dimens.Space8).height(48.dp),
+                    ) { Text(stringResource(R.string.checkout_pay), maxLines = 1) }
+                }
+            }
+        },
     ) { padding ->
         Box(Modifier.padding(padding).fillMaxSize()) {
             Column(
-                Modifier.verticalScroll(rememberScrollState()).padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                Modifier.verticalScroll(rememberScrollState()).padding(Dimens.Space8),
+                verticalArrangement = Arrangement.spacedBy(Dimens.SectionGap),
             ) {
                 SummaryRow(state)
-                Text(stringResource(R.string.checkout_shipping), style = MaterialTheme.typography.titleMedium)
-                Field(state, CheckoutField.NAME, state.name, R.string.checkout_name, onIntent, KeyboardType.Text)
-                Field(state, CheckoutField.ADDRESS, state.address, R.string.checkout_address, onIntent, KeyboardType.Text)
-                Text(stringResource(R.string.checkout_payment), style = MaterialTheme.typography.titleMedium)
-                CardPreview(state)
-                Field(state, CheckoutField.CARD_NUMBER, state.cardNumber, R.string.checkout_card_number, onIntent, KeyboardType.Number, ltr = true, transformation = CardNumberTransformation)
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Box(Modifier.weight(1f)) {
-                        Field(state, CheckoutField.EXPIRY, state.expiry, R.string.checkout_expiry, onIntent, KeyboardType.Number, ltr = true, transformation = ExpiryTransformation)
-                    }
-                    Box(Modifier.weight(1f)) {
-                        Field(state, CheckoutField.CVV, state.cvv, R.string.checkout_cvv, onIntent, KeyboardType.NumberPassword, ltr = true)
+                SectionCard(Modifier.fillMaxWidth()) {
+                    Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+                        Text(stringResource(R.string.checkout_shipping), style = MaterialTheme.typography.titleMedium)
+                        Field(state, CheckoutField.NAME, state.name, R.string.checkout_name, onIntent, KeyboardType.Text)
+                        Field(state, CheckoutField.ADDRESS, state.address, R.string.checkout_address, onIntent, KeyboardType.Text)
                     }
                 }
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Text(pluralStringResource(R.plurals.checkout_total_items, state.itemCount, state.itemCount))
-                    PriceText(state.total, style = MaterialTheme.typography.titleLarge)
-                }
-                if (state.hasError) {
-                    Text(stringResource(UiR.string.error_generic), color = MaterialTheme.colorScheme.error)
-                }
-                Button(
-                    onClick = { onIntent(CheckoutIntent.Submit) },
-                    enabled = !state.isProcessing && state.itemCount > 0,
-                    modifier = Modifier.fillMaxWidth(),
-                ) { Text(stringResource(R.string.checkout_pay)) }
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Filled.Lock, null, Modifier.size(14.dp), tint = MaterialTheme.colorScheme.tertiary)
-                    Spacer(Modifier.width(6.dp))
-                    Text(stringResource(R.string.checkout_secure), style = MaterialTheme.typography.labelSmall)
+                SectionCard(Modifier.fillMaxWidth()) {
+                    Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+                        Text(stringResource(R.string.checkout_payment), style = MaterialTheme.typography.titleMedium)
+                        CardPreview(state, showBack = cvvFocused)
+                        Field(state, CheckoutField.CARD_NUMBER, state.cardNumber, R.string.checkout_card_number, onIntent, KeyboardType.Number, ltr = true, transformation = CardNumberTransformation)
+                        Row(horizontalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+                            Box(Modifier.weight(1f)) {
+                                Field(state, CheckoutField.EXPIRY, state.expiry, R.string.checkout_expiry, onIntent, KeyboardType.Number, ltr = true, transformation = ExpiryTransformation)
+                            }
+                            Box(Modifier.weight(1f)) {
+                                Field(state, CheckoutField.CVV, state.cvv, R.string.checkout_cvv, onIntent, KeyboardType.NumberPassword, ltr = true, onFocusChanged = { cvvFocused = it })
+                            }
+                        }
+                        if (state.hasError) {
+                            Text(stringResource(UiR.string.error_generic), color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Filled.Lock, null, Modifier.size(14.dp), tint = OnioTheme.colors.freeShipping)
+                            Spacer(Modifier.width(6.dp))
+                            Text(stringResource(R.string.checkout_secure), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
                 }
             }
-            if (state.isProcessing) {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        CircularProgressIndicator()
-                        Text(stringResource(R.string.checkout_processing))
+            AnimatedVisibility(state.isProcessing, enter = fadeIn(), exit = fadeOut()) {
+                Box(
+                    Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background.copy(alpha = 0.92f)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                        Text(stringResource(R.string.checkout_processing), style = MaterialTheme.typography.titleMedium)
                     }
                 }
             }
@@ -151,6 +196,7 @@ private fun Field(
     keyboard: KeyboardType,
     ltr: Boolean = false,
     transformation: VisualTransformation = VisualTransformation.None,
+    onFocusChanged: (Boolean) -> Unit = {},
 ) {
     OutlinedTextField(
         value = value,
@@ -163,26 +209,28 @@ private fun Field(
         enabled = !state.isProcessing,
         keyboardOptions = KeyboardOptions(keyboardType = keyboard),
         textStyle = if (ltr) TextStyle(textDirection = TextDirection.Ltr) else TextStyle.Default,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().onFocusChanged { onFocusChanged(it.isFocused) },
     )
 }
 
-
 @Composable
 private fun SummaryRow(state: CheckoutState) {
-    Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
-        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    SectionCard(Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
             Text(stringResource(R.string.checkout_summary), style = MaterialTheme.typography.titleMedium)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                state.thumbnails.take(5).forEach { ProductImage(it, Modifier.size(52.dp).clip(RoundedCornerShape(8.dp))) }
+            Row(horizontalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+                state.thumbnails.take(5).forEach {
+                    ProductImage(it, Modifier.size(52.dp).clip(MaterialTheme.shapes.extraSmall).border(Dimens.Hairline, OnioTheme.colors.border, MaterialTheme.shapes.extraSmall))
+                }
             }
         }
     }
 }
 
-/** Live credit-card mock-up that fills in while the user types. */
+/** Live credit-card mock-up; flips to its back while the CVV field is focused. */
 @Composable
-private fun CardPreview(state: CheckoutState) {
+private fun CardPreview(state: CheckoutState, showBack: Boolean) {
+    val rotation by animateFloatAsState(if (showBack) 180f else 0f, tween(450), label = "cardFlip")
     val digits = CardValidation.digitsOnly(state.cardNumber)
     val brand = CardValidation.brandOf(digits)
     val shown = (digits + "•".repeat(16)).take(16).chunked(4).joinToString("  ")
@@ -190,39 +238,59 @@ private fun CardPreview(state: CheckoutState) {
     Box(
         Modifier
             .fillMaxWidth()
-            .height(190.dp)
-            .clip(RoundedCornerShape(20.dp))
-            .background(Brush.linearGradient(listOf(Color(0xFF2B1B6B), Color(0xFF6C3CE9), Color(0xFFE040A0)))),
-    ) {
-        Column(Modifier.fillMaxSize().padding(20.dp), verticalArrangement = Arrangement.SpaceBetween) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Filled.CreditCard, null, tint = Color.White)
-                Text(
-                    if (brand == CardBrand.OTHER) "" else brand.name,
-                    color = Color.White,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.ExtraBold,
-                )
+            .height(176.dp)
+            .graphicsLayer {
+                rotationY = rotation
+                cameraDistance = 12f * density
             }
-            Text(
-                shown,
-                color = Color.White,
-                style = MaterialTheme.typography.titleLarge.copy(textDirection = TextDirection.Ltr),
-                fontWeight = FontWeight.Medium,
-            )
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            .clip(MaterialTheme.shapes.large)
+            .background(Brush.linearGradient(listOf(OnioTheme.colors.cardStart, OnioTheme.colors.cardEnd))),
+    ) {
+        if (rotation <= 90f) {
+            Column(Modifier.fillMaxSize().padding(18.dp), verticalArrangement = Arrangement.SpaceBetween) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Filled.CreditCard, null, tint = Color.White)
+                    Text(
+                        if (brand == CardBrand.OTHER) "" else brand.name,
+                        color = Color.White,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.ExtraBold,
+                    )
+                }
                 Text(
-                    state.name.ifBlank { stringResource(R.string.checkout_name) }.uppercase(),
-                    color = Color.White.copy(alpha = 0.9f),
-                    style = MaterialTheme.typography.labelLarge,
-                    maxLines = 1,
-                    modifier = Modifier.weight(1f),
+                    shown,
+                    color = Color.White,
+                    style = MaterialTheme.typography.titleLarge.copy(textDirection = TextDirection.Ltr),
+                    fontWeight = FontWeight.Medium,
                 )
-                Text(
-                    expiry.ifBlank { stringResource(R.string.checkout_expiry) },
-                    color = Color.White.copy(alpha = 0.9f),
-                    style = MaterialTheme.typography.labelLarge.copy(textDirection = TextDirection.Ltr),
-                )
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text(
+                        state.name.ifBlank { stringResource(R.string.checkout_name) }.uppercase(),
+                        color = Color.White.copy(alpha = 0.9f),
+                        style = MaterialTheme.typography.labelLarge,
+                        maxLines = 1,
+                        modifier = Modifier.weight(1f),
+                    )
+                    Text(
+                        expiry.ifBlank { stringResource(R.string.checkout_expiry) },
+                        color = Color.White.copy(alpha = 0.9f),
+                        style = MaterialTheme.typography.labelLarge.copy(textDirection = TextDirection.Ltr),
+                    )
+                }
+            }
+        } else {
+            // Back face: counter-rotated so the text is not mirrored.
+            Column(Modifier.fillMaxSize().graphicsLayer { rotationY = 180f }, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                Box(Modifier.padding(top = 20.dp).fillMaxWidth().height(36.dp).background(Color.Black))
+                Row(Modifier.padding(horizontal = 18.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Box(Modifier.weight(1f).height(32.dp).background(Color.White.copy(alpha = 0.9f)))
+                    Text(
+                        "•".repeat(state.cvv.length.coerceAtLeast(3)),
+                        color = Color.White,
+                        style = MaterialTheme.typography.titleLarge.copy(textDirection = TextDirection.Ltr),
+                        modifier = Modifier.padding(start = 12.dp),
+                    )
+                }
             }
         }
     }

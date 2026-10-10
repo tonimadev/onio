@@ -1,5 +1,15 @@
 package com.ipirangatech.onio.feature.savings.impl
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import com.ipirangatech.onio.core.ui.component.OnioOutlinedButton
+import com.ipirangatech.onio.core.ui.component.OnioTopBar
+import com.ipirangatech.onio.core.ui.motion.animateMoneyAsState
+import com.ipirangatech.onio.core.ui.theme.OnioTheme
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -58,8 +68,9 @@ fun SavingsRoute(
 internal fun SavingsScreen(state: SavingsState, onIntent: (SavingsIntent) -> Unit, modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
+            OnioTopBar(
                 title = { Text(stringResource(R.string.savings_title)) },
                 actions = {
                     IconButton(onClick = { onIntent(SavingsIntent.SettingsClicked) }) {
@@ -74,24 +85,28 @@ internal fun SavingsScreen(state: SavingsState, onIntent: (SavingsIntent) -> Uni
             state.isLoading -> LoadingBox(Modifier.padding(padding))
             savings == null -> MessageState(stringResource(UiR.string.error_generic), Modifier.padding(padding))
             else -> Column(
-                Modifier.padding(padding).fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                Modifier.padding(padding).fillMaxSize().verticalScroll(rememberScrollState()).padding(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                Card(
-                    Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .clip(MaterialTheme.shapes.small)
+                        .background(Brush.linearGradient(listOf(OnioTheme.colors.headerStart, OnioTheme.colors.headerEnd))),
                 ) {
                     Column(Modifier.fillMaxWidth().padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(
                             if (state.userName.isNullOrBlank()) stringResource(R.string.savings_headline)
                             else stringResource(R.string.savings_headline_named, state.userName),
                             style = MaterialTheme.typography.titleMedium,
+                            color = Color.White,
                         )
-                        PriceText(savings.total, style = MaterialTheme.typography.displaySmall)
+                        PriceText(animateMoneyAsState(savings.total), style = MaterialTheme.typography.displaySmall, color = Color.White)
                         Text(
                             if (savings.cancelledOrders == 0) stringResource(R.string.savings_none_yet)
                             else pluralStringResource(R.plurals.savings_summary, savings.cancelledOrders, savings.cancelledOrders),
                             style = MaterialTheme.typography.bodyMedium,
+                            color = Color.White.copy(alpha = 0.95f),
                         )
                     }
                 }
@@ -102,7 +117,7 @@ internal fun SavingsScreen(state: SavingsState, onIntent: (SavingsIntent) -> Uni
                     )
                 }
                 Text(stringResource(R.string.savings_motivation), style = MaterialTheme.typography.bodyMedium)
-                OutlinedButton(onClick = { onIntent(SavingsIntent.SeeOrdersClicked) }, modifier = Modifier.fillMaxWidth()) {
+                OnioOutlinedButton(onClick = { onIntent(SavingsIntent.SeeOrdersClicked) }, modifier = Modifier.fillMaxWidth()) {
                     Text(stringResource(R.string.savings_see_orders))
                 }
             }

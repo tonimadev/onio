@@ -1,6 +1,7 @@
 package com.ipirangatech.onio.feature.search.impl
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -22,7 +23,6 @@ import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -33,7 +33,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -48,6 +47,8 @@ import com.ipirangatech.onio.core.ui.R as UiR
 import com.ipirangatech.onio.core.ui.categoryLabel
 import com.ipirangatech.onio.core.ui.component.LocalCurrencyOverride
 import com.ipirangatech.onio.core.ui.component.MessageState
+import com.ipirangatech.onio.core.ui.component.OnioChip
+import com.ipirangatech.onio.core.ui.component.OnioTopBar
 import com.ipirangatech.onio.core.ui.component.ProductCard
 import com.ipirangatech.onio.core.ui.component.ProductCardSkeleton
 import com.ipirangatech.onio.core.ui.rememberMoneyFormatter
@@ -91,17 +92,19 @@ internal fun SearchScreen(
 ) {
     Scaffold(
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
         snackbarHost = { SnackbarHost(snackbar) },
-        topBar = { TopAppBar(title = { Text(stringResource(R.string.search_title)) }) },
+        topBar = { OnioTopBar(title = { Text(stringResource(R.string.search_title)) }) },
     ) { padding ->
         Column(Modifier.padding(padding)) {
+            Column(Modifier.background(MaterialTheme.colorScheme.surface)) {
             OutlinedTextField(
                 value = state.query,
                 onValueChange = { onIntent(SearchIntent.QueryChanged(it)) },
                 placeholder = { Text(stringResource(R.string.search_hint)) },
                 leadingIcon = { Icon(Icons.Filled.Search, null) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp).padding(top = 8.dp),
             )
             LazyRow(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
@@ -109,7 +112,7 @@ internal fun SearchScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 item(key = "filters") {
-                    FilterChip(
+                    OnioChip(
                         selected = state.filterPanelOpen || state.filters.activeCount > 0,
                         onClick = { onIntent(SearchIntent.ToggleFilterPanel) },
                         label = { Text(stringResource(R.string.search_filters)) },
@@ -121,7 +124,7 @@ internal fun SearchScreen(
                     )
                 }
                 item(key = "favorites") {
-                    FilterChip(
+                    OnioChip(
                         selected = state.favoritesOnly,
                         onClick = { onIntent(SearchIntent.ToggleFavoritesOnly) },
                         label = { Text(stringResource(R.string.search_favorites)) },
@@ -131,7 +134,7 @@ internal fun SearchScreen(
                     )
                 }
                 items(state.categories, key = UiFilter::slug) { category ->
-                    FilterChip(
+                    OnioChip(
                         selected = state.categorySlug == category.slug && !state.favoritesOnly,
                         onClick = {
                             onIntent(SearchIntent.CategorySelected(if (state.categorySlug == category.slug) null else category.slug))
@@ -141,6 +144,7 @@ internal fun SearchScreen(
                 }
             }
             AnimatedVisibility(state.filterPanelOpen) { FilterPanel(state, onIntent) }
+            }
             when {
                 state.isLoading && !state.favoritesOnly -> LazyVerticalGrid(
                     columns = GridCells.Adaptive(minSize = 160.dp),
@@ -200,7 +204,7 @@ private fun FilterPanel(state: SearchState, onIntent: (SearchIntent) -> Unit) {
         Text(stringResource(R.string.search_sort), style = MaterialTheme.typography.titleSmall)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             SortOption.entries.forEach { option ->
-                FilterChip(
+                OnioChip(
                     selected = state.filters.sort == option,
                     onClick = { onIntent(SearchIntent.SortSelected(option)) },
                     label = { Text(stringResource(SortLabels.getValue(option))) },
@@ -208,12 +212,12 @@ private fun FilterPanel(state: SearchState, onIntent: (SearchIntent) -> Unit) {
             }
         }
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            FilterChip(
+            OnioChip(
                 selected = state.filters.onSaleOnly,
                 onClick = { onIntent(SearchIntent.ToggleOnSale) },
                 label = { Text(stringResource(R.string.filter_on_sale)) },
             )
-            FilterChip(
+            OnioChip(
                 selected = state.filters.topRatedOnly,
                 onClick = { onIntent(SearchIntent.ToggleTopRated) },
                 label = { Text(stringResource(R.string.filter_top_rated)) },

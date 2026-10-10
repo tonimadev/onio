@@ -1,6 +1,19 @@
 package com.ipirangatech.onio.navigation
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
+import com.ipirangatech.onio.core.ui.motion.OnioMotion
+import com.ipirangatech.onio.core.ui.motion.popOn
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
@@ -69,6 +82,12 @@ private val TopLevels = listOf(
     TopLevel(OrdersKey, Icons.Filled.Receipt, R.string.nav_orders),
     TopLevel(SavingsKey, Icons.Filled.Savings, R.string.nav_savings),
 )
+
+private fun androidx.compose.animation.AnimatedContentTransitionScope<androidx.navigation3.scene.Scene<NavKey>>.isTabSwitch(top: Set<NavKey>): Boolean {
+    val from = initialState.entries.lastOrNull()?.contentKey
+    val to = targetState.entries.lastOrNull()?.contentKey
+    return from != null && to != null && from in top.map { it.toString() } && to in top.map { it.toString() }
+}
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
@@ -161,17 +180,44 @@ fun OnioNavHost(cartCount: Int, modifier: Modifier = Modifier) {
         NavigationSuiteType.None
     }
 
+    val barItemColors = NavigationSuiteDefaults.itemColors(
+        navigationBarItemColors = NavigationBarItemDefaults.colors(
+            indicatorColor = Color.Transparent,
+            selectedIconColor = MaterialTheme.colorScheme.primary,
+            selectedTextColor = MaterialTheme.colorScheme.primary,
+            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        ),
+    )
+    val direction = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -1 else 1
+    val topLevelSet = remember { TopLevels.map(TopLevel::key).toSet() }
+
     NavigationSuiteScaffold(
         modifier = modifier,
         layoutType = suiteType,
+        containerColor = MaterialTheme.colorScheme.background,
+        navigationSuiteColors = NavigationSuiteDefaults.colors(
+            navigationBarContainerColor = MaterialTheme.colorScheme.surface,
+            navigationBarContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            navigationRailContainerColor = MaterialTheme.colorScheme.surface,
+        ),
         navigationSuiteItems = {
             TopLevels.forEachIndexed { index, item ->
                 item(
                     selected = state.selectedIndex == index,
                     onClick = { navigator.selectTopLevel(item.key) },
+                    colors = barItemColors,
                     icon = {
                         if (item.key == CartKey && cartCount > 0) {
-                            BadgedBox(badge = { Badge { Text(cartCount.toString()) } }) {
+                            BadgedBox(
+                                badge = {
+                                    Badge(
+                                        modifier = Modifier.popOn(cartCount),
+                                        containerColor = MaterialTheme.colorScheme.primary,
+                                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                                    ) { Text(cartCount.toString()) }
+                                },
+                            ) {
                                 Icon(item.icon, contentDescription = null)
                             }
                         } else {
@@ -189,6 +235,23 @@ fun OnioNavHost(cartCount: Int, modifier: Modifier = Modifier) {
             entryDecorators = rememberNavEntryDecorators(),
             sceneStrategies = listOf(listDetail),
             onBack = { navigator.goBack() },
+            // Pushing slides in from the end (mirrored in RTL) with a fade; switching tabs just cross-fades.
+            transitionSpec = {
+                if (isTabSwitch(topLevelSet)) {
+                    fadeIn(tween(OnioMotion.Medium)) togetherWith fadeOut(tween(OnioMotion.Short))
+                } else {
+                    (slideInHorizontally(tween(OnioMotion.Medium, easing = OnioMotion.Easing)) { direction * it / 4 } + fadeIn(tween(OnioMotion.Medium))) togetherWith
+                        (slideOutHorizontally(tween(OnioMotion.Medium, easing = OnioMotion.Easing)) { -direction * it / 8 } + fadeOut(tween(OnioMotion.Medium)))
+                }
+            },
+            popTransitionSpec = {
+                (slideInHorizontally(tween(OnioMotion.Medium, easing = OnioMotion.Easing)) { -direction * it / 8 } + fadeIn(tween(OnioMotion.Medium))) togetherWith
+                    (slideOutHorizontally(tween(OnioMotion.Medium, easing = OnioMotion.Easing)) { direction * it / 4 } + fadeOut(tween(OnioMotion.Medium)))
+            },
+            predictivePopTransitionSpec = {
+                (slideInHorizontally(tween(OnioMotion.Medium)) { -direction * it / 8 } + fadeIn()) togetherWith
+                    (slideOutHorizontally(tween(OnioMotion.Medium)) { direction * it / 4 } + fadeOut())
+            },
             entryProvider = provider,
         )
     }

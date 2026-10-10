@@ -2,6 +2,19 @@ package com.ipirangatech.onio.feature.product.impl
 
 import androidx.compose.foundation.layout.Arrangement
 import android.text.format.DateUtils
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.material3.Surface
+import androidx.compose.ui.text.font.FontWeight
+import com.ipirangatech.onio.core.ui.component.OnioButton
+import com.ipirangatech.onio.core.ui.component.OnioOutlinedButton
+import com.ipirangatech.onio.core.ui.component.OnioTopBar
+import com.ipirangatech.onio.core.ui.component.SectionCard
+import com.ipirangatech.onio.core.ui.motion.staggeredEntrance
+import com.ipirangatech.onio.core.ui.theme.Dimens
+import com.ipirangatech.onio.core.ui.theme.OnioTheme
+import java.text.NumberFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -84,7 +97,6 @@ fun ProductRoute(
     ProductScreen(state = state, snackbar = snackbar, onIntent = viewModel::onIntent, modifier = modifier)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ProductScreen(
     state: ProductState,
@@ -94,9 +106,10 @@ internal fun ProductScreen(
 ) {
     Scaffold(
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
-            TopAppBar(
+            OnioTopBar(
                 title = {},
                 actions = {
                     if (state.product != null) FavoriteButton(state.isFavorite, { onIntent(ProductIntent.ToggleFavorite) }, Modifier.padding(end = 8.dp))
@@ -110,13 +123,16 @@ internal fun ProductScreen(
         },
         bottomBar = {
             if (state.product != null) {
-                BottomAppBar {
-                    Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        OutlinedButton(onClick = { onIntent(ProductIntent.AddToCart) }, modifier = Modifier.weight(1f), enabled = state.product.stock > 0) {
-                            Text(stringResource(UiR.string.action_add_to_cart))
+                Surface(color = MaterialTheme.colorScheme.surface, shadowElevation = 8.dp) {
+                    Row(
+                        Modifier.fillMaxWidth().navigationBarsPadding().padding(Dimens.Space8),
+                        horizontalArrangement = Arrangement.spacedBy(Dimens.Space8),
+                    ) {
+                        OnioOutlinedButton(onClick = { onIntent(ProductIntent.AddToCart) }, modifier = Modifier.weight(1f), enabled = state.product.stock > 0) {
+                            Text(stringResource(UiR.string.action_add_to_cart), maxLines = 1)
                         }
-                        Button(onClick = { onIntent(ProductIntent.BuyNow) }, modifier = Modifier.weight(1f), enabled = state.product.stock > 0) {
-                            Text(stringResource(R.string.product_buy_now))
+                        OnioButton(onClick = { onIntent(ProductIntent.BuyNow) }, modifier = Modifier.weight(1f), enabled = state.product.stock > 0) {
+                            Text(stringResource(R.string.product_buy_now), maxLines = 1)
                         }
                     }
                 }
@@ -132,66 +148,85 @@ internal fun ProductScreen(
                 actionLabel = stringResource(UiR.string.action_retry),
                 onAction = { onIntent(ProductIntent.Load) },
             )
-            else -> Column(Modifier.padding(padding).verticalScroll(rememberScrollState())) {
+            else -> Column(
+                Modifier.padding(padding).verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(Dimens.SectionGap),
+            ) {
                 val pager = rememberPagerState { product.images.size }
-                Box(Modifier.fillMaxWidth().aspectRatio(1f).background(Color(0xFFF3F1F8))) {
+                Box(Modifier.fillMaxWidth().aspectRatio(1f).background(Color.White)) {
                     HorizontalPager(pager, Modifier.fillMaxSize()) { page ->
                         ProductImage(product.images[page], Modifier.fillMaxSize())
                     }
-                    DiscountBadge(product.discountPercent, Modifier.align(Alignment.TopStart))
                     if (product.images.size > 1) {
-                        Row(Modifier.align(Alignment.BottomCenter).padding(12.dp)) {
-                            repeat(product.images.size) { index ->
-                                Box(
-                                    Modifier
-                                        .padding(3.dp)
-                                        .size(if (pager.currentPage == index) 18.dp else 7.dp, 7.dp)
-                                        .clip(CircleShape)
-                                        .background(
-                                            if (pager.currentPage == index) MaterialTheme.colorScheme.primary
-                                            else MaterialTheme.colorScheme.outlineVariant,
-                                        ),
-                                )
-                            }
+                        // "2/5" counter, as in most marketplace apps.
+                        Surface(
+                            modifier = Modifier.align(Alignment.BottomEnd).padding(Dimens.Space12),
+                            shape = MaterialTheme.shapes.large,
+                            color = Color.Black.copy(alpha = 0.55f),
+                        ) {
+                            val counter = NumberFormat.getIntegerInstance()
+                            Text(
+                                counter.format(pager.currentPage + 1) + "/" + counter.format(product.images.size),
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = Color.White,
+                            )
                         }
                     }
                 }
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(product.title, style = MaterialTheme.typography.headlineSmall)
-                    PriceText(product.price, originalPrice = product.originalPrice, style = MaterialTheme.typography.headlineSmall)
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Pill(categoryLabel(product.categorySlug, product.categorySlug))
-                        RatingBadge(product.rating)
+                SectionCard(Modifier.fillMaxWidth().staggeredEntrance(0)) {
+                    Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+                            PriceText(product.price, originalPrice = product.originalPrice, style = MaterialTheme.typography.headlineMedium)
+                            DiscountBadge(product.discountPercent)
+                        }
+                        Text(product.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Medium)
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+                            RatingBadge(product.rating)
+                            Text(
+                                categoryLabel(product.categorySlug, product.categorySlug),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        Text(
+                            if (product.stock > 0) pluralStringResource(R.plurals.product_in_stock, product.stock, product.stock)
+                            else stringResource(R.string.product_out_of_stock),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = if (product.stock > 0) OnioTheme.colors.freeShipping else MaterialTheme.colorScheme.error,
+                        )
                     }
-                    DeliveryCard()
-                    Text(
-                        if (product.stock > 0) pluralStringResource(R.plurals.product_in_stock, product.stock, product.stock)
-                        else stringResource(R.string.product_out_of_stock),
-                        style = MaterialTheme.typography.labelLarge,
-                    )
-                    Text(product.description, style = MaterialTheme.typography.bodyMedium)
-                    if (product.reviews.isNotEmpty()) {
-                        HorizontalDivider()
-                        Text(stringResource(R.string.product_reviews), style = MaterialTheme.typography.titleMedium)
-                        product.reviews.forEach { review ->
-                            Column {
-                                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    Text(review.reviewer, style = MaterialTheme.typography.labelLarge)
-                                    RatingBadge(review.rating.toDouble())
+                }
+                SectionCard(Modifier.fillMaxWidth().staggeredEntrance(1)) { DeliveryInfo() }
+                SectionCard(Modifier.fillMaxWidth().staggeredEntrance(2)) {
+                    Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+                        Text(product.description, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                if (product.reviews.isNotEmpty()) {
+                    SectionCard(Modifier.fillMaxWidth().staggeredEntrance(3)) {
+                        Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+                            Text(stringResource(R.string.product_reviews), style = MaterialTheme.typography.titleMedium)
+                            product.reviews.forEach { review ->
+                                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+                                        Text(review.reviewer, style = MaterialTheme.typography.labelLarge)
+                                        RatingBadge(review.rating.toDouble())
+                                    }
+                                    Text(review.comment, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 }
-                                Text(review.comment, style = MaterialTheme.typography.bodyMedium)
                             }
                         }
                     }
                 }
+                Spacer(Modifier.height(Dimens.Space8))
             }
         }
     }
 }
 
-
 @Composable
-private fun DeliveryCard() {
+private fun DeliveryInfo() {
     val context = LocalContext.current
     val eta = remember {
         DateUtils.formatDateTime(
@@ -200,19 +235,17 @@ private fun DeliveryCard() {
             DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_ALL,
         )
     }
-    Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
-        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            InfoRow(Icons.Filled.LocalShipping, stringResource(R.string.product_delivery_free), stringResource(R.string.product_delivery_eta, eta))
-            InfoRow(Icons.Filled.Replay, stringResource(R.string.product_returns), null)
-            InfoRow(Icons.Filled.Lock, stringResource(R.string.product_secure), null)
-        }
+    Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+        InfoRow(Icons.Filled.LocalShipping, stringResource(R.string.product_delivery_free), stringResource(R.string.product_delivery_eta, eta))
+        InfoRow(Icons.Filled.Replay, stringResource(R.string.product_returns), null)
+        InfoRow(Icons.Filled.Lock, stringResource(R.string.product_secure), null)
     }
 }
 
 @Composable
 private fun InfoRow(icon: ImageVector, title: String, subtitle: String?) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        Icon(icon, null, tint = MaterialTheme.colorScheme.tertiary)
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+        Icon(icon, null, tint = OnioTheme.colors.freeShipping, modifier = Modifier.size(20.dp))
         Column {
             Text(title, style = MaterialTheme.typography.labelLarge)
             if (subtitle != null) Text(subtitle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

@@ -11,14 +11,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,6 +31,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ipirangatech.onio.core.model.AppSettings
 import com.ipirangatech.onio.core.model.ExchangeRates
 import com.ipirangatech.onio.core.ui.LaunchedUiEffectHandler
+import com.ipirangatech.onio.core.ui.component.OnioChip
+import com.ipirangatech.onio.core.ui.component.OnioTopBar
 import com.ipirangatech.onio.core.ui.component.CustomDelayField
 import com.ipirangatech.onio.core.ui.R as UiR
 
@@ -66,8 +66,9 @@ internal fun SettingsScreen(state: SettingsState, onIntent: (SettingsIntent) -> 
     }
     Scaffold(
         modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopAppBar(
+            OnioTopBar(
                 title = { Text(stringResource(R.string.settings_title)) },
                 navigationIcon = {
                     IconButton(onClick = { onIntent(SettingsIntent.BackClicked) }) {
@@ -85,7 +86,7 @@ internal fun SettingsScreen(state: SettingsState, onIntent: (SettingsIntent) -> 
             Text(stringResource(R.string.settings_cancel_after_hint), style = MaterialTheme.typography.bodySmall)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 AppSettings.CANCEL_DELAY_OPTIONS_MINUTES.forEach { minutes ->
-                    FilterChip(
+                    OnioChip(
                         selected = state.settings.cancelAfterMinutes == minutes,
                         onClick = { onIntent(SettingsIntent.CancelMinutesSelected(minutes)) },
                         label = {
@@ -104,13 +105,13 @@ internal fun SettingsScreen(state: SettingsState, onIntent: (SettingsIntent) -> 
             HorizontalDivider()
             Text(stringResource(R.string.settings_currency), style = MaterialTheme.typography.titleMedium)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FilterChip(
+                OnioChip(
                     selected = state.settings.currencyOverride == null,
                     onClick = { onIntent(SettingsIntent.CurrencySelected(null)) },
                     label = { Text(stringResource(R.string.settings_automatic)) },
                 )
                 ExchangeRates.supportedCurrencies.forEach { code ->
-                    FilterChip(
+                    OnioChip(
                         selected = state.settings.currencyOverride == code,
                         onClick = { onIntent(SettingsIntent.CurrencySelected(code)) },
                         label = { Text(code) },
@@ -121,7 +122,7 @@ internal fun SettingsScreen(state: SettingsState, onIntent: (SettingsIntent) -> 
             Text(stringResource(R.string.settings_language), style = MaterialTheme.typography.titleMedium)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Languages.forEach { (tag, name) ->
-                    FilterChip(
+                    OnioChip(
                         selected = currentLanguage?.startsWith(tag.substringBefore('-')) == true,
                         onClick = {
                             currentLanguage = tag
