@@ -1,117 +1,117 @@
 <p align="center">
-  <img src="fastlane/metadata/android/pt-BR/images/featureGraphic.png" alt="Onio" width="640">
+  <img src="fastlane/metadata/android/en-US/images/featureGraphic.png" alt="Onio" width="640">
 </p>
 
 # Onio
 
-> **Aqui você NÃO compra.**
+> **Here you DON'T buy.**
 
-Onio é um app Android que parece uma loja online completa, mas **nunca cobra nada**. Você navega, coloca
-produtos no carrinho, preenche um cartão e "paga". Pouco tempo depois o pedido é cancelado automaticamente,
-e a aba **Economia** mostra quanto dinheiro ficou no seu bolso.
+Onio is an Android app that looks like a complete online store but **never charges anything**. You browse,
+add products to your cart, enter a card and "pay". A little while later the order is cancelled automatically,
+and the **Savings** tab shows how much money stayed in your pocket.
 
-Ele foi pensado para quem tem **oniomania** (compra compulsiva): dá para sentir a emoção de comprar, sem o
-arrependimento na fatura.
+It is designed for people with **oniomania** (compulsive buying): you get the thrill of shopping without the
+regret on your statement.
 
-> **Transparência:** o Onio é uma simulação. Nenhuma compra real é feita, nenhum pagamento é processado e os
-> dados do cartão nunca são salvos nem enviados para lugar nenhum (só a bandeira e os 4 últimos dígitos ficam
-> no pedido, no próprio aparelho).
+> **Transparency:** Onio is a simulation. No real purchase is made, no payment is processed, and card details
+> are never stored or sent anywhere (only the card brand and last 4 digits are kept on the order, on the
+> device itself).
 
-## Como funciona
+## How it works
 
-1. **Onboarding** (só na primeira abertura): três slides, a pergunta *"Em quanto tempo você costuma se
-   arrepender das suas compras?"* (presets ou um valor livre de 1 minuto a 7 dias; padrão: 1 hora) e
-   *"Como gostaria de ser chamado?"*.
-2. **Loja:** home com banners, categorias e ofertas do dia, busca, detalhe do produto, carrinho e checkout com
-   validação de cartão (Luhn, validade, CVV) e prévia do cartão ao vivo.
-3. **Pedido:** fica "em processamento" com contagem regressiva. Ao vencer o prazo (um `WorkManager` garante isso
-   mesmo com o app fechado, e o app confere de novo ao abrir), ele vira **cancelado**.
-4. **Economia:** soma tudo o que você não gastou, quantos pedidos foram cancelados e quantos itens não foram
-   comprados.
+1. **Onboarding** (first launch only): three intro slides, the question *"How soon do you usually regret your
+   purchases?"* (presets or a free value from 1 minute to 7 days; default: 1 hour) and
+   *"How would you like to be called?"*.
+2. **Store:** home with banners, categories and daily deals, search, product details, cart and a checkout with
+   card validation (Luhn, expiry, CVV) and a live card preview.
+3. **Order:** it stays "processing" with a countdown. When the deadline passes (a `WorkManager` job guarantees
+   it even with the app closed, and the app re-checks on launch) it becomes **cancelled**.
+4. **Savings:** adds up everything you did not spend, how many orders were cancelled and how many items you
+   did not buy.
 
-## Recursos
+## Features
 
-- **10 idiomas:** inglês, chinês, hindi, espanhol, francês, árabe, bengali, português (BR), russo e urdu, com
-  RTL, plurais corretos e moeda/formatação por idioma (USD, CNY, INR, EUR, SAR, BDT, BRL, RUB, PKR).
-  O idioma e a moeda podem ser trocados em *Configurações*.
-- Layout adaptativo (celular, tablet, dobrável) com `NavigationSuiteScaffold` e lista/detalhe em Pedidos.
-- Tema claro/escuro, esqueletos de carregamento, selo de desconto, "adicionar rápido" nos cards e contador no
-  carrinho.
-- O nome informado no onboarding personaliza a Home, o checkout, a Economia e o pedido cancelado.
+- **10 languages:** English, Chinese, Hindi, Spanish, French, Arabic, Bengali, Portuguese (BR), Russian and
+  Urdu, with RTL, correct plurals and per-language currency formatting (USD, CNY, INR, EUR, SAR, BDT, BRL, RUB,
+  PKR). Language and currency can be changed in *Settings*.
+- Adaptive layout (phone, tablet, foldable) with `NavigationSuiteScaffold` and list/detail on Orders.
+- Light/dark theme, loading skeletons, discount badges, quick add-to-cart on cards and a cart badge.
+- The name entered during onboarding personalises Home, checkout, Savings and the cancelled-order message.
 
-## Arquitetura
+## Architecture
 
-Modularização por features no Gradle, com submódulos `bridge`/`impl`, **MVI** e Compose.
+Gradle feature modularisation with `bridge`/`impl` submodules, **MVI** and Compose.
 
 ```
-:app                        Composition Root: Hilt, navegação (Navigation 3, uma pilha por aba)
-:core:model                 Domínio em Kotlin puro (sem Android/Compose)
-:core:ui                    Design System, componentes compartilhados, formatação de moeda
-:core:network               DummyJSON via Retrofit; DTOs ficam internos, só o domínio sai
-:core:data                  Room, DataStore, WorkManager e implementações dos repositórios
-:feature:<nome>:bridge      Só contratos públicos: chaves de navegação (NavKey)
-:feature:<nome>:impl        UI (Compose), ViewModel e UiModels da feature
+:app                        Composition root: Hilt, navigation (Navigation 3, one back stack per tab)
+:core:model                 Pure Kotlin domain (no Android/Compose)
+:core:ui                    Design system, shared components, currency formatting
+:core:network               DummyJSON via Retrofit; DTOs stay internal, only domain types leave the module
+:core:data                  Room, DataStore, WorkManager and repository implementations
+:feature:<name>:bridge      Public contracts only: navigation keys (NavKey)
+:feature:<name>:impl        The feature's UI (Compose), ViewModel and UI models
 ```
 
 Features: `onboarding`, `home`, `search`, `product`, `cart`, `checkout`, `orders`, `savings`, `settings`.
 
-Regras que o projeto segue:
+Rules the project follows:
 
-- Nenhuma feature depende do `:impl` de outra; só o `:app` enxerga todos os `:impl`.
-- Fluxo de dados `DTO/Entity → Domain → UiModel` somente por funções de extensão de mapeamento explícitas.
-- Cada tela tem `UiState` imutável (com `effect`), `UiIntent` (incluindo `ConsumeEffect`) e `UiEffect`;
-  todo `viewModelScope.launch` trata erro e o reflete no estado.
-- UI coleta estado com `collectAsStateWithLifecycle()`, usa `ImmutableList` e referências de método
+- No feature depends on another feature's `:impl`; only `:app` sees every `:impl`.
+- Data flows `DTO/Entity → Domain → UiModel` only through explicit mapping extension functions.
+- Every screen has an immutable `UiState` (carrying an `effect`), a `UiIntent` (including `ConsumeEffect`) and a
+  `UiEffect`; every `viewModelScope.launch` handles errors and reflects them in the state.
+- The UI collects state with `collectAsStateWithLifecycle()`, uses `ImmutableList` and method references
   (`onIntent = viewModel::onIntent`).
-- Plugins de convenção em `build-logic/` e versões centralizadas em `gradle/libs.versions.toml`.
+- Convention plugins live in `build-logic/` and versions are centralised in `gradle/libs.versions.toml`.
 
-## Stack
+## Tech stack
 
 Kotlin 2.4 · Jetpack Compose (BOM 2026.09) · Material 3 + Adaptive · Navigation 3 · Hilt · Room · DataStore ·
 WorkManager · Retrofit + kotlinx.serialization · Coil 3 · AGP 9.4 · Gradle 9.6 · `minSdk 24`, `targetSdk 37`.
 
-## Como rodar
+## Getting started
 
-Requisitos: **JDK 17+** e Android SDK com a plataforma 37 (o `local.properties` é gerado pelo Android Studio).
+Requirements: **JDK 17+** and the Android SDK with platform 37 (`local.properties` is generated by Android
+Studio).
 
 ```sh
-./gradlew assembleDebug          # gera o APK de debug
-./gradlew installDebug           # instala no dispositivo/emulador conectado
-./gradlew testDebugUnitTest      # testes unitários
-./gradlew :app:lintDebug         # lint (traduções faltando são erro de build)
+./gradlew assembleDebug          # build the debug APK
+./gradlew installDebug           # install on the connected device/emulator
+./gradlew testDebugUnitTest      # unit tests
+./gradlew :app:lintDebug         # lint (missing translations fail the build)
 ```
 
-O catálogo vem da [DummyJSON](https://dummyjson.com) (sem chave) e precisa de internet. Dica de teste: nas
-*Configurações* (ou no onboarding) escolha **1 min** para ver o cancelamento acontecer rápido.
+The catalog comes from [DummyJSON](https://dummyjson.com) (no API key) and needs internet access. Testing tip:
+pick **1 min** in *Settings* (or during onboarding) to watch an order get cancelled quickly.
 
-## Internacionalização
+## Internationalisation
 
-Nenhum texto fica fixo no código: cada módulo tem `res/values/strings.xml` (inglês) e uma pasta por idioma
+No user-facing text is hardcoded: every module has `res/values/strings.xml` (English) and one folder per language
 (`values-zh`, `values-hi`, `values-es`, `values-fr`, `values-ar`, `values-bn`, `values-pt`, `values-ru`,
-`values-ur`). O lint trata `MissingTranslation` como **erro**, então um texto novo só compila se existir nos
-10 idiomas. Valores de moeda usam `NumberFormat` do idioma, com taxas de câmbio fixas e embutidas
-(`ExchangeRates`), já que nenhum dinheiro real circula.
+`values-ur`). Lint treats `MissingTranslation` as an **error**, so a new string only compiles once it exists in
+all 10 languages. Money is formatted with the locale's `NumberFormat`, using fixed, built-in exchange rates
+(`ExchangeRates`) since no real money moves.
 
-## Ficha da Play Store
+## Play Store listing
 
-Os recursos da loja ficam em `fastlane/metadata/android/<locale>/` (título, descrições, ícone 512 e *feature
-graphic* 1024×500) para os 10 idiomas, gerados por `tools/store-assets/generate_store_assets.py`
-(precisa de `rsvg-convert`, ImageMagick e fontes Noto). Veja [`fastlane/README.md`](fastlane/README.md).
-As artes não trazem preço, "grátis", "promoção" nem chamadas para ação, conforme a política da Play.
+Store assets live in `fastlane/metadata/android/<locale>/` (title, descriptions, 512 px icon and 1024×500
+feature graphic) for all 10 languages and are generated by `tools/store-assets/generate_store_assets.py`
+(requires `rsvg-convert`, ImageMagick and Noto fonts). See [`fastlane/README.md`](fastlane/README.md).
+The artwork carries no prices, "free", "sale" or calls to action, in line with Play policy.
 
-## Preços reais
+## Real prices
 
-A DummyJSON é só um catálogo de exemplo. Preços reais do varejo brasileiro foram avaliados via
-[Data Market](https://datamarket.cnovatech.com.br/); a integração exige um backend com cache (a chave de API
-não pode ir no APK) e está no backlog. A fonte de produtos é isolada em `ProductRemoteSource`
-(`:core:network`), então trocar de provedor não afeta o resto do app.
+DummyJSON is just a sample catalog. Real Brazilian retail prices were evaluated through
+[Data Market](https://datamarket.cnovatech.com.br/); integrating it needs a backend with caching (the API key
+cannot ship inside the APK) and is on the backlog. The product source is isolated behind `ProductRemoteSource`
+(`:core:network`), so swapping providers does not affect the rest of the app.
 
 ## Roadmap
 
-O planejamento fica no [quadro do projeto](https://github.com/users/tonimadev/projects/3) e nas
-[issues](https://github.com/tonimadev/onio/issues): preços reais, capturas de tela da Play, revisão nativa das
-traduções, notificação de cancelamento, favoritos/filtros, mais testes e build de release assinado.
+Planning lives on the [project board](https://github.com/users/tonimadev/projects/3) and in the
+[issues](https://github.com/tonimadev/onio/issues): real prices, Play Store screenshots, native review of the
+translations, a cancellation notification, favourites/filters, more tests and a signed release build.
 
-## Licença
+## License
 
-Ainda não definida.
+Not defined yet.
