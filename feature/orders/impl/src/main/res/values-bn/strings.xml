@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_title">আমার অর্ডার</string>
+    <string name="orders_empty">আপনি এখনও কোনো অর্ডার করেননি</string>
+    <string name="orders_status_processing">প্রক্রিয়াধীন</string>
+    <string name="orders_status_cancelled">বাতিল</string>
+    <string name="orders_processing_title">আপনার পেমেন্ট যাচাই হচ্ছে</string>
+    <string name="orders_processing_body">আপডেট এলেই আমরা জানাব।</string>
+    <string name="orders_countdown">আপডেট আসবে %1$s এর মধ্যে</string>
+    <string name="orders_cancelled_title">অর্ডার বাতিল হয়েছে</string>
+    <string name="orders_cancelled_body">পেমেন্ট সম্পন্ন হয়নি এবং আপনার কাছ থেকে কিছু কাটা হয়নি। দারুণ সিদ্ধান্ত!</string>
+    <string name="orders_you_saved">আপনি বাঁচিয়েছেন</string>
+    <string name="orders_total">মোট</string>
+    <string name="orders_ship_to">পাঠানো হবে: %1$s, %2$s</string>
+    <string name="orders_paid_with">কার্ড, শেষ %1$s</string>
+    <plurals name="orders_items">
+        <item quantity="one">%1$dটি পণ্য</item>
+        <item quantity="other">%1$dটি পণ্য</item>
+    </plurals>
+    <string name="orders_cancelled_body_named">পেমেন্ট সম্পন্ন হয়নি এবং আপনার কাছ থেকে কিছু কাটা হয়নি। দারুণ সিদ্ধান্ত, %1$s!</string>
+</resources>

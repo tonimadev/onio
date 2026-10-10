@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">重试</string>
+    <string name="error_generic">出了点问题，请重试。</string>
+    <string name="action_add_to_cart">加入购物车</string>
+    <string name="action_back">返回</string>
+    <string name="action_close">关闭</string>
+    <string name="label_empty_results">未找到任何内容</string>
+    <string name="category_beauty">美妆</string>
+    <string name="category_fragrances">香水</string>
+    <string name="category_furniture">家具</string>
+    <string name="category_groceries">杂货</string>
+    <string name="category_home_decoration">家居装饰</string>
+    <string name="category_kitchen_accessories">厨房用品</string>
+    <string name="category_laptops">笔记本电脑</string>
+    <string name="category_mens_shirts">男士衬衫</string>
+    <string name="category_mens_shoes">男鞋</string>
+    <string name="category_mens_watches">男士手表</string>
+    <string name="category_mobile_accessories">手机配件</string>
+    <string name="category_motorcycle">摩托车</string>
+    <string name="category_skin_care">护肤</string>
+    <string name="category_smartphones">智能手机</string>
+    <string name="category_sports_accessories">运动配件</string>
+    <string name="category_sunglasses">太阳镜</string>
+    <string name="category_tablets">平板电脑</string>
+    <string name="category_tops">上衣</string>
+    <string name="category_vehicle">车辆</string>
+    <string name="category_womens_bags">女士包包</string>
+    <string name="category_womens_dresses">女士连衣裙</string>
+    <string name="category_womens_jewellery">女士首饰</string>
+    <string name="category_womens_shoes">女鞋</string>
+    <string name="category_womens_watches">女士手表</string>
+    <string name="msg_added_to_cart">已加入购物车</string>
+    <string name="action_view_cart">查看购物车</string>
+    <string name="label_free_shipping">免运费</string>
+    <string name="label_search_hint">搜索商品</string>
+    <string name="delay_custom_label">自定义时间</string>
+    <string name="delay_custom_hint">从 1 分钟到 7 天</string>
+    <string name="delay_unit_minutes">分钟</string>
+    <string name="delay_unit_hours">小时</string>
+    <string name="delay_unit_days">天</string>
+</resources>

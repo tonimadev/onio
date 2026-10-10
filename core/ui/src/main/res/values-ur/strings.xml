@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">دوبارہ کوشش کریں</string>
+    <string name="error_generic">کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="action_add_to_cart">کارٹ میں شامل کریں</string>
+    <string name="action_back">واپس</string>
+    <string name="action_close">بند کریں</string>
+    <string name="label_empty_results">کچھ نہیں ملا</string>
+    <string name="category_beauty">خوبصورتی</string>
+    <string name="category_fragrances">خوشبوئیں</string>
+    <string name="category_furniture">فرنیچر</string>
+    <string name="category_groceries">گروسری</string>
+    <string name="category_home_decoration">گھر کی سجاوٹ</string>
+    <string name="category_kitchen_accessories">باورچی خانہ</string>
+    <string name="category_laptops">لیپ ٹاپ</string>
+    <string name="category_mens_shirts">مردانہ قمیضیں</string>
+    <string name="category_mens_shoes">مردانہ جوتے</string>
+    <string name="category_mens_watches">مردانہ گھڑیاں</string>
+    <string name="category_mobile_accessories">موبائل لوازمات</string>
+    <string name="category_motorcycle">موٹر سائیکلیں</string>
+    <string name="category_skin_care">جلد کی دیکھ بھال</string>
+    <string name="category_smartphones">اسمارٹ فونز</string>
+    <string name="category_sports_accessories">کھیلوں کا سامان</string>
+    <string name="category_sunglasses">دھوپ کے چشمے</string>
+    <string name="category_tablets">ٹیبلیٹس</string>
+    <string name="category_tops">ٹاپس</string>
+    <string name="category_vehicle">گاڑیاں</string>
+    <string name="category_womens_bags">خواتین کے بیگ</string>
+    <string name="category_womens_dresses">خواتین کے لباس</string>
+    <string name="category_womens_jewellery">خواتین کے زیورات</string>
+    <string name="category_womens_shoes">خواتین کے جوتے</string>
+    <string name="category_womens_watches">خواتین کی گھڑیاں</string>
+    <string name="msg_added_to_cart">آپ کی کارٹ میں شامل ہو گیا</string>
+    <string name="action_view_cart">کارٹ دیکھیں</string>
+    <string name="label_free_shipping">مفت شپنگ</string>
+    <string name="label_search_hint">مصنوعات تلاش کریں</string>
+    <string name="delay_custom_label">اپنی مرضی کا وقت</string>
+    <string name="delay_custom_hint">1 منٹ سے 7 دن تک</string>
+    <string name="delay_unit_minutes">منٹ</string>
+    <string name="delay_unit_hours">گھنٹے</string>
+    <string name="delay_unit_days">دن</string>
+</resources>

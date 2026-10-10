@@ -1,0 +1,7 @@
+Onio es un simulador de compras para quienes disfrutan la emoción de comprar pero quieren conservar sus ahorros.
+
+Explora una tienda completa, agrega productos al carrito y completa el pago como en una tienda real. Poco después, cada pedido se cancela automáticamente y nunca se cobra nada.
+
+Mira cuánto dinero no gastaste en la pestaña Ahorros.
+
+Importante: Onio es una simulación. No se realiza ninguna compra real, no se procesa ningún pago y los datos de la tarjeta nunca se guardan ni se envían.

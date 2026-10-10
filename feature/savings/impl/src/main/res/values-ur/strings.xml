@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">بچت</string>
+    <string name="savings_settings">ترتیبات</string>
+    <string name="savings_headline">آپ نے خرچ نہیں کیا</string>
+    <string name="savings_none_yet">آپ کی پہلی بچت یہاں نظر آئے گی۔</string>
+    <string name="savings_motivation">ہر منسوخ آرڈر آپ کی جیب میں بچا ہوا پیسہ ہے۔ جاری رکھیں!</string>
+    <string name="savings_see_orders">میرے آرڈرز دیکھیں</string>
+    <plurals name="savings_summary">
+        <item quantity="one">%1$d منسوخ آرڈر سے</item>
+        <item quantity="other">%1$d منسوخ آرڈرز سے</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="one">%1$d آئٹم جس کی آپ کو ضرورت نہیں تھی</item>
+        <item quantity="other">%1$d آئٹمز جن کی آپ کو ضرورت نہیں تھی</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s، آپ نے خرچ نہیں کیا</string>
+</resources>

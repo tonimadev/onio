@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onb_skip">Skip</string>
+    <string name="onb_next">Next</string>
+    <string name="onb_start">Get started</string>
+    <string name="onb_prefer_not">I\'d rather not say</string>
+    <string name="onb_p1_title">Welcome to Onio</string>
+    <string name="onb_p1_body">Browse a full store, fill your cart and check out, just like the real thing.</string>
+    <string name="onb_p2_title">Every order gets cancelled</string>
+    <string name="onb_p2_body">Shortly after you pay, the order is cancelled automatically. Nothing is ever charged.</string>
+    <string name="onb_p3_title">See what you saved</string>
+    <string name="onb_p3_body">Your Savings tab shows all the money that stayed in your pocket.</string>
+    <string name="onb_p4_title">What should we call you?</string>
+    <string name="onb_p4_body">We\'ll use it to greet you. It stays on your device.</string>
+    <string name="onb_name_label">Your name</string>
+    <string name="onb_regret_title">How soon do you usually regret your purchases?</string>
+    <string name="onb_regret_body">We\'ll cancel your orders after this time. You can change it later in Settings.</string>
+    <plurals name="onb_minutes">
+        <item quantity="one">%1$d min</item>
+        <item quantity="other">%1$d min</item>
+    </plurals>
+    <plurals name="onb_hours">
+        <item quantity="one">%1$d hour</item>
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+</resources>

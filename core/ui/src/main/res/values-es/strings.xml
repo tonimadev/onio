@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">Reintentar</string>
+    <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
+    <string name="action_add_to_cart">Añadir al carrito</string>
+    <string name="action_back">Atrás</string>
+    <string name="action_close">Cerrar</string>
+    <string name="label_empty_results">No se encontró nada</string>
+    <string name="category_beauty">Belleza</string>
+    <string name="category_fragrances">Fragancias</string>
+    <string name="category_furniture">Muebles</string>
+    <string name="category_groceries">Comestibles</string>
+    <string name="category_home_decoration">Decoración del hogar</string>
+    <string name="category_kitchen_accessories">Cocina</string>
+    <string name="category_laptops">Portátiles</string>
+    <string name="category_mens_shirts">Camisas de hombre</string>
+    <string name="category_mens_shoes">Zapatos de hombre</string>
+    <string name="category_mens_watches">Relojes de hombre</string>
+    <string name="category_mobile_accessories">Accesorios móviles</string>
+    <string name="category_motorcycle">Motocicletas</string>
+    <string name="category_skin_care">Cuidado de la piel</string>
+    <string name="category_smartphones">Teléfonos inteligentes</string>
+    <string name="category_sports_accessories">Deportes</string>
+    <string name="category_sunglasses">Gafas de sol</string>
+    <string name="category_tablets">Tabletas</string>
+    <string name="category_tops">Tops</string>
+    <string name="category_vehicle">Vehículos</string>
+    <string name="category_womens_bags">Bolsos de mujer</string>
+    <string name="category_womens_dresses">Vestidos de mujer</string>
+    <string name="category_womens_jewellery">Joyería de mujer</string>
+    <string name="category_womens_shoes">Zapatos de mujer</string>
+    <string name="category_womens_watches">Relojes de mujer</string>
+    <string name="msg_added_to_cart">Añadido a tu carrito</string>
+    <string name="action_view_cart">Ver carrito</string>
+    <string name="label_free_shipping">Envío gratis</string>
+    <string name="label_search_hint">Buscar productos</string>
+    <string name="delay_custom_label">Tiempo personalizado</string>
+    <string name="delay_custom_hint">De 1 minuto a 7 días</string>
+    <string name="delay_unit_minutes">minutos</string>
+    <string name="delay_unit_hours">horas</string>
+    <string name="delay_unit_days">días</string>
+</resources>

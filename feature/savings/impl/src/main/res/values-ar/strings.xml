@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">المدخرات</string>
+    <string name="savings_settings">الإعدادات</string>
+    <string name="savings_headline">لم تنفق</string>
+    <string name="savings_none_yet">ستظهر أول عملية توفير هنا.</string>
+    <string name="savings_motivation">كل طلب ملغى هو مال يبقى في جيبك. واصل!</string>
+    <string name="savings_see_orders">عرض طلباتي</string>
+    <plurals name="savings_summary">
+        <item quantity="zero">من 0 طلبات ملغاة</item>
+        <item quantity="one">من طلب ملغى واحد</item>
+        <item quantity="two">من طلبين ملغيين</item>
+        <item quantity="few">من %1$d طلبات ملغاة</item>
+        <item quantity="many">من %1$d طلبًا ملغى</item>
+        <item quantity="other">من %1$d طلب ملغى</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="zero">لا منتجات لم تكن بحاجة إليها</item>
+        <item quantity="one">منتج واحد لم تكن بحاجة إليه</item>
+        <item quantity="two">منتجان لم تكن بحاجة إليهما</item>
+        <item quantity="few">%1$d منتجات لم تكن بحاجة إليها</item>
+        <item quantity="many">%1$d منتجًا لم تكن بحاجة إليه</item>
+        <item quantity="other">%1$d منتج لم تكن بحاجة إليه</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s، لم تنفق</string>
+</resources>

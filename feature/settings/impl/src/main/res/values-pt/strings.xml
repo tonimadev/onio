@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Configurações</string>
+    <string name="settings_cancel_after">Cancelar pedidos após</string>
+    <string name="settings_cancel_after_hint">Vale apenas para novos pedidos.</string>
+    <string name="settings_currency">Moeda</string>
+    <string name="settings_automatic">Automática</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_about">Sobre o Onio</string>
+    <string name="settings_about_body">O Onio é um espaço de prática para pessoas com compulsão por compras. Parece uma loja de verdade, mas nenhuma compra real é feita e nenhum dinheiro é cobrado: todo pedido é cancelado automaticamente, para você curtir a emoção e manter suas economias.</string>
+    <plurals name="settings_minutes">
+        <item quantity="one">%1$d min</item>
+        <item quantity="many">%1$d min</item>
+        <item quantity="other">%1$d min</item>
+    </plurals>
+    <plurals name="settings_hours">
+        <item quantity="one">%1$d hora</item>
+        <item quantity="many">%1$d de horas</item>
+        <item quantity="other">%1$d horas</item>
+    </plurals>
+</resources>

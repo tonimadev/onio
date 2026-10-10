@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">Réessayer</string>
+    <string name="error_generic">Une erreur s\'est produite. Veuillez réessayer.</string>
+    <string name="action_add_to_cart">Ajouter au panier</string>
+    <string name="action_back">Retour</string>
+    <string name="action_close">Fermer</string>
+    <string name="label_empty_results">Aucun résultat</string>
+    <string name="category_beauty">Beauté</string>
+    <string name="category_fragrances">Parfums</string>
+    <string name="category_furniture">Meubles</string>
+    <string name="category_groceries">Épicerie</string>
+    <string name="category_home_decoration">Décoration</string>
+    <string name="category_kitchen_accessories">Cuisine</string>
+    <string name="category_laptops">Ordinateurs portables</string>
+    <string name="category_mens_shirts">Chemises homme</string>
+    <string name="category_mens_shoes">Chaussures homme</string>
+    <string name="category_mens_watches">Montres homme</string>
+    <string name="category_mobile_accessories">Accessoires mobiles</string>
+    <string name="category_motorcycle">Motos</string>
+    <string name="category_skin_care">Soins de la peau</string>
+    <string name="category_smartphones">Smartphones</string>
+    <string name="category_sports_accessories">Sports</string>
+    <string name="category_sunglasses">Lunettes de soleil</string>
+    <string name="category_tablets">Tablettes</string>
+    <string name="category_tops">Hauts</string>
+    <string name="category_vehicle">Véhicules</string>
+    <string name="category_womens_bags">Sacs femme</string>
+    <string name="category_womens_dresses">Robes femme</string>
+    <string name="category_womens_jewellery">Bijoux femme</string>
+    <string name="category_womens_shoes">Chaussures femme</string>
+    <string name="category_womens_watches">Montres femme</string>
+    <string name="msg_added_to_cart">Ajouté à votre panier</string>
+    <string name="action_view_cart">Voir le panier</string>
+    <string name="label_free_shipping">Livraison gratuite</string>
+    <string name="label_search_hint">Rechercher des produits</string>
+    <string name="delay_custom_label">Durée personnalisée</string>
+    <string name="delay_custom_hint">De 1 minute à 7 jours</string>
+    <string name="delay_unit_minutes">minutes</string>
+    <string name="delay_unit_hours">heures</string>
+    <string name="delay_unit_days">jours</string>
+</resources>

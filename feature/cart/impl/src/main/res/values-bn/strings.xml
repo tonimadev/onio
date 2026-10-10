@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">কার্ট</string>
+    <string name="cart_empty">আপনার কার্ট খালি</string>
+    <string name="cart_subtotal">উপমোট</string>
+    <string name="cart_shipping">শিপিং</string>
+    <string name="cart_shipping_free">বিনামূল্যে</string>
+    <string name="cart_checkout">চেকআউট করুন</string>
+    <string name="cart_increase">পরিমাণ বাড়ান</string>
+    <string name="cart_decrease">পরিমাণ কমান</string>
+    <string name="cart_remove">সরান</string>
+</resources>

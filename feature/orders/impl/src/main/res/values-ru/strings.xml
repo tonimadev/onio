@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_title">Мои заказы</string>
+    <string name="orders_empty">У вас пока нет заказов</string>
+    <string name="orders_status_processing">В обработке</string>
+    <string name="orders_status_cancelled">Отменён</string>
+    <string name="orders_processing_title">Проверяем ваш платёж</string>
+    <string name="orders_processing_body">Мы сообщим, как только появятся новости.</string>
+    <string name="orders_countdown">Обновление через %1$s</string>
+    <string name="orders_cancelled_title">Заказ отменён</string>
+    <string name="orders_cancelled_body">Платёж не был завершён, деньги не списаны. Отличное решение!</string>
+    <string name="orders_you_saved">Вы сэкономили</string>
+    <string name="orders_total">Итого</string>
+    <string name="orders_ship_to">Доставка: %1$s, %2$s</string>
+    <string name="orders_paid_with">Карта •••• %1$s</string>
+    <plurals name="orders_items">
+        <item quantity="one">%1$d товар</item>
+        <item quantity="few">%1$d товара</item>
+        <item quantity="many">%1$d товаров</item>
+        <item quantity="other">%1$d товара</item>
+    </plurals>
+    <string name="orders_cancelled_body_named">Платёж не был завершён, деньги не списаны. Отличное решение, %1$s!</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title">Checkout</string>
+    <string name="checkout_shipping">Shipping details</string>
+    <string name="checkout_payment">Payment</string>
+    <string name="checkout_name">Full name</string>
+    <string name="checkout_address">Address</string>
+    <string name="checkout_card_number">Card number</string>
+    <string name="checkout_expiry">MM/YY</string>
+    <string name="checkout_cvv">CVV</string>
+    <string name="checkout_invalid">Please check this field</string>
+    <string name="checkout_pay">Pay now</string>
+    <string name="checkout_processing">Processing your payment…</string>
+    <plurals name="checkout_total_items">
+        <item quantity="one">Total (%1$d item)</item>
+        <item quantity="other">Total (%1$d items)</item>
+    </plurals>
+    <string name="checkout_summary">Order summary</string>
+    <string name="checkout_secure">Your payment info is encrypted and secure</string>
+</resources>

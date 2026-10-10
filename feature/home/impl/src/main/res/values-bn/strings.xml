@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_recommended">আপনার জন্য সুপারিশ</string>
+    <string name="home_deals">আজকের অফার</string>
+    <string name="home_ends_in">শেষ হবে %1$s এ</string>
+    <string name="home_banner1_title">মেগা সেল</string>
+    <string name="home_banner1_sub">আজ ৫০% পর্যন্ত ছাড়</string>
+    <string name="home_banner2_title">ফ্রি শিপিং</string>
+    <string name="home_banner2_sub">প্রতিটি অর্ডারে, ন্যূনতম ছাড়াই</string>
+    <string name="home_banner3_title">নতুন পণ্য</string>
+    <string name="home_banner3_sub">প্রতিদিন নতুন বাছাই</string>
+    <string name="home_greeting">হ্যালো, %1$s</string>
+</resources>

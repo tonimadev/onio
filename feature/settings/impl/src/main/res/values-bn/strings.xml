@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">সেটিংস</string>
+    <string name="settings_cancel_after">অর্ডার বাতিল হবে</string>
+    <string name="settings_cancel_after_hint">শুধু নতুন অর্ডারের জন্য প্রযোজ্য।</string>
+    <string name="settings_currency">মুদ্রা</string>
+    <string name="settings_automatic">স্বয়ংক্রিয়</string>
+    <string name="settings_language">ভাষা</string>
+    <string name="settings_about">Onio সম্পর্কে</string>
+    <string name="settings_about_body">Onio হলো কমপালসিভ শপিংয়ে ভোগা মানুষের জন্য অনুশীলনের জায়গা। এটি আসল দোকানের মতো দেখতে, কিন্তু কোনো আসল কেনাকাটা হয় না এবং কোনো টাকা কাটা হয় না: প্রতিটি অর্ডার স্বয়ংক্রিয়ভাবে বাতিল হয়, যাতে আপনি শপিংয়ের উত্তেজনা উপভোগ করে সঞ্চয় বাঁচাতে পারেন।</string>
+    <plurals name="settings_minutes">
+        <item quantity="one">%1$d মিনিট</item>
+        <item quantity="other">%1$d মিনিট</item>
+    </plurals>
+    <plurals name="settings_hours">
+        <item quantity="one">%1$d ঘণ্টা</item>
+        <item quantity="other">%1$d ঘণ্টা</item>
+    </plurals>
+</resources>

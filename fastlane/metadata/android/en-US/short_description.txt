@@ -1,0 +1,1 @@
+A shopping simulator: browse, fill a cart and check out, then keep your money.

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">设置</string>
+    <string name="settings_cancel_after">订单取消时间</string>
+    <string name="settings_cancel_after_hint">仅适用于新订单。</string>
+    <string name="settings_currency">货币</string>
+    <string name="settings_automatic">自动</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_about">关于 Onio</string>
+    <string name="settings_about_body">Onio 是为强迫性购物者设计的练习空间。它看起来像真实的商店，但不会产生任何真实购买，也不会扣除任何款项：每个订单都会自动取消，让您既享受购物的快感，又保住积蓄。</string>
+    <plurals name="settings_minutes">
+        <item quantity="other">%1$d 分钟</item>
+    </plurals>
+    <plurals name="settings_hours">
+        <item quantity="other">%1$d 小时</item>
+    </plurals>
+</resources>

@@ -1,0 +1,1 @@
+Simulador de compras: navegue, monte o carrinho e finalize sem gastar nada.

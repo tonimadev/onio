@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title">الدفع</string>
+    <string name="checkout_shipping">بيانات الشحن</string>
+    <string name="checkout_payment">الدفع</string>
+    <string name="checkout_name">الاسم الكامل</string>
+    <string name="checkout_address">العنوان</string>
+    <string name="checkout_card_number">رقم البطاقة</string>
+    <string name="checkout_expiry">شهر/سنة</string>
+    <string name="checkout_cvv">رمز الأمان</string>
+    <string name="checkout_invalid">يرجى التحقق من هذا الحقل</string>
+    <string name="checkout_pay">ادفع الآن</string>
+    <string name="checkout_processing">جارٍ معالجة الدفع…</string>
+    <plurals name="checkout_total_items">
+        <item quantity="zero">الإجمالي (0 منتج)</item>
+        <item quantity="one">الإجمالي (منتج واحد)</item>
+        <item quantity="two">الإجمالي (منتجان)</item>
+        <item quantity="few">الإجمالي (%1$d منتجات)</item>
+        <item quantity="many">الإجمالي (%1$d منتجًا)</item>
+        <item quantity="other">الإجمالي (%1$d منتج)</item>
+    </plurals>
+    <string name="checkout_summary">ملخص الطلب</string>
+    <string name="checkout_secure">بيانات الدفع الخاصة بك مشفّرة وآمنة</string>
+</resources>

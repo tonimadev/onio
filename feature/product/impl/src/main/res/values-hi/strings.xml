@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_buy_now">अभी खरीदें</string>
+    <string name="product_added">कार्ट में जोड़ा गया</string>
+    <string name="product_discount">%1$d%% छूट</string>
+    <string name="product_reviews">समीक्षाएँ</string>
+    <string name="product_out_of_stock">स्टॉक में नहीं</string>
+    <plurals name="product_in_stock">
+        <item quantity="one">स्टॉक में %1$d आइटम</item>
+        <item quantity="other">स्टॉक में %1$d आइटम</item>
+    </plurals>
+    <string name="product_delivery_free">मुफ़्त डिलीवरी</string>
+    <string name="product_delivery_eta">%1$s तक पहुँचेगा</string>
+    <string name="product_returns">30 दिन की मुफ़्त वापसी</string>
+    <string name="product_secure">सुरक्षित भुगतान</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">节省</string>
+    <string name="savings_settings">设置</string>
+    <string name="savings_headline">您没有花掉</string>
+    <string name="savings_none_yet">您节省的第一笔消费会显示在这里。</string>
+    <string name="savings_motivation">每一笔取消的订单，都是留在您口袋里的钱。继续加油！</string>
+    <string name="savings_see_orders">查看我的订单</string>
+    <plurals name="savings_summary">
+        <item quantity="other">来自 %1$d 笔已取消的订单</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="other">%1$d 件您其实不需要的商品</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s，您没有花掉</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_cancel_after">Cancel orders after</string>
+    <string name="settings_cancel_after_hint">Applies to new orders only.</string>
+    <string name="settings_currency">Currency</string>
+    <string name="settings_automatic">Automatic</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_about">About Onio</string>
+    <string name="settings_about_body">Onio is a practice space for people who struggle with compulsive shopping. It looks like a real store, but no real purchase is ever made and no money is ever charged: every order is automatically cancelled, so you can enjoy the thrill and keep your savings.</string>
+    <plurals name="settings_minutes">
+        <item quantity="one">%1$d min</item>
+        <item quantity="other">%1$d min</item>
+    </plurals>
+    <plurals name="settings_hours">
+        <item quantity="one">%1$d hour</item>
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+</resources>

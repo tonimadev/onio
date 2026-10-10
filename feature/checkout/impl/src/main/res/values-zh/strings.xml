@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title">结算</string>
+    <string name="checkout_shipping">收货信息</string>
+    <string name="checkout_payment">支付方式</string>
+    <string name="checkout_name">姓名</string>
+    <string name="checkout_address">地址</string>
+    <string name="checkout_card_number">银行卡号</string>
+    <string name="checkout_expiry">月/年</string>
+    <string name="checkout_cvv">安全码</string>
+    <string name="checkout_invalid">请检查此项</string>
+    <string name="checkout_pay">立即支付</string>
+    <string name="checkout_processing">正在处理付款…</string>
+    <plurals name="checkout_total_items">
+        <item quantity="other">合计（%1$d 件商品）</item>
+    </plurals>
+    <string name="checkout_summary">订单摘要</string>
+    <string name="checkout_secure">您的支付信息已加密，安全无忧</string>
+</resources>

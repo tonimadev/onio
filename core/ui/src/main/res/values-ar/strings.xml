@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="error_generic">حدث خطأ ما. يرجى المحاولة مرة أخرى.</string>
+    <string name="action_add_to_cart">أضف إلى السلة</string>
+    <string name="action_back">رجوع</string>
+    <string name="action_close">إغلاق</string>
+    <string name="label_empty_results">لم يتم العثور على شيء</string>
+    <string name="category_beauty">جمال</string>
+    <string name="category_fragrances">عطور</string>
+    <string name="category_furniture">أثاث</string>
+    <string name="category_groceries">بقالة</string>
+    <string name="category_home_decoration">ديكور المنزل</string>
+    <string name="category_kitchen_accessories">مستلزمات المطبخ</string>
+    <string name="category_laptops">حواسيب محمولة</string>
+    <string name="category_mens_shirts">قمصان رجالية</string>
+    <string name="category_mens_shoes">أحذية رجالية</string>
+    <string name="category_mens_watches">ساعات رجالية</string>
+    <string name="category_mobile_accessories">إكسسوارات الجوال</string>
+    <string name="category_motorcycle">دراجات نارية</string>
+    <string name="category_skin_care">العناية بالبشرة</string>
+    <string name="category_smartphones">هواتف ذكية</string>
+    <string name="category_sports_accessories">مستلزمات رياضية</string>
+    <string name="category_sunglasses">نظارات شمسية</string>
+    <string name="category_tablets">أجهزة لوحية</string>
+    <string name="category_tops">بلوزات</string>
+    <string name="category_vehicle">مركبات</string>
+    <string name="category_womens_bags">حقائب نسائية</string>
+    <string name="category_womens_dresses">فساتين نسائية</string>
+    <string name="category_womens_jewellery">مجوهرات نسائية</string>
+    <string name="category_womens_shoes">أحذية نسائية</string>
+    <string name="category_womens_watches">ساعات نسائية</string>
+    <string name="msg_added_to_cart">تمت الإضافة إلى سلتك</string>
+    <string name="action_view_cart">عرض السلة</string>
+    <string name="label_free_shipping">شحن مجاني</string>
+    <string name="label_search_hint">ابحث عن منتجات</string>
+    <string name="delay_custom_label">وقت مخصص</string>
+    <string name="delay_custom_hint">من دقيقة واحدة إلى 7 أيام</string>
+    <string name="delay_unit_minutes">دقائق</string>
+    <string name="delay_unit_hours">ساعات</string>
+    <string name="delay_unit_days">أيام</string>
+</resources>

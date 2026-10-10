@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">Cart</string>
+    <string name="cart_empty">Your cart is empty</string>
+    <string name="cart_subtotal">Subtotal</string>
+    <string name="cart_shipping">Shipping</string>
+    <string name="cart_shipping_free">Free</string>
+    <string name="cart_checkout">Proceed to checkout</string>
+    <string name="cart_increase">Increase quantity</string>
+    <string name="cart_decrease">Decrease quantity</string>
+    <string name="cart_remove">Remove</string>
+</resources>

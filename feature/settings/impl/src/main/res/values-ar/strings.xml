@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_cancel_after">إلغاء الطلبات بعد</string>
+    <string name="settings_cancel_after_hint">ينطبق على الطلبات الجديدة فقط.</string>
+    <string name="settings_currency">العملة</string>
+    <string name="settings_automatic">تلقائي</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_about">حول Onio</string>
+    <string name="settings_about_body">Onio مساحة تدريب لمن يعانون من التسوق القهري. يبدو كمتجر حقيقي، لكن لا تتم أي عملية شراء فعلية ولا يُخصم أي مبلغ: يتم إلغاء كل طلب تلقائيًا، لتستمتع بالإثارة وتحافظ على مدخراتك.</string>
+    <plurals name="settings_minutes">
+        <item quantity="zero">%1$d دقيقة</item>
+        <item quantity="one">دقيقة</item>
+        <item quantity="two">دقيقتان</item>
+        <item quantity="few">%1$d دقائق</item>
+        <item quantity="many">%1$d دقيقة</item>
+        <item quantity="other">%1$d دقيقة</item>
+    </plurals>
+    <plurals name="settings_hours">
+        <item quantity="zero">%1$d ساعة</item>
+        <item quantity="one">ساعة</item>
+        <item quantity="two">ساعتان</item>
+        <item quantity="few">%1$d ساعات</item>
+        <item quantity="many">%1$d ساعة</item>
+        <item quantity="other">%1$d ساعة</item>
+    </plurals>
+</resources>

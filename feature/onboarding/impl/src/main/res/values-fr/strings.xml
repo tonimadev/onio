@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onb_skip">Passer</string>
+    <string name="onb_next">Suivant</string>
+    <string name="onb_start">Commencer</string>
+    <string name="onb_prefer_not">Je préfère ne pas le dire</string>
+    <string name="onb_p1_title">Bienvenue sur Onio</string>
+    <string name="onb_p1_body">Parcourez une boutique complète, remplissez votre panier et payez, comme dans la vraie vie.</string>
+    <string name="onb_p2_title">Chaque commande est annulée</string>
+    <string name="onb_p2_body">Peu après le paiement, la commande est annulée automatiquement. Rien n\'est jamais débité.</string>
+    <string name="onb_p3_title">Voyez ce que vous avez économisé</string>
+    <string name="onb_p3_body">L\'onglet Économies affiche tout l\'argent resté dans votre poche.</string>
+    <string name="onb_p4_title">Comment souhaitez-vous être appelé(e) ?</string>
+    <string name="onb_p4_body">Nous l\'utiliserons pour vous saluer. Il reste sur votre appareil.</string>
+    <string name="onb_name_label">Votre prénom</string>
+    <string name="onb_regret_title">Au bout de combien de temps regrettez-vous généralement vos achats ?</string>
+    <string name="onb_regret_body">Nous annulerons vos commandes après ce délai. Vous pourrez le modifier plus tard dans les Réglages.</string>
+    <plurals name="onb_minutes">
+        <item quantity="one">%1$d min</item>
+        <item quantity="many">%1$d min</item>
+        <item quantity="other">%1$d min</item>
+    </plurals>
+    <plurals name="onb_hours">
+        <item quantity="one">%1$d heure</item>
+        <item quantity="many">%1$d d\'heures</item>
+        <item quantity="other">%1$d heures</item>
+    </plurals>
+</resources>

@@ -1,0 +1,4 @@
+# Service-account JSON for the Google Play Developer API. Never commit it:
+# export SUPPLY_JSON_KEY=/path/to/play-service-account.json
+json_key_file(ENV["SUPPLY_JSON_KEY"])
+package_name("com.ipirangatech.onio")

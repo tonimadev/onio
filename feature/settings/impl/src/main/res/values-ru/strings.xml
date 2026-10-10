@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Настройки</string>
+    <string name="settings_cancel_after">Отменять заказы через</string>
+    <string name="settings_cancel_after_hint">Применяется только к новым заказам.</string>
+    <string name="settings_currency">Валюта</string>
+    <string name="settings_automatic">Автоматически</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_about">Об Onio</string>
+    <string name="settings_about_body">Onio — это тренировочное пространство для людей с компульсивным шопингом. Оно выглядит как настоящий магазин, но реальных покупок не происходит и деньги не списываются: каждый заказ автоматически отменяется, так что вы получаете азарт покупок и сохраняете сбережения.</string>
+    <plurals name="settings_minutes">
+        <item quantity="one">%1$d мин</item>
+        <item quantity="few">%1$d мин</item>
+        <item quantity="many">%1$d мин</item>
+        <item quantity="other">%1$d мин</item>
+    </plurals>
+    <plurals name="settings_hours">
+        <item quantity="one">%1$d час</item>
+        <item quantity="few">%1$d часа</item>
+        <item quantity="many">%1$d часов</item>
+        <item quantity="other">%1$d часа</item>
+    </plurals>
+</resources>

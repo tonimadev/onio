@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">Корзина</string>
+    <string name="cart_empty">Корзина пуста</string>
+    <string name="cart_subtotal">Подытог</string>
+    <string name="cart_shipping">Доставка</string>
+    <string name="cart_shipping_free">Бесплатно</string>
+    <string name="cart_checkout">Оформить заказ</string>
+    <string name="cart_increase">Увеличить количество</string>
+    <string name="cart_decrease">Уменьшить количество</string>
+    <string name="cart_remove">Удалить</string>
+</resources>

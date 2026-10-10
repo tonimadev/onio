@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">कार्ट</string>
+    <string name="cart_empty">आपकी कार्ट खाली है</string>
+    <string name="cart_subtotal">उप-योग</string>
+    <string name="cart_shipping">शिपिंग</string>
+    <string name="cart_shipping_free">मुफ़्त</string>
+    <string name="cart_checkout">चेकआउट करें</string>
+    <string name="cart_increase">मात्रा बढ़ाएँ</string>
+    <string name="cart_decrease">मात्रा घटाएँ</string>
+    <string name="cart_remove">हटाएँ</string>
+</resources>

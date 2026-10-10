@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_buy_now">Acheter maintenant</string>
+    <string name="product_added">Ajouté à votre panier</string>
+    <string name="product_discount">-%1$d%%</string>
+    <string name="product_reviews">Avis</string>
+    <string name="product_out_of_stock">Rupture de stock</string>
+    <plurals name="product_in_stock">
+        <item quantity="one">%1$d article en stock</item>
+        <item quantity="many">%1$d d\'articles en stock</item>
+        <item quantity="other">%1$d articles en stock</item>
+    </plurals>
+    <string name="product_delivery_free">Livraison gratuite</string>
+    <string name="product_delivery_eta">Livraison le %1$s</string>
+    <string name="product_returns">Retours gratuits sous 30 jours</string>
+    <string name="product_secure">Paiement sécurisé</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">Ahorros</string>
+    <string name="savings_settings">Ajustes</string>
+    <string name="savings_headline">No has gastado</string>
+    <string name="savings_none_yet">Tu primer ahorro aparecerá aquí.</string>
+    <string name="savings_motivation">Cada pedido cancelado es dinero que se queda en tu bolsillo. ¡Sigue así!</string>
+    <string name="savings_see_orders">Ver mis pedidos</string>
+    <plurals name="savings_summary">
+        <item quantity="one">de %1$d pedido cancelado</item>
+        <item quantity="many">de %1$d de pedidos cancelados</item>
+        <item quantity="other">de %1$d pedidos cancelados</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="one">%1$d artículo que no necesitabas</item>
+        <item quantity="many">%1$d de artículos que no necesitabas</item>
+        <item quantity="other">%1$d artículos que no necesitabas</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s, no has gastado</string>
+</resources>

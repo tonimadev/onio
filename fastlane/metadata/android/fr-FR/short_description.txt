@@ -1,0 +1,1 @@
+Simulateur d'achats : parcourez, remplissez un panier et payez, sans dépenser.

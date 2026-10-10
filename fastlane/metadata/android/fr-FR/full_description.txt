@@ -1,0 +1,7 @@
+Onio est un simulateur d'achats pour celles et ceux qui aiment le frisson du shopping mais veulent préserver leurs économies.
+
+Parcourez une boutique complète, ajoutez des articles au panier et passez commande comme dans un vrai magasin. Peu après, chaque commande est automatiquement annulée et rien n'est jamais débité.
+
+Consultez dans l'onglet Économies l'argent que vous n'avez pas dépensé.
+
+Important : Onio est une simulation. Aucun achat réel n'est effectué, aucun paiement n'est traité et les données de carte ne sont ni enregistrées ni transmises.

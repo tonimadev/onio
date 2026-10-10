@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_recommended">为你推荐</string>
+    <string name="home_deals">每日特惠</string>
+    <string name="home_ends_in">%1$s 后结束</string>
+    <string name="home_banner1_title">超级大促</string>
+    <string name="home_banner1_sub">今日最高 5 折</string>
+    <string name="home_banner2_title">免运费</string>
+    <string name="home_banner2_sub">所有订单，无门槛</string>
+    <string name="home_banner3_title">新品上市</string>
+    <string name="home_banner3_sub">每日精选上新</string>
+    <string name="home_greeting">你好，%1$s</string>
+</resources>

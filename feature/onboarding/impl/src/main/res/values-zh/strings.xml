@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onb_skip">跳过</string>
+    <string name="onb_next">下一步</string>
+    <string name="onb_start">开始使用</string>
+    <string name="onb_prefer_not">暂不透露</string>
+    <string name="onb_p1_title">欢迎来到 Onio</string>
+    <string name="onb_p1_body">像真实商店一样浏览商品、加入购物车并结算。</string>
+    <string name="onb_p2_title">每个订单都会被取消</string>
+    <string name="onb_p2_body">付款后不久，订单会自动取消，不会产生任何扣款。</string>
+    <string name="onb_p3_title">看看您节省了多少</string>
+    <string name="onb_p3_body">“节省”页面会显示留在您口袋里的所有钱。</string>
+    <string name="onb_p4_title">我们该怎么称呼您？</string>
+    <string name="onb_p4_body">我们会用它来问候您，它只保存在您的设备上。</string>
+    <string name="onb_name_label">您的名字</string>
+    <string name="onb_regret_title">您通常多久会后悔自己的购物？</string>
+    <string name="onb_regret_body">我们会在这段时间后取消您的订单，之后可在“设置”中修改。</string>
+    <plurals name="onb_minutes">
+        <item quantity="other">%1$d 分钟</item>
+    </plurals>
+    <plurals name="onb_hours">
+        <item quantity="other">%1$d 小时</item>
+    </plurals>
+</resources>

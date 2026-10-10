@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">购物车</string>
+    <string name="cart_empty">购物车是空的</string>
+    <string name="cart_subtotal">小计</string>
+    <string name="cart_shipping">运费</string>
+    <string name="cart_shipping_free">免费</string>
+    <string name="cart_checkout">去结算</string>
+    <string name="cart_increase">增加数量</string>
+    <string name="cart_decrease">减少数量</string>
+    <string name="cart_remove">移除</string>
+</resources>

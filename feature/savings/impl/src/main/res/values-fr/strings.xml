@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">Économies</string>
+    <string name="savings_settings">Réglages</string>
+    <string name="savings_headline">Vous n\'avez pas dépensé</string>
+    <string name="savings_none_yet">Votre première économie apparaîtra ici.</string>
+    <string name="savings_motivation">Chaque commande annulée, c\'est de l\'argent qui reste dans votre poche. Continuez !</string>
+    <string name="savings_see_orders">Voir mes commandes</string>
+    <plurals name="savings_summary">
+        <item quantity="one">grâce à %1$d commande annulée</item>
+        <item quantity="many">grâce à %1$d de commandes annulées</item>
+        <item quantity="other">grâce à %1$d commandes annulées</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="one">%1$d article dont vous n\'aviez pas besoin</item>
+        <item quantity="many">%1$d d\'articles dont vous n\'aviez pas besoin</item>
+        <item quantity="other">%1$d articles dont vous n\'aviez pas besoin</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s, vous n\'avez pas dépensé</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title">चेकआउट</string>
+    <string name="checkout_shipping">शिपिंग विवरण</string>
+    <string name="checkout_payment">भुगतान</string>
+    <string name="checkout_name">पूरा नाम</string>
+    <string name="checkout_address">पता</string>
+    <string name="checkout_card_number">कार्ड नंबर</string>
+    <string name="checkout_expiry">मा/व</string>
+    <string name="checkout_cvv">CVV</string>
+    <string name="checkout_invalid">कृपया इस फ़ील्ड की जाँच करें</string>
+    <string name="checkout_pay">अभी भुगतान करें</string>
+    <string name="checkout_processing">आपका भुगतान प्रोसेस हो रहा है…</string>
+    <plurals name="checkout_total_items">
+        <item quantity="one">कुल (%1$d आइटम)</item>
+        <item quantity="other">कुल (%1$d आइटम)</item>
+    </plurals>
+    <string name="checkout_summary">ऑर्डर सारांश</string>
+    <string name="checkout_secure">आपकी भुगतान जानकारी एन्क्रिप्टेड और सुरक्षित है</string>
+</resources>

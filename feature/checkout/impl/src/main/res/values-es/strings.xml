@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title">Pago</string>
+    <string name="checkout_shipping">Datos de envío</string>
+    <string name="checkout_payment">Pago</string>
+    <string name="checkout_name">Nombre completo</string>
+    <string name="checkout_address">Dirección</string>
+    <string name="checkout_card_number">Número de tarjeta</string>
+    <string name="checkout_expiry">MM/AA</string>
+    <string name="checkout_cvv">CVV</string>
+    <string name="checkout_invalid">Revisa este campo</string>
+    <string name="checkout_pay">Pagar ahora</string>
+    <string name="checkout_processing">Procesando tu pago…</string>
+    <plurals name="checkout_total_items">
+        <item quantity="one">Total (%1$d artículo)</item>
+        <item quantity="many">Total (%1$d de artículos)</item>
+        <item quantity="other">Total (%1$d artículos)</item>
+    </plurals>
+    <string name="checkout_summary">Resumen del pedido</string>
+    <string name="checkout_secure">Tus datos de pago están cifrados y seguros</string>
+</resources>

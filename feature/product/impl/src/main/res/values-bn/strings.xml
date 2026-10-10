@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_buy_now">এখনই কিনুন</string>
+    <string name="product_added">আপনার কার্টে যোগ হয়েছে</string>
+    <string name="product_discount">%1$d%% ছাড়</string>
+    <string name="product_reviews">রিভিউ</string>
+    <string name="product_out_of_stock">স্টক শেষ</string>
+    <plurals name="product_in_stock">
+        <item quantity="one">স্টকে %1$d টি আইটেম</item>
+        <item quantity="other">স্টকে %1$d টি আইটেম</item>
+    </plurals>
+    <string name="product_delivery_free">ফ্রি ডেলিভারি</string>
+    <string name="product_delivery_eta">পৌঁছাবে %1$s এর মধ্যে</string>
+    <string name="product_returns">৩০ দিনের ফ্রি রিটার্ন</string>
+    <string name="product_secure">নিরাপদ পেমেন্ট</string>
+</resources>

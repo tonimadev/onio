@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">Retry</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="action_add_to_cart">Add to cart</string>
+    <string name="action_back">Back</string>
+    <string name="action_close">Close</string>
+    <string name="label_empty_results">Nothing found</string>
+    <string name="category_beauty">Beauty</string>
+    <string name="category_fragrances">Fragrances</string>
+    <string name="category_furniture">Furniture</string>
+    <string name="category_groceries">Groceries</string>
+    <string name="category_home_decoration">Home decor</string>
+    <string name="category_kitchen_accessories">Kitchen</string>
+    <string name="category_laptops">Laptops</string>
+    <string name="category_mens_shirts">Men\'s shirts</string>
+    <string name="category_mens_shoes">Men\'s shoes</string>
+    <string name="category_mens_watches">Men\'s watches</string>
+    <string name="category_mobile_accessories">Mobile accessories</string>
+    <string name="category_motorcycle">Motorcycles</string>
+    <string name="category_skin_care">Skin care</string>
+    <string name="category_smartphones">Smartphones</string>
+    <string name="category_sports_accessories">Sports</string>
+    <string name="category_sunglasses">Sunglasses</string>
+    <string name="category_tablets">Tablets</string>
+    <string name="category_tops">Tops</string>
+    <string name="category_vehicle">Vehicles</string>
+    <string name="category_womens_bags">Women\'s bags</string>
+    <string name="category_womens_dresses">Women\'s dresses</string>
+    <string name="category_womens_jewellery">Women\'s jewellery</string>
+    <string name="category_womens_shoes">Women\'s shoes</string>
+    <string name="category_womens_watches">Women\'s watches</string>
+    <string name="msg_added_to_cart">Added to your cart</string>
+    <string name="action_view_cart">View cart</string>
+    <string name="label_free_shipping">Free shipping</string>
+    <string name="label_search_hint">Search products</string>
+    <string name="delay_custom_label">Custom time</string>
+    <string name="delay_custom_hint">From 1 minute up to 7 days</string>
+    <string name="delay_unit_minutes">minutes</string>
+    <string name="delay_unit_hours">hours</string>
+    <string name="delay_unit_days">days</string>
+</resources>

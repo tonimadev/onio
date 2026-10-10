@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_recommended">आपके लिए सुझाव</string>
+    <string name="home_deals">आज के ऑफ़र</string>
+    <string name="home_ends_in">%1$s में समाप्त</string>
+    <string name="home_banner1_title">मेगा सेल</string>
+    <string name="home_banner1_sub">आज 50% तक की छूट</string>
+    <string name="home_banner2_title">मुफ़्त शिपिंग</string>
+    <string name="home_banner2_sub">हर ऑर्डर पर, कोई न्यूनतम राशि नहीं</string>
+    <string name="home_banner3_title">नई आमद</string>
+    <string name="home_banner3_sub">हर दिन नई पसंद</string>
+    <string name="home_greeting">नमस्ते, %1$s</string>
+</resources>

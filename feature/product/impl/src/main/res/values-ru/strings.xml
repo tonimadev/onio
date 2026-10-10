@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_buy_now">Купить сейчас</string>
+    <string name="product_added">Добавлено в корзину</string>
+    <string name="product_discount">−%1$d%%</string>
+    <string name="product_reviews">Отзывы</string>
+    <string name="product_out_of_stock">Нет в наличии</string>
+    <plurals name="product_in_stock">
+        <item quantity="one">В наличии %1$d шт.</item>
+        <item quantity="few">В наличии %1$d шт.</item>
+        <item quantity="many">В наличии %1$d шт.</item>
+        <item quantity="other">В наличии %1$d шт.</item>
+    </plurals>
+    <string name="product_delivery_free">Бесплатная доставка</string>
+    <string name="product_delivery_eta">Доставим до %1$s</string>
+    <string name="product_returns">Бесплатный возврат в течение 30 дней</string>
+    <string name="product_secure">Безопасная оплата</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_recommended">Рекомендуем вам</string>
+    <string name="home_deals">Предложения дня</string>
+    <string name="home_ends_in">Закончится через %1$s</string>
+    <string name="home_banner1_title">Мегараспродажа</string>
+    <string name="home_banner1_sub">Скидки до 50% сегодня</string>
+    <string name="home_banner2_title">Бесплатная доставка</string>
+    <string name="home_banner2_sub">На все заказы, без минимума</string>
+    <string name="home_banner3_title">Новинки</string>
+    <string name="home_banner3_sub">Свежие находки каждый день</string>
+    <string name="home_greeting">Привет, %1$s</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">Savings</string>
+    <string name="savings_settings">Settings</string>
+    <string name="savings_headline">You didn\'t spend</string>
+    <string name="savings_none_yet">Your first saved purchase will show up here.</string>
+    <string name="savings_motivation">Every cancelled order is money that stays in your pocket. Keep going!</string>
+    <string name="savings_see_orders">See my orders</string>
+    <plurals name="savings_summary">
+        <item quantity="one">from %1$d cancelled order</item>
+        <item quantity="other">from %1$d cancelled orders</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="one">%1$d item you didn\'t need</item>
+        <item quantity="other">%1$d items you didn\'t need</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s, you didn\'t spend</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">সঞ্চয়</string>
+    <string name="savings_settings">সেটিংস</string>
+    <string name="savings_headline">আপনি খরচ করেননি</string>
+    <string name="savings_none_yet">আপনার প্রথম সঞ্চয় এখানে দেখা যাবে।</string>
+    <string name="savings_motivation">প্রতিটি বাতিল অর্ডার মানে টাকা আপনার পকেটেই থাকল। চালিয়ে যান!</string>
+    <string name="savings_see_orders">আমার অর্ডার দেখুন</string>
+    <plurals name="savings_summary">
+        <item quantity="one">%1$dটি বাতিল অর্ডার থেকে</item>
+        <item quantity="other">%1$dটি বাতিল অর্ডার থেকে</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="one">%1$dটি পণ্য যা আপনার দরকার ছিল না</item>
+        <item quantity="other">%1$dটি পণ্য যা আপনার দরকার ছিল না</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s, আপনি খরচ করেননি</string>
+</resources>

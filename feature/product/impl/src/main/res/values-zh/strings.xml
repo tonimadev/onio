@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_buy_now">立即购买</string>
+    <string name="product_added">已加入购物车</string>
+    <string name="product_discount">优惠 %1$d%%</string>
+    <string name="product_reviews">评价</string>
+    <string name="product_out_of_stock">缺货</string>
+    <plurals name="product_in_stock">
+        <item quantity="other">库存 %1$d 件</item>
+    </plurals>
+    <string name="product_delivery_free">免费配送</string>
+    <string name="product_delivery_eta">预计 %1$s 送达</string>
+    <string name="product_returns">30 天免费退货</string>
+    <string name="product_secure">安全支付</string>
+</resources>

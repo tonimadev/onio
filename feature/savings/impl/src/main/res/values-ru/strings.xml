@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">Экономия</string>
+    <string name="savings_settings">Настройки</string>
+    <string name="savings_headline">Вы не потратили</string>
+    <string name="savings_none_yet">Ваша первая сэкономленная покупка появится здесь.</string>
+    <string name="savings_motivation">Каждый отменённый заказ — деньги, оставшиеся в вашем кармане. Так держать!</string>
+    <string name="savings_see_orders">Мои заказы</string>
+    <plurals name="savings_summary">
+        <item quantity="one">за %1$d отменённый заказ</item>
+        <item quantity="few">за %1$d отменённых заказа</item>
+        <item quantity="many">за %1$d отменённых заказов</item>
+        <item quantity="other">за %1$d отменённого заказа</item>
+    </plurals>
+    <plurals name="savings_items_not_bought">
+        <item quantity="one">%1$d товар, который вам не нужен</item>
+        <item quantity="few">%1$d товара, которые вам не нужны</item>
+        <item quantity="many">%1$d товаров, которые вам не нужны</item>
+        <item quantity="other">%1$d товара, которые вам не нужны</item>
+    </plurals>
+    <string name="savings_headline_named">%1$s, вы не потратили</string>
+</resources>

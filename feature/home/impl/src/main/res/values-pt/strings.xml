@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_recommended">Recomendados para você</string>
+    <string name="home_deals">Ofertas do dia</string>
+    <string name="home_ends_in">Termina em %1$s</string>
+    <string name="home_banner1_title">Mega Promoção</string>
+    <string name="home_banner1_sub">Até 50% off hoje</string>
+    <string name="home_banner2_title">Frete grátis</string>
+    <string name="home_banner2_sub">Em todos os pedidos, sem mínimo</string>
+    <string name="home_banner3_title">Novidades</string>
+    <string name="home_banner3_sub">Novas escolhas todo dia</string>
+    <string name="home_greeting">Olá, %1$s</string>
+</resources>

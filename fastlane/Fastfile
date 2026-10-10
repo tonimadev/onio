@@ -1,0 +1,26 @@
+default_platform(:android)
+
+platform :android do
+  desc "Regenerate feature graphics + store texts (needs rsvg-convert, ImageMagick, Noto fonts)"
+  lane :store_assets do
+    sh("python3", File.expand_path("../tools/store-assets/generate_store_assets.py", __dir__))
+  end
+
+  desc "Check the Play Console credentials before uploading anything"
+  lane :check_credentials do
+    validate_play_store_json_key
+  end
+
+  desc "Upload only the store listing (title, descriptions, icon, feature graphic) for all locales"
+  lane :listing do
+    upload_to_play_store(
+      metadata_path: "fastlane/metadata/android",
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_changelogs: true,
+      skip_upload_screenshots: true,
+      skip_upload_metadata: false,
+      skip_upload_images: false
+    )
+  end
+end

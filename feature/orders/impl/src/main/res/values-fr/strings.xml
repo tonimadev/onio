@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_title">Mes commandes</string>
+    <string name="orders_empty">Vous n\'avez pas encore de commande</string>
+    <string name="orders_status_processing">En cours</string>
+    <string name="orders_status_cancelled">Annulée</string>
+    <string name="orders_processing_title">Vérification du paiement</string>
+    <string name="orders_processing_body">Nous vous informerons dès qu\'il y aura du nouveau.</string>
+    <string name="orders_countdown">Mise à jour dans %1$s</string>
+    <string name="orders_cancelled_title">Commande annulée</string>
+    <string name="orders_cancelled_body">Le paiement n\'a pas abouti et vous n\'avez pas été débité. Bien joué !</string>
+    <string name="orders_you_saved">Vous avez économisé</string>
+    <string name="orders_total">Total</string>
+    <string name="orders_ship_to">Livrer à : %1$s, %2$s</string>
+    <string name="orders_paid_with">Carte se terminant par %1$s</string>
+    <plurals name="orders_items">
+        <item quantity="one">%1$d article</item>
+        <item quantity="many">%1$d d\'articles</item>
+        <item quantity="other">%1$d articles</item>
+    </plurals>
+    <string name="orders_cancelled_body_named">Le paiement n\'a pas abouti et vous n\'avez pas été débité. Bien joué, %1$s !</string>
+</resources>

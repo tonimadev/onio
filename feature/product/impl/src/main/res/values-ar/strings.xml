@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_buy_now">اشترِ الآن</string>
+    <string name="product_added">تمت الإضافة إلى سلتك</string>
+    <string name="product_discount">خصم %1$d%%</string>
+    <string name="product_reviews">التقييمات</string>
+    <string name="product_out_of_stock">نفد المخزون</string>
+    <plurals name="product_in_stock">
+        <item quantity="zero">لا توجد قطع في المخزون</item>
+        <item quantity="one">قطعة واحدة في المخزون</item>
+        <item quantity="two">قطعتان في المخزون</item>
+        <item quantity="few">%1$d قطع في المخزون</item>
+        <item quantity="many">%1$d قطعة في المخزون</item>
+        <item quantity="other">%1$d قطعة في المخزون</item>
+    </plurals>
+    <string name="product_delivery_free">توصيل مجاني</string>
+    <string name="product_delivery_eta">يصل بحلول %1$s</string>
+    <string name="product_returns">إرجاع مجاني خلال 30 يومًا</string>
+    <string name="product_secure">دفع آمن</string>
+</resources>

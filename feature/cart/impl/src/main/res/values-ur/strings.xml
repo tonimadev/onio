@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">کارٹ</string>
+    <string name="cart_empty">آپ کی کارٹ خالی ہے</string>
+    <string name="cart_subtotal">ذیلی کل</string>
+    <string name="cart_shipping">شپنگ</string>
+    <string name="cart_shipping_free">مفت</string>
+    <string name="cart_checkout">چیک آؤٹ کریں</string>
+    <string name="cart_increase">مقدار بڑھائیں</string>
+    <string name="cart_decrease">مقدار کم کریں</string>
+    <string name="cart_remove">ہٹائیں</string>
+</resources>

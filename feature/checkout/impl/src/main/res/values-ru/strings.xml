@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title">Оформление заказа</string>
+    <string name="checkout_shipping">Данные доставки</string>
+    <string name="checkout_payment">Оплата</string>
+    <string name="checkout_name">Полное имя</string>
+    <string name="checkout_address">Адрес</string>
+    <string name="checkout_card_number">Номер карты</string>
+    <string name="checkout_expiry">ММ/ГГ</string>
+    <string name="checkout_cvv">CVV</string>
+    <string name="checkout_invalid">Проверьте это поле</string>
+    <string name="checkout_pay">Оплатить</string>
+    <string name="checkout_processing">Обработка платежа…</string>
+    <plurals name="checkout_total_items">
+        <item quantity="one">Итого (%1$d товар)</item>
+        <item quantity="few">Итого (%1$d товара)</item>
+        <item quantity="many">Итого (%1$d товаров)</item>
+        <item quantity="other">Итого (%1$d товара)</item>
+    </plurals>
+    <string name="checkout_summary">Ваш заказ</string>
+    <string name="checkout_secure">Данные платежа зашифрованы и защищены</string>
+</resources>

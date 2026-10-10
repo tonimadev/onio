@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_recommended">موصى به لك</string>
+    <string name="home_deals">عروض اليوم</string>
+    <string name="home_ends_in">ينتهي خلال %1$s</string>
+    <string name="home_banner1_title">تخفيضات ضخمة</string>
+    <string name="home_banner1_sub">خصم يصل إلى 50% اليوم</string>
+    <string name="home_banner2_title">شحن مجاني</string>
+    <string name="home_banner2_sub">على كل الطلبات بدون حد أدنى</string>
+    <string name="home_banner3_title">وصل حديثًا</string>
+    <string name="home_banner3_sub">اختيارات جديدة كل يوم</string>
+    <string name="home_greeting">مرحبًا، %1$s</string>
+</resources>

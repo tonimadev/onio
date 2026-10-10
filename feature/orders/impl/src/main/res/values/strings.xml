@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_title">My orders</string>
+    <string name="orders_empty">You haven\'t placed any orders yet</string>
+    <string name="orders_status_processing">Processing</string>
+    <string name="orders_status_cancelled">Cancelled</string>
+    <string name="orders_processing_title">Verifying your payment</string>
+    <string name="orders_processing_body">We\'ll let you know as soon as there\'s an update.</string>
+    <string name="orders_countdown">Update expected in %1$s</string>
+    <string name="orders_cancelled_title">Order cancelled</string>
+    <string name="orders_cancelled_body">The payment was not completed and you were not charged. Good call!</string>
+    <string name="orders_you_saved">You saved</string>
+    <string name="orders_total">Total</string>
+    <string name="orders_ship_to">Ship to: %1$s, %2$s</string>
+    <string name="orders_paid_with">Card ending in %1$s</string>
+    <plurals name="orders_items">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+    <string name="orders_cancelled_body_named">The payment was not completed and you were not charged. Good call, %1$s!</string>
+</resources>

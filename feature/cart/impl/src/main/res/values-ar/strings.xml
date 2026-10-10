@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">السلة</string>
+    <string name="cart_empty">سلتك فارغة</string>
+    <string name="cart_subtotal">المجموع الفرعي</string>
+    <string name="cart_shipping">الشحن</string>
+    <string name="cart_shipping_free">مجاني</string>
+    <string name="cart_checkout">متابعة الدفع</string>
+    <string name="cart_increase">زيادة الكمية</string>
+    <string name="cart_decrease">تقليل الكمية</string>
+    <string name="cart_remove">إزالة</string>
+</resources>

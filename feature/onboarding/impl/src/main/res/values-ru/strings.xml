@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onb_skip">Пропустить</string>
+    <string name="onb_next">Далее</string>
+    <string name="onb_start">Начать</string>
+    <string name="onb_prefer_not">Не хочу указывать</string>
+    <string name="onb_p1_title">Добро пожаловать в Onio</string>
+    <string name="onb_p1_body">Просматривайте полноценный магазин, наполняйте корзину и оформляйте заказ — как в настоящем.</string>
+    <string name="onb_p2_title">Каждый заказ отменяется</string>
+    <string name="onb_p2_body">Вскоре после оплаты заказ автоматически отменяется. Деньги не списываются.</string>
+    <string name="onb_p3_title">Смотрите, сколько сэкономили</string>
+    <string name="onb_p3_body">Во вкладке «Экономия» видно все деньги, оставшиеся в вашем кармане.</string>
+    <string name="onb_p4_title">Как к вам обращаться?</string>
+    <string name="onb_p4_body">Мы будем использовать его для приветствия. Он хранится только на вашем устройстве.</string>
+    <string name="onb_name_label">Ваше имя</string>
+    <string name="onb_regret_title">Через какое время вы обычно жалеете о своих покупках?</string>
+    <string name="onb_regret_body">Мы отменим ваши заказы по истечении этого времени. Позже его можно изменить в настройках.</string>
+    <plurals name="onb_minutes">
+        <item quantity="one">%1$d мин</item>
+        <item quantity="few">%1$d мин</item>
+        <item quantity="many">%1$d мин</item>
+        <item quantity="other">%1$d мин</item>
+    </plurals>
+    <plurals name="onb_hours">
+        <item quantity="one">%1$d час</item>
+        <item quantity="few">%1$d часа</item>
+        <item quantity="many">%1$d часов</item>
+        <item quantity="other">%1$d часа</item>
+    </plurals>
+</resources>

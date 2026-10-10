@@ -1,0 +1,45 @@
+# Gradle / build output (any module, including build-logic)
+.gradle/
+build/
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local machine configuration
+local.properties
+*.iml
+
+# IDE: Android Studio regenerates everything under .idea
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Signing material and secrets: never commit
+*.jks
+*.keystore
+keystore.properties
+*.pepk
+.env
+.env.*
+google-services.json
+**/play-service-account*.json
+fastlane/*service-account*.json
+
+# fastlane run artifacts
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/test_output/
+fastlane/screenshots/**/*.html
+
+# Python caches from tools/
+__pycache__/
+*.pyc
+
+# Release / profiling artifacts
+*.apk
+*.aab
+*.hprof
+*.log

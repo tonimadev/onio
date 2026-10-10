@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Shopping bag with a check cut out: "shop, then walk away with your money". -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M41,45 H67 Q70,45 70.6,48 L73.4,76 Q74,81 69,81 H39 Q34,81 34.6,76 L37.4,48 Q38,45 41,45 Z M44.8,50.5 a1.7,1.7 0 1,0 3.4,0 a1.7,1.7 0 1,0 -3.4,0 Z M59.8,50.5 a1.7,1.7 0 1,0 3.4,0 a1.7,1.7 0 1,0 -3.4,0 Z M43.80,65.70 L51.65,73.54 L64.33,58.55 L60.67,55.45 L51.35,66.46 L47.20,62.30 Z" />
+    <path
+        android:pathData="M44.5,47 C44.5,31 63.5,31 63.5,47"
+        android:strokeWidth="4"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+</vector>

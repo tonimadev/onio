@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_title">मेरे ऑर्डर</string>
+    <string name="orders_empty">आपने अभी तक कोई ऑर्डर नहीं किया</string>
+    <string name="orders_status_processing">प्रोसेस हो रहा है</string>
+    <string name="orders_status_cancelled">रद्द</string>
+    <string name="orders_processing_title">आपका भुगतान सत्यापित हो रहा है</string>
+    <string name="orders_processing_body">अपडेट मिलते ही हम आपको बताएँगे।</string>
+    <string name="orders_countdown">अपडेट %1$s में अपेक्षित</string>
+    <string name="orders_cancelled_title">ऑर्डर रद्द हो गया</string>
+    <string name="orders_cancelled_body">भुगतान पूरा नहीं हुआ और आपसे कोई शुल्क नहीं लिया गया। बढ़िया फ़ैसला!</string>
+    <string name="orders_you_saved">आपने बचाए</string>
+    <string name="orders_total">कुल</string>
+    <string name="orders_ship_to">भेजा जाएगा: %1$s, %2$s</string>
+    <string name="orders_paid_with">कार्ड जिसका अंत %1$s है</string>
+    <plurals name="orders_items">
+        <item quantity="one">%1$d आइटम</item>
+        <item quantity="other">%1$d आइटम</item>
+    </plurals>
+    <string name="orders_cancelled_body_named">भुगतान पूरा नहीं हुआ और आपसे कोई शुल्क नहीं लिया गया। बढ़िया फ़ैसला, %1$s!</string>
+</resources>

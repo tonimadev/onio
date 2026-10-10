@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_recommended">آپ کے لیے تجویز کردہ</string>
+    <string name="home_deals">آج کی ڈیلز</string>
+    <string name="home_ends_in">%1$s میں ختم</string>
+    <string name="home_banner1_title">میگا سیل</string>
+    <string name="home_banner1_sub">آج 50% تک رعایت</string>
+    <string name="home_banner2_title">مفت شپنگ</string>
+    <string name="home_banner2_sub">ہر آرڈر پر، کم از کم کے بغیر</string>
+    <string name="home_banner3_title">نئی آمد</string>
+    <string name="home_banner3_sub">ہر روز نئی پسند</string>
+    <string name="home_greeting">ہیلو، %1$s</string>
+</resources>

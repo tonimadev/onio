@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">ترتیبات</string>
+    <string name="settings_cancel_after">آرڈرز منسوخ ہوں گے</string>
+    <string name="settings_cancel_after_hint">صرف نئے آرڈرز پر لاگو ہوگا۔</string>
+    <string name="settings_currency">کرنسی</string>
+    <string name="settings_automatic">خودکار</string>
+    <string name="settings_language">زبان</string>
+    <string name="settings_about">Onio کے بارے میں</string>
+    <string name="settings_about_body">Onio ان لوگوں کے لیے مشق کی جگہ ہے جو جبری خریداری سے نمٹ رہے ہیں۔ یہ اصل اسٹور جیسا لگتا ہے، لیکن کوئی حقیقی خریداری نہیں ہوتی اور کوئی رقم نہیں کٹتی: ہر آرڈر خود بخود منسوخ ہو جاتا ہے، تاکہ آپ خریداری کا لطف بھی لیں اور بچت بھی برقرار رکھیں۔</string>
+    <plurals name="settings_minutes">
+        <item quantity="one">%1$d منٹ</item>
+        <item quantity="other">%1$d منٹ</item>
+    </plurals>
+    <plurals name="settings_hours">
+        <item quantity="one">%1$d گھنٹہ</item>
+        <item quantity="other">%1$d گھنٹے</item>
+    </plurals>
+</resources>

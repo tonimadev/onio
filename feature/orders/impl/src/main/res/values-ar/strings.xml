@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_title">طلباتي</string>
+    <string name="orders_empty">لم تقم بأي طلب بعد</string>
+    <string name="orders_status_processing">قيد المعالجة</string>
+    <string name="orders_status_cancelled">ملغى</string>
+    <string name="orders_processing_title">جارٍ التحقق من الدفع</string>
+    <string name="orders_processing_body">سنخبرك فور حدوث أي تحديث.</string>
+    <string name="orders_countdown">التحديث المتوقع خلال %1$s</string>
+    <string name="orders_cancelled_title">تم إلغاء الطلب</string>
+    <string name="orders_cancelled_body">لم يكتمل الدفع ولم يتم خصم أي مبلغ. قرار موفق!</string>
+    <string name="orders_you_saved">لقد وفّرت</string>
+    <string name="orders_total">الإجمالي</string>
+    <string name="orders_ship_to">الشحن إلى: %1$s، %2$s</string>
+    <string name="orders_paid_with">بطاقة تنتهي بـ %1$s</string>
+    <plurals name="orders_items">
+        <item quantity="zero">لا منتجات</item>
+        <item quantity="one">منتج واحد</item>
+        <item quantity="two">منتجان</item>
+        <item quantity="few">%1$d منتجات</item>
+        <item quantity="many">%1$d منتجًا</item>
+        <item quantity="other">%1$d منتج</item>
+    </plurals>
+    <string name="orders_cancelled_body_named">لم يكتمل الدفع ولم يتم خصم أي مبلغ. قرار موفق يا %1$s!</string>
+</resources>

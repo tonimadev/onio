@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_home">होम</string>
+    <string name="nav_search">खोजें</string>
+    <string name="nav_cart">कार्ट</string>
+    <string name="nav_orders">ऑर्डर</string>
+    <string name="nav_savings">बचत</string>
+</resources>

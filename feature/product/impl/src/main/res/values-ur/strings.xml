@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_buy_now">ابھی خریدیں</string>
+    <string name="product_added">آپ کی کارٹ میں شامل ہو گیا</string>
+    <string name="product_discount">%1$d%% رعایت</string>
+    <string name="product_reviews">جائزے</string>
+    <string name="product_out_of_stock">اسٹاک ختم</string>
+    <plurals name="product_in_stock">
+        <item quantity="one">اسٹاک میں %1$d آئٹم</item>
+        <item quantity="other">اسٹاک میں %1$d آئٹمز</item>
+    </plurals>
+    <string name="product_delivery_free">مفت ڈیلیوری</string>
+    <string name="product_delivery_eta">%1$s تک پہنچے گا</string>
+    <string name="product_returns">30 دن میں مفت واپسی</string>
+    <string name="product_secure">محفوظ ادائیگی</string>
+</resources>

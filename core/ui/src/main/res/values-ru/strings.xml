@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">Повторить</string>
+    <string name="error_generic">Что-то пошло не так. Попробуйте ещё раз.</string>
+    <string name="action_add_to_cart">В корзину</string>
+    <string name="action_back">Назад</string>
+    <string name="action_close">Закрыть</string>
+    <string name="label_empty_results">Ничего не найдено</string>
+    <string name="category_beauty">Красота</string>
+    <string name="category_fragrances">Ароматы</string>
+    <string name="category_furniture">Мебель</string>
+    <string name="category_groceries">Продукты</string>
+    <string name="category_home_decoration">Декор для дома</string>
+    <string name="category_kitchen_accessories">Кухня</string>
+    <string name="category_laptops">Ноутбуки</string>
+    <string name="category_mens_shirts">Мужские рубашки</string>
+    <string name="category_mens_shoes">Мужская обувь</string>
+    <string name="category_mens_watches">Мужские часы</string>
+    <string name="category_mobile_accessories">Аксессуары для телефонов</string>
+    <string name="category_motorcycle">Мотоциклы</string>
+    <string name="category_skin_care">Уход за кожей</string>
+    <string name="category_smartphones">Смартфоны</string>
+    <string name="category_sports_accessories">Спорттовары</string>
+    <string name="category_sunglasses">Солнцезащитные очки</string>
+    <string name="category_tablets">Планшеты</string>
+    <string name="category_tops">Топы</string>
+    <string name="category_vehicle">Автомобили</string>
+    <string name="category_womens_bags">Женские сумки</string>
+    <string name="category_womens_dresses">Женские платья</string>
+    <string name="category_womens_jewellery">Женские украшения</string>
+    <string name="category_womens_shoes">Женская обувь</string>
+    <string name="category_womens_watches">Женские часы</string>
+    <string name="msg_added_to_cart">Добавлено в корзину</string>
+    <string name="action_view_cart">Открыть корзину</string>
+    <string name="label_free_shipping">Бесплатная доставка</string>
+    <string name="label_search_hint">Поиск товаров</string>
+    <string name="delay_custom_label">Своё время</string>
+    <string name="delay_custom_hint">От 1 минуты до 7 дней</string>
+    <string name="delay_unit_minutes">минуты</string>
+    <string name="delay_unit_hours">часы</string>
+    <string name="delay_unit_days">дни</string>
+</resources>

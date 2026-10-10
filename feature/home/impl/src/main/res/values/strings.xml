@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title" translatable="false">onio</string>
+    <string name="home_recommended">Recommended for you</string>
+    <string name="home_deals">Deals of the day</string>
+    <string name="home_ends_in">Ends in %1$s</string>
+    <string name="home_banner1_title">Mega Sale</string>
+    <string name="home_banner1_sub">Up to 50% off today</string>
+    <string name="home_banner2_title">Free shipping</string>
+    <string name="home_banner2_sub">On every order, no minimum</string>
+    <string name="home_banner3_title">New arrivals</string>
+    <string name="home_banner3_sub">Fresh picks every day</string>
+    <string name="home_greeting">Hi, %1$s</string>
+</resources>

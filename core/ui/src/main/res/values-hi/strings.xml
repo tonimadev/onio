@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">पुनः प्रयास करें</string>
+    <string name="error_generic">कुछ गलत हो गया। कृपया पुनः प्रयास करें।</string>
+    <string name="action_add_to_cart">कार्ट में जोड़ें</string>
+    <string name="action_back">वापस</string>
+    <string name="action_close">बंद करें</string>
+    <string name="label_empty_results">कुछ नहीं मिला</string>
+    <string name="category_beauty">सौंदर्य</string>
+    <string name="category_fragrances">इत्र</string>
+    <string name="category_furniture">फर्नीचर</string>
+    <string name="category_groceries">किराना</string>
+    <string name="category_home_decoration">घर की सजावट</string>
+    <string name="category_kitchen_accessories">रसोई का सामान</string>
+    <string name="category_laptops">लैपटॉप</string>
+    <string name="category_mens_shirts">पुरुषों की शर्ट</string>
+    <string name="category_mens_shoes">पुरुषों के जूते</string>
+    <string name="category_mens_watches">पुरुषों की घड़ियाँ</string>
+    <string name="category_mobile_accessories">मोबाइल एक्सेसरीज़</string>
+    <string name="category_motorcycle">मोटरसाइकिल</string>
+    <string name="category_skin_care">त्वचा की देखभाल</string>
+    <string name="category_smartphones">स्मार्टफोन</string>
+    <string name="category_sports_accessories">खेल का सामान</string>
+    <string name="category_sunglasses">धूप के चश्मे</string>
+    <string name="category_tablets">टैबलेट</string>
+    <string name="category_tops">टॉप्स</string>
+    <string name="category_vehicle">वाहन</string>
+    <string name="category_womens_bags">महिलाओं के बैग</string>
+    <string name="category_womens_dresses">महिलाओं की ड्रेस</string>
+    <string name="category_womens_jewellery">महिलाओं के गहने</string>
+    <string name="category_womens_shoes">महिलाओं के जूते</string>
+    <string name="category_womens_watches">महिलाओं की घड़ियाँ</string>
+    <string name="msg_added_to_cart">कार्ट में जोड़ा गया</string>
+    <string name="action_view_cart">कार्ट देखें</string>
+    <string name="label_free_shipping">मुफ़्त शिपिंग</string>
+    <string name="label_search_hint">उत्पाद खोजें</string>
+    <string name="delay_custom_label">अपना समय</string>
+    <string name="delay_custom_hint">1 मिनट से 7 दिन तक</string>
+    <string name="delay_unit_minutes">मिनट</string>
+    <string name="delay_unit_hours">घंटे</string>
+    <string name="delay_unit_days">दिन</string>
+</resources>

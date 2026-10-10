@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_home">Accueil</string>
+    <string name="nav_search">Recherche</string>
+    <string name="nav_cart">Panier</string>
+    <string name="nav_orders">Commandes</string>
+    <string name="nav_savings">Économies</string>
+</resources>

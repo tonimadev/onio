@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="orders_title">我的订单</string>
+    <string name="orders_empty">您还没有订单</string>
+    <string name="orders_status_processing">处理中</string>
+    <string name="orders_status_cancelled">已取消</string>
+    <string name="orders_processing_title">正在验证您的付款</string>
+    <string name="orders_processing_body">有更新时我们会第一时间通知您。</string>
+    <string name="orders_countdown">预计 %1$s 后更新</string>
+    <string name="orders_cancelled_title">订单已取消</string>
+    <string name="orders_cancelled_body">付款未完成，您没有被扣款。做得好！</string>
+    <string name="orders_you_saved">您节省了</string>
+    <string name="orders_total">合计</string>
+    <string name="orders_ship_to">收货人：%1$s，%2$s</string>
+    <string name="orders_paid_with">尾号 %1$s 的银行卡</string>
+    <plurals name="orders_items">
+        <item quantity="other">%1$d 件商品</item>
+    </plurals>
+    <string name="orders_cancelled_body_named">付款未完成，您没有被扣款。做得好，%1$s！</string>
+</resources>

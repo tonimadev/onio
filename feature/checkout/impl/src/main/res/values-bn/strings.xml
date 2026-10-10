@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title">চেকআউট</string>
+    <string name="checkout_shipping">শিপিং তথ্য</string>
+    <string name="checkout_payment">পেমেন্ট</string>
+    <string name="checkout_name">পূর্ণ নাম</string>
+    <string name="checkout_address">ঠিকানা</string>
+    <string name="checkout_card_number">কার্ড নম্বর</string>
+    <string name="checkout_expiry">মা/বছ</string>
+    <string name="checkout_cvv">CVV</string>
+    <string name="checkout_invalid">অনুগ্রহ করে এই ঘরটি যাচাই করুন</string>
+    <string name="checkout_pay">এখনই পরিশোধ করুন</string>
+    <string name="checkout_processing">আপনার পেমেন্ট প্রক্রিয়া হচ্ছে…</string>
+    <plurals name="checkout_total_items">
+        <item quantity="one">মোট (%1$dটি পণ্য)</item>
+        <item quantity="other">মোট (%1$dটি পণ্য)</item>
+    </plurals>
+    <string name="checkout_summary">অর্ডারের সারাংশ</string>
+    <string name="checkout_secure">আপনার পেমেন্ট তথ্য এনক্রিপ্টেড ও নিরাপদ</string>
+</resources>

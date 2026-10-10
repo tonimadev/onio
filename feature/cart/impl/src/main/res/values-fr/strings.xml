@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_title">Panier</string>
+    <string name="cart_empty">Votre panier est vide</string>
+    <string name="cart_subtotal">Sous-total</string>
+    <string name="cart_shipping">Livraison</string>
+    <string name="cart_shipping_free">Gratuite</string>
+    <string name="cart_checkout">Passer la commande</string>
+    <string name="cart_increase">Augmenter la quantité</string>
+    <string name="cart_decrease">Diminuer la quantité</string>
+    <string name="cart_remove">Supprimer</string>
+</resources>

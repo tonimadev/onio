@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_retry">আবার চেষ্টা করুন</string>
+    <string name="error_generic">কিছু ভুল হয়েছে। আবার চেষ্টা করুন।</string>
+    <string name="action_add_to_cart">কার্টে যোগ করুন</string>
+    <string name="action_back">পিছনে</string>
+    <string name="action_close">বন্ধ করুন</string>
+    <string name="label_empty_results">কিছু পাওয়া যায়নি</string>
+    <string name="category_beauty">সৌন্দর্য</string>
+    <string name="category_fragrances">সুগন্ধি</string>
+    <string name="category_furniture">আসবাব</string>
+    <string name="category_groceries">মুদিখানা</string>
+    <string name="category_home_decoration">ঘর সাজানো</string>
+    <string name="category_kitchen_accessories">রান্নাঘরের জিনিস</string>
+    <string name="category_laptops">ল্যাপটপ</string>
+    <string name="category_mens_shirts">পুরুষদের শার্ট</string>
+    <string name="category_mens_shoes">পুরুষদের জুতা</string>
+    <string name="category_mens_watches">পুরুষদের ঘড়ি</string>
+    <string name="category_mobile_accessories">মোবাইল অ্যাক্সেসরিজ</string>
+    <string name="category_motorcycle">মোটরসাইকেল</string>
+    <string name="category_skin_care">ত্বকের যত্ন</string>
+    <string name="category_smartphones">স্মার্টফোন</string>
+    <string name="category_sports_accessories">খেলার সরঞ্জাম</string>
+    <string name="category_sunglasses">সানগ্লাস</string>
+    <string name="category_tablets">ট্যাবলেট</string>
+    <string name="category_tops">টপস</string>
+    <string name="category_vehicle">যানবাহন</string>
+    <string name="category_womens_bags">মহিলাদের ব্যাগ</string>
+    <string name="category_womens_dresses">মহিলাদের পোশাক</string>
+    <string name="category_womens_jewellery">মহিলাদের গয়না</string>
+    <string name="category_womens_shoes">মহিলাদের জুতা</string>
+    <string name="category_womens_watches">মহিলাদের ঘড়ি</string>
+    <string name="msg_added_to_cart">আপনার কার্টে যোগ হয়েছে</string>
+    <string name="action_view_cart">কার্ট দেখুন</string>
+    <string name="label_free_shipping">ফ্রি শিপিং</string>
+    <string name="label_search_hint">পণ্য খুঁজুন</string>
+    <string name="delay_custom_label">নিজের সময়</string>
+    <string name="delay_custom_hint">১ মিনিট থেকে ৭ দিন পর্যন্ত</string>
+    <string name="delay_unit_minutes">মিনিট</string>
+    <string name="delay_unit_hours">ঘণ্টা</string>
+    <string name="delay_unit_days">দিন</string>
+</resources>

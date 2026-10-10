@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_search">بحث</string>
+    <string name="nav_cart">السلة</string>
+    <string name="nav_orders">الطلبات</string>
+    <string name="nav_savings">المدخرات</string>
+</resources>

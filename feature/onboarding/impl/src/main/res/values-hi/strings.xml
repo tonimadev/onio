@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onb_skip">छोड़ें</string>
+    <string name="onb_next">आगे</string>
+    <string name="onb_start">शुरू करें</string>
+    <string name="onb_prefer_not">बताना नहीं चाहता</string>
+    <string name="onb_p1_title">Onio में आपका स्वागत है</string>
+    <string name="onb_p1_body">असली स्टोर की तरह ब्राउज़ करें, कार्ट भरें और चेकआउट करें।</string>
+    <string name="onb_p2_title">हर ऑर्डर रद्द हो जाता है</string>
+    <string name="onb_p2_body">भुगतान के कुछ देर बाद ऑर्डर अपने-आप रद्द हो जाता है। कोई पैसा नहीं कटता।</string>
+    <string name="onb_p3_title">देखें आपने कितना बचाया</string>
+    <string name="onb_p3_body">बचत टैब में वह सारा पैसा दिखता है जो आपकी जेब में रहा।</string>
+    <string name="onb_p4_title">हम आपको क्या कहकर बुलाएँ?</string>
+    <string name="onb_p4_body">हम इसका उपयोग आपका अभिवादन करने के लिए करेंगे। यह आपके डिवाइस पर ही रहता है।</string>
+    <string name="onb_name_label">आपका नाम</string>
+    <string name="onb_regret_title">आप अपनी खरीदारी पर आमतौर पर कितनी जल्दी पछताते हैं?</string>
+    <string name="onb_regret_body">हम इतने समय बाद आपके ऑर्डर रद्द कर देंगे। इसे बाद में सेटिंग्स में बदला जा सकता है।</string>
+    <plurals name="onb_minutes">
+        <item quantity="one">%1$d मिनट</item>
+        <item quantity="other">%1$d मिनट</item>
+    </plurals>
+    <plurals name="onb_hours">
+        <item quantity="one">%1$d घंटा</item>
+        <item quantity="other">%1$d घंटे</item>
+    </plurals>
+</resources>
