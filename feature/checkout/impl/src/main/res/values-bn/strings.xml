@@ -37,4 +37,11 @@
         <item quantity="one">%1$dটি কয়েন আছে</item>
         <item quantity="other">%1$dটি কয়েন আছে</item>
     </plurals>
+    <string name="checkout_cep">পিন কোড (CEP)</string>
+    <string name="checkout_cep_hint">ব্রাজিলের পিন কোড: আমরা ঠিকানা ভরে দেব এবং ডেলিভারির সময় অনুমান করব</string>
+    <string name="checkout_cep_not_found">এই পিন কোড পাওয়া যায়নি</string>
+    <string name="checkout_cep_error">পিন কোড খোঁজা যায়নি</string>
+    <string name="checkout_delivery_between">পৌঁছাবে %1$s থেকে %2$s এর মধ্যে</string>
+    <string name="checkout_delivery_estimate">অঞ্চল অনুযায়ী অনুমান</string>
+    <string name="checkout_delivery_official">Correios কর্তৃক নিশ্চিত</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.ipirangatech.onio.feature.checkout.impl
 
 import androidx.compose.foundation.clickable
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.LocalShipping
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -69,7 +72,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -162,7 +164,9 @@ internal fun CheckoutScreen(state: CheckoutState, onIntent: (CheckoutIntent) -> 
                     Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
                         Text(stringResource(R.string.checkout_shipping), style = MaterialTheme.typography.titleMedium)
                         Field(state, CheckoutField.NAME, state.name, R.string.checkout_name, onIntent, KeyboardType.Text)
+                        CepField(state, onIntent)
                         Field(state, CheckoutField.ADDRESS, state.address, R.string.checkout_address, onIntent, KeyboardType.Text)
+                        DeliveryEstimateRow(state)
                     }
                 }
                 SectionCard(Modifier.fillMaxWidth()) {
@@ -448,6 +452,71 @@ private fun CouponSheet(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit
                 }
                 Spacer(Modifier.height(Dimens.Space16))
             }
+        }
+    }
+}
+
+
+private val CepTransformation = DigitSeparatorTransformation('-', listOf(5))
+
+@Composable
+private fun CepField(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        OutlinedTextField(
+            value = state.cep,
+            onValueChange = { onIntent(CheckoutIntent.CepChanged(it)) },
+            label = { Text(stringResource(R.string.checkout_cep)) },
+            singleLine = true,
+            visualTransformation = CepTransformation,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            textStyle = TextStyle(textDirection = TextDirection.Ltr),
+            enabled = !state.isProcessing,
+            isError = state.cepStatus == CepStatus.NOT_FOUND,
+            trailingIcon = {
+                when (state.cepStatus) {
+                    CepStatus.LOADING -> CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
+                    CepStatus.FOUND -> Icon(Icons.Filled.CheckCircle, null, tint = OnioTheme.colors.freeShipping)
+                    else -> Unit
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+        )
+        when (state.cepStatus) {
+            CepStatus.FOUND -> state.resolvedAddress?.let {
+                Text("${it.city} - ${it.state}", style = MaterialTheme.typography.bodySmall, color = OnioTheme.colors.freeShipping)
+            }
+            CepStatus.NOT_FOUND -> Text(stringResource(R.string.checkout_cep_not_found), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+            CepStatus.ERROR -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(stringResource(R.string.checkout_cep_error), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error, modifier = Modifier.weight(1f, fill = false))
+                TextButton(onClick = { onIntent(CheckoutIntent.RetryCep) }) { Text(stringResource(UiR.string.action_retry)) }
+            }
+            else -> Text(stringResource(R.string.checkout_cep_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
+
+@Composable
+private fun DeliveryEstimateRow(state: CheckoutState) {
+    val estimate = state.delivery ?: return
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val day = 24L * 60 * 60 * 1000
+    val now = remember { System.currentTimeMillis() }
+    val flags = android.text.format.DateUtils.FORMAT_SHOW_DATE or android.text.format.DateUtils.FORMAT_SHOW_WEEKDAY or android.text.format.DateUtils.FORMAT_ABBREV_ALL
+    val from = android.text.format.DateUtils.formatDateTime(context, now + estimate.minDays * day, flags)
+    val to = android.text.format.DateUtils.formatDateTime(context, now + estimate.maxDays * day, flags)
+    Row(
+        Modifier.fillMaxWidth().background(OnioTheme.colors.freeShippingContainer, MaterialTheme.shapes.small).padding(Dimens.Space12),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(Dimens.Space12),
+    ) {
+        Icon(Icons.Filled.LocalShipping, null, tint = OnioTheme.colors.freeShipping)
+        Column {
+            Text(stringResource(R.string.checkout_delivery_between, from, to), style = MaterialTheme.typography.labelLarge)
+            Text(
+                stringResource(if (estimate.official) R.string.checkout_delivery_official else R.string.checkout_delivery_estimate),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }

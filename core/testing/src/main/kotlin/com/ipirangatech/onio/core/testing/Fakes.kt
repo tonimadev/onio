@@ -2,7 +2,11 @@ package com.ipirangatech.onio.core.testing
 
 import com.ipirangatech.onio.core.model.AppSettings
 import com.ipirangatech.onio.core.model.CardBrand
+import com.ipirangatech.onio.core.model.Address
 import com.ipirangatech.onio.core.model.CartItem
+import com.ipirangatech.onio.core.model.DeliveryEstimate
+import com.ipirangatech.onio.core.model.DeliveryEstimator
+import com.ipirangatech.onio.core.model.ShippingRepository
 import com.ipirangatech.onio.core.model.CartRepository
 import com.ipirangatech.onio.core.model.Category
 import com.ipirangatech.onio.core.model.CheckInResult
@@ -259,5 +263,24 @@ class FakeRewardsRepository(initial: RewardsWallet = RewardsWallet()) : RewardsR
         spent += amount
         state.value = state.value.copy(coins = state.value.coins - amount)
         return true
+    }
+}
+
+class FakeShippingRepository(var addresses: Map<String, Address> = mapOf("01001000" to Address("01001000", "Praça da Sé", "Sé", "São Paulo", "SP"))) : ShippingRepository {
+    val state = MutableStateFlow<Address?>(null)
+    var failure: Throwable? = null
+    val lookups = mutableListOf<String>()
+    override val savedAddress: Flow<Address?> = state
+
+    override suspend fun lookup(cep: String): Address? {
+        lookups += cep
+        failure?.let { throw it }
+        return addresses[cep]
+    }
+
+    override suspend fun estimate(address: Address): DeliveryEstimate = DeliveryEstimator.estimate(address.state)
+
+    override suspend fun save(address: Address) {
+        state.value = address
     }
 }

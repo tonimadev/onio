@@ -96,6 +96,13 @@ feature/checkout/impl,checkout_row_coins,,Coins,কয়েন
 feature/checkout/impl,checkout_row_total,,Total,মোট
 feature/checkout/impl,checkout_coins_available,one,%1$d coin available,%1$dটি কয়েন আছে
 feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$dটি কয়েন আছে
+feature/checkout/impl,checkout_cep,,ZIP code (CEP),পিন কোড (CEP)
+feature/checkout/impl,checkout_cep_hint,,Brazilian ZIP code: we fill in your address and estimate the delivery,ব্রাজিলের পিন কোড: আমরা ঠিকানা ভরে দেব এবং ডেলিভারির সময় অনুমান করব
+feature/checkout/impl,checkout_cep_not_found,,We couldn't find this ZIP code,এই পিন কোড পাওয়া যায়নি
+feature/checkout/impl,checkout_cep_error,,Couldn't look up the ZIP code,পিন কোড খোঁজা যায়নি
+feature/checkout/impl,checkout_delivery_between,,Arrives between %1$s and %2$s,পৌঁছাবে %1$s থেকে %2$s এর মধ্যে
+feature/checkout/impl,checkout_delivery_estimate,,Estimated by region,অঞ্চল অনুযায়ী অনুমান
+feature/checkout/impl,checkout_delivery_official,,Confirmed by Correios,Correios কর্তৃক নিশ্চিত
 feature/home/impl,home_recommended,,Recommended for you,আপনার জন্য সুপারিশ
 feature/home/impl,home_deals,,Deals of the day,আজকের অফার
 feature/home/impl,home_ends_in,,Ends in %1$s,শেষ হবে %1$s এ
@@ -154,6 +161,8 @@ feature/product/impl,product_delivery_free,,Free delivery,ফ্রি ডেল
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,পৌঁছাবে %1$s এর মধ্যে
 feature/product/impl,product_returns,,30-day free returns,৩০ দিনের ফ্রি রিটার্ন
 feature/product/impl,product_secure,,Secure payment,নিরাপদ পেমেন্ট
+feature/product/impl,product_delivery_range,,Arrives between %1$s and %2$s,পৌঁছাবে %1$s থেকে %2$s এর মধ্যে
+feature/product/impl,product_delivery_range_to,,To %3$s: between %1$s and %2$s,%3$s এ: %1$s থেকে %2$s এর মধ্যে
 feature/rewards/impl,rewards_title,,Rewards,রিওয়ার্ড
 feature/rewards/impl,rewards_balance_label,,Your coins,আপনার কয়েন
 feature/rewards/impl,rewards_checkin_title,,Daily check-in,দৈনিক চেক-ইন

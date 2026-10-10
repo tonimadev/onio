@@ -1,6 +1,7 @@
 package com.ipirangatech.onio.feature.product.impl
 
 import androidx.compose.runtime.Immutable
+import com.ipirangatech.onio.core.model.DeliveryEstimate
 import com.ipirangatech.onio.core.model.Money
 import com.ipirangatech.onio.core.model.Product
 import com.ipirangatech.onio.core.model.Review
@@ -66,6 +67,9 @@ data class ProductState(
     val hasError: Boolean = false,
     val product: UiProductDetail? = null,
     val isFavorite: Boolean = false,
+    /** From the CEP the customer already used; null falls back to a generic message. */
+    val delivery: DeliveryEstimate? = null,
+    val deliveryCity: String? = null,
     val effect: ProductEffect? = null,
     val reviews: ImmutableList<UiReview> = persistentListOf(),
 )

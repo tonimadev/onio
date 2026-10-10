@@ -14,4 +14,6 @@
     <string name="product_delivery_eta">Llega el %1$s</string>
     <string name="product_returns">Devoluciones gratis en 30 días</string>
     <string name="product_secure">Pago seguro</string>
+    <string name="product_delivery_range">Llega entre el %1$s y el %2$s</string>
+    <string name="product_delivery_range_to">A %3$s: entre el %1$s y el %2$s</string>
 </resources>

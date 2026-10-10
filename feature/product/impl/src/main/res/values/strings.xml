@@ -13,4 +13,6 @@
     <string name="product_delivery_eta">Arrives by %1$s</string>
     <string name="product_returns">30-day free returns</string>
     <string name="product_secure">Secure payment</string>
+    <string name="product_delivery_range">Arrives between %1$s and %2$s</string>
+    <string name="product_delivery_range_to">To %3$s: between %1$s and %2$s</string>
 </resources>

@@ -7,6 +7,7 @@ import com.ipirangatech.onio.core.model.Money
 import com.ipirangatech.onio.core.testing.FakeCartRepository
 import com.ipirangatech.onio.core.testing.FakeCouponRepository
 import com.ipirangatech.onio.core.testing.FakeRewardsRepository
+import com.ipirangatech.onio.core.testing.FakeShippingRepository
 import com.ipirangatech.onio.core.testing.FakeOrderRepository
 import com.ipirangatech.onio.core.testing.FakeSettingsRepository
 import com.ipirangatech.onio.core.testing.MainDispatcherRule
@@ -32,7 +33,9 @@ class CheckoutViewModelTest {
     private val coupons = FakeCouponRepository()
     private val rewards = FakeRewardsRepository()
 
-    private fun viewModel() = CheckoutViewModel(cart, orders, settings, coupons, rewards)
+    private val shipping = FakeShippingRepository()
+
+    private fun viewModel() = CheckoutViewModel(cart, orders, settings, coupons, rewards, shipping)
 
     private fun CheckoutViewModel.fillValidForm() {
         onIntent(CheckoutIntent.FieldChanged(CheckoutField.ADDRESS, "Rua A, 1"))
@@ -192,5 +195,62 @@ class CheckoutViewModelTest {
         vm.onIntent(CheckoutIntent.CouponCodeChanged("nope"))
         vm.onIntent(CheckoutIntent.RedeemCouponCode)
         assertEquals(CouponCodeMessage.UNKNOWN, vm.uiState.value.couponCodeMessage)
+    }
+
+    // ---- CEP and delivery ----
+
+    @Test fun aCompleteCepFillsTheAddressAndShowsADeliveryEstimate() {
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.CepChanged("01001-000"))
+        val state = vm.uiState.value
+        assertEquals("01001000", state.cep)
+        assertEquals(CepStatus.FOUND, state.cepStatus)
+        assertEquals("Praça da Sé, Sé, São Paulo - SP", state.address)
+        assertEquals(2, state.delivery!!.minDays)
+        assertEquals("01001000", shipping.state.value!!.cep) // remembered for next time
+    }
+
+    @Test fun anIncompleteCepDoesNotCallTheNetworkAndAnUnknownOneSaysSo() {
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.CepChanged("0100"))
+        assertTrue(shipping.lookups.isEmpty())
+        assertEquals(CepStatus.IDLE, vm.uiState.value.cepStatus)
+        vm.onIntent(CheckoutIntent.CepChanged("99999999"))
+        assertEquals(CepStatus.NOT_FOUND, vm.uiState.value.cepStatus)
+        assertNull(vm.uiState.value.delivery)
+    }
+
+    @Test fun whatTheUserTypedInTheAddressIsNeverOverwritten() {
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.FieldChanged(CheckoutField.ADDRESS, "Av. Paulista, 1000"))
+        vm.onIntent(CheckoutIntent.CepChanged("01001000"))
+        assertEquals("Av. Paulista, 1000", vm.uiState.value.address)
+        assertEquals(CepStatus.FOUND, vm.uiState.value.cepStatus)
+    }
+
+    @Test fun aSuggestedAddressIsReplacedWhenTheCepChanges() {
+        shipping.addresses = shipping.addresses + ("20000000" to com.ipirangatech.onio.core.model.Address("20000000", "Rua B", "Centro", "Rio de Janeiro", "RJ"))
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.CepChanged("01001000"))
+        vm.onIntent(CheckoutIntent.CepChanged("20000000"))
+        assertEquals("Rua B, Centro, Rio de Janeiro - RJ", vm.uiState.value.address)
+        assertTrue(vm.uiState.value.delivery!!.maxDays > 4)
+    }
+
+    @Test fun aNetworkFailureOffersARetry() {
+        shipping.failure = java.io.IOException("offline")
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.CepChanged("01001000"))
+        assertEquals(CepStatus.ERROR, vm.uiState.value.cepStatus)
+        shipping.failure = null
+        vm.onIntent(CheckoutIntent.RetryCep)
+        assertEquals(CepStatus.FOUND, vm.uiState.value.cepStatus)
+    }
+
+    @Test fun aSavedCepIsLookedUpAutomatically() {
+        shipping.state.value = com.ipirangatech.onio.core.model.Address("01001000", "Praça da Sé", "Sé", "São Paulo", "SP")
+        val vm = viewModel()
+        assertEquals("01001000", vm.uiState.value.cep)
+        assertEquals(CepStatus.FOUND, vm.uiState.value.cepStatus)
     }
 }

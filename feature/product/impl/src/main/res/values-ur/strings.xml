@@ -13,4 +13,6 @@
     <string name="product_delivery_eta">%1$s تک پہنچے گا</string>
     <string name="product_returns">30 دن میں مفت واپسی</string>
     <string name="product_secure">محفوظ ادائیگی</string>
+    <string name="product_delivery_range">%1$s اور %2$s کے درمیان پہنچے گا</string>
+    <string name="product_delivery_range_to">%3$s تک: %1$s اور %2$s کے درمیان</string>
 </resources>

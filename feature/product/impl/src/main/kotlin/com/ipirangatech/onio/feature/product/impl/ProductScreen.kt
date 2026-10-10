@@ -15,6 +15,7 @@ import com.ipirangatech.onio.core.ui.motion.staggeredEntrance
 import com.ipirangatech.onio.core.ui.theme.Dimens
 import com.ipirangatech.onio.core.ui.theme.OnioTheme
 import java.text.NumberFormat
+import com.ipirangatech.onio.core.model.DeliveryEstimate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -197,7 +198,7 @@ internal fun ProductScreen(
                         )
                     }
                 }
-                SectionCard(Modifier.fillMaxWidth().staggeredEntrance(1)) { DeliveryInfo() }
+                SectionCard(Modifier.fillMaxWidth().staggeredEntrance(1)) { DeliveryInfo(state.delivery, state.deliveryCity) }
                 SectionCard(Modifier.fillMaxWidth().staggeredEntrance(2)) {
                     Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
                         Text(product.description, style = MaterialTheme.typography.bodyMedium)
@@ -226,17 +227,28 @@ internal fun ProductScreen(
 }
 
 @Composable
-private fun DeliveryInfo() {
+private fun DeliveryInfo(estimate: DeliveryEstimate?, city: String?) {
     val context = LocalContext.current
-    val eta = remember {
-        DateUtils.formatDateTime(
-            context,
-            System.currentTimeMillis() + 4L * DateUtils.DAY_IN_MILLIS,
-            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_ALL,
-        )
+    val flags = DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_ALL
+    val subtitle = remember(estimate, city) {
+        val now = System.currentTimeMillis()
+        if (estimate == null) {
+            DateUtils.formatDateTime(context, now + 4L * DateUtils.DAY_IN_MILLIS, flags) to false
+        } else {
+            val from = DateUtils.formatDateTime(context, now + estimate.minDays * DateUtils.DAY_IN_MILLIS, flags)
+            val to = DateUtils.formatDateTime(context, now + estimate.maxDays * DateUtils.DAY_IN_MILLIS, flags)
+            "$from|$to" to true
+        }
     }
     Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
-        InfoRow(Icons.Filled.LocalShipping, stringResource(R.string.product_delivery_free), stringResource(R.string.product_delivery_eta, eta))
+        val (text, personal) = subtitle
+        val line = if (personal) {
+            val (from, to) = text.split("|")
+            stringResource(if (city != null) R.string.product_delivery_range_to else R.string.product_delivery_range, from, to, city.orEmpty())
+        } else {
+            stringResource(R.string.product_delivery_eta, text)
+        }
+        InfoRow(Icons.Filled.LocalShipping, stringResource(R.string.product_delivery_free), line)
         InfoRow(Icons.Filled.Replay, stringResource(R.string.product_returns), null)
         InfoRow(Icons.Filled.Lock, stringResource(R.string.product_secure), null)
     }

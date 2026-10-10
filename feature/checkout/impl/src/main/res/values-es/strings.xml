@@ -39,4 +39,11 @@
         <item quantity="many">%1$d de monedas disponibles</item>
         <item quantity="other">%1$d monedas disponibles</item>
     </plurals>
+    <string name="checkout_cep">Código postal (CEP)</string>
+    <string name="checkout_cep_hint">Código postal de Brasil: rellenamos tu dirección y estimamos la entrega</string>
+    <string name="checkout_cep_not_found">No encontramos este código postal</string>
+    <string name="checkout_cep_error">No se pudo consultar el código postal</string>
+    <string name="checkout_delivery_between">Llega entre el %1$s y el %2$s</string>
+    <string name="checkout_delivery_estimate">Estimado según la región</string>
+    <string name="checkout_delivery_official">Confirmado por Correios</string>
 </resources>

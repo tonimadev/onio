@@ -15,6 +15,9 @@ import com.ipirangatech.onio.core.model.PricingCalculator
 import com.ipirangatech.onio.core.model.PurchaseReward
 import com.ipirangatech.onio.core.model.RedeemResult
 import com.ipirangatech.onio.core.model.RewardsRepository
+import com.ipirangatech.onio.core.model.ShippingRepository
+import com.ipirangatech.onio.core.model.Cep
+import kotlinx.coroutines.Job
 import com.ipirangatech.onio.core.model.SettingsRepository
 import com.ipirangatech.onio.core.model.WalletCoupon
 import com.ipirangatech.onio.core.model.sum
@@ -39,6 +42,7 @@ class CheckoutViewModel @Inject constructor(
     private val settings: SettingsRepository,
     private val couponRepository: CouponRepository,
     private val rewards: RewardsRepository,
+    private val shipping: ShippingRepository,
 ) : ViewModel() {
     /** Time source for coupon expiry; tests replace it. */
     internal var clock: () -> Long = System::currentTimeMillis
@@ -48,6 +52,9 @@ class CheckoutViewModel @Inject constructor(
     val effect = uiState.map { it.effect }.distinctUntilChanged()
 
     private var items: List<CartItem> = emptyList()
+    private var cepJob: Job? = null
+    /** The address line we wrote ourselves, so a later CEP change can replace it without touching what the user typed. */
+    private var autoFilledLine: String? = null
     private var allCoupons: List<WalletCoupon> = emptyList()
 
     init {
@@ -64,6 +71,12 @@ class CheckoutViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching { settings.settings.first().userName }.getOrNull()?.let { name ->
                 _uiState.update { if (it.name.isBlank()) it.copy(name = name) else it }
+            }
+        }
+        // Remember the last CEP so returning customers do not retype it.
+        viewModelScope.launch {
+            runCatching { shipping.savedAddress.first() }.getOrNull()?.let { saved ->
+                if (_uiState.value.cep.isEmpty()) onIntent(CheckoutIntent.CepChanged(saved.cep))
             }
         }
         viewModelScope.launch {
@@ -88,6 +101,8 @@ class CheckoutViewModel @Inject constructor(
         when (intent) {
             is CheckoutIntent.FieldChanged -> onField(intent.field, intent.value)
             CheckoutIntent.Submit -> submit()
+            is CheckoutIntent.CepChanged -> onCep(intent.raw)
+            CheckoutIntent.RetryCep -> lookupCep(_uiState.value.cep)
             CheckoutIntent.OpenCoupons -> _uiState.update { it.copy(couponSheetOpen = true, couponCodeMessage = null) }
             CheckoutIntent.CloseCoupons -> _uiState.update { it.copy(couponSheetOpen = false) }
             is CheckoutIntent.SelectCoupon -> {
@@ -142,6 +157,47 @@ class CheckoutViewModel @Inject constructor(
                     _uiState.update { it.copy(couponCodeMessage = message, couponCode = if (result is RedeemResult.Added) "" else it.couponCode) }
                 }
                 .onFailure { _uiState.update { it.copy(hasError = true) } }
+        }
+    }
+
+    private fun onCep(raw: String) {
+        val digits = Cep.digits(raw)
+        cepJob?.cancel()
+        _uiState.update { it.copy(cep = digits, cepStatus = CepStatus.IDLE, resolvedAddress = null, delivery = null) }
+        if (digits.length == 8) lookupCep(digits)
+    }
+
+    private fun lookupCep(digits: String) {
+        if (digits.length != 8) return
+        cepJob?.cancel()
+        _uiState.update { it.copy(cepStatus = CepStatus.LOADING) }
+        cepJob = viewModelScope.launch {
+            runCatching { shipping.lookup(digits) }
+                .onSuccess { address ->
+                    if (address == null) {
+                        _uiState.update { it.copy(cepStatus = CepStatus.NOT_FOUND, resolvedAddress = null, delivery = null) }
+                        return@onSuccess
+                    }
+                    val estimate = runCatching { shipping.estimate(address) }.getOrNull()
+                    runCatching { shipping.save(address) }
+                    val line = address.asLine()
+                    _uiState.update { s ->
+                        // Only overwrite the address field if it is empty or still holds our previous suggestion.
+                        val replace = s.address.isBlank() || s.address == autoFilledLine
+                        if (replace) autoFilledLine = line
+                        s.copy(
+                            cepStatus = CepStatus.FOUND,
+                            resolvedAddress = address,
+                            delivery = estimate,
+                            address = if (replace) line else s.address,
+                            errors = if (replace) s.errors - CheckoutField.ADDRESS else s.errors,
+                        )
+                    }
+                }
+                .onFailure { error ->
+                    if (error is kotlinx.coroutines.CancellationException) throw error
+                    _uiState.update { it.copy(cepStatus = CepStatus.ERROR) }
+                }
         }
     }
 

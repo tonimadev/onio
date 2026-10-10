@@ -17,4 +17,6 @@
     <string name="product_delivery_eta">يصل بحلول %1$s</string>
     <string name="product_returns">إرجاع مجاني خلال 30 يومًا</string>
     <string name="product_secure">دفع آمن</string>
+    <string name="product_delivery_range">يصل بين %1$s و%2$s</string>
+    <string name="product_delivery_range_to">إلى %3$s: بين %1$s و%2$s</string>
 </resources>

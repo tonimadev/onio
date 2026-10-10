@@ -3,6 +3,7 @@ package com.ipirangatech.onio.feature.product.impl
 import com.ipirangatech.onio.core.testing.FakeCartRepository
 import com.ipirangatech.onio.core.testing.FakeFavoritesRepository
 import com.ipirangatech.onio.core.testing.FakeProductRepository
+import com.ipirangatech.onio.core.testing.FakeShippingRepository
 import com.ipirangatech.onio.core.testing.MainDispatcherRule
 import com.ipirangatech.onio.core.testing.product
 import org.junit.Assert.assertEquals
@@ -20,7 +21,9 @@ class ProductViewModelTest {
     private val cart = FakeCartRepository()
     private val favorites = FakeFavoritesRepository()
 
-    private fun viewModel(id: Long = 7) = ProductViewModel(id, products, cart, favorites)
+    private val shipping = FakeShippingRepository()
+
+    private fun viewModel(id: Long = 7) = ProductViewModel(id, products, cart, favorites, shipping)
 
     @Test fun loadsTheProductWithAStrikeThroughPriceWhenDiscounted() {
         val state = viewModel().uiState.value
@@ -64,5 +67,18 @@ class ProductViewModelTest {
         val vm = viewModel()
         vm.onIntent(ProductIntent.BackClicked)
         assertEquals(ProductEffect.NavigateBack, vm.uiState.value.effect)
+    }
+
+    @Test fun withoutASavedCepThereIsNoPersonalDeliveryEstimate() {
+        assertNull(viewModel().uiState.value.delivery)
+    }
+
+    @Test fun aSavedCepGivesAnEstimateForThatCityAndFollowsChanges() {
+        shipping.state.value = com.ipirangatech.onio.core.model.Address("69900000", "Rua X", "Centro", "Rio Branco", "AC")
+        val vm = viewModel()
+        assertEquals("Rio Branco", vm.uiState.value.deliveryCity)
+        assertTrue(vm.uiState.value.delivery!!.maxDays >= 10)
+        shipping.state.value = com.ipirangatech.onio.core.model.Address("01001000", "Praça da Sé", "Sé", "São Paulo", "SP")
+        assertTrue(vm.uiState.value.delivery!!.maxDays <= 5)
     }
 }

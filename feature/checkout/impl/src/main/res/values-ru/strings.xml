@@ -41,4 +41,11 @@
         <item quantity="many">Доступно %1$d монет</item>
         <item quantity="other">Доступно %1$d монеты</item>
     </plurals>
+    <string name="checkout_cep">Индекс (CEP)</string>
+    <string name="checkout_cep_hint">Бразильский индекс: заполним адрес и оценим срок доставки</string>
+    <string name="checkout_cep_not_found">Индекс не найден</string>
+    <string name="checkout_cep_error">Не удалось проверить индекс</string>
+    <string name="checkout_delivery_between">Доставим с %1$s по %2$s</string>
+    <string name="checkout_delivery_estimate">Оценка по региону</string>
+    <string name="checkout_delivery_official">Подтверждено Correios</string>
 </resources>

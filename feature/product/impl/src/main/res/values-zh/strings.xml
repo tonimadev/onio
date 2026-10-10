@@ -12,4 +12,6 @@
     <string name="product_delivery_eta">预计 %1$s 送达</string>
     <string name="product_returns">30 天免费退货</string>
     <string name="product_secure">安全支付</string>
+    <string name="product_delivery_range">预计 %1$s 至 %2$s 送达</string>
+    <string name="product_delivery_range_to">送至%3$s：%1$s 至 %2$s</string>
 </resources>

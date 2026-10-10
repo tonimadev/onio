@@ -96,6 +96,13 @@ feature/checkout/impl,checkout_row_coins,,Coins,Pièces
 feature/checkout/impl,checkout_row_total,,Total,Total
 feature/checkout/impl,checkout_coins_available,one,%1$d coin available,%1$d pièce disponible
 feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$d pièces disponibles
+feature/checkout/impl,checkout_cep,,ZIP code (CEP),Code postal (CEP)
+feature/checkout/impl,checkout_cep_hint,,Brazilian ZIP code: we fill in your address and estimate the delivery,Code postal brésilien : nous complétons l'adresse et estimons la livraison
+feature/checkout/impl,checkout_cep_not_found,,We couldn't find this ZIP code,Code postal introuvable
+feature/checkout/impl,checkout_cep_error,,Couldn't look up the ZIP code,Impossible de rechercher le code postal
+feature/checkout/impl,checkout_delivery_between,,Arrives between %1$s and %2$s,Livraison entre le %1$s et le %2$s
+feature/checkout/impl,checkout_delivery_estimate,,Estimated by region,Estimation selon la région
+feature/checkout/impl,checkout_delivery_official,,Confirmed by Correios,Confirmé par les Correios
 feature/home/impl,home_recommended,,Recommended for you,Recommandé pour vous
 feature/home/impl,home_deals,,Deals of the day,Offres du jour
 feature/home/impl,home_ends_in,,Ends in %1$s,Se termine dans %1$s
@@ -154,6 +161,8 @@ feature/product/impl,product_delivery_free,,Free delivery,Livraison gratuite
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,Livraison le %1$s
 feature/product/impl,product_returns,,30-day free returns,Retours gratuits sous 30 jours
 feature/product/impl,product_secure,,Secure payment,Paiement sécurisé
+feature/product/impl,product_delivery_range,,Arrives between %1$s and %2$s,Livraison entre le %1$s et le %2$s
+feature/product/impl,product_delivery_range_to,,To %3$s: between %1$s and %2$s,Vers %3$s : entre le %1$s et le %2$s
 feature/rewards/impl,rewards_title,,Rewards,Récompenses
 feature/rewards/impl,rewards_balance_label,,Your coins,Vos pièces
 feature/rewards/impl,rewards_checkin_title,,Daily check-in,Check-in quotidien

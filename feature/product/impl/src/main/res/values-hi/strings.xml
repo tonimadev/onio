@@ -13,4 +13,6 @@
     <string name="product_delivery_eta">%1$s तक पहुँचेगा</string>
     <string name="product_returns">30 दिन की मुफ़्त वापसी</string>
     <string name="product_secure">सुरक्षित भुगतान</string>
+    <string name="product_delivery_range">%1$s से %2$s के बीच पहुँचेगा</string>
+    <string name="product_delivery_range_to">%3$s तक: %1$s से %2$s के बीच</string>
 </resources>

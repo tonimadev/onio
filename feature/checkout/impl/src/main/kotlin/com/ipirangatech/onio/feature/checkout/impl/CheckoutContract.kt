@@ -1,12 +1,16 @@
 package com.ipirangatech.onio.feature.checkout.impl
 
 import androidx.compose.runtime.Immutable
+import com.ipirangatech.onio.core.model.Address
+import com.ipirangatech.onio.core.model.DeliveryEstimate
 import com.ipirangatech.onio.core.model.Money
 import com.ipirangatech.onio.core.model.WalletCoupon
 
 enum class CouponCodeMessage { ADDED, UNKNOWN, ALREADY_HAVE }
 
 enum class CheckoutField { NAME, ADDRESS, CARD_NUMBER, EXPIRY, CVV }
+
+enum class CepStatus { IDLE, LOADING, FOUND, NOT_FOUND, ERROR }
 
 sealed interface CheckoutEffect {
     data class OrderPlaced(val orderId: Long, val coinsEarned: Int, val spinsEarned: Int) : CheckoutEffect
@@ -16,6 +20,8 @@ sealed interface CheckoutEffect {
 sealed interface CheckoutIntent {
     data class FieldChanged(val field: CheckoutField, val value: String) : CheckoutIntent
     data object Submit : CheckoutIntent
+    data class CepChanged(val raw: String) : CheckoutIntent
+    data object RetryCep : CheckoutIntent
     data object OpenCoupons : CheckoutIntent
     data object CloseCoupons : CheckoutIntent
     /** Null means "no coupon". */
@@ -47,6 +53,11 @@ data class CheckoutState(
     val thumbnails: List<String> = emptyList(),
     val name: String = "",
     val address: String = "",
+    /** Digits only. The UI shows it as 00000-000. */
+    val cep: String = "",
+    val cepStatus: CepStatus = CepStatus.IDLE,
+    val resolvedAddress: Address? = null,
+    val delivery: DeliveryEstimate? = null,
     val cardNumber: String = "",
     val expiry: String = "",
     val cvv: String = "",

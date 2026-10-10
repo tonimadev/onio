@@ -45,4 +45,11 @@
         <item quantity="many">%1$d عملة متاحة</item>
         <item quantity="other">%1$d عملة متاحة</item>
     </plurals>
+    <string name="checkout_cep">الرمز البريدي (CEP)</string>
+    <string name="checkout_cep_hint">الرمز البريدي البرازيلي: نملأ عنوانك ونقدّر موعد التسليم</string>
+    <string name="checkout_cep_not_found">لم نعثر على هذا الرمز البريدي</string>
+    <string name="checkout_cep_error">تعذر البحث عن الرمز البريدي</string>
+    <string name="checkout_delivery_between">يصل بين %1$s و%2$s</string>
+    <string name="checkout_delivery_estimate">تقدير حسب المنطقة</string>
+    <string name="checkout_delivery_official">مؤكد من Correios</string>
 </resources>

@@ -96,6 +96,13 @@ feature/checkout/impl,checkout_row_coins,,Coins,Монеты
 feature/checkout/impl,checkout_row_total,,Total,Итого
 feature/checkout/impl,checkout_coins_available,one,%1$d coin available,Доступна %1$d монета
 feature/checkout/impl,checkout_coins_available,other,%1$d coins available,Доступно %1$d монеты
+feature/checkout/impl,checkout_cep,,ZIP code (CEP),Индекс (CEP)
+feature/checkout/impl,checkout_cep_hint,,Brazilian ZIP code: we fill in your address and estimate the delivery,Бразильский индекс: заполним адрес и оценим срок доставки
+feature/checkout/impl,checkout_cep_not_found,,We couldn't find this ZIP code,Индекс не найден
+feature/checkout/impl,checkout_cep_error,,Couldn't look up the ZIP code,Не удалось проверить индекс
+feature/checkout/impl,checkout_delivery_between,,Arrives between %1$s and %2$s,Доставим с %1$s по %2$s
+feature/checkout/impl,checkout_delivery_estimate,,Estimated by region,Оценка по региону
+feature/checkout/impl,checkout_delivery_official,,Confirmed by Correios,Подтверждено Correios
 feature/home/impl,home_recommended,,Recommended for you,Рекомендуем вам
 feature/home/impl,home_deals,,Deals of the day,Предложения дня
 feature/home/impl,home_ends_in,,Ends in %1$s,Закончится через %1$s
@@ -154,6 +161,8 @@ feature/product/impl,product_delivery_free,,Free delivery,Бесплатная �
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,Доставим до %1$s
 feature/product/impl,product_returns,,30-day free returns,Бесплатный возврат в течение 30 дней
 feature/product/impl,product_secure,,Secure payment,Безопасная оплата
+feature/product/impl,product_delivery_range,,Arrives between %1$s and %2$s,Доставим с %1$s по %2$s
+feature/product/impl,product_delivery_range_to,,To %3$s: between %1$s and %2$s,В %3$s: с %1$s по %2$s
 feature/rewards/impl,rewards_title,,Rewards,Награды
 feature/rewards/impl,rewards_balance_label,,Your coins,Ваши монеты
 feature/rewards/impl,rewards_checkin_title,,Daily check-in,Ежедневный бонус

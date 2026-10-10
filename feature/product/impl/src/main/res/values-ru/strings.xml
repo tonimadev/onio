@@ -15,4 +15,6 @@
     <string name="product_delivery_eta">Доставим до %1$s</string>
     <string name="product_returns">Бесплатный возврат в течение 30 дней</string>
     <string name="product_secure">Безопасная оплата</string>
+    <string name="product_delivery_range">Доставим с %1$s по %2$s</string>
+    <string name="product_delivery_range_to">В %3$s: с %1$s по %2$s</string>
 </resources>

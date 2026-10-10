@@ -39,4 +39,11 @@
         <item quantity="many">%1$d de pièces disponibles</item>
         <item quantity="other">%1$d pièces disponibles</item>
     </plurals>
+    <string name="checkout_cep">Code postal (CEP)</string>
+    <string name="checkout_cep_hint">Code postal brésilien : nous complétons l\'adresse et estimons la livraison</string>
+    <string name="checkout_cep_not_found">Code postal introuvable</string>
+    <string name="checkout_cep_error">Impossible de rechercher le code postal</string>
+    <string name="checkout_delivery_between">Livraison entre le %1$s et le %2$s</string>
+    <string name="checkout_delivery_estimate">Estimation selon la région</string>
+    <string name="checkout_delivery_official">Confirmé par les Correios</string>
 </resources>

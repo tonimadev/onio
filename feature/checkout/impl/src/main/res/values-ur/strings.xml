@@ -37,4 +37,11 @@
         <item quantity="one">%1$d سکہ دستیاب</item>
         <item quantity="other">%1$d سکے دستیاب</item>
     </plurals>
+    <string name="checkout_cep">پوسٹل کوڈ (CEP)</string>
+    <string name="checkout_cep_hint">برازیلی پوسٹل کوڈ: ہم پتہ بھر دیں گے اور ڈیلیوری کا اندازہ بتائیں گے</string>
+    <string name="checkout_cep_not_found">یہ پوسٹل کوڈ نہیں ملا</string>
+    <string name="checkout_cep_error">پوسٹل کوڈ تلاش نہیں ہو سکا</string>
+    <string name="checkout_delivery_between">%1$s اور %2$s کے درمیان پہنچے گا</string>
+    <string name="checkout_delivery_estimate">علاقے کے مطابق اندازہ</string>
+    <string name="checkout_delivery_official">Correios کی تصدیق شدہ</string>
 </resources>

@@ -6,6 +6,7 @@ import com.ipirangatech.onio.core.model.CartRepository
 import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.Product
 import com.ipirangatech.onio.core.model.ProductRepository
+import com.ipirangatech.onio.core.model.ShippingRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -24,6 +25,7 @@ class ProductViewModel @AssistedInject constructor(
     private val products: ProductRepository,
     private val cart: CartRepository,
     private val favorites: FavoritesRepository,
+    private val shipping: ShippingRepository,
 ) : ViewModel() {
     @AssistedFactory
     interface Factory {
@@ -38,6 +40,14 @@ class ProductViewModel @AssistedInject constructor(
 
     init {
         onIntent(ProductIntent.Load)
+        viewModelScope.launch {
+            runCatching {
+                shipping.savedAddress.collect { address ->
+                    val estimate = address?.let { runCatching { shipping.estimate(it) }.getOrNull() }
+                    _uiState.update { it.copy(delivery = estimate, deliveryCity = address?.city) }
+                }
+            }
+        }
         viewModelScope.launch {
             runCatching {
                 favorites.favorites.collect { list ->

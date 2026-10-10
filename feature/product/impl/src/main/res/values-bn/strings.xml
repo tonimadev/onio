@@ -13,4 +13,6 @@
     <string name="product_delivery_eta">পৌঁছাবে %1$s এর মধ্যে</string>
     <string name="product_returns">৩০ দিনের ফ্রি রিটার্ন</string>
     <string name="product_secure">নিরাপদ পেমেন্ট</string>
+    <string name="product_delivery_range">পৌঁছাবে %1$s থেকে %2$s এর মধ্যে</string>
+    <string name="product_delivery_range_to">%3$s এ: %1$s থেকে %2$s এর মধ্যে</string>
 </resources>
