@@ -48,7 +48,7 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:data"))
 
-    val features = listOf("home", "search", "product", "cart", "checkout", "orders", "savings", "settings", "onboarding")
+    val features = listOf("home", "search", "product", "cart", "checkout", "orders", "savings", "settings", "onboarding", "rewards")
     features.forEach { feature ->
         implementation(project(":feature:$feature:bridge"))
         implementation(project(":feature:$feature:impl"))

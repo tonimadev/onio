@@ -5,6 +5,7 @@ import com.ipirangatech.onio.core.model.Category
 import com.ipirangatech.onio.core.testing.FakeCartRepository
 import com.ipirangatech.onio.core.testing.FakeFavoritesRepository
 import com.ipirangatech.onio.core.testing.FakeProductRepository
+import com.ipirangatech.onio.core.testing.FakeRewardsRepository
 import com.ipirangatech.onio.core.testing.FakeSettingsRepository
 import com.ipirangatech.onio.core.testing.MainDispatcherRule
 import com.ipirangatech.onio.core.testing.product
@@ -26,7 +27,9 @@ class HomeViewModelTest {
     private val favorites = FakeFavoritesRepository()
     private val settings = FakeSettingsRepository()
 
-    private fun viewModel() = HomeViewModel(products, cart, favorites, settings)
+    private val rewards = FakeRewardsRepository()
+
+    private fun viewModel() = HomeViewModel(products, cart, favorites, settings, rewards)
 
     @Test fun loadsCatalogCategoriesAndTheBiggestDiscountsAsDeals() {
         val state = viewModel().uiState.value

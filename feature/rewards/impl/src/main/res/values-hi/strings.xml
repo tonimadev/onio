@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">रिवॉर्ड्स</string>
+    <string name="rewards_balance_label">आपके सिक्के</string>
+    <string name="rewards_checkin_title">दैनिक चेक-इन</string>
+    <string name="rewards_checkin_button">चेक-इन करें</string>
+    <string name="rewards_checkin_done">कल फिर आएँ</string>
+    <string name="rewards_wheel_title">लकी व्हील</string>
+    <string name="rewards_wheel_cta">घुमाएँ</string>
+    <string name="rewards_coupons_title">मेरे कूपन</string>
+    <string name="rewards_coupons_empty">अभी कोई कूपन नहीं। व्हील घुमाएँ या कोड दर्ज करें।</string>
+    <string name="rewards_code_hint">कूपन कोड</string>
+    <string name="rewards_code_add">जोड़ें</string>
+    <string name="rewards_code_added">कूपन जुड़ गया!</string>
+    <string name="rewards_code_unknown">यह कोड मान्य नहीं है</string>
+    <string name="rewards_code_have">यह कूपन आपके पास पहले से है</string>
+    <string name="wheel_title">लकी व्हील</string>
+    <string name="wheel_spin">घुमाएँ</string>
+    <string name="wheel_no_spins">कोई स्पिन बाकी नहीं</string>
+    <string name="wheel_no_spins_hint">हर दिन एक नया मुफ़्त स्पिन मिलता है, और हर ऑर्डर पर एक और।</string>
+    <string name="wheel_next_spin_in">अगला मुफ़्त स्पिन %1$s में</string>
+    <string name="wheel_win_title">आप जीत गए!</string>
+    <string name="wheel_win_coupon">आपके लिए एक नया कूपन</string>
+    <string name="wheel_collect">प्राप्त करें</string>
+    <string name="placed_title">ऑर्डर हो गया!</string>
+    <string name="placed_order">ऑर्डर %1$s</string>
+    <string name="placed_earned_spin">आपने एक मुफ़्त स्पिन कमाया!</string>
+    <string name="placed_spin_now">व्हील घुमाएँ</string>
+    <string name="placed_view_order">ऑर्डर देखें</string>
+    <string name="placed_continue">खरीदारी जारी रखें</string>
+    <plurals name="rewards_spins">
+        <item quantity="one">%1$d स्पिन बाकी</item>
+        <item quantity="other">%1$d स्पिन बाकी</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="one">+%1$d सिक्का</item>
+        <item quantity="other">+%1$d सिक्के</item>
+    </plurals>
+</resources>

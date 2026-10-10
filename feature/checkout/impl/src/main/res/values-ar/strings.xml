@@ -21,4 +21,28 @@
     </plurals>
     <string name="checkout_summary">ملخص الطلب</string>
     <string name="checkout_secure">بيانات الدفع الخاصة بك مشفّرة وآمنة</string>
+    <string name="checkout_coupon_row">القسيمة</string>
+    <string name="checkout_coupon_select">اختر قسيمة</string>
+    <string name="checkout_coupon_sheet_title">اختر قسيمة</string>
+    <string name="checkout_coupon_none">عدم استخدام قسيمة</string>
+    <string name="checkout_coins_row">استخدم العملات</string>
+    <string name="checkout_code_hint">رمز القسيمة</string>
+    <string name="checkout_code_add">إضافة</string>
+    <string name="checkout_code_added">تمت إضافة القسيمة!</string>
+    <string name="checkout_code_unknown">هذا الرمز غير صالح</string>
+    <string name="checkout_code_have">لديك هذه القسيمة بالفعل</string>
+    <string name="checkout_row_subtotal">المجموع الفرعي</string>
+    <string name="checkout_row_shipping">الشحن</string>
+    <string name="checkout_row_free">مجاني</string>
+    <string name="checkout_row_coupon">القسيمة</string>
+    <string name="checkout_row_coins">العملات</string>
+    <string name="checkout_row_total">الإجمالي</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="zero">لا توجد عملات متاحة</item>
+        <item quantity="one">عملة واحدة متاحة</item>
+        <item quantity="two">عملتان متاحتان</item>
+        <item quantity="few">%1$d عملات متاحة</item>
+        <item quantity="many">%1$d عملة متاحة</item>
+        <item quantity="other">%1$d عملة متاحة</item>
+    </plurals>
 </resources>

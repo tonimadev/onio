@@ -10,4 +10,6 @@
     <string name="home_banner3_title">नई आमद</string>
     <string name="home_banner3_sub">हर दिन नई पसंद</string>
     <string name="home_greeting">नमस्ते, %1$s</string>
+    <string name="home_banner4_title">लकी व्हील</string>
+    <string name="home_banner4_sub">हर दिन घुमाएँ और सिक्के व कूपन जीतें</string>
 </resources>

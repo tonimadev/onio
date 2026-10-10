@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">المكافآت</string>
+    <string name="rewards_balance_label">عملاتك</string>
+    <string name="rewards_checkin_title">تسجيل الحضور اليومي</string>
+    <string name="rewards_checkin_button">سجّل حضورك</string>
+    <string name="rewards_checkin_done">عد غدًا</string>
+    <string name="rewards_wheel_title">عجلة الحظ</string>
+    <string name="rewards_wheel_cta">أدِر</string>
+    <string name="rewards_coupons_title">قسائمي</string>
+    <string name="rewards_coupons_empty">لا توجد قسائم بعد. أدِر العجلة أو أدخل رمزًا.</string>
+    <string name="rewards_code_hint">رمز القسيمة</string>
+    <string name="rewards_code_add">إضافة</string>
+    <string name="rewards_code_added">تمت إضافة القسيمة!</string>
+    <string name="rewards_code_unknown">هذا الرمز غير صالح</string>
+    <string name="rewards_code_have">لديك هذه القسيمة بالفعل</string>
+    <string name="wheel_title">عجلة الحظ</string>
+    <string name="wheel_spin">أدِر</string>
+    <string name="wheel_no_spins">لا توجد لفات متبقية</string>
+    <string name="wheel_no_spins_hint">تصلك لفة مجانية جديدة كل يوم، وكل طلب يمنحك لفة أخرى.</string>
+    <string name="wheel_next_spin_in">اللفة المجانية التالية خلال %1$s</string>
+    <string name="wheel_win_title">لقد ربحت!</string>
+    <string name="wheel_win_coupon">قسيمة جديدة لك</string>
+    <string name="wheel_collect">استلم</string>
+    <string name="placed_title">تم تقديم الطلب!</string>
+    <string name="placed_order">الطلب %1$s</string>
+    <string name="placed_earned_spin">ربحت لفة مجانية!</string>
+    <string name="placed_spin_now">أدِر العجلة</string>
+    <string name="placed_view_order">عرض الطلب</string>
+    <string name="placed_continue">متابعة التسوق</string>
+    <plurals name="rewards_spins">
+        <item quantity="zero">لا توجد لفات</item>
+        <item quantity="one">لفة واحدة متاحة</item>
+        <item quantity="two">لفتان متاحتان</item>
+        <item quantity="few">%1$d لفات متاحة</item>
+        <item quantity="many">%1$d لفة متاحة</item>
+        <item quantity="other">%1$d لفة متاحة</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="zero">+%1$d عملة</item>
+        <item quantity="one">+عملة واحدة</item>
+        <item quantity="two">+عملتان</item>
+        <item quantity="few">+%1$d عملات</item>
+        <item quantity="many">+%1$d عملة</item>
+        <item quantity="other">+%1$d عملة</item>
+    </plurals>
+</resources>

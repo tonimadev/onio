@@ -71,13 +71,29 @@ internal interface FavoriteDao {
     suspend fun delete(productId: Long)
 }
 
+@Dao
+internal interface CouponDao {
+    @Query("SELECT * FROM coupons ORDER BY (usedAtMillis IS NOT NULL), expiresAtMillis")
+    fun observeAll(): Flow<List<CouponEntity>>
+
+    @Insert
+    suspend fun insert(coupon: CouponEntity): Long
+
+    @Query("UPDATE coupons SET usedAtMillis = :now WHERE id = :id AND usedAtMillis IS NULL")
+    suspend fun markUsed(id: Long, now: Long)
+
+    @Query("SELECT COUNT(*) FROM coupons WHERE code = :code AND usedAtMillis IS NULL AND expiresAtMillis > :now")
+    suspend fun activeCount(code: String, now: Long): Int
+}
+
 @Database(
-    entities = [CartItemEntity::class, OrderEntity::class, FavoriteEntity::class],
-    version = 2,
+    entities = [CartItemEntity::class, OrderEntity::class, FavoriteEntity::class, CouponEntity::class],
+    version = 3,
     exportSchema = false,
 )
 internal abstract class OnioDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
     abstract fun orderDao(): OrderDao
     abstract fun favoriteDao(): FavoriteDao
+    abstract fun couponDao(): CouponDao
 }

@@ -47,6 +47,7 @@ fun AppRoot(startWithOnboarding: Boolean, modifier: Modifier = Modifier) {
                 OnboardingRoute(
                     viewModel = hiltViewModel<OnboardingViewModel>(),
                     onFinished = {
+                        mainViewModel.onOnboardingFinished()
                         if (Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
                         root.add(MainKey)
                         root.removeAll { it == OnboardingKey }

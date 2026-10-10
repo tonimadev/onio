@@ -17,4 +17,24 @@
     </plurals>
     <string name="checkout_summary">অর্ডারের সারাংশ</string>
     <string name="checkout_secure">আপনার পেমেন্ট তথ্য এনক্রিপ্টেড ও নিরাপদ</string>
+    <string name="checkout_coupon_row">কুপন</string>
+    <string name="checkout_coupon_select">কুপন বাছুন</string>
+    <string name="checkout_coupon_sheet_title">একটি কুপন বাছুন</string>
+    <string name="checkout_coupon_none">কুপন ব্যবহার করব না</string>
+    <string name="checkout_coins_row">কয়েন ব্যবহার করুন</string>
+    <string name="checkout_code_hint">কুপন কোড</string>
+    <string name="checkout_code_add">যোগ করুন</string>
+    <string name="checkout_code_added">কুপন যোগ হয়েছে!</string>
+    <string name="checkout_code_unknown">এই কোডটি সঠিক নয়</string>
+    <string name="checkout_code_have">এই কুপন আপনার কাছে আগেই আছে</string>
+    <string name="checkout_row_subtotal">উপমোট</string>
+    <string name="checkout_row_shipping">শিপিং</string>
+    <string name="checkout_row_free">বিনামূল্যে</string>
+    <string name="checkout_row_coupon">কুপন</string>
+    <string name="checkout_row_coins">কয়েন</string>
+    <string name="checkout_row_total">মোট</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="one">%1$dটি কয়েন আছে</item>
+        <item quantity="other">%1$dটি কয়েন আছে</item>
+    </plurals>
 </resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">Rewards</string>
+    <string name="rewards_balance_label">Your coins</string>
+    <string name="rewards_checkin_title">Daily check-in</string>
+    <string name="rewards_checkin_button">Check in</string>
+    <string name="rewards_checkin_done">Come back tomorrow</string>
+    <string name="rewards_wheel_title">Lucky wheel</string>
+    <string name="rewards_wheel_cta">Spin</string>
+    <string name="rewards_coupons_title">My coupons</string>
+    <string name="rewards_coupons_empty">No coupons yet. Spin the wheel or enter a code.</string>
+    <string name="rewards_code_hint">Coupon code</string>
+    <string name="rewards_code_add">Add</string>
+    <string name="rewards_code_added">Coupon added!</string>
+    <string name="rewards_code_unknown">That code isn\'t valid</string>
+    <string name="rewards_code_have">You already have this coupon</string>
+    <string name="wheel_title">Lucky wheel</string>
+    <string name="wheel_spin">SPIN</string>
+    <string name="wheel_no_spins">No spins left</string>
+    <string name="wheel_no_spins_hint">A new free spin arrives every day, and each order earns another one.</string>
+    <string name="wheel_next_spin_in">Next free spin in %1$s</string>
+    <string name="wheel_win_title">You won!</string>
+    <string name="wheel_win_coupon">A new coupon for you</string>
+    <string name="wheel_collect">Collect</string>
+    <string name="placed_title">Order placed!</string>
+    <string name="placed_order">Order %1$s</string>
+    <string name="placed_earned_spin">You earned a free spin!</string>
+    <string name="placed_spin_now">Spin the wheel</string>
+    <string name="placed_view_order">View order</string>
+    <string name="placed_continue">Continue shopping</string>
+    <plurals name="rewards_spins">
+        <item quantity="one">%1$d spin left</item>
+        <item quantity="other">%1$d spins left</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="one">+%1$d coin</item>
+        <item quantity="other">+%1$d coins</item>
+    </plurals>
+</resources>

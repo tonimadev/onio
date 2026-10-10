@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">Награды</string>
+    <string name="rewards_balance_label">Ваши монеты</string>
+    <string name="rewards_checkin_title">Ежедневный бонус</string>
+    <string name="rewards_checkin_button">Получить бонус</string>
+    <string name="rewards_checkin_done">Приходите завтра</string>
+    <string name="rewards_wheel_title">Колесо удачи</string>
+    <string name="rewards_wheel_cta">Крутить</string>
+    <string name="rewards_coupons_title">Мои купоны</string>
+    <string name="rewards_coupons_empty">Купонов пока нет. Крутите колесо или введите код.</string>
+    <string name="rewards_code_hint">Код купона</string>
+    <string name="rewards_code_add">Добавить</string>
+    <string name="rewards_code_added">Купон добавлен!</string>
+    <string name="rewards_code_unknown">Этот код недействителен</string>
+    <string name="rewards_code_have">Этот купон у вас уже есть</string>
+    <string name="wheel_title">Колесо удачи</string>
+    <string name="wheel_spin">КРУТИТЬ</string>
+    <string name="wheel_no_spins">Вращений не осталось</string>
+    <string name="wheel_no_spins_hint">Каждый день — новое бесплатное вращение, и ещё одно за каждый заказ.</string>
+    <string name="wheel_next_spin_in">Следующее вращение через %1$s</string>
+    <string name="wheel_win_title">Вы выиграли!</string>
+    <string name="wheel_win_coupon">Новый купон для вас</string>
+    <string name="wheel_collect">Забрать</string>
+    <string name="placed_title">Заказ оформлен!</string>
+    <string name="placed_order">Заказ %1$s</string>
+    <string name="placed_earned_spin">Вы получили бесплатное вращение!</string>
+    <string name="placed_spin_now">Крутить колесо</string>
+    <string name="placed_view_order">Посмотреть заказ</string>
+    <string name="placed_continue">Продолжить покупки</string>
+    <plurals name="rewards_spins">
+        <item quantity="one">Доступно %1$d вращение</item>
+        <item quantity="few">Доступно %1$d вращения</item>
+        <item quantity="many">Доступно %1$d вращений</item>
+        <item quantity="other">Доступно %1$d вращения</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="one">+%1$d монета</item>
+        <item quantity="few">+%1$d монеты</item>
+        <item quantity="many">+%1$d монет</item>
+        <item quantity="other">+%1$d монеты</item>
+    </plurals>
+</resources>

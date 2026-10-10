@@ -41,6 +41,7 @@ sealed interface HomeEffect {
     data class NavigateToCategory(val slug: String) : HomeEffect
     data object NavigateToSearch : HomeEffect
     data object NavigateToCart : HomeEffect
+    data object NavigateToRewards : HomeEffect
     data object ShowAdded : HomeEffect
 }
 
@@ -49,6 +50,7 @@ sealed interface HomeIntent {
     data object LoadMore : HomeIntent
     data object SearchClicked : HomeIntent
     data object ViewCartClicked : HomeIntent
+    data object RewardsClicked : HomeIntent
     data class AddToCart(val productId: Long) : HomeIntent
     data class ToggleFavorite(val productId: Long) : HomeIntent
     data class ProductClicked(val productId: Long) : HomeIntent
@@ -66,6 +68,9 @@ data class HomeState(
     val products: ImmutableList<UiProduct> = persistentListOf(),
     val canLoadMore: Boolean = false,
     val userName: String? = null,
+    val coins: Int = 0,
+    /** True when there is something to collect: a spin to use or today's check-in. */
+    val rewardsAttention: Boolean = false,
     val favoriteIds: ImmutableSet<Long> = persistentSetOf(),
     val effect: HomeEffect? = null,
 )

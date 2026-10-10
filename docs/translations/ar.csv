@@ -49,6 +49,11 @@ core/ui,delay_unit_hours,,hours,ساعات
 core/ui,delay_unit_days,,days,أيام
 core/ui,fav_add,,Add to favorites,أضف إلى المفضلة
 core/ui,fav_remove,,Remove from favorites,إزالة من المفضلة
+core/ui,coupon_percent_off,,%1$d%% OFF,خصم %1$d%%
+core/ui,coupon_amount_off,,%1$s OFF,خصم %1$s
+core/ui,coupon_min_spend,,Min. spend %1$s,الحد الأدنى %1$s
+core/ui,coupon_expires,,Expires %1$s,ينتهي في %1$s
+core/ui,coupon_used,,Used,مستخدمة
 feature/cart/impl,cart_title,,Cart,السلة
 feature/cart/impl,cart_empty,,Your cart is empty,سلتك فارغة
 feature/cart/impl,cart_subtotal,,Subtotal,المجموع الفرعي
@@ -73,6 +78,24 @@ feature/checkout/impl,checkout_total_items,one,Total (%1$d item),الإجمال�
 feature/checkout/impl,checkout_total_items,other,Total (%1$d items),الإجمالي (%1$d منتج)
 feature/checkout/impl,checkout_summary,,Order summary,ملخص الطلب
 feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,بيانات الدفع الخاصة بك مشفّرة وآمنة
+feature/checkout/impl,checkout_coupon_row,,Coupon,القسيمة
+feature/checkout/impl,checkout_coupon_select,,Select a coupon,اختر قسيمة
+feature/checkout/impl,checkout_coupon_sheet_title,,Choose a coupon,اختر قسيمة
+feature/checkout/impl,checkout_coupon_none,,Don't use a coupon,عدم استخدام قسيمة
+feature/checkout/impl,checkout_coins_row,,Use coins,استخدم العملات
+feature/checkout/impl,checkout_code_hint,,Coupon code,رمز القسيمة
+feature/checkout/impl,checkout_code_add,,Add,إضافة
+feature/checkout/impl,checkout_code_added,,Coupon added!,تمت إضافة القسيمة!
+feature/checkout/impl,checkout_code_unknown,,That code isn't valid,هذا الرمز غير صالح
+feature/checkout/impl,checkout_code_have,,You already have this coupon,لديك هذه القسيمة بالفعل
+feature/checkout/impl,checkout_row_subtotal,,Subtotal,المجموع الفرعي
+feature/checkout/impl,checkout_row_shipping,,Shipping,الشحن
+feature/checkout/impl,checkout_row_free,,Free,مجاني
+feature/checkout/impl,checkout_row_coupon,,Coupon,القسيمة
+feature/checkout/impl,checkout_row_coins,,Coins,العملات
+feature/checkout/impl,checkout_row_total,,Total,الإجمالي
+feature/checkout/impl,checkout_coins_available,one,%1$d coin available,عملة واحدة متاحة
+feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$d عملة متاحة
 feature/home/impl,home_recommended,,Recommended for you,موصى به لك
 feature/home/impl,home_deals,,Deals of the day,عروض اليوم
 feature/home/impl,home_ends_in,,Ends in %1$s,ينتهي خلال %1$s
@@ -83,6 +106,8 @@ feature/home/impl,home_banner2_sub,,"On every order, no minimum",على كل ا�
 feature/home/impl,home_banner3_title,,New arrivals,وصل حديثًا
 feature/home/impl,home_banner3_sub,,Fresh picks every day,اختيارات جديدة كل يوم
 feature/home/impl,home_greeting,,"Hi, %1$s",مرحبًا، %1$s
+feature/home/impl,home_banner4_title,,Lucky wheel,عجلة الحظ
+feature/home/impl,home_banner4_sub,,Spin every day for coins and coupons,أدِر العجلة كل يوم واربح عملات وقسائم
 feature/onboarding/impl,onb_skip,,Skip,تخطي
 feature/onboarding/impl,onb_next,,Next,التالي
 feature/onboarding/impl,onb_start,,Get started,ابدأ
@@ -129,6 +154,38 @@ feature/product/impl,product_delivery_free,,Free delivery,توصيل مجاني
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,يصل بحلول %1$s
 feature/product/impl,product_returns,,30-day free returns,إرجاع مجاني خلال 30 يومًا
 feature/product/impl,product_secure,,Secure payment,دفع آمن
+feature/rewards/impl,rewards_title,,Rewards,المكافآت
+feature/rewards/impl,rewards_balance_label,,Your coins,عملاتك
+feature/rewards/impl,rewards_checkin_title,,Daily check-in,تسجيل الحضور اليومي
+feature/rewards/impl,rewards_checkin_button,,Check in,سجّل حضورك
+feature/rewards/impl,rewards_checkin_done,,Come back tomorrow,عد غدًا
+feature/rewards/impl,rewards_wheel_title,,Lucky wheel,عجلة الحظ
+feature/rewards/impl,rewards_wheel_cta,,Spin,أدِر
+feature/rewards/impl,rewards_coupons_title,,My coupons,قسائمي
+feature/rewards/impl,rewards_coupons_empty,,No coupons yet. Spin the wheel or enter a code.,لا توجد قسائم بعد. أدِر العجلة أو أدخل رمزًا.
+feature/rewards/impl,rewards_code_hint,,Coupon code,رمز القسيمة
+feature/rewards/impl,rewards_code_add,,Add,إضافة
+feature/rewards/impl,rewards_code_added,,Coupon added!,تمت إضافة القسيمة!
+feature/rewards/impl,rewards_code_unknown,,That code isn't valid,هذا الرمز غير صالح
+feature/rewards/impl,rewards_code_have,,You already have this coupon,لديك هذه القسيمة بالفعل
+feature/rewards/impl,wheel_title,,Lucky wheel,عجلة الحظ
+feature/rewards/impl,wheel_spin,,SPIN,أدِر
+feature/rewards/impl,wheel_no_spins,,No spins left,لا توجد لفات متبقية
+feature/rewards/impl,wheel_no_spins_hint,,"A new free spin arrives every day, and each order earns another one.",تصلك لفة مجانية جديدة كل يوم، وكل طلب يمنحك لفة أخرى.
+feature/rewards/impl,wheel_next_spin_in,,Next free spin in %1$s,اللفة المجانية التالية خلال %1$s
+feature/rewards/impl,wheel_win_title,,You won!,لقد ربحت!
+feature/rewards/impl,wheel_win_coupon,,A new coupon for you,قسيمة جديدة لك
+feature/rewards/impl,wheel_collect,,Collect,استلم
+feature/rewards/impl,placed_title,,Order placed!,تم تقديم الطلب!
+feature/rewards/impl,placed_order,,Order %1$s,الطلب %1$s
+feature/rewards/impl,placed_earned_spin,,You earned a free spin!,ربحت لفة مجانية!
+feature/rewards/impl,placed_spin_now,,Spin the wheel,أدِر العجلة
+feature/rewards/impl,placed_view_order,,View order,عرض الطلب
+feature/rewards/impl,placed_continue,,Continue shopping,متابعة التسوق
+feature/rewards/impl,rewards_spins,one,%1$d spin left,لفة واحدة متاحة
+feature/rewards/impl,rewards_spins,other,%1$d spins left,%1$d لفة متاحة
+feature/rewards/impl,rewards_coin_gain,one,+%1$d coin,+عملة واحدة
+feature/rewards/impl,rewards_coin_gain,other,+%1$d coins,+%1$d عملة
 feature/savings/impl,savings_title,,Savings,المدخرات
 feature/savings/impl,savings_settings,,Settings,الإعدادات
 feature/savings/impl,savings_headline,,You didn't spend,لم تنفق

@@ -17,4 +17,24 @@
     </plurals>
     <string name="checkout_summary">آرڈر کا خلاصہ</string>
     <string name="checkout_secure">آپ کی ادائیگی کی معلومات انکرپٹڈ اور محفوظ ہیں</string>
+    <string name="checkout_coupon_row">کوپن</string>
+    <string name="checkout_coupon_select">کوپن منتخب کریں</string>
+    <string name="checkout_coupon_sheet_title">کوپن چنیں</string>
+    <string name="checkout_coupon_none">کوپن استعمال نہ کریں</string>
+    <string name="checkout_coins_row">سکے استعمال کریں</string>
+    <string name="checkout_code_hint">کوپن کوڈ</string>
+    <string name="checkout_code_add">شامل کریں</string>
+    <string name="checkout_code_added">کوپن شامل ہو گیا!</string>
+    <string name="checkout_code_unknown">یہ کوڈ درست نہیں ہے</string>
+    <string name="checkout_code_have">یہ کوپن آپ کے پاس پہلے سے ہے</string>
+    <string name="checkout_row_subtotal">ذیلی کل</string>
+    <string name="checkout_row_shipping">شپنگ</string>
+    <string name="checkout_row_free">مفت</string>
+    <string name="checkout_row_coupon">کوپن</string>
+    <string name="checkout_row_coins">سکے</string>
+    <string name="checkout_row_total">کل</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="one">%1$d سکہ دستیاب</item>
+        <item quantity="other">%1$d سکے دستیاب</item>
+    </plurals>
 </resources>

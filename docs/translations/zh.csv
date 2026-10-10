@@ -49,6 +49,11 @@ core/ui,delay_unit_hours,,hours,小时
 core/ui,delay_unit_days,,days,天
 core/ui,fav_add,,Add to favorites,加入收藏
 core/ui,fav_remove,,Remove from favorites,取消收藏
+core/ui,coupon_percent_off,,%1$d%% OFF,立减 %1$d%%
+core/ui,coupon_amount_off,,%1$s OFF,立减 %1$s
+core/ui,coupon_min_spend,,Min. spend %1$s,满 %1$s 可用
+core/ui,coupon_expires,,Expires %1$s,有效期至 %1$s
+core/ui,coupon_used,,Used,已使用
 feature/cart/impl,cart_title,,Cart,购物车
 feature/cart/impl,cart_empty,,Your cart is empty,购物车是空的
 feature/cart/impl,cart_subtotal,,Subtotal,小计
@@ -73,6 +78,24 @@ feature/checkout/impl,checkout_total_items,one,Total (%1$d item),
 feature/checkout/impl,checkout_total_items,other,Total (%1$d items),合计（%1$d 件商品）
 feature/checkout/impl,checkout_summary,,Order summary,订单摘要
 feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,您的支付信息已加密，安全无忧
+feature/checkout/impl,checkout_coupon_row,,Coupon,优惠券
+feature/checkout/impl,checkout_coupon_select,,Select a coupon,选择优惠券
+feature/checkout/impl,checkout_coupon_sheet_title,,Choose a coupon,选择优惠券
+feature/checkout/impl,checkout_coupon_none,,Don't use a coupon,不使用优惠券
+feature/checkout/impl,checkout_coins_row,,Use coins,使用金币
+feature/checkout/impl,checkout_code_hint,,Coupon code,优惠码
+feature/checkout/impl,checkout_code_add,,Add,添加
+feature/checkout/impl,checkout_code_added,,Coupon added!,优惠券已添加！
+feature/checkout/impl,checkout_code_unknown,,That code isn't valid,该优惠码无效
+feature/checkout/impl,checkout_code_have,,You already have this coupon,您已拥有此优惠券
+feature/checkout/impl,checkout_row_subtotal,,Subtotal,小计
+feature/checkout/impl,checkout_row_shipping,,Shipping,运费
+feature/checkout/impl,checkout_row_free,,Free,免费
+feature/checkout/impl,checkout_row_coupon,,Coupon,优惠券
+feature/checkout/impl,checkout_row_coins,,Coins,金币
+feature/checkout/impl,checkout_row_total,,Total,合计
+feature/checkout/impl,checkout_coins_available,one,%1$d coin available,
+feature/checkout/impl,checkout_coins_available,other,%1$d coins available,可用 %1$d 金币
 feature/home/impl,home_recommended,,Recommended for you,为你推荐
 feature/home/impl,home_deals,,Deals of the day,每日特惠
 feature/home/impl,home_ends_in,,Ends in %1$s,%1$s 后结束
@@ -83,6 +106,8 @@ feature/home/impl,home_banner2_sub,,"On every order, no minimum",所有订单，
 feature/home/impl,home_banner3_title,,New arrivals,新品上市
 feature/home/impl,home_banner3_sub,,Fresh picks every day,每日精选上新
 feature/home/impl,home_greeting,,"Hi, %1$s",你好，%1$s
+feature/home/impl,home_banner4_title,,Lucky wheel,幸运转盘
+feature/home/impl,home_banner4_sub,,Spin every day for coins and coupons,每天转一转，赢金币和优惠券
 feature/onboarding/impl,onb_skip,,Skip,跳过
 feature/onboarding/impl,onb_next,,Next,下一步
 feature/onboarding/impl,onb_start,,Get started,开始使用
@@ -129,6 +154,38 @@ feature/product/impl,product_delivery_free,,Free delivery,免费配送
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,预计 %1$s 送达
 feature/product/impl,product_returns,,30-day free returns,30 天免费退货
 feature/product/impl,product_secure,,Secure payment,安全支付
+feature/rewards/impl,rewards_title,,Rewards,奖励
+feature/rewards/impl,rewards_balance_label,,Your coins,您的金币
+feature/rewards/impl,rewards_checkin_title,,Daily check-in,每日签到
+feature/rewards/impl,rewards_checkin_button,,Check in,签到
+feature/rewards/impl,rewards_checkin_done,,Come back tomorrow,明天再来
+feature/rewards/impl,rewards_wheel_title,,Lucky wheel,幸运转盘
+feature/rewards/impl,rewards_wheel_cta,,Spin,转一转
+feature/rewards/impl,rewards_coupons_title,,My coupons,我的优惠券
+feature/rewards/impl,rewards_coupons_empty,,No coupons yet. Spin the wheel or enter a code.,还没有优惠券。转动转盘或输入优惠码。
+feature/rewards/impl,rewards_code_hint,,Coupon code,优惠码
+feature/rewards/impl,rewards_code_add,,Add,添加
+feature/rewards/impl,rewards_code_added,,Coupon added!,优惠券已添加！
+feature/rewards/impl,rewards_code_unknown,,That code isn't valid,该优惠码无效
+feature/rewards/impl,rewards_code_have,,You already have this coupon,您已拥有此优惠券
+feature/rewards/impl,wheel_title,,Lucky wheel,幸运转盘
+feature/rewards/impl,wheel_spin,,SPIN,转
+feature/rewards/impl,wheel_no_spins,,No spins left,没有剩余次数
+feature/rewards/impl,wheel_no_spins_hint,,"A new free spin arrives every day, and each order earns another one.",每天都会获得一次免费机会，每笔订单还会再送一次。
+feature/rewards/impl,wheel_next_spin_in,,Next free spin in %1$s,下次免费机会：%1$s 后
+feature/rewards/impl,wheel_win_title,,You won!,恭喜中奖！
+feature/rewards/impl,wheel_win_coupon,,A new coupon for you,送您一张新优惠券
+feature/rewards/impl,wheel_collect,,Collect,领取
+feature/rewards/impl,placed_title,,Order placed!,下单成功！
+feature/rewards/impl,placed_order,,Order %1$s,订单 %1$s
+feature/rewards/impl,placed_earned_spin,,You earned a free spin!,您获得了一次免费转盘机会！
+feature/rewards/impl,placed_spin_now,,Spin the wheel,转动转盘
+feature/rewards/impl,placed_view_order,,View order,查看订单
+feature/rewards/impl,placed_continue,,Continue shopping,继续购物
+feature/rewards/impl,rewards_spins,one,%1$d spin left,
+feature/rewards/impl,rewards_spins,other,%1$d spins left,剩余 %1$d 次机会
+feature/rewards/impl,rewards_coin_gain,one,+%1$d coin,
+feature/rewards/impl,rewards_coin_gain,other,+%1$d coins,+%1$d 金币
 feature/savings/impl,savings_title,,Savings,节省
 feature/savings/impl,savings_settings,,Settings,设置
 feature/savings/impl,savings_headline,,You didn't spend,您没有花掉

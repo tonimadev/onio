@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">Récompenses</string>
+    <string name="rewards_balance_label">Vos pièces</string>
+    <string name="rewards_checkin_title">Check-in quotidien</string>
+    <string name="rewards_checkin_button">Faire le check-in</string>
+    <string name="rewards_checkin_done">Revenez demain</string>
+    <string name="rewards_wheel_title">Roue de la chance</string>
+    <string name="rewards_wheel_cta">Tourner</string>
+    <string name="rewards_coupons_title">Mes coupons</string>
+    <string name="rewards_coupons_empty">Pas encore de coupons. Tournez la roue ou saisissez un code.</string>
+    <string name="rewards_code_hint">Code promo</string>
+    <string name="rewards_code_add">Ajouter</string>
+    <string name="rewards_code_added">Coupon ajouté !</string>
+    <string name="rewards_code_unknown">Ce code n\'est pas valide</string>
+    <string name="rewards_code_have">Vous avez déjà ce coupon</string>
+    <string name="wheel_title">Roue de la chance</string>
+    <string name="wheel_spin">TOURNER</string>
+    <string name="wheel_no_spins">Plus de tours</string>
+    <string name="wheel_no_spins_hint">Un nouveau tour gratuit arrive chaque jour, et chaque commande en rapporte un autre.</string>
+    <string name="wheel_next_spin_in">Prochain tour gratuit dans %1$s</string>
+    <string name="wheel_win_title">Vous avez gagné !</string>
+    <string name="wheel_win_coupon">Un nouveau coupon pour vous</string>
+    <string name="wheel_collect">Récupérer</string>
+    <string name="placed_title">Commande passée !</string>
+    <string name="placed_order">Commande %1$s</string>
+    <string name="placed_earned_spin">Vous avez gagné un tour gratuit !</string>
+    <string name="placed_spin_now">Tourner la roue</string>
+    <string name="placed_view_order">Voir la commande</string>
+    <string name="placed_continue">Continuer mes achats</string>
+    <plurals name="rewards_spins">
+        <item quantity="one">%1$d tour disponible</item>
+        <item quantity="many">%1$d de tours disponibles</item>
+        <item quantity="other">%1$d tours disponibles</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="one">+%1$d pièce</item>
+        <item quantity="many">+%1$d de pièces</item>
+        <item quantity="other">+%1$d pièces</item>
+    </plurals>
+</resources>

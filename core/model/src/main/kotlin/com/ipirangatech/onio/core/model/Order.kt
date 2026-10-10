@@ -29,6 +29,10 @@ data class Order(
     val placedAtMillis: Long,
     val cancelAtMillis: Long,
     val status: OrderStatus,
+    /** Coupon + coins already taken off [totalUsd]. */
+    val discount: Money = Money.zero(),
+    val couponCode: String? = null,
+    val coinsUsed: Int = 0,
 ) {
     fun remainingMillis(nowMillis: Long): Long = (cancelAtMillis - nowMillis).coerceAtLeast(0)
     fun isExpired(nowMillis: Long): Boolean = nowMillis >= cancelAtMillis

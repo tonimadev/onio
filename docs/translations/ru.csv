@@ -49,6 +49,11 @@ core/ui,delay_unit_hours,,hours,часы
 core/ui,delay_unit_days,,days,дни
 core/ui,fav_add,,Add to favorites,Добавить в избранное
 core/ui,fav_remove,,Remove from favorites,Убрать из избранного
+core/ui,coupon_percent_off,,%1$d%% OFF,−%1$d%%
+core/ui,coupon_amount_off,,%1$s OFF,−%1$s
+core/ui,coupon_min_spend,,Min. spend %1$s,Мин. сумма %1$s
+core/ui,coupon_expires,,Expires %1$s,Действует до %1$s
+core/ui,coupon_used,,Used,Использован
 feature/cart/impl,cart_title,,Cart,Корзина
 feature/cart/impl,cart_empty,,Your cart is empty,Корзина пуста
 feature/cart/impl,cart_subtotal,,Subtotal,Подытог
@@ -73,6 +78,24 @@ feature/checkout/impl,checkout_total_items,one,Total (%1$d item),Итого (%1$
 feature/checkout/impl,checkout_total_items,other,Total (%1$d items),Итого (%1$d товара)
 feature/checkout/impl,checkout_summary,,Order summary,Ваш заказ
 feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,Данные платежа зашифрованы и защищены
+feature/checkout/impl,checkout_coupon_row,,Coupon,Купон
+feature/checkout/impl,checkout_coupon_select,,Select a coupon,Выбрать купон
+feature/checkout/impl,checkout_coupon_sheet_title,,Choose a coupon,Выберите купон
+feature/checkout/impl,checkout_coupon_none,,Don't use a coupon,Не использовать купон
+feature/checkout/impl,checkout_coins_row,,Use coins,Использовать монеты
+feature/checkout/impl,checkout_code_hint,,Coupon code,Код купона
+feature/checkout/impl,checkout_code_add,,Add,Добавить
+feature/checkout/impl,checkout_code_added,,Coupon added!,Купон добавлен!
+feature/checkout/impl,checkout_code_unknown,,That code isn't valid,Этот код недействителен
+feature/checkout/impl,checkout_code_have,,You already have this coupon,Этот купон у вас уже есть
+feature/checkout/impl,checkout_row_subtotal,,Subtotal,Подытог
+feature/checkout/impl,checkout_row_shipping,,Shipping,Доставка
+feature/checkout/impl,checkout_row_free,,Free,Бесплатно
+feature/checkout/impl,checkout_row_coupon,,Coupon,Купон
+feature/checkout/impl,checkout_row_coins,,Coins,Монеты
+feature/checkout/impl,checkout_row_total,,Total,Итого
+feature/checkout/impl,checkout_coins_available,one,%1$d coin available,Доступна %1$d монета
+feature/checkout/impl,checkout_coins_available,other,%1$d coins available,Доступно %1$d монеты
 feature/home/impl,home_recommended,,Recommended for you,Рекомендуем вам
 feature/home/impl,home_deals,,Deals of the day,Предложения дня
 feature/home/impl,home_ends_in,,Ends in %1$s,Закончится через %1$s
@@ -83,6 +106,8 @@ feature/home/impl,home_banner2_sub,,"On every order, no minimum","На все з
 feature/home/impl,home_banner3_title,,New arrivals,Новинки
 feature/home/impl,home_banner3_sub,,Fresh picks every day,Свежие находки каждый день
 feature/home/impl,home_greeting,,"Hi, %1$s","Привет, %1$s"
+feature/home/impl,home_banner4_title,,Lucky wheel,Колесо удачи
+feature/home/impl,home_banner4_sub,,Spin every day for coins and coupons,Крутите каждый день — монеты и купоны
 feature/onboarding/impl,onb_skip,,Skip,Пропустить
 feature/onboarding/impl,onb_next,,Next,Далее
 feature/onboarding/impl,onb_start,,Get started,Начать
@@ -129,6 +154,38 @@ feature/product/impl,product_delivery_free,,Free delivery,Бесплатная �
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,Доставим до %1$s
 feature/product/impl,product_returns,,30-day free returns,Бесплатный возврат в течение 30 дней
 feature/product/impl,product_secure,,Secure payment,Безопасная оплата
+feature/rewards/impl,rewards_title,,Rewards,Награды
+feature/rewards/impl,rewards_balance_label,,Your coins,Ваши монеты
+feature/rewards/impl,rewards_checkin_title,,Daily check-in,Ежедневный бонус
+feature/rewards/impl,rewards_checkin_button,,Check in,Получить бонус
+feature/rewards/impl,rewards_checkin_done,,Come back tomorrow,Приходите завтра
+feature/rewards/impl,rewards_wheel_title,,Lucky wheel,Колесо удачи
+feature/rewards/impl,rewards_wheel_cta,,Spin,Крутить
+feature/rewards/impl,rewards_coupons_title,,My coupons,Мои купоны
+feature/rewards/impl,rewards_coupons_empty,,No coupons yet. Spin the wheel or enter a code.,Купонов пока нет. Крутите колесо или введите код.
+feature/rewards/impl,rewards_code_hint,,Coupon code,Код купона
+feature/rewards/impl,rewards_code_add,,Add,Добавить
+feature/rewards/impl,rewards_code_added,,Coupon added!,Купон добавлен!
+feature/rewards/impl,rewards_code_unknown,,That code isn't valid,Этот код недействителен
+feature/rewards/impl,rewards_code_have,,You already have this coupon,Этот купон у вас уже есть
+feature/rewards/impl,wheel_title,,Lucky wheel,Колесо удачи
+feature/rewards/impl,wheel_spin,,SPIN,КРУТИТЬ
+feature/rewards/impl,wheel_no_spins,,No spins left,Вращений не осталось
+feature/rewards/impl,wheel_no_spins_hint,,"A new free spin arrives every day, and each order earns another one.","Каждый день — новое бесплатное вращение, и ещё одно за каждый заказ."
+feature/rewards/impl,wheel_next_spin_in,,Next free spin in %1$s,Следующее вращение через %1$s
+feature/rewards/impl,wheel_win_title,,You won!,Вы выиграли!
+feature/rewards/impl,wheel_win_coupon,,A new coupon for you,Новый купон для вас
+feature/rewards/impl,wheel_collect,,Collect,Забрать
+feature/rewards/impl,placed_title,,Order placed!,Заказ оформлен!
+feature/rewards/impl,placed_order,,Order %1$s,Заказ %1$s
+feature/rewards/impl,placed_earned_spin,,You earned a free spin!,Вы получили бесплатное вращение!
+feature/rewards/impl,placed_spin_now,,Spin the wheel,Крутить колесо
+feature/rewards/impl,placed_view_order,,View order,Посмотреть заказ
+feature/rewards/impl,placed_continue,,Continue shopping,Продолжить покупки
+feature/rewards/impl,rewards_spins,one,%1$d spin left,Доступно %1$d вращение
+feature/rewards/impl,rewards_spins,other,%1$d spins left,Доступно %1$d вращения
+feature/rewards/impl,rewards_coin_gain,one,+%1$d coin,+%1$d монета
+feature/rewards/impl,rewards_coin_gain,other,+%1$d coins,+%1$d монеты
 feature/savings/impl,savings_title,,Savings,Экономия
 feature/savings/impl,savings_settings,,Settings,Настройки
 feature/savings/impl,savings_headline,,You didn't spend,Вы не потратили

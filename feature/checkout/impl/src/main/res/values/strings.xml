@@ -17,4 +17,24 @@
     </plurals>
     <string name="checkout_summary">Order summary</string>
     <string name="checkout_secure">Your payment info is encrypted and secure</string>
+    <string name="checkout_coupon_row">Coupon</string>
+    <string name="checkout_coupon_select">Select a coupon</string>
+    <string name="checkout_coupon_sheet_title">Choose a coupon</string>
+    <string name="checkout_coupon_none">Don\'t use a coupon</string>
+    <string name="checkout_coins_row">Use coins</string>
+    <string name="checkout_code_hint">Coupon code</string>
+    <string name="checkout_code_add">Add</string>
+    <string name="checkout_code_added">Coupon added!</string>
+    <string name="checkout_code_unknown">That code isn\'t valid</string>
+    <string name="checkout_code_have">You already have this coupon</string>
+    <string name="checkout_row_subtotal">Subtotal</string>
+    <string name="checkout_row_shipping">Shipping</string>
+    <string name="checkout_row_free">Free</string>
+    <string name="checkout_row_coupon">Coupon</string>
+    <string name="checkout_row_coins">Coins</string>
+    <string name="checkout_row_total">Total</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="one">%1$d coin available</item>
+        <item quantity="other">%1$d coins available</item>
+    </plurals>
 </resources>

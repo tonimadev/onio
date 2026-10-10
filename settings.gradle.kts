@@ -27,7 +27,7 @@ rootProject.name = "onio"
 include(":app")
 include(":core:model", ":core:ui", ":core:network", ":core:data", ":core:testing")
 
-val features = listOf("home", "search", "product", "cart", "checkout", "orders", "savings", "settings", "onboarding")
+val features = listOf("home", "search", "product", "cart", "checkout", "orders", "savings", "settings", "onboarding", "rewards")
 features.forEach { feature ->
     include(":feature:$feature:bridge", ":feature:$feature:impl")
 }

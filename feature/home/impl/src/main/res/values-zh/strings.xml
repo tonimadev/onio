@@ -10,4 +10,6 @@
     <string name="home_banner3_title">新品上市</string>
     <string name="home_banner3_sub">每日精选上新</string>
     <string name="home_greeting">你好，%1$s</string>
+    <string name="home_banner4_title">幸运转盘</string>
+    <string name="home_banner4_sub">每天转一转，赢金币和优惠券</string>
 </resources>

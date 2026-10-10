@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">Recompensas</string>
+    <string name="rewards_balance_label">Tus monedas</string>
+    <string name="rewards_checkin_title">Check-in diario</string>
+    <string name="rewards_checkin_button">Hacer check-in</string>
+    <string name="rewards_checkin_done">Vuelve mañana</string>
+    <string name="rewards_wheel_title">Ruleta de la suerte</string>
+    <string name="rewards_wheel_cta">Girar</string>
+    <string name="rewards_coupons_title">Mis cupones</string>
+    <string name="rewards_coupons_empty">Aún no tienes cupones. Gira la ruleta o introduce un código.</string>
+    <string name="rewards_code_hint">Código de cupón</string>
+    <string name="rewards_code_add">Añadir</string>
+    <string name="rewards_code_added">¡Cupón añadido!</string>
+    <string name="rewards_code_unknown">Ese código no es válido</string>
+    <string name="rewards_code_have">Ya tienes este cupón</string>
+    <string name="wheel_title">Ruleta de la suerte</string>
+    <string name="wheel_spin">GIRAR</string>
+    <string name="wheel_no_spins">No quedan giros</string>
+    <string name="wheel_no_spins_hint">Cada día llega un giro gratis y cada pedido te da otro.</string>
+    <string name="wheel_next_spin_in">Próximo giro gratis en %1$s</string>
+    <string name="wheel_win_title">¡Has ganado!</string>
+    <string name="wheel_win_coupon">Un cupón nuevo para ti</string>
+    <string name="wheel_collect">Recoger</string>
+    <string name="placed_title">¡Pedido realizado!</string>
+    <string name="placed_order">Pedido %1$s</string>
+    <string name="placed_earned_spin">¡Has ganado un giro gratis!</string>
+    <string name="placed_spin_now">Girar la ruleta</string>
+    <string name="placed_view_order">Ver pedido</string>
+    <string name="placed_continue">Seguir comprando</string>
+    <plurals name="rewards_spins">
+        <item quantity="one">%1$d giro disponible</item>
+        <item quantity="many">%1$d de giros disponibles</item>
+        <item quantity="other">%1$d giros disponibles</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="one">+%1$d moneda</item>
+        <item quantity="many">+%1$d de monedas</item>
+        <item quantity="other">+%1$d monedas</item>
+    </plurals>
+</resources>

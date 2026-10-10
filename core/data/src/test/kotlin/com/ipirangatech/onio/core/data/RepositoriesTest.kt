@@ -55,6 +55,22 @@ class OrderRepositoryTest {
         assertEquals("USD", order.totalUsd.currencyCode)
     }
 
+    @Test fun aDiscountLowersTheTotalAndIsRecordedOnTheOrder() = runTest {
+        val order = repo().placeOrder(request().copy(discount = Money.usd(900), couponCode = "WELCOME10", coinsUsed = 400))
+        assertEquals(3_600L, order.totalUsd.minorUnits)
+        assertEquals(900L, order.discount.minorUnits)
+        assertEquals("WELCOME10", order.couponCode)
+        assertEquals(400, order.coinsUsed)
+        val savedLater = repo().order(order.id).first()!!
+        assertEquals(order.discount, savedLater.discount)
+    }
+
+    @Test fun aDiscountLargerThanTheSubtotalIsCapped() = runTest {
+        val order = repo().placeOrder(request().copy(discount = Money.usd(1_000_000)))
+        assertEquals(0L, order.totalUsd.minorUnits)
+        assertEquals(4_500L, order.discount.minorUnits)
+    }
+
     @Test fun emptyCartsAreRejected() = runTest {
         val failure = runCatching { repo().placeOrder(request().copy(items = emptyList())) }.exceptionOrNull()
         assertTrue(failure is IllegalArgumentException)

@@ -6,6 +6,7 @@ import com.ipirangatech.onio.core.model.CartRepository
 import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.Product
 import com.ipirangatech.onio.core.model.ProductRepository
+import com.ipirangatech.onio.core.model.RewardsRepository
 import com.ipirangatech.onio.core.model.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
@@ -25,6 +26,7 @@ class HomeViewModel @Inject constructor(
     private val cart: CartRepository,
     private val favorites: FavoritesRepository,
     settings: SettingsRepository,
+    rewards: RewardsRepository,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeState())
     val uiState: StateFlow<HomeState> = _uiState.asStateFlow()
@@ -34,6 +36,14 @@ class HomeViewModel @Inject constructor(
 
     init {
         onIntent(HomeIntent.Load)
+        viewModelScope.launch { runCatching { rewards.refreshDaily() } }
+        viewModelScope.launch {
+            runCatching {
+                rewards.wallet.collect { wallet ->
+                    _uiState.update { it.copy(coins = wallet.coins, rewardsAttention = wallet.spins > 0 || !wallet.checkedInToday) }
+                }
+            }
+        }
         viewModelScope.launch {
             runCatching {
                 favorites.favorites.collect { list ->
@@ -54,6 +64,7 @@ class HomeViewModel @Inject constructor(
             HomeIntent.LoadMore -> loadMore()
             HomeIntent.SearchClicked -> emit(HomeEffect.NavigateToSearch)
             HomeIntent.ViewCartClicked -> emit(HomeEffect.NavigateToCart)
+            HomeIntent.RewardsClicked -> emit(HomeEffect.NavigateToRewards)
             is HomeIntent.AddToCart -> addToCart(intent.productId)
             is HomeIntent.ToggleFavorite -> toggleFavorite(intent.productId)
             is HomeIntent.ProductClicked -> emit(HomeEffect.NavigateToProduct(intent.productId))

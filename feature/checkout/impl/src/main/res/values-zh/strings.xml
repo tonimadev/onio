@@ -16,4 +16,23 @@
     </plurals>
     <string name="checkout_summary">订单摘要</string>
     <string name="checkout_secure">您的支付信息已加密，安全无忧</string>
+    <string name="checkout_coupon_row">优惠券</string>
+    <string name="checkout_coupon_select">选择优惠券</string>
+    <string name="checkout_coupon_sheet_title">选择优惠券</string>
+    <string name="checkout_coupon_none">不使用优惠券</string>
+    <string name="checkout_coins_row">使用金币</string>
+    <string name="checkout_code_hint">优惠码</string>
+    <string name="checkout_code_add">添加</string>
+    <string name="checkout_code_added">优惠券已添加！</string>
+    <string name="checkout_code_unknown">该优惠码无效</string>
+    <string name="checkout_code_have">您已拥有此优惠券</string>
+    <string name="checkout_row_subtotal">小计</string>
+    <string name="checkout_row_shipping">运费</string>
+    <string name="checkout_row_free">免费</string>
+    <string name="checkout_row_coupon">优惠券</string>
+    <string name="checkout_row_coins">金币</string>
+    <string name="checkout_row_total">合计</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="other">可用 %1$d 金币</item>
+    </plurals>
 </resources>

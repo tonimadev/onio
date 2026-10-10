@@ -41,4 +41,9 @@
     <string name="delay_unit_days">days</string>
     <string name="fav_add">Add to favorites</string>
     <string name="fav_remove">Remove from favorites</string>
+    <string name="coupon_percent_off">%1$d%% OFF</string>
+    <string name="coupon_amount_off">%1$s OFF</string>
+    <string name="coupon_min_spend">Min. spend %1$s</string>
+    <string name="coupon_expires">Expires %1$s</string>
+    <string name="coupon_used">Used</string>
 </resources>

@@ -18,4 +18,25 @@
     </plurals>
     <string name="checkout_summary">Récapitulatif</string>
     <string name="checkout_secure">Vos données de paiement sont chiffrées et sécurisées</string>
+    <string name="checkout_coupon_row">Coupon</string>
+    <string name="checkout_coupon_select">Choisir un coupon</string>
+    <string name="checkout_coupon_sheet_title">Choisissez un coupon</string>
+    <string name="checkout_coupon_none">Ne pas utiliser de coupon</string>
+    <string name="checkout_coins_row">Utiliser des pièces</string>
+    <string name="checkout_code_hint">Code promo</string>
+    <string name="checkout_code_add">Ajouter</string>
+    <string name="checkout_code_added">Coupon ajouté !</string>
+    <string name="checkout_code_unknown">Ce code n\'est pas valide</string>
+    <string name="checkout_code_have">Vous avez déjà ce coupon</string>
+    <string name="checkout_row_subtotal">Sous-total</string>
+    <string name="checkout_row_shipping">Livraison</string>
+    <string name="checkout_row_free">Gratuite</string>
+    <string name="checkout_row_coupon">Coupon</string>
+    <string name="checkout_row_coins">Pièces</string>
+    <string name="checkout_row_total">Total</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="one">%1$d pièce disponible</item>
+        <item quantity="many">%1$d de pièces disponibles</item>
+        <item quantity="other">%1$d pièces disponibles</item>
+    </plurals>
 </resources>

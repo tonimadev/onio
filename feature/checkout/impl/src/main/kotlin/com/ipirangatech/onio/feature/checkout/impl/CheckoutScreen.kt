@@ -1,5 +1,24 @@
 package com.ipirangatech.onio.feature.checkout.impl
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.ConfirmationNumber
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Switch
+import androidx.compose.material3.TextButton
+import androidx.compose.ui.res.pluralStringResource
+import com.ipirangatech.onio.core.ui.component.CoinIcon
+import com.ipirangatech.onio.core.ui.component.CouponTicket
+import com.ipirangatech.onio.core.ui.component.LocalCurrencyOverride
+import com.ipirangatech.onio.core.ui.component.TicketState
+import com.ipirangatech.onio.core.ui.component.couponHeadline
+import com.ipirangatech.onio.core.ui.rememberMoneyFormatter
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -51,7 +70,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -63,7 +81,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
@@ -79,7 +96,7 @@ import com.ipirangatech.onio.core.ui.component.PriceText
 fun CheckoutRoute(
     viewModel: CheckoutViewModel,
     onBack: () -> Unit,
-    onOrderPlaced: (Long) -> Unit,
+    onOrderPlaced: (orderId: Long, coins: Int, spins: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -88,7 +105,7 @@ fun CheckoutRoute(
         onConsumed = { viewModel.onIntent(CheckoutIntent.ConsumeEffect) },
     ) { effect ->
         when (effect) {
-            is CheckoutEffect.OrderPlaced -> onOrderPlaced(effect.orderId)
+            is CheckoutEffect.OrderPlaced -> onOrderPlaced(effect.orderId, effect.coinsEarned, effect.spinsEarned)
             CheckoutEffect.NavigateBack -> onBack()
         }
     }
@@ -98,6 +115,7 @@ fun CheckoutRoute(
 @Composable
 internal fun CheckoutScreen(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit, modifier: Modifier = Modifier) {
     var cvvFocused by remember { mutableStateOf(false) }
+    if (state.couponSheetOpen) CouponSheet(state, onIntent)
     Scaffold(
         modifier = modifier,
         containerColor = MaterialTheme.colorScheme.background,
@@ -170,6 +188,8 @@ internal fun CheckoutScreen(state: CheckoutState, onIntent: (CheckoutIntent) -> 
                         }
                     }
                 }
+                DiscountsCard(state, onIntent)
+                BreakdownCard(state)
             }
             AnimatedVisibility(state.isProcessing, enter = fadeIn(), exit = fadeOut()) {
                 Box(
@@ -291,6 +311,142 @@ private fun CardPreview(state: CheckoutState, showBack: Boolean) {
                         modifier = Modifier.padding(start = 12.dp),
                     )
                 }
+            }
+        }
+    }
+}
+
+
+@Composable
+private fun DiscountsCard(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit) {
+    val selected = state.coupons.firstOrNull { it.id == state.selectedCouponId }
+    SectionCard(Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+            Row(
+                Modifier.fillMaxWidth().clickable { onIntent(CheckoutIntent.OpenCoupons) }.padding(vertical = 4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(Dimens.Space12),
+            ) {
+                Icon(Icons.Filled.ConfirmationNumber, null, tint = MaterialTheme.colorScheme.primary)
+                Text(stringResource(R.string.checkout_coupon_row), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                Text(
+                    if (selected != null) couponHeadline(selected) else stringResource(R.string.checkout_coupon_select),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = if (selected != null) OnioTheme.colors.priceText else MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.Bold,
+                )
+                Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Dimens.Space12)) {
+                CoinIcon(size = 24.dp)
+                Column(Modifier.weight(1f)) {
+                    Text(stringResource(R.string.checkout_coins_row), style = MaterialTheme.typography.titleSmall)
+                    Text(
+                        pluralStringResource(R.plurals.checkout_coins_available, state.coinBalance, state.coinBalance),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Switch(
+                    checked = state.useCoins && state.maxCoins > 0,
+                    onCheckedChange = { onIntent(CheckoutIntent.ToggleCoins) },
+                    enabled = state.maxCoins > 0,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun BreakdownCard(state: CheckoutState) {
+    SectionCard(Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(Dimens.Space12), verticalArrangement = Arrangement.spacedBy(Dimens.Space8)) {
+            PriceRow(stringResource(R.string.checkout_row_subtotal)) { PriceText(state.subtotal, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface) }
+            PriceRow(stringResource(R.string.checkout_row_shipping)) {
+                Text(stringResource(R.string.checkout_row_free), style = MaterialTheme.typography.bodyMedium, color = OnioTheme.colors.freeShipping)
+            }
+            AnimatedVisibility(state.couponDiscount.minorUnits > 0) {
+                PriceRow(stringResource(R.string.checkout_row_coupon)) { Discount(state.couponDiscount) }
+            }
+            AnimatedVisibility(state.coinDiscount.minorUnits > 0) {
+                PriceRow(stringResource(R.string.checkout_row_coins)) { Discount(state.coinDiscount) }
+            }
+            HorizontalDivider(color = OnioTheme.colors.border)
+            PriceRow(stringResource(R.string.checkout_row_total), bold = true) { PriceText(animateMoneyAsState(state.total), style = MaterialTheme.typography.titleMedium) }
+        }
+    }
+}
+
+@Composable
+private fun Discount(amount: com.ipirangatech.onio.core.model.Money) {
+    val formatter = rememberMoneyFormatter(LocalCurrencyOverride.current)
+    Text("-" + formatter.format(amount), style = MaterialTheme.typography.bodyMedium, color = OnioTheme.colors.priceText, fontWeight = FontWeight.Bold)
+}
+
+@Composable
+private fun PriceRow(label: String, bold: Boolean = false, value: @Composable () -> Unit) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+        Text(label, style = if (bold) MaterialTheme.typography.titleSmall else MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        value()
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun CouponSheet(state: CheckoutState, onIntent: (CheckoutIntent) -> Unit) {
+    val now = remember { System.currentTimeMillis() }
+    ModalBottomSheet(onDismissRequest = { onIntent(CheckoutIntent.CloseCoupons) }, containerColor = MaterialTheme.colorScheme.background) {
+        LazyColumn(
+            contentPadding = PaddingValues(horizontal = Dimens.Space12, vertical = Dimens.Space8),
+            verticalArrangement = Arrangement.spacedBy(Dimens.Space8),
+        ) {
+            item { Text(stringResource(R.string.checkout_coupon_sheet_title), style = MaterialTheme.typography.titleMedium) }
+            item {
+                Row(horizontalArrangement = Arrangement.spacedBy(Dimens.Space8), verticalAlignment = Alignment.Top) {
+                    OutlinedTextField(
+                        value = state.couponCode,
+                        onValueChange = { onIntent(CheckoutIntent.CouponCodeChanged(it)) },
+                        label = { Text(stringResource(R.string.checkout_code_hint)) },
+                        singleLine = true,
+                        isError = state.couponCodeMessage == CouponCodeMessage.UNKNOWN || state.couponCodeMessage == CouponCodeMessage.ALREADY_HAVE,
+                        modifier = Modifier.weight(1f),
+                    )
+                    OnioButton(onClick = { onIntent(CheckoutIntent.RedeemCouponCode) }, enabled = state.couponCode.isNotBlank(), modifier = Modifier.padding(top = 6.dp).height(52.dp)) {
+                        Text(stringResource(R.string.checkout_code_add))
+                    }
+                }
+                state.couponCodeMessage?.let { message ->
+                    Text(
+                        stringResource(
+                            when (message) {
+                                CouponCodeMessage.ADDED -> R.string.checkout_code_added
+                                CouponCodeMessage.UNKNOWN -> R.string.checkout_code_unknown
+                                CouponCodeMessage.ALREADY_HAVE -> R.string.checkout_code_have
+                            },
+                        ),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = if (message == CouponCodeMessage.ADDED) OnioTheme.colors.freeShipping else MaterialTheme.colorScheme.error,
+                        modifier = Modifier.padding(top = 4.dp),
+                    )
+                }
+            }
+            items(state.coupons, key = { it.id }) { coupon ->
+                val eligible = coupon.isEligible(state.subtotal, now)
+                CouponTicket(
+                    coupon = coupon,
+                    state = when {
+                        coupon.id == state.selectedCouponId -> TicketState.SELECTED
+                        eligible -> TicketState.AVAILABLE
+                        else -> TicketState.DISABLED
+                    },
+                    onClick = { onIntent(CheckoutIntent.SelectCoupon(if (coupon.id == state.selectedCouponId) null else coupon.id)) },
+                )
+            }
+            item {
+                TextButton(onClick = { onIntent(CheckoutIntent.SelectCoupon(null)) }, modifier = Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.checkout_coupon_none))
+                }
+                Spacer(Modifier.height(Dimens.Space16))
             }
         }
     }

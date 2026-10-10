@@ -5,9 +5,13 @@ import com.ipirangatech.onio.core.model.CardBrand
 import com.ipirangatech.onio.core.model.CartItem
 import com.ipirangatech.onio.core.model.Money
 import com.ipirangatech.onio.core.testing.FakeCartRepository
+import com.ipirangatech.onio.core.testing.FakeCouponRepository
+import com.ipirangatech.onio.core.testing.FakeRewardsRepository
 import com.ipirangatech.onio.core.testing.FakeOrderRepository
 import com.ipirangatech.onio.core.testing.FakeSettingsRepository
 import com.ipirangatech.onio.core.testing.MainDispatcherRule
+import com.ipirangatech.onio.core.testing.walletCoupon
+import com.ipirangatech.onio.core.model.RewardsWallet
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceUntilIdle
 import org.junit.Assert.assertEquals
@@ -25,7 +29,10 @@ class CheckoutViewModelTest {
     private val orders = FakeOrderRepository()
     private val settings = FakeSettingsRepository(AppSettings(userName = "Ana", currencyOverride = "EUR"))
 
-    private fun viewModel() = CheckoutViewModel(cart, orders, settings)
+    private val coupons = FakeCouponRepository()
+    private val rewards = FakeRewardsRepository()
+
+    private fun viewModel() = CheckoutViewModel(cart, orders, settings, coupons, rewards)
 
     private fun CheckoutViewModel.fillValidForm() {
         onIntent(CheckoutIntent.FieldChanged(CheckoutField.ADDRESS, "Rua A, 1"))
@@ -122,5 +129,68 @@ class CheckoutViewModelTest {
         val vm = viewModel()
         vm.onIntent(CheckoutIntent.BackClicked)
         assertEquals(CheckoutEffect.NavigateBack, vm.uiState.value.effect)
+    }
+
+    // ---- coupons, coins and rewards ----
+
+    @Test fun aSelectedCouponLowersTheTotalAndIsRecordedThenMarkedUsed() {
+        coupons.state.value = listOf(walletCoupon(7, code = "WELCOME10", value = 10))
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.SelectCoupon(7))
+        assertEquals(450L, vm.uiState.value.couponDiscount.minorUnits)
+        assertEquals(4_050L, vm.uiState.value.total.minorUnits)
+        vm.fillValidForm()
+        vm.onIntent(CheckoutIntent.Submit)
+        main.scheduler.advanceUntilIdle()
+        val request = orders.placed.single()
+        assertEquals(450L, request.discount.minorUnits)
+        assertEquals("WELCOME10", request.couponCode)
+        assertEquals(listOf(7L), coupons.used)
+    }
+
+    @Test fun aCouponBelowItsMinimumSpendIsDropped() {
+        coupons.state.value = listOf(walletCoupon(8, minCents = 10_000))
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.SelectCoupon(8))
+        assertNull(vm.uiState.value.selectedCouponId)
+        assertEquals(0L, vm.uiState.value.couponDiscount.minorUnits)
+    }
+
+    @Test fun coinsPayTenCentsEachCappedAtHalfTheTotalAndAreSpentOnPurchase() {
+        rewards.state.value = RewardsWallet(coins = 1_000)
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.ToggleCoins)
+        // Half of $45.00 = $22.50 = 225 coins.
+        assertEquals(225, vm.uiState.value.coinsUsed)
+        assertEquals(2_250L, vm.uiState.value.coinDiscount.minorUnits)
+        assertEquals(2_250L, vm.uiState.value.total.minorUnits)
+        vm.fillValidForm()
+        vm.onIntent(CheckoutIntent.Submit)
+        main.scheduler.advanceUntilIdle()
+        assertEquals(225, orders.placed.single().coinsUsed)
+        assertEquals(225, rewards.spent)
+    }
+
+    @Test fun payingEarnsAFlatRewardAndTheCelebrationCarriesIt() {
+        val vm = viewModel()
+        vm.fillValidForm()
+        vm.onIntent(CheckoutIntent.Submit)
+        main.scheduler.advanceUntilIdle()
+        val effect = vm.uiState.value.effect as CheckoutEffect.OrderPlaced
+        assertEquals(25, effect.coinsEarned)
+        assertEquals(1, effect.spinsEarned)
+        assertEquals(1, rewards.purchases)
+    }
+
+    @Test fun redeemingACodeInTheSheetAddsTheCoupon() {
+        val vm = viewModel()
+        vm.onIntent(CheckoutIntent.OpenCoupons)
+        vm.onIntent(CheckoutIntent.CouponCodeChanged("welcome10"))
+        vm.onIntent(CheckoutIntent.RedeemCouponCode)
+        assertEquals(CouponCodeMessage.ADDED, vm.uiState.value.couponCodeMessage)
+        assertEquals(1, vm.uiState.value.coupons.size)
+        vm.onIntent(CheckoutIntent.CouponCodeChanged("nope"))
+        vm.onIntent(CheckoutIntent.RedeemCouponCode)
+        assertEquals(CouponCodeMessage.UNKNOWN, vm.uiState.value.couponCodeMessage)
     }
 }

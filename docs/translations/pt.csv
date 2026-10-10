@@ -49,6 +49,11 @@ core/ui,delay_unit_hours,,hours,horas
 core/ui,delay_unit_days,,days,dias
 core/ui,fav_add,,Add to favorites,Adicionar aos favoritos
 core/ui,fav_remove,,Remove from favorites,Remover dos favoritos
+core/ui,coupon_percent_off,,%1$d%% OFF,%1$d%% OFF
+core/ui,coupon_amount_off,,%1$s OFF,%1$s OFF
+core/ui,coupon_min_spend,,Min. spend %1$s,Compra mín. %1$s
+core/ui,coupon_expires,,Expires %1$s,Expira em %1$s
+core/ui,coupon_used,,Used,Usado
 feature/cart/impl,cart_title,,Cart,Carrinho
 feature/cart/impl,cart_empty,,Your cart is empty,Seu carrinho está vazio
 feature/cart/impl,cart_subtotal,,Subtotal,Subtotal
@@ -73,6 +78,24 @@ feature/checkout/impl,checkout_total_items,one,Total (%1$d item),Total (%1$d ite
 feature/checkout/impl,checkout_total_items,other,Total (%1$d items),Total (%1$d itens)
 feature/checkout/impl,checkout_summary,,Order summary,Resumo do pedido
 feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,Seus dados de pagamento são criptografados e seguros
+feature/checkout/impl,checkout_coupon_row,,Coupon,Cupom
+feature/checkout/impl,checkout_coupon_select,,Select a coupon,Escolher cupom
+feature/checkout/impl,checkout_coupon_sheet_title,,Choose a coupon,Escolha um cupom
+feature/checkout/impl,checkout_coupon_none,,Don't use a coupon,Não usar cupom
+feature/checkout/impl,checkout_coins_row,,Use coins,Usar moedas
+feature/checkout/impl,checkout_code_hint,,Coupon code,Código do cupom
+feature/checkout/impl,checkout_code_add,,Add,Adicionar
+feature/checkout/impl,checkout_code_added,,Coupon added!,Cupom adicionado!
+feature/checkout/impl,checkout_code_unknown,,That code isn't valid,Esse código não é válido
+feature/checkout/impl,checkout_code_have,,You already have this coupon,Você já tem este cupom
+feature/checkout/impl,checkout_row_subtotal,,Subtotal,Subtotal
+feature/checkout/impl,checkout_row_shipping,,Shipping,Frete
+feature/checkout/impl,checkout_row_free,,Free,Grátis
+feature/checkout/impl,checkout_row_coupon,,Coupon,Cupom
+feature/checkout/impl,checkout_row_coins,,Coins,Moedas
+feature/checkout/impl,checkout_row_total,,Total,Total
+feature/checkout/impl,checkout_coins_available,one,%1$d coin available,%1$d moeda disponível
+feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$d moedas disponíveis
 feature/home/impl,home_recommended,,Recommended for you,Recomendados para você
 feature/home/impl,home_deals,,Deals of the day,Ofertas do dia
 feature/home/impl,home_ends_in,,Ends in %1$s,Termina em %1$s
@@ -83,6 +106,8 @@ feature/home/impl,home_banner2_sub,,"On every order, no minimum","Em todos os pe
 feature/home/impl,home_banner3_title,,New arrivals,Novidades
 feature/home/impl,home_banner3_sub,,Fresh picks every day,Novas escolhas todo dia
 feature/home/impl,home_greeting,,"Hi, %1$s","Olá, %1$s"
+feature/home/impl,home_banner4_title,,Lucky wheel,Roleta da sorte
+feature/home/impl,home_banner4_sub,,Spin every day for coins and coupons,Gire todo dia e ganhe moedas e cupons
 feature/onboarding/impl,onb_skip,,Skip,Pular
 feature/onboarding/impl,onb_next,,Next,Próximo
 feature/onboarding/impl,onb_start,,Get started,Começar
@@ -129,6 +154,38 @@ feature/product/impl,product_delivery_free,,Free delivery,Entrega grátis
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,Chega até %1$s
 feature/product/impl,product_returns,,30-day free returns,Devolução grátis em 30 dias
 feature/product/impl,product_secure,,Secure payment,Pagamento seguro
+feature/rewards/impl,rewards_title,,Rewards,Recompensas
+feature/rewards/impl,rewards_balance_label,,Your coins,Suas moedas
+feature/rewards/impl,rewards_checkin_title,,Daily check-in,Check-in diário
+feature/rewards/impl,rewards_checkin_button,,Check in,Fazer check-in
+feature/rewards/impl,rewards_checkin_done,,Come back tomorrow,Volte amanhã
+feature/rewards/impl,rewards_wheel_title,,Lucky wheel,Roleta da sorte
+feature/rewards/impl,rewards_wheel_cta,,Spin,Girar
+feature/rewards/impl,rewards_coupons_title,,My coupons,Meus cupons
+feature/rewards/impl,rewards_coupons_empty,,No coupons yet. Spin the wheel or enter a code.,Nenhum cupom ainda. Gire a roleta ou digite um código.
+feature/rewards/impl,rewards_code_hint,,Coupon code,Código do cupom
+feature/rewards/impl,rewards_code_add,,Add,Adicionar
+feature/rewards/impl,rewards_code_added,,Coupon added!,Cupom adicionado!
+feature/rewards/impl,rewards_code_unknown,,That code isn't valid,Esse código não é válido
+feature/rewards/impl,rewards_code_have,,You already have this coupon,Você já tem este cupom
+feature/rewards/impl,wheel_title,,Lucky wheel,Roleta da sorte
+feature/rewards/impl,wheel_spin,,SPIN,GIRAR
+feature/rewards/impl,wheel_no_spins,,No spins left,Sem giros disponíveis
+feature/rewards/impl,wheel_no_spins_hint,,"A new free spin arrives every day, and each order earns another one.","Um novo giro grátis chega todo dia, e cada pedido rende mais um."
+feature/rewards/impl,wheel_next_spin_in,,Next free spin in %1$s,Próximo giro grátis em %1$s
+feature/rewards/impl,wheel_win_title,,You won!,Você ganhou!
+feature/rewards/impl,wheel_win_coupon,,A new coupon for you,Um cupom novo para você
+feature/rewards/impl,wheel_collect,,Collect,Resgatar
+feature/rewards/impl,placed_title,,Order placed!,Pedido realizado!
+feature/rewards/impl,placed_order,,Order %1$s,Pedido %1$s
+feature/rewards/impl,placed_earned_spin,,You earned a free spin!,Você ganhou um giro grátis!
+feature/rewards/impl,placed_spin_now,,Spin the wheel,Girar a roleta
+feature/rewards/impl,placed_view_order,,View order,Ver pedido
+feature/rewards/impl,placed_continue,,Continue shopping,Continuar comprando
+feature/rewards/impl,rewards_spins,one,%1$d spin left,%1$d giro disponível
+feature/rewards/impl,rewards_spins,other,%1$d spins left,%1$d giros disponíveis
+feature/rewards/impl,rewards_coin_gain,one,+%1$d coin,+%1$d moeda
+feature/rewards/impl,rewards_coin_gain,other,+%1$d coins,+%1$d moedas
 feature/savings/impl,savings_title,,Savings,Economia
 feature/savings/impl,savings_settings,,Settings,Configurações
 feature/savings/impl,savings_headline,,You didn't spend,Você não gastou

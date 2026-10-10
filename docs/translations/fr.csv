@@ -49,6 +49,11 @@ core/ui,delay_unit_hours,,hours,heures
 core/ui,delay_unit_days,,days,jours
 core/ui,fav_add,,Add to favorites,Ajouter aux favoris
 core/ui,fav_remove,,Remove from favorites,Retirer des favoris
+core/ui,coupon_percent_off,,%1$d%% OFF,-%1$d %%
+core/ui,coupon_amount_off,,%1$s OFF,-%1$s
+core/ui,coupon_min_spend,,Min. spend %1$s,Achat min. %1$s
+core/ui,coupon_expires,,Expires %1$s,Expire le %1$s
+core/ui,coupon_used,,Used,Utilisé
 feature/cart/impl,cart_title,,Cart,Panier
 feature/cart/impl,cart_empty,,Your cart is empty,Votre panier est vide
 feature/cart/impl,cart_subtotal,,Subtotal,Sous-total
@@ -73,6 +78,24 @@ feature/checkout/impl,checkout_total_items,one,Total (%1$d item),Total (%1$d art
 feature/checkout/impl,checkout_total_items,other,Total (%1$d items),Total (%1$d articles)
 feature/checkout/impl,checkout_summary,,Order summary,Récapitulatif
 feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,Vos données de paiement sont chiffrées et sécurisées
+feature/checkout/impl,checkout_coupon_row,,Coupon,Coupon
+feature/checkout/impl,checkout_coupon_select,,Select a coupon,Choisir un coupon
+feature/checkout/impl,checkout_coupon_sheet_title,,Choose a coupon,Choisissez un coupon
+feature/checkout/impl,checkout_coupon_none,,Don't use a coupon,Ne pas utiliser de coupon
+feature/checkout/impl,checkout_coins_row,,Use coins,Utiliser des pièces
+feature/checkout/impl,checkout_code_hint,,Coupon code,Code promo
+feature/checkout/impl,checkout_code_add,,Add,Ajouter
+feature/checkout/impl,checkout_code_added,,Coupon added!,Coupon ajouté !
+feature/checkout/impl,checkout_code_unknown,,That code isn't valid,Ce code n'est pas valide
+feature/checkout/impl,checkout_code_have,,You already have this coupon,Vous avez déjà ce coupon
+feature/checkout/impl,checkout_row_subtotal,,Subtotal,Sous-total
+feature/checkout/impl,checkout_row_shipping,,Shipping,Livraison
+feature/checkout/impl,checkout_row_free,,Free,Gratuite
+feature/checkout/impl,checkout_row_coupon,,Coupon,Coupon
+feature/checkout/impl,checkout_row_coins,,Coins,Pièces
+feature/checkout/impl,checkout_row_total,,Total,Total
+feature/checkout/impl,checkout_coins_available,one,%1$d coin available,%1$d pièce disponible
+feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$d pièces disponibles
 feature/home/impl,home_recommended,,Recommended for you,Recommandé pour vous
 feature/home/impl,home_deals,,Deals of the day,Offres du jour
 feature/home/impl,home_ends_in,,Ends in %1$s,Se termine dans %1$s
@@ -83,6 +106,8 @@ feature/home/impl,home_banner2_sub,,"On every order, no minimum","Sur toutes les
 feature/home/impl,home_banner3_title,,New arrivals,Nouveautés
 feature/home/impl,home_banner3_sub,,Fresh picks every day,De nouvelles pépites chaque jour
 feature/home/impl,home_greeting,,"Hi, %1$s","Bonjour, %1$s"
+feature/home/impl,home_banner4_title,,Lucky wheel,Roue de la chance
+feature/home/impl,home_banner4_sub,,Spin every day for coins and coupons,Tournez chaque jour pour gagner pièces et coupons
 feature/onboarding/impl,onb_skip,,Skip,Passer
 feature/onboarding/impl,onb_next,,Next,Suivant
 feature/onboarding/impl,onb_start,,Get started,Commencer
@@ -129,6 +154,38 @@ feature/product/impl,product_delivery_free,,Free delivery,Livraison gratuite
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,Livraison le %1$s
 feature/product/impl,product_returns,,30-day free returns,Retours gratuits sous 30 jours
 feature/product/impl,product_secure,,Secure payment,Paiement sécurisé
+feature/rewards/impl,rewards_title,,Rewards,Récompenses
+feature/rewards/impl,rewards_balance_label,,Your coins,Vos pièces
+feature/rewards/impl,rewards_checkin_title,,Daily check-in,Check-in quotidien
+feature/rewards/impl,rewards_checkin_button,,Check in,Faire le check-in
+feature/rewards/impl,rewards_checkin_done,,Come back tomorrow,Revenez demain
+feature/rewards/impl,rewards_wheel_title,,Lucky wheel,Roue de la chance
+feature/rewards/impl,rewards_wheel_cta,,Spin,Tourner
+feature/rewards/impl,rewards_coupons_title,,My coupons,Mes coupons
+feature/rewards/impl,rewards_coupons_empty,,No coupons yet. Spin the wheel or enter a code.,Pas encore de coupons. Tournez la roue ou saisissez un code.
+feature/rewards/impl,rewards_code_hint,,Coupon code,Code promo
+feature/rewards/impl,rewards_code_add,,Add,Ajouter
+feature/rewards/impl,rewards_code_added,,Coupon added!,Coupon ajouté !
+feature/rewards/impl,rewards_code_unknown,,That code isn't valid,Ce code n'est pas valide
+feature/rewards/impl,rewards_code_have,,You already have this coupon,Vous avez déjà ce coupon
+feature/rewards/impl,wheel_title,,Lucky wheel,Roue de la chance
+feature/rewards/impl,wheel_spin,,SPIN,TOURNER
+feature/rewards/impl,wheel_no_spins,,No spins left,Plus de tours
+feature/rewards/impl,wheel_no_spins_hint,,"A new free spin arrives every day, and each order earns another one.","Un nouveau tour gratuit arrive chaque jour, et chaque commande en rapporte un autre."
+feature/rewards/impl,wheel_next_spin_in,,Next free spin in %1$s,Prochain tour gratuit dans %1$s
+feature/rewards/impl,wheel_win_title,,You won!,Vous avez gagné !
+feature/rewards/impl,wheel_win_coupon,,A new coupon for you,Un nouveau coupon pour vous
+feature/rewards/impl,wheel_collect,,Collect,Récupérer
+feature/rewards/impl,placed_title,,Order placed!,Commande passée !
+feature/rewards/impl,placed_order,,Order %1$s,Commande %1$s
+feature/rewards/impl,placed_earned_spin,,You earned a free spin!,Vous avez gagné un tour gratuit !
+feature/rewards/impl,placed_spin_now,,Spin the wheel,Tourner la roue
+feature/rewards/impl,placed_view_order,,View order,Voir la commande
+feature/rewards/impl,placed_continue,,Continue shopping,Continuer mes achats
+feature/rewards/impl,rewards_spins,one,%1$d spin left,%1$d tour disponible
+feature/rewards/impl,rewards_spins,other,%1$d spins left,%1$d tours disponibles
+feature/rewards/impl,rewards_coin_gain,one,+%1$d coin,+%1$d pièce
+feature/rewards/impl,rewards_coin_gain,other,+%1$d coins,+%1$d pièces
 feature/savings/impl,savings_title,,Savings,Économies
 feature/savings/impl,savings_settings,,Settings,Réglages
 feature/savings/impl,savings_headline,,You didn't spend,Vous n'avez pas dépensé

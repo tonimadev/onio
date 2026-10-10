@@ -44,6 +44,10 @@ data class CheckoutRequest(
     val shippingName: String,
     val shippingAddress: String,
     val currencyCode: String,
+    /** Total discount in USD (coupon + coins), already validated by the caller. */
+    val discount: Money = Money.zero(),
+    val couponCode: String? = null,
+    val coinsUsed: Int = 0,
 )
 
 interface OrderRepository {

@@ -10,4 +10,6 @@
     <string name="home_banner3_title">Nouveautés</string>
     <string name="home_banner3_sub">De nouvelles pépites chaque jour</string>
     <string name="home_greeting">Bonjour, %1$s</string>
+    <string name="home_banner4_title">Roue de la chance</string>
+    <string name="home_banner4_sub">Tournez chaque jour pour gagner pièces et coupons</string>
 </resources>

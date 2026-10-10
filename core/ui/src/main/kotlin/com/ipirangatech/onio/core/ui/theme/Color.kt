@@ -104,6 +104,9 @@ class OnioColors(
     /** Credit-card mock-up gradient (deliberately not brand colored, so it looks like a real card). */
     val cardStart: Color,
     val cardEnd: Color,
+    /** Digital coins: gold face and darker rim. */
+    val coinFace: Color,
+    val coinRim: Color,
 )
 
 internal val LightOnioColors = OnioColors(
@@ -121,6 +124,8 @@ internal val LightOnioColors = OnioColors(
     onCountdownBox = Color.White,
     cardStart = Color(0xFF3A3A3C),
     cardEnd = Color(0xFF1C1C1E),
+    coinFace = Color(0xFFFFC83D),
+    coinRim = Color(0xFFE08A00),
 )
 
 internal val DarkOnioColors = OnioColors(
@@ -138,4 +143,6 @@ internal val DarkOnioColors = OnioColors(
     onCountdownBox = Color.White,
     cardStart = Color(0xFF3A3A3C),
     cardEnd = Color(0xFF1C1C1E),
+    coinFace = Color(0xFFFFC83D),
+    coinRim = Color(0xFFE08A00),
 )

@@ -10,4 +10,6 @@
     <string name="home_banner3_title">Novidades</string>
     <string name="home_banner3_sub">Novas escolhas todo dia</string>
     <string name="home_greeting">Olá, %1$s</string>
+    <string name="home_banner4_title">Roleta da sorte</string>
+    <string name="home_banner4_sub">Gire todo dia e ganhe moedas e cupons</string>
 </resources>

@@ -5,7 +5,20 @@ import com.ipirangatech.onio.core.model.CardBrand
 import com.ipirangatech.onio.core.model.CartItem
 import com.ipirangatech.onio.core.model.CartRepository
 import com.ipirangatech.onio.core.model.Category
+import com.ipirangatech.onio.core.model.CheckInResult
 import com.ipirangatech.onio.core.model.CheckoutRequest
+import com.ipirangatech.onio.core.model.CouponCatalog
+import com.ipirangatech.onio.core.model.CouponRepository
+import com.ipirangatech.onio.core.model.CouponTemplate
+import com.ipirangatech.onio.core.model.DiscountKind
+import com.ipirangatech.onio.core.model.PurchaseReward
+import com.ipirangatech.onio.core.model.RedeemResult
+import com.ipirangatech.onio.core.model.RewardsRepository
+import com.ipirangatech.onio.core.model.RewardsWallet
+import com.ipirangatech.onio.core.model.SpinResult
+import com.ipirangatech.onio.core.model.WalletCoupon
+import com.ipirangatech.onio.core.model.Wheel
+import com.ipirangatech.onio.core.model.WheelPrize
 import com.ipirangatech.onio.core.model.FavoriteItem
 import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.Money
@@ -159,7 +172,8 @@ class FakeOrderRepository(initial: List<Order> = emptyList()) : OrderRepository 
         failure?.let { throw it }
         placed += request
         val total = request.items.map { it.lineTotal }.sum()
-        val created = order(id = state.value.size + 1L, cents = total.minorUnits)
+        val created = order(id = state.value.size + 1L, cents = (total.minorUnits - request.discount.minorUnits).coerceAtLeast(0))
+            .copy(discount = request.discount, couponCode = request.couponCode, coinsUsed = request.coinsUsed)
         state.value = listOf(created) + state.value
         return created
     }
@@ -167,5 +181,83 @@ class FakeOrderRepository(initial: List<Order> = emptyList()) : OrderRepository 
     override suspend fun cancelExpiredOrders() {
         cancelExpiredCalls++
         cancelFailure?.let { throw it }
+    }
+}
+
+fun walletCoupon(
+    id: Long,
+    code: String = "C$id",
+    kind: DiscountKind = DiscountKind.PERCENT,
+    value: Int = 10,
+    minCents: Long = 0,
+    expiresAt: Long = Long.MAX_VALUE,
+    usedAt: Long? = null,
+) = WalletCoupon(id, code, kind, value, minCents, expiresAt, usedAt)
+
+class FakeCouponRepository(initial: List<WalletCoupon> = emptyList()) : CouponRepository {
+    val state = MutableStateFlow(initial)
+    val used = mutableListOf<Long>()
+    override val coupons: Flow<List<WalletCoupon>> = state
+
+    override suspend fun grant(template: CouponTemplate): WalletCoupon {
+        val coupon = WalletCoupon(state.value.size + 100L, template.code, template.kind, template.value, template.minSubtotalCents, Long.MAX_VALUE, null)
+        state.value = state.value + coupon
+        return coupon
+    }
+
+    override suspend fun redeem(code: String): RedeemResult {
+        val template = CouponCatalog.find(code) ?: return RedeemResult.Unknown
+        if (state.value.any { it.code == template.code && it.usedAtMillis == null }) return RedeemResult.AlreadyHave
+        return RedeemResult.Added(grant(template))
+    }
+
+    override suspend fun markUsed(id: Long) {
+        used += id
+        state.value = state.value.map { if (it.id == id) it.copy(usedAtMillis = 1L) else it }
+    }
+}
+
+class FakeRewardsRepository(initial: RewardsWallet = RewardsWallet()) : RewardsRepository {
+    val state = MutableStateFlow(initial)
+    var spent = 0
+    var purchases = 0
+    var dailyRefreshes = 0
+    var nextSegment = 0
+    var failure: Throwable? = null
+    override val wallet: Flow<RewardsWallet> = state
+
+    override suspend fun refreshDaily() {
+        dailyRefreshes++
+    }
+
+    override suspend fun checkIn(): CheckInResult? {
+        failure?.let { throw it }
+        if (state.value.checkedInToday) return null
+        val day = state.value.streak % 7 + 1
+        val coins = RewardsRepository.CHECK_IN_COINS[day - 1]
+        state.value = state.value.copy(coins = state.value.coins + coins, streak = day, checkedInToday = true)
+        return CheckInResult(day, coins, day == 7)
+    }
+
+    override suspend fun awardPurchase(): PurchaseReward {
+        purchases++
+        state.value = state.value.copy(coins = state.value.coins + RewardsRepository.PURCHASE_COINS, spins = state.value.spins + RewardsRepository.PURCHASE_SPINS)
+        return PurchaseReward(RewardsRepository.PURCHASE_COINS, RewardsRepository.PURCHASE_SPINS)
+    }
+
+    override suspend fun spin(): SpinResult? {
+        failure?.let { throw it }
+        if (state.value.spins <= 0) return null
+        state.value = state.value.copy(spins = state.value.spins - 1)
+        val prize = Wheel.segments[nextSegment].prize
+        if (prize is WheelPrize.Coins) state.value = state.value.copy(coins = state.value.coins + prize.amount)
+        return SpinResult(nextSegment, prize, null)
+    }
+
+    override suspend fun spendCoins(amount: Int): Boolean {
+        if (amount > state.value.coins) return false
+        spent += amount
+        state.value = state.value.copy(coins = state.value.coins - amount)
+        return true
     }
 }

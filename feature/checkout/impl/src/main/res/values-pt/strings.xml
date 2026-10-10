@@ -18,4 +18,25 @@
     </plurals>
     <string name="checkout_summary">Resumo do pedido</string>
     <string name="checkout_secure">Seus dados de pagamento são criptografados e seguros</string>
+    <string name="checkout_coupon_row">Cupom</string>
+    <string name="checkout_coupon_select">Escolher cupom</string>
+    <string name="checkout_coupon_sheet_title">Escolha um cupom</string>
+    <string name="checkout_coupon_none">Não usar cupom</string>
+    <string name="checkout_coins_row">Usar moedas</string>
+    <string name="checkout_code_hint">Código do cupom</string>
+    <string name="checkout_code_add">Adicionar</string>
+    <string name="checkout_code_added">Cupom adicionado!</string>
+    <string name="checkout_code_unknown">Esse código não é válido</string>
+    <string name="checkout_code_have">Você já tem este cupom</string>
+    <string name="checkout_row_subtotal">Subtotal</string>
+    <string name="checkout_row_shipping">Frete</string>
+    <string name="checkout_row_free">Grátis</string>
+    <string name="checkout_row_coupon">Cupom</string>
+    <string name="checkout_row_coins">Moedas</string>
+    <string name="checkout_row_total">Total</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="one">%1$d moeda disponível</item>
+        <item quantity="many">%1$d de moedas disponíveis</item>
+        <item quantity="other">%1$d moedas disponíveis</item>
+    </plurals>
 </resources>

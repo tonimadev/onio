@@ -41,4 +41,9 @@
     <string name="delay_unit_days">دن</string>
     <string name="fav_add">پسندیدہ میں شامل کریں</string>
     <string name="fav_remove">پسندیدہ سے ہٹائیں</string>
+    <string name="coupon_percent_off">%1$d%% رعایت</string>
+    <string name="coupon_amount_off">%1$s رعایت</string>
+    <string name="coupon_min_spend">کم از کم خریداری %1$s</string>
+    <string name="coupon_expires">%1$s کو ختم</string>
+    <string name="coupon_used">استعمال شدہ</string>
 </resources>

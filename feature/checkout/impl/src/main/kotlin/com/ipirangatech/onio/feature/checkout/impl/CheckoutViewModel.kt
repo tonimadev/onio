@@ -6,10 +6,17 @@ import com.ipirangatech.onio.core.model.CardValidation
 import com.ipirangatech.onio.core.model.CartItem
 import com.ipirangatech.onio.core.model.CartRepository
 import com.ipirangatech.onio.core.model.CheckoutRequest
+import com.ipirangatech.onio.core.model.CouponRepository
 import com.ipirangatech.onio.core.model.ExchangeRates
+import com.ipirangatech.onio.core.model.Money
 import com.ipirangatech.onio.core.model.OrderRepository
 import com.ipirangatech.onio.core.model.PaymentCard
+import com.ipirangatech.onio.core.model.PricingCalculator
+import com.ipirangatech.onio.core.model.PurchaseReward
+import com.ipirangatech.onio.core.model.RedeemResult
+import com.ipirangatech.onio.core.model.RewardsRepository
 import com.ipirangatech.onio.core.model.SettingsRepository
+import com.ipirangatech.onio.core.model.WalletCoupon
 import com.ipirangatech.onio.core.model.sum
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -30,25 +37,26 @@ class CheckoutViewModel @Inject constructor(
     private val cart: CartRepository,
     private val orders: OrderRepository,
     private val settings: SettingsRepository,
+    private val couponRepository: CouponRepository,
+    private val rewards: RewardsRepository,
 ) : ViewModel() {
+    /** Time source for coupon expiry; tests replace it. */
+    internal var clock: () -> Long = System::currentTimeMillis
+
     private val _uiState = MutableStateFlow(CheckoutState())
     val uiState: StateFlow<CheckoutState> = _uiState.asStateFlow()
     val effect = uiState.map { it.effect }.distinctUntilChanged()
 
     private var items: List<CartItem> = emptyList()
+    private var allCoupons: List<WalletCoupon> = emptyList()
 
     init {
         viewModelScope.launch {
             runCatching { cart.items.first() }
                 .onSuccess { loaded ->
                     items = loaded
-                    _uiState.update {
-                        it.copy(
-                            total = loaded.map(CartItem::lineTotal).sum(),
-                            itemCount = loaded.sumOf(CartItem::quantity),
-                            thumbnails = loaded.map(CartItem::thumbnailUrl),
-                        )
-                    }
+                    _uiState.update { it.copy(itemCount = loaded.sumOf(CartItem::quantity), thumbnails = loaded.map(CartItem::thumbnailUrl)) }
+                    recompute()
                 }
                 .onFailure { _uiState.update { it.copy(hasError = true) } }
         }
@@ -58,14 +66,82 @@ class CheckoutViewModel @Inject constructor(
                 _uiState.update { if (it.name.isBlank()) it.copy(name = name) else it }
             }
         }
+        viewModelScope.launch {
+            runCatching {
+                couponRepository.coupons.collect { list ->
+                    allCoupons = list
+                    recompute()
+                }
+            }
+        }
+        viewModelScope.launch {
+            runCatching {
+                rewards.wallet.collect { wallet ->
+                    _uiState.update { it.copy(coinBalance = wallet.coins) }
+                    recompute()
+                }
+            }
+        }
     }
 
     fun onIntent(intent: CheckoutIntent) {
         when (intent) {
             is CheckoutIntent.FieldChanged -> onField(intent.field, intent.value)
             CheckoutIntent.Submit -> submit()
+            CheckoutIntent.OpenCoupons -> _uiState.update { it.copy(couponSheetOpen = true, couponCodeMessage = null) }
+            CheckoutIntent.CloseCoupons -> _uiState.update { it.copy(couponSheetOpen = false) }
+            is CheckoutIntent.SelectCoupon -> {
+                _uiState.update { it.copy(selectedCouponId = intent.couponId, couponSheetOpen = false) }
+                recompute()
+            }
+            CheckoutIntent.ToggleCoins -> {
+                _uiState.update { it.copy(useCoins = !it.useCoins) }
+                recompute()
+            }
+            is CheckoutIntent.CouponCodeChanged -> _uiState.update { it.copy(couponCode = intent.code.take(MAX_CODE), couponCodeMessage = null) }
+            CheckoutIntent.RedeemCouponCode -> redeemCode()
             CheckoutIntent.BackClicked -> _uiState.update { it.copy(effect = CheckoutEffect.NavigateBack) }
             CheckoutIntent.ConsumeEffect -> _uiState.update { it.copy(effect = null) }
+        }
+    }
+
+    /** Re-prices the cart from the selected coupon, coin toggle and wallet balance. */
+    private fun recompute() {
+        val subtotal = items.map(CartItem::lineTotal).sum()
+        _uiState.update { s ->
+            val now = clock()
+            val usable = allCoupons.filter { it.isUsable(now) }
+            // A coupon that stops being eligible (cart changed, expired) is dropped instead of silently kept.
+            val selected = usable.firstOrNull { it.id == s.selectedCouponId && it.isEligible(subtotal, now) }
+            val maxCoins = PricingCalculator.maxCoins(subtotal, selected, s.coinBalance)
+            val breakdown = PricingCalculator.calculate(subtotal, selected, if (s.useCoins) maxCoins else 0, s.coinBalance)
+            s.copy(
+                subtotal = subtotal,
+                total = breakdown.total,
+                couponDiscount = breakdown.couponDiscount,
+                coinDiscount = breakdown.coinDiscount,
+                coinsUsed = breakdown.coinsUsed,
+                maxCoins = maxCoins,
+                coupons = usable,
+                selectedCouponId = selected?.id,
+            )
+        }
+    }
+
+    private fun redeemCode() {
+        val code = _uiState.value.couponCode
+        if (code.isBlank()) return
+        viewModelScope.launch {
+            runCatching { couponRepository.redeem(code) }
+                .onSuccess { result ->
+                    val message = when (result) {
+                        is RedeemResult.Added -> CouponCodeMessage.ADDED
+                        RedeemResult.Unknown -> CouponCodeMessage.UNKNOWN
+                        RedeemResult.AlreadyHave -> CouponCodeMessage.ALREADY_HAVE
+                    }
+                    _uiState.update { it.copy(couponCodeMessage = message, couponCode = if (result is RedeemResult.Added) "" else it.couponCode) }
+                }
+                .onFailure { _uiState.update { it.copy(hasError = true) } }
         }
     }
 
@@ -98,6 +174,7 @@ class CheckoutViewModel @Inject constructor(
                 val digits = CardValidation.digitsOnly(s.cardNumber)
                 val currency = settings.settings.first().currencyOverride
                     ?: Locale.getDefault().let { ExchangeRates.defaultFor(it.language, it.country) }
+                val coupon = s.coupons.firstOrNull { it.id == s.selectedCouponId }
                 val order = orders.placeOrder(
                     CheckoutRequest(
                         items = items,
@@ -105,12 +182,19 @@ class CheckoutViewModel @Inject constructor(
                         shippingName = s.name.trim(),
                         shippingAddress = s.address.trim(),
                         currencyCode = currency,
+                        discount = Money(s.couponDiscount.minorUnits + s.coinDiscount.minorUnits),
+                        couponCode = coupon?.code,
+                        coinsUsed = s.coinsUsed,
                     ),
                 )
                 cart.clear()
-                order
-            }.onSuccess { order ->
-                _uiState.update { it.copy(isProcessing = false, effect = CheckoutEffect.OrderPlaced(order.id)) }
+                // The order exists now; bookkeeping around it must not turn a successful payment into an error.
+                runCatching { coupon?.let { couponRepository.markUsed(it.id) } }
+                runCatching { if (s.coinsUsed > 0) rewards.spendCoins(s.coinsUsed) }
+                val reward = runCatching { rewards.awardPurchase() }.getOrDefault(PurchaseReward(0, 0))
+                Triple(order.id, reward.coins, reward.spins)
+            }.onSuccess { (id, coins, spins) ->
+                _uiState.update { it.copy(isProcessing = false, effect = CheckoutEffect.OrderPlaced(id, coins, spins)) }
             }.onFailure {
                 _uiState.update { it.copy(isProcessing = false, hasError = true) }
             }
@@ -138,5 +222,6 @@ class CheckoutViewModel @Inject constructor(
 
     private companion object {
         const val PROCESSING_MILLIS = 2_500L
+        const val MAX_CODE = 24
     }
 }

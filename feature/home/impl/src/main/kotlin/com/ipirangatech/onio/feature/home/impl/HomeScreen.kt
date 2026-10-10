@@ -64,6 +64,7 @@ import com.ipirangatech.onio.core.ui.LaunchedUiEffectHandler
 import com.ipirangatech.onio.core.ui.R as UiR
 import com.ipirangatech.onio.core.ui.categoryIcon
 import com.ipirangatech.onio.core.ui.categoryLabel
+import com.ipirangatech.onio.core.ui.component.CoinBalance
 import com.ipirangatech.onio.core.ui.component.FlashCountdown
 import com.ipirangatech.onio.core.ui.component.IconTile
 import com.ipirangatech.onio.core.ui.component.MessageState
@@ -84,6 +85,7 @@ fun HomeRoute(
     onOpenCategory: (String) -> Unit,
     onOpenSearch: () -> Unit,
     onOpenCart: () -> Unit,
+    onOpenRewards: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -99,6 +101,7 @@ fun HomeRoute(
             is HomeEffect.NavigateToCategory -> onOpenCategory(effect.slug)
             HomeEffect.NavigateToSearch -> onOpenSearch()
             HomeEffect.NavigateToCart -> onOpenCart()
+            HomeEffect.NavigateToRewards -> onOpenRewards()
             HomeEffect.ShowAdded -> {
                 snackbar.currentSnackbarData?.dismiss()
                 val result = snackbar.showSnackbar(addedMessage, actionLabel = viewCart)
@@ -109,12 +112,13 @@ fun HomeRoute(
     HomeScreen(state = state, snackbar = snackbar, onIntent = viewModel::onIntent, modifier = modifier)
 }
 
-private data class Banner(val title: Int, val subtitle: Int, val start: Color, val end: Color)
+private data class Banner(val title: Int, val subtitle: Int, val start: Color, val end: Color, val opensRewards: Boolean = false)
 
 private val Banners = listOf(
     Banner(R.string.home_banner1_title, R.string.home_banner1_sub, Color(0xFFFF7A59), Color(0xFFF23F5D)),
     Banner(R.string.home_banner2_title, R.string.home_banner2_sub, Color(0xFFFFB84D), Color(0xFFFF7A59)),
     Banner(R.string.home_banner3_title, R.string.home_banner3_sub, Color(0xFF00A890), Color(0xFF007A8A)),
+    Banner(R.string.home_banner4_title, R.string.home_banner4_sub, Color(0xFF7A1F4B), Color(0xFF3F0F2C), opensRewards = true),
 )
 
 /** Milliseconds left until local midnight, ticking every second. */
@@ -160,8 +164,16 @@ internal fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(Dimens.SectionGap),
             verticalArrangement = Arrangement.spacedBy(Dimens.SectionGap),
         ) {
-            item(span = { GridItemSpan(maxLineSpan) }) { Header(userName = state.userName, onSearch = { onIntent(HomeIntent.SearchClicked) }) }
-            item(span = { GridItemSpan(maxLineSpan) }) { PromoPager() }
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Header(
+                    userName = state.userName,
+                    coins = state.coins,
+                    attention = state.rewardsAttention,
+                    onSearch = { onIntent(HomeIntent.SearchClicked) },
+                    onRewards = { onIntent(HomeIntent.RewardsClicked) },
+                )
+            }
+            item(span = { GridItemSpan(maxLineSpan) }) { PromoPager(onRewards = { onIntent(HomeIntent.RewardsClicked) }) }
             if (state.isLoading) {
                 items(6) { ProductCardSkeleton(Modifier.padding(horizontal = Dimens.Space8)) }
                 return@LazyVerticalGrid
@@ -198,7 +210,7 @@ internal fun HomeScreen(
 }
 
 @Composable
-private fun Header(userName: String?, onSearch: () -> Unit) {
+private fun Header(userName: String?, coins: Int, attention: Boolean, onSearch: () -> Unit, onRewards: () -> Unit) {
     StatusBarIcons(light = true)
     Column(
         Modifier
@@ -225,7 +237,10 @@ private fun Header(userName: String?, onSearch: () -> Unit) {
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f),
                 )
+            } else {
+                Spacer(Modifier.weight(1f))
             }
+            RewardsChip(coins, attention, onRewards)
         }
         Surface(
             onClick = onSearch,
@@ -254,7 +269,7 @@ private fun Header(userName: String?, onSearch: () -> Unit) {
 }
 
 @Composable
-private fun PromoPager() {
+private fun PromoPager(onRewards: () -> Unit) {
     val pager = rememberPagerState { Banners.size }
     LaunchedEffect(pager) {
         while (true) {
@@ -283,6 +298,7 @@ private fun PromoPager() {
                     .height(124.dp)
                     .clip(MaterialTheme.shapes.small)
                     .background(Brush.linearGradient(listOf(banner.start, banner.end)))
+                    .clickable(enabled = banner.opensRewards, onClick = onRewards)
                     .padding(Dimens.Space16),
                 contentAlignment = Alignment.CenterStart,
             ) {
@@ -405,6 +421,27 @@ private fun SectionTitle(text: String) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(start = Dimens.Space8),
             )
+        }
+    }
+}
+
+
+/** Coin balance in the header; a pulsing dot says "there is something to collect". */
+@Composable
+private fun RewardsChip(coins: Int, attention: Boolean, onClick: () -> Unit) {
+    val pulse = rememberInfiniteTransition(label = "dot")
+    val dot by pulse.animateFloat(0.6f, 1.3f, infiniteRepeatable(tween(800), RepeatMode.Reverse), label = "dotScale")
+    Surface(onClick = onClick, shape = CircleShape, color = Color.White.copy(alpha = 0.22f)) {
+        Row(Modifier.padding(horizontal = 10.dp, vertical = 5.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            CoinBalance(coins, style = MaterialTheme.typography.labelLarge, color = Color.White, iconSize = 18.dp)
+            if (attention) {
+                Box(
+                    Modifier
+                        .size(8.dp)
+                        .graphicsLayer { scaleX = dot; scaleY = dot }
+                        .background(Color(0xFFFFE08A), CircleShape),
+                )
+            }
         }
     }
 }

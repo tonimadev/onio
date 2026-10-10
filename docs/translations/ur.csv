@@ -49,6 +49,11 @@ core/ui,delay_unit_hours,,hours,گھنٹے
 core/ui,delay_unit_days,,days,دن
 core/ui,fav_add,,Add to favorites,پسندیدہ میں شامل کریں
 core/ui,fav_remove,,Remove from favorites,پسندیدہ سے ہٹائیں
+core/ui,coupon_percent_off,,%1$d%% OFF,%1$d%% رعایت
+core/ui,coupon_amount_off,,%1$s OFF,%1$s رعایت
+core/ui,coupon_min_spend,,Min. spend %1$s,کم از کم خریداری %1$s
+core/ui,coupon_expires,,Expires %1$s,%1$s کو ختم
+core/ui,coupon_used,,Used,استعمال شدہ
 feature/cart/impl,cart_title,,Cart,کارٹ
 feature/cart/impl,cart_empty,,Your cart is empty,آپ کی کارٹ خالی ہے
 feature/cart/impl,cart_subtotal,,Subtotal,ذیلی کل
@@ -73,6 +78,24 @@ feature/checkout/impl,checkout_total_items,one,Total (%1$d item),کل (%1$d آئ
 feature/checkout/impl,checkout_total_items,other,Total (%1$d items),کل (%1$d آئٹمز)
 feature/checkout/impl,checkout_summary,,Order summary,آرڈر کا خلاصہ
 feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,آپ کی ادائیگی کی معلومات انکرپٹڈ اور محفوظ ہیں
+feature/checkout/impl,checkout_coupon_row,,Coupon,کوپن
+feature/checkout/impl,checkout_coupon_select,,Select a coupon,کوپن منتخب کریں
+feature/checkout/impl,checkout_coupon_sheet_title,,Choose a coupon,کوپن چنیں
+feature/checkout/impl,checkout_coupon_none,,Don't use a coupon,کوپن استعمال نہ کریں
+feature/checkout/impl,checkout_coins_row,,Use coins,سکے استعمال کریں
+feature/checkout/impl,checkout_code_hint,,Coupon code,کوپن کوڈ
+feature/checkout/impl,checkout_code_add,,Add,شامل کریں
+feature/checkout/impl,checkout_code_added,,Coupon added!,کوپن شامل ہو گیا!
+feature/checkout/impl,checkout_code_unknown,,That code isn't valid,یہ کوڈ درست نہیں ہے
+feature/checkout/impl,checkout_code_have,,You already have this coupon,یہ کوپن آپ کے پاس پہلے سے ہے
+feature/checkout/impl,checkout_row_subtotal,,Subtotal,ذیلی کل
+feature/checkout/impl,checkout_row_shipping,,Shipping,شپنگ
+feature/checkout/impl,checkout_row_free,,Free,مفت
+feature/checkout/impl,checkout_row_coupon,,Coupon,کوپن
+feature/checkout/impl,checkout_row_coins,,Coins,سکے
+feature/checkout/impl,checkout_row_total,,Total,کل
+feature/checkout/impl,checkout_coins_available,one,%1$d coin available,%1$d سکہ دستیاب
+feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$d سکے دستیاب
 feature/home/impl,home_recommended,,Recommended for you,آپ کے لیے تجویز کردہ
 feature/home/impl,home_deals,,Deals of the day,آج کی ڈیلز
 feature/home/impl,home_ends_in,,Ends in %1$s,%1$s میں ختم
@@ -83,6 +106,8 @@ feature/home/impl,home_banner2_sub,,"On every order, no minimum",ہر آرڈر �
 feature/home/impl,home_banner3_title,,New arrivals,نئی آمد
 feature/home/impl,home_banner3_sub,,Fresh picks every day,ہر روز نئی پسند
 feature/home/impl,home_greeting,,"Hi, %1$s",ہیلو، %1$s
+feature/home/impl,home_banner4_title,,Lucky wheel,خوش قسمتی کا پہیہ
+feature/home/impl,home_banner4_sub,,Spin every day for coins and coupons,ہر روز گھمائیں اور سکے و کوپن جیتیں
 feature/onboarding/impl,onb_skip,,Skip,چھوڑیں
 feature/onboarding/impl,onb_next,,Next,اگلا
 feature/onboarding/impl,onb_start,,Get started,شروع کریں
@@ -129,6 +154,38 @@ feature/product/impl,product_delivery_free,,Free delivery,مفت ڈیلیوری
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,%1$s تک پہنچے گا
 feature/product/impl,product_returns,,30-day free returns,30 دن میں مفت واپسی
 feature/product/impl,product_secure,,Secure payment,محفوظ ادائیگی
+feature/rewards/impl,rewards_title,,Rewards,انعامات
+feature/rewards/impl,rewards_balance_label,,Your coins,آپ کے سکے
+feature/rewards/impl,rewards_checkin_title,,Daily check-in,روزانہ چیک اِن
+feature/rewards/impl,rewards_checkin_button,,Check in,چیک اِن کریں
+feature/rewards/impl,rewards_checkin_done,,Come back tomorrow,کل دوبارہ آئیں
+feature/rewards/impl,rewards_wheel_title,,Lucky wheel,خوش قسمتی کا پہیہ
+feature/rewards/impl,rewards_wheel_cta,,Spin,گھمائیں
+feature/rewards/impl,rewards_coupons_title,,My coupons,میرے کوپن
+feature/rewards/impl,rewards_coupons_empty,,No coupons yet. Spin the wheel or enter a code.,ابھی کوئی کوپن نہیں۔ پہیہ گھمائیں یا کوڈ درج کریں۔
+feature/rewards/impl,rewards_code_hint,,Coupon code,کوپن کوڈ
+feature/rewards/impl,rewards_code_add,,Add,شامل کریں
+feature/rewards/impl,rewards_code_added,,Coupon added!,کوپن شامل ہو گیا!
+feature/rewards/impl,rewards_code_unknown,,That code isn't valid,یہ کوڈ درست نہیں ہے
+feature/rewards/impl,rewards_code_have,,You already have this coupon,یہ کوپن آپ کے پاس پہلے سے ہے
+feature/rewards/impl,wheel_title,,Lucky wheel,خوش قسمتی کا پہیہ
+feature/rewards/impl,wheel_spin,,SPIN,گھمائیں
+feature/rewards/impl,wheel_no_spins,,No spins left,کوئی اسپن باقی نہیں
+feature/rewards/impl,wheel_no_spins_hint,,"A new free spin arrives every day, and each order earns another one.",ہر روز ایک نیا مفت اسپن ملتا ہے، اور ہر آرڈر پر ایک اور۔
+feature/rewards/impl,wheel_next_spin_in,,Next free spin in %1$s,اگلا مفت اسپن %1$s میں
+feature/rewards/impl,wheel_win_title,,You won!,آپ جیت گئے!
+feature/rewards/impl,wheel_win_coupon,,A new coupon for you,آپ کے لیے ایک نیا کوپن
+feature/rewards/impl,wheel_collect,,Collect,وصول کریں
+feature/rewards/impl,placed_title,,Order placed!,آرڈر ہو گیا!
+feature/rewards/impl,placed_order,,Order %1$s,آرڈر %1$s
+feature/rewards/impl,placed_earned_spin,,You earned a free spin!,آپ نے ایک مفت اسپن جیتا!
+feature/rewards/impl,placed_spin_now,,Spin the wheel,پہیہ گھمائیں
+feature/rewards/impl,placed_view_order,,View order,آرڈر دیکھیں
+feature/rewards/impl,placed_continue,,Continue shopping,خریداری جاری رکھیں
+feature/rewards/impl,rewards_spins,one,%1$d spin left,%1$d اسپن باقی
+feature/rewards/impl,rewards_spins,other,%1$d spins left,%1$d اسپن باقی
+feature/rewards/impl,rewards_coin_gain,one,+%1$d coin,+%1$d سکہ
+feature/rewards/impl,rewards_coin_gain,other,+%1$d coins,+%1$d سکے
 feature/savings/impl,savings_title,,Savings,بچت
 feature/savings/impl,savings_settings,,Settings,ترتیبات
 feature/savings/impl,savings_headline,,You didn't spend,آپ نے خرچ نہیں کیا

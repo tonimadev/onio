@@ -125,7 +125,9 @@ internal class OrderRepositoryImpl(
         val minutes = settings.settings.first().cancelAfterMinutes
         val now = clock()
         val items = request.items.map { OrderItem(it.productId, it.title, it.thumbnailUrl, it.unitPrice, it.quantity) }
-        val totalUsd = items.map { it.unitPrice * it.quantity }.sum()
+        val subtotal = items.map { it.unitPrice * it.quantity }.sum()
+        val discount = minOf(request.discount.minorUnits, subtotal.minorUnits).coerceAtLeast(0)
+        val totalUsd = Money.usd(subtotal.minorUnits - discount)
         val charged = ExchangeRates.convert(totalUsd, request.currencyCode)
         val entity = OrderEntity(
             number = "ON-" + Random.nextLong(10_000_000, 99_999_999),
@@ -140,6 +142,9 @@ internal class OrderRepositoryImpl(
             placedAtMillis = now,
             cancelAtMillis = now + minutes * 60_000L,
             status = OrderStatus.PROCESSING.name,
+            discountUsdCents = discount,
+            couponCode = request.couponCode,
+            coinsUsed = request.coinsUsed,
         )
         val id = dao.insert(entity)
         scheduler.schedule(id, entity.cancelAtMillis - now)

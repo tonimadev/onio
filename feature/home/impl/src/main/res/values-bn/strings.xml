@@ -10,4 +10,6 @@
     <string name="home_banner3_title">নতুন পণ্য</string>
     <string name="home_banner3_sub">প্রতিদিন নতুন বাছাই</string>
     <string name="home_greeting">হ্যালো, %1$s</string>
+    <string name="home_banner4_title">লাকি হুইল</string>
+    <string name="home_banner4_sub">প্রতিদিন ঘোরান, কয়েন ও কুপন জিতুন</string>
 </resources>

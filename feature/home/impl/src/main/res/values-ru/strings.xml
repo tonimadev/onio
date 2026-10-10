@@ -10,4 +10,6 @@
     <string name="home_banner3_title">Новинки</string>
     <string name="home_banner3_sub">Свежие находки каждый день</string>
     <string name="home_greeting">Привет, %1$s</string>
+    <string name="home_banner4_title">Колесо удачи</string>
+    <string name="home_banner4_sub">Крутите каждый день — монеты и купоны</string>
 </resources>

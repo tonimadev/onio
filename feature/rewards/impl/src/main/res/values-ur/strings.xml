@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">انعامات</string>
+    <string name="rewards_balance_label">آپ کے سکے</string>
+    <string name="rewards_checkin_title">روزانہ چیک اِن</string>
+    <string name="rewards_checkin_button">چیک اِن کریں</string>
+    <string name="rewards_checkin_done">کل دوبارہ آئیں</string>
+    <string name="rewards_wheel_title">خوش قسمتی کا پہیہ</string>
+    <string name="rewards_wheel_cta">گھمائیں</string>
+    <string name="rewards_coupons_title">میرے کوپن</string>
+    <string name="rewards_coupons_empty">ابھی کوئی کوپن نہیں۔ پہیہ گھمائیں یا کوڈ درج کریں۔</string>
+    <string name="rewards_code_hint">کوپن کوڈ</string>
+    <string name="rewards_code_add">شامل کریں</string>
+    <string name="rewards_code_added">کوپن شامل ہو گیا!</string>
+    <string name="rewards_code_unknown">یہ کوڈ درست نہیں ہے</string>
+    <string name="rewards_code_have">یہ کوپن آپ کے پاس پہلے سے ہے</string>
+    <string name="wheel_title">خوش قسمتی کا پہیہ</string>
+    <string name="wheel_spin">گھمائیں</string>
+    <string name="wheel_no_spins">کوئی اسپن باقی نہیں</string>
+    <string name="wheel_no_spins_hint">ہر روز ایک نیا مفت اسپن ملتا ہے، اور ہر آرڈر پر ایک اور۔</string>
+    <string name="wheel_next_spin_in">اگلا مفت اسپن %1$s میں</string>
+    <string name="wheel_win_title">آپ جیت گئے!</string>
+    <string name="wheel_win_coupon">آپ کے لیے ایک نیا کوپن</string>
+    <string name="wheel_collect">وصول کریں</string>
+    <string name="placed_title">آرڈر ہو گیا!</string>
+    <string name="placed_order">آرڈر %1$s</string>
+    <string name="placed_earned_spin">آپ نے ایک مفت اسپن جیتا!</string>
+    <string name="placed_spin_now">پہیہ گھمائیں</string>
+    <string name="placed_view_order">آرڈر دیکھیں</string>
+    <string name="placed_continue">خریداری جاری رکھیں</string>
+    <plurals name="rewards_spins">
+        <item quantity="one">%1$d اسپن باقی</item>
+        <item quantity="other">%1$d اسپن باقی</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="one">+%1$d سکہ</item>
+        <item quantity="other">+%1$d سکے</item>
+    </plurals>
+</resources>

@@ -10,4 +10,6 @@
     <string name="home_banner3_title">وصل حديثًا</string>
     <string name="home_banner3_sub">اختيارات جديدة كل يوم</string>
     <string name="home_greeting">مرحبًا، %1$s</string>
+    <string name="home_banner4_title">عجلة الحظ</string>
+    <string name="home_banner4_sub">أدِر العجلة كل يوم واربح عملات وقسائم</string>
 </resources>

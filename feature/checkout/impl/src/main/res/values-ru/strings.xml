@@ -19,4 +19,26 @@
     </plurals>
     <string name="checkout_summary">Ваш заказ</string>
     <string name="checkout_secure">Данные платежа зашифрованы и защищены</string>
+    <string name="checkout_coupon_row">Купон</string>
+    <string name="checkout_coupon_select">Выбрать купон</string>
+    <string name="checkout_coupon_sheet_title">Выберите купон</string>
+    <string name="checkout_coupon_none">Не использовать купон</string>
+    <string name="checkout_coins_row">Использовать монеты</string>
+    <string name="checkout_code_hint">Код купона</string>
+    <string name="checkout_code_add">Добавить</string>
+    <string name="checkout_code_added">Купон добавлен!</string>
+    <string name="checkout_code_unknown">Этот код недействителен</string>
+    <string name="checkout_code_have">Этот купон у вас уже есть</string>
+    <string name="checkout_row_subtotal">Подытог</string>
+    <string name="checkout_row_shipping">Доставка</string>
+    <string name="checkout_row_free">Бесплатно</string>
+    <string name="checkout_row_coupon">Купон</string>
+    <string name="checkout_row_coins">Монеты</string>
+    <string name="checkout_row_total">Итого</string>
+    <plurals name="checkout_coins_available">
+        <item quantity="one">Доступна %1$d монета</item>
+        <item quantity="few">Доступно %1$d монеты</item>
+        <item quantity="many">Доступно %1$d монет</item>
+        <item quantity="other">Доступно %1$d монеты</item>
+    </plurals>
 </resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">奖励</string>
+    <string name="rewards_balance_label">您的金币</string>
+    <string name="rewards_checkin_title">每日签到</string>
+    <string name="rewards_checkin_button">签到</string>
+    <string name="rewards_checkin_done">明天再来</string>
+    <string name="rewards_wheel_title">幸运转盘</string>
+    <string name="rewards_wheel_cta">转一转</string>
+    <string name="rewards_coupons_title">我的优惠券</string>
+    <string name="rewards_coupons_empty">还没有优惠券。转动转盘或输入优惠码。</string>
+    <string name="rewards_code_hint">优惠码</string>
+    <string name="rewards_code_add">添加</string>
+    <string name="rewards_code_added">优惠券已添加！</string>
+    <string name="rewards_code_unknown">该优惠码无效</string>
+    <string name="rewards_code_have">您已拥有此优惠券</string>
+    <string name="wheel_title">幸运转盘</string>
+    <string name="wheel_spin">转</string>
+    <string name="wheel_no_spins">没有剩余次数</string>
+    <string name="wheel_no_spins_hint">每天都会获得一次免费机会，每笔订单还会再送一次。</string>
+    <string name="wheel_next_spin_in">下次免费机会：%1$s 后</string>
+    <string name="wheel_win_title">恭喜中奖！</string>
+    <string name="wheel_win_coupon">送您一张新优惠券</string>
+    <string name="wheel_collect">领取</string>
+    <string name="placed_title">下单成功！</string>
+    <string name="placed_order">订单 %1$s</string>
+    <string name="placed_earned_spin">您获得了一次免费转盘机会！</string>
+    <string name="placed_spin_now">转动转盘</string>
+    <string name="placed_view_order">查看订单</string>
+    <string name="placed_continue">继续购物</string>
+    <plurals name="rewards_spins">
+        <item quantity="other">剩余 %1$d 次机会</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="other">+%1$d 金币</item>
+    </plurals>
+</resources>

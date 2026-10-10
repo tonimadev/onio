@@ -11,4 +11,6 @@
     <string name="home_banner3_title">New arrivals</string>
     <string name="home_banner3_sub">Fresh picks every day</string>
     <string name="home_greeting">Hi, %1$s</string>
+    <string name="home_banner4_title">Lucky wheel</string>
+    <string name="home_banner4_sub">Spin every day for coins and coupons</string>
 </resources>

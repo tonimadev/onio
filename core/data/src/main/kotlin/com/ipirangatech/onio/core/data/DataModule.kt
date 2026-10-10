@@ -5,10 +5,14 @@ import androidx.room.Room
 import androidx.work.WorkManager
 import com.ipirangatech.onio.core.data.db.CartDao
 import com.ipirangatech.onio.core.data.db.FavoriteDao
+import com.ipirangatech.onio.core.data.db.CouponDao
 import com.ipirangatech.onio.core.data.db.MIGRATION_1_2
+import com.ipirangatech.onio.core.data.db.MIGRATION_2_3
 import com.ipirangatech.onio.core.data.db.OnioDatabase
 import com.ipirangatech.onio.core.data.db.OrderDao
 import com.ipirangatech.onio.core.model.CartRepository
+import com.ipirangatech.onio.core.model.CouponRepository
+import com.ipirangatech.onio.core.model.RewardsRepository
 import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.OrderRepository
 import com.ipirangatech.onio.core.model.ProductRepository
@@ -28,12 +32,20 @@ internal object DataModule {
     @Provides @Singleton
     fun database(@ApplicationContext context: Context): OnioDatabase =
         Room.databaseBuilder(context, OnioDatabase::class.java, "onio.db")
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
             .build()
 
     @Provides fun cartDao(db: OnioDatabase): CartDao = db.cartDao()
     @Provides fun orderDao(db: OnioDatabase): OrderDao = db.orderDao()
     @Provides fun favoriteDao(db: OnioDatabase): FavoriteDao = db.favoriteDao()
+    @Provides fun couponDao(db: OnioDatabase): CouponDao = db.couponDao()
+
+    @Provides @Singleton
+    fun couponRepository(dao: CouponDao): CouponRepository = CouponRepositoryImpl(dao)
+
+    @Provides @Singleton
+    fun rewardsRepository(@ApplicationContext context: Context, coupons: CouponRepository): RewardsRepository =
+        RewardsRepositoryImpl(rewardsStore(context), coupons)
 
     @Provides @Singleton
     fun favoritesRepository(dao: FavoriteDao): FavoritesRepository = FavoritesRepositoryImpl(dao)

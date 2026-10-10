@@ -49,6 +49,11 @@ core/ui,delay_unit_hours,,hours,ঘণ্টা
 core/ui,delay_unit_days,,days,দিন
 core/ui,fav_add,,Add to favorites,পছন্দের তালিকায় যোগ করুন
 core/ui,fav_remove,,Remove from favorites,পছন্দের তালিকা থেকে সরান
+core/ui,coupon_percent_off,,%1$d%% OFF,%1$d%% ছাড়
+core/ui,coupon_amount_off,,%1$s OFF,%1$s ছাড়
+core/ui,coupon_min_spend,,Min. spend %1$s,ন্যূনতম কেনাকাটা %1$s
+core/ui,coupon_expires,,Expires %1$s,%1$s তারিখে শেষ
+core/ui,coupon_used,,Used,ব্যবহৃত
 feature/cart/impl,cart_title,,Cart,কার্ট
 feature/cart/impl,cart_empty,,Your cart is empty,আপনার কার্ট খালি
 feature/cart/impl,cart_subtotal,,Subtotal,উপমোট
@@ -73,6 +78,24 @@ feature/checkout/impl,checkout_total_items,one,Total (%1$d item),মোট (%1$d
 feature/checkout/impl,checkout_total_items,other,Total (%1$d items),মোট (%1$dটি পণ্য)
 feature/checkout/impl,checkout_summary,,Order summary,অর্ডারের সারাংশ
 feature/checkout/impl,checkout_secure,,Your payment info is encrypted and secure,আপনার পেমেন্ট তথ্য এনক্রিপ্টেড ও নিরাপদ
+feature/checkout/impl,checkout_coupon_row,,Coupon,কুপন
+feature/checkout/impl,checkout_coupon_select,,Select a coupon,কুপন বাছুন
+feature/checkout/impl,checkout_coupon_sheet_title,,Choose a coupon,একটি কুপন বাছুন
+feature/checkout/impl,checkout_coupon_none,,Don't use a coupon,কুপন ব্যবহার করব না
+feature/checkout/impl,checkout_coins_row,,Use coins,কয়েন ব্যবহার করুন
+feature/checkout/impl,checkout_code_hint,,Coupon code,কুপন কোড
+feature/checkout/impl,checkout_code_add,,Add,যোগ করুন
+feature/checkout/impl,checkout_code_added,,Coupon added!,কুপন যোগ হয়েছে!
+feature/checkout/impl,checkout_code_unknown,,That code isn't valid,এই কোডটি সঠিক নয়
+feature/checkout/impl,checkout_code_have,,You already have this coupon,এই কুপন আপনার কাছে আগেই আছে
+feature/checkout/impl,checkout_row_subtotal,,Subtotal,উপমোট
+feature/checkout/impl,checkout_row_shipping,,Shipping,শিপিং
+feature/checkout/impl,checkout_row_free,,Free,বিনামূল্যে
+feature/checkout/impl,checkout_row_coupon,,Coupon,কুপন
+feature/checkout/impl,checkout_row_coins,,Coins,কয়েন
+feature/checkout/impl,checkout_row_total,,Total,মোট
+feature/checkout/impl,checkout_coins_available,one,%1$d coin available,%1$dটি কয়েন আছে
+feature/checkout/impl,checkout_coins_available,other,%1$d coins available,%1$dটি কয়েন আছে
 feature/home/impl,home_recommended,,Recommended for you,আপনার জন্য সুপারিশ
 feature/home/impl,home_deals,,Deals of the day,আজকের অফার
 feature/home/impl,home_ends_in,,Ends in %1$s,শেষ হবে %1$s এ
@@ -83,6 +106,8 @@ feature/home/impl,home_banner2_sub,,"On every order, no minimum","প্রত�
 feature/home/impl,home_banner3_title,,New arrivals,নতুন পণ্য
 feature/home/impl,home_banner3_sub,,Fresh picks every day,প্রতিদিন নতুন বাছাই
 feature/home/impl,home_greeting,,"Hi, %1$s","হ্যালো, %1$s"
+feature/home/impl,home_banner4_title,,Lucky wheel,লাকি হুইল
+feature/home/impl,home_banner4_sub,,Spin every day for coins and coupons,"প্রতিদিন ঘোরান, কয়েন ও কুপন জিতুন"
 feature/onboarding/impl,onb_skip,,Skip,এড়িয়ে যান
 feature/onboarding/impl,onb_next,,Next,পরবর্তী
 feature/onboarding/impl,onb_start,,Get started,শুরু করুন
@@ -129,6 +154,38 @@ feature/product/impl,product_delivery_free,,Free delivery,ফ্রি ডেল
 feature/product/impl,product_delivery_eta,,Arrives by %1$s,পৌঁছাবে %1$s এর মধ্যে
 feature/product/impl,product_returns,,30-day free returns,৩০ দিনের ফ্রি রিটার্ন
 feature/product/impl,product_secure,,Secure payment,নিরাপদ পেমেন্ট
+feature/rewards/impl,rewards_title,,Rewards,রিওয়ার্ড
+feature/rewards/impl,rewards_balance_label,,Your coins,আপনার কয়েন
+feature/rewards/impl,rewards_checkin_title,,Daily check-in,দৈনিক চেক-ইন
+feature/rewards/impl,rewards_checkin_button,,Check in,চেক-ইন করুন
+feature/rewards/impl,rewards_checkin_done,,Come back tomorrow,কাল আবার আসুন
+feature/rewards/impl,rewards_wheel_title,,Lucky wheel,লাকি হুইল
+feature/rewards/impl,rewards_wheel_cta,,Spin,ঘোরান
+feature/rewards/impl,rewards_coupons_title,,My coupons,আমার কুপন
+feature/rewards/impl,rewards_coupons_empty,,No coupons yet. Spin the wheel or enter a code.,এখনও কোনো কুপন নেই। হুইল ঘোরান বা কোড দিন।
+feature/rewards/impl,rewards_code_hint,,Coupon code,কুপন কোড
+feature/rewards/impl,rewards_code_add,,Add,যোগ করুন
+feature/rewards/impl,rewards_code_added,,Coupon added!,কুপন যোগ হয়েছে!
+feature/rewards/impl,rewards_code_unknown,,That code isn't valid,এই কোডটি সঠিক নয়
+feature/rewards/impl,rewards_code_have,,You already have this coupon,এই কুপন আপনার কাছে আগেই আছে
+feature/rewards/impl,wheel_title,,Lucky wheel,লাকি হুইল
+feature/rewards/impl,wheel_spin,,SPIN,ঘোরান
+feature/rewards/impl,wheel_no_spins,,No spins left,কোনো স্পিন বাকি নেই
+feature/rewards/impl,wheel_no_spins_hint,,"A new free spin arrives every day, and each order earns another one.","প্রতিদিন একটি নতুন ফ্রি স্পিন আসে, আর প্রতিটি অর্ডারে আরও একটি মেলে।"
+feature/rewards/impl,wheel_next_spin_in,,Next free spin in %1$s,পরবর্তী ফ্রি স্পিন %1$s এ
+feature/rewards/impl,wheel_win_title,,You won!,আপনি জিতেছেন!
+feature/rewards/impl,wheel_win_coupon,,A new coupon for you,আপনার জন্য নতুন কুপন
+feature/rewards/impl,wheel_collect,,Collect,সংগ্রহ করুন
+feature/rewards/impl,placed_title,,Order placed!,অর্ডার সম্পন্ন!
+feature/rewards/impl,placed_order,,Order %1$s,অর্ডার %1$s
+feature/rewards/impl,placed_earned_spin,,You earned a free spin!,আপনি একটি ফ্রি স্পিন পেয়েছেন!
+feature/rewards/impl,placed_spin_now,,Spin the wheel,হুইল ঘোরান
+feature/rewards/impl,placed_view_order,,View order,অর্ডার দেখুন
+feature/rewards/impl,placed_continue,,Continue shopping,কেনাকাটা চালিয়ে যান
+feature/rewards/impl,rewards_spins,one,%1$d spin left,%1$dটি স্পিন বাকি
+feature/rewards/impl,rewards_spins,other,%1$d spins left,%1$dটি স্পিন বাকি
+feature/rewards/impl,rewards_coin_gain,one,+%1$d coin,+%1$dটি কয়েন
+feature/rewards/impl,rewards_coin_gain,other,+%1$d coins,+%1$dটি কয়েন
 feature/savings/impl,savings_title,,Savings,সঞ্চয়
 feature/savings/impl,savings_settings,,Settings,সেটিংস
 feature/savings/impl,savings_headline,,You didn't spend,আপনি খরচ করেননি

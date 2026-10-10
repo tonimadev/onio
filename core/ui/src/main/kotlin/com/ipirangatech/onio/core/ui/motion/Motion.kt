@@ -3,6 +3,7 @@ package com.ipirangatech.onio.core.ui.motion
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -25,13 +26,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.drawscope.withTransform
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.PathMeasure
 import androidx.compose.ui.text.TextStyle
@@ -162,24 +167,49 @@ fun AnimatedCheckmark(color: Color, modifier: Modifier = Modifier, strokeWidth: 
     }
 }
 
-/** One-shot burst of confetti drawn behind/over content; replays when [trigger] changes. */
+private class Piece(val fromLeft: Boolean, val angle: Float, val speed: Float, val spin: Float, val w: Float, val h: Float)
+
+/**
+ * Party-popper confetti: two "cannons" in the bottom corners shoot paper pieces up and inwards; gravity pulls them
+ * back down while they spin and fade. Drawn over the content, replays whenever [trigger] changes.
+ */
 @Composable
-fun Modifier.confetti(trigger: Any?, colors: List<Color>, particles: Int = 36): Modifier {
+fun Modifier.confetti(trigger: Any?, colors: List<Color>, particles: Int = 36, durationMillis: Int = 2800): Modifier {
     val progress = remember { Animatable(0f) }
-    val seeds = remember(trigger) { List(particles) { Random.nextFloat() to Random.nextFloat() } }
+    val pieces = remember(trigger) {
+        List(particles) { i ->
+            val left = i % 2 == 0
+            // Angles are measured from the horizontal; the left cannon shoots up-right, the right one up-left.
+            val up = Math.toRadians((52 + Random.nextFloat() * 36).toDouble()).toFloat()
+            Piece(left, up, 0.95f + Random.nextFloat() * 0.85f, (Random.nextFloat() - 0.5f) * 5f, 5f + Random.nextFloat() * 5f, 8f + Random.nextFloat() * 7f)
+        }
+    }
     LaunchedEffect(trigger) {
         progress.snapTo(0f)
-        progress.animateTo(1f, tween(1600, easing = OnioMotion.Easing))
+        progress.animateTo(1f, tween(durationMillis, easing = LinearEasing))
     }
-    return drawBehind {
+    val seconds = durationMillis / 1000f
+    return drawWithContent {
+        drawContent()
         val t = progress.value
-        if (t <= 0f || t >= 1f) return@drawBehind
-        seeds.forEachIndexed { i, (a, b) ->
-            val angle = (a * 2 * PI).toFloat()
-            val distance = (0.25f + b * 0.75f) * size.minDimension * 0.9f * t
-            val x = size.width / 2 + cos(angle) * distance
-            val y = size.height * 0.35f + sin(angle) * distance + t * t * size.height * 0.25f
-            drawCircle(colors[i % colors.size].copy(alpha = 1f - t), radius = 4.dp.toPx() * (1f - t * 0.4f), center = Offset(x, y))
+        if (t <= 0f || t >= 1f) return@drawWithContent
+        val time = t * seconds
+        val gravity = size.height * 1.5f
+        pieces.forEachIndexed { index, piece ->
+            val dir = if (piece.fromLeft) 1f else -1f
+            val vx = cos(piece.angle) * piece.speed * size.height * 1.1f * dir
+            val vy = -sin(piece.angle) * piece.speed * size.height * 1.5f
+            val x = (if (piece.fromLeft) 0f else size.width) + vx * time * 0.55f
+            val y = size.height * 0.96f + vy * time + 0.5f * gravity * time * time
+            val alpha = 1f - ((t - 0.7f) / 0.3f).coerceIn(0f, 1f)
+            val w = piece.w.dp.toPx()
+            val h = piece.h.dp.toPx()
+            withTransform({
+                translate(x, y)
+                rotate(piece.spin * t * 360f, Offset.Zero)
+            }) {
+                drawRect(colors[index % colors.size].copy(alpha = alpha), topLeft = Offset(-w / 2, -h / 2), size = Size(w, h))
+            }
         }
     }
 }

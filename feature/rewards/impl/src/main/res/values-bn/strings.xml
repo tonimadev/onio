@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">রিওয়ার্ড</string>
+    <string name="rewards_balance_label">আপনার কয়েন</string>
+    <string name="rewards_checkin_title">দৈনিক চেক-ইন</string>
+    <string name="rewards_checkin_button">চেক-ইন করুন</string>
+    <string name="rewards_checkin_done">কাল আবার আসুন</string>
+    <string name="rewards_wheel_title">লাকি হুইল</string>
+    <string name="rewards_wheel_cta">ঘোরান</string>
+    <string name="rewards_coupons_title">আমার কুপন</string>
+    <string name="rewards_coupons_empty">এখনও কোনো কুপন নেই। হুইল ঘোরান বা কোড দিন।</string>
+    <string name="rewards_code_hint">কুপন কোড</string>
+    <string name="rewards_code_add">যোগ করুন</string>
+    <string name="rewards_code_added">কুপন যোগ হয়েছে!</string>
+    <string name="rewards_code_unknown">এই কোডটি সঠিক নয়</string>
+    <string name="rewards_code_have">এই কুপন আপনার কাছে আগেই আছে</string>
+    <string name="wheel_title">লাকি হুইল</string>
+    <string name="wheel_spin">ঘোরান</string>
+    <string name="wheel_no_spins">কোনো স্পিন বাকি নেই</string>
+    <string name="wheel_no_spins_hint">প্রতিদিন একটি নতুন ফ্রি স্পিন আসে, আর প্রতিটি অর্ডারে আরও একটি মেলে।</string>
+    <string name="wheel_next_spin_in">পরবর্তী ফ্রি স্পিন %1$s এ</string>
+    <string name="wheel_win_title">আপনি জিতেছেন!</string>
+    <string name="wheel_win_coupon">আপনার জন্য নতুন কুপন</string>
+    <string name="wheel_collect">সংগ্রহ করুন</string>
+    <string name="placed_title">অর্ডার সম্পন্ন!</string>
+    <string name="placed_order">অর্ডার %1$s</string>
+    <string name="placed_earned_spin">আপনি একটি ফ্রি স্পিন পেয়েছেন!</string>
+    <string name="placed_spin_now">হুইল ঘোরান</string>
+    <string name="placed_view_order">অর্ডার দেখুন</string>
+    <string name="placed_continue">কেনাকাটা চালিয়ে যান</string>
+    <plurals name="rewards_spins">
+        <item quantity="one">%1$dটি স্পিন বাকি</item>
+        <item quantity="other">%1$dটি স্পিন বাকি</item>
+    </plurals>
+    <plurals name="rewards_coin_gain">
+        <item quantity="one">+%1$dটি কয়েন</item>
+        <item quantity="other">+%1$dটি কয়েন</item>
+    </plurals>
+</resources>

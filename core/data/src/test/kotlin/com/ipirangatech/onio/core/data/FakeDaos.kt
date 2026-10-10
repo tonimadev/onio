@@ -1,6 +1,8 @@
 package com.ipirangatech.onio.core.data
 
 import com.ipirangatech.onio.core.data.db.CartDao
+import com.ipirangatech.onio.core.data.db.CouponDao
+import com.ipirangatech.onio.core.data.db.CouponEntity
 import com.ipirangatech.onio.core.data.db.CartItemEntity
 import com.ipirangatech.onio.core.data.db.FavoriteDao
 import com.ipirangatech.onio.core.data.db.FavoriteEntity
@@ -54,4 +56,22 @@ internal class FakeOrderDao : OrderDao() {
     override suspend fun markCancelled(ids: List<Long>) {
         rows.value = rows.value.map { if (it.id in ids) it.copy(status = "CANCELLED") else it }
     }
+}
+
+internal class FakeCouponDao : CouponDao {
+    val rows = MutableStateFlow<List<CouponEntity>>(emptyList())
+    private var nextId = 1L
+
+    override fun observeAll(): Flow<List<CouponEntity>> =
+        rows.map { list -> list.sortedWith(compareBy({ it.usedAtMillis != null }, { it.expiresAtMillis })) }
+    override suspend fun insert(coupon: CouponEntity): Long {
+        val id = nextId++
+        rows.value = rows.value + coupon.copy(id = id)
+        return id
+    }
+    override suspend fun markUsed(id: Long, now: Long) {
+        rows.value = rows.value.map { if (it.id == id && it.usedAtMillis == null) it.copy(usedAtMillis = now) else it }
+    }
+    override suspend fun activeCount(code: String, now: Long) =
+        rows.value.count { it.code == code && it.usedAtMillis == null && it.expiresAtMillis > now }
 }

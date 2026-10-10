@@ -63,6 +63,15 @@ import com.ipirangatech.onio.feature.orders.impl.OrdersViewModel
 import com.ipirangatech.onio.feature.product.bridge.ProductKey
 import com.ipirangatech.onio.feature.product.impl.ProductRoute
 import com.ipirangatech.onio.feature.product.impl.ProductViewModel
+import com.ipirangatech.onio.feature.rewards.bridge.OrderPlacedKey
+import com.ipirangatech.onio.feature.rewards.bridge.RewardsKey
+import com.ipirangatech.onio.feature.rewards.bridge.WheelKey
+import com.ipirangatech.onio.feature.rewards.impl.OrderPlacedRoute
+import com.ipirangatech.onio.feature.rewards.impl.OrderPlacedViewModel
+import com.ipirangatech.onio.feature.rewards.impl.RewardsRoute
+import com.ipirangatech.onio.feature.rewards.impl.RewardsViewModel
+import com.ipirangatech.onio.feature.rewards.impl.WheelRoute
+import com.ipirangatech.onio.feature.rewards.impl.WheelViewModel
 import com.ipirangatech.onio.feature.savings.bridge.SavingsKey
 import com.ipirangatech.onio.feature.savings.impl.SavingsRoute
 import com.ipirangatech.onio.feature.savings.impl.SavingsViewModel
@@ -106,6 +115,7 @@ fun OnioNavHost(cartCount: Int, modifier: Modifier = Modifier) {
                 onOpenCategory = { navigator.navigate(SearchKey(it)) },
                 onOpenSearch = { navigator.selectTopLevel(SearchKey()) },
                 onOpenCart = { navigator.selectTopLevel(CartKey) },
+                onOpenRewards = { navigator.navigate(RewardsKey) },
             )
         }
         entry<SearchKey> { key ->
@@ -137,9 +147,9 @@ fun OnioNavHost(cartCount: Int, modifier: Modifier = Modifier) {
             CheckoutRoute(
                 viewModel = hiltViewModel<CheckoutViewModel>(),
                 onBack = { navigator.goBack() },
-                onOrderPlaced = { orderId ->
-                    navigator.goBack() // leave checkout so back from the order doesn't reopen an empty form
-                    navigator.launchIn(OrdersKey, OrderDetailKey(orderId))
+                onOrderPlaced = { orderId, coins, spins ->
+                    navigator.goBack() // leave checkout so back never reopens an empty form
+                    navigator.navigate(OrderPlacedKey(orderId, coins, spins))
                 },
             )
         }
@@ -155,6 +165,35 @@ fun OnioNavHost(cartCount: Int, modifier: Modifier = Modifier) {
                     creationCallback = { it.create(key.orderId) },
                 ),
                 onBack = { navigator.goBack() },
+            )
+        }
+        entry<RewardsKey> {
+            RewardsRoute(
+                viewModel = hiltViewModel<RewardsViewModel>(),
+                onBack = { navigator.goBack() },
+                onOpenWheel = { navigator.navigate(WheelKey) },
+            )
+        }
+        entry<WheelKey> {
+            WheelRoute(
+                viewModel = hiltViewModel<WheelViewModel>(),
+                onBack = { navigator.goBack() },
+            )
+        }
+        entry<OrderPlacedKey> { key ->
+            OrderPlacedRoute(
+                viewModel = hiltViewModel<OrderPlacedViewModel, OrderPlacedViewModel.Factory>(
+                    creationCallback = { it.create(key.orderId, key.coins, key.spins) },
+                ),
+                onSpin = { navigator.navigate(WheelKey) },
+                onViewOrder = { orderId ->
+                    navigator.goBack()
+                    navigator.launchIn(OrdersKey, OrderDetailKey(orderId))
+                },
+                onContinue = {
+                    navigator.goBack()
+                    navigator.selectTopLevel(HomeKey)
+                },
             )
         }
         entry<SavingsKey> {

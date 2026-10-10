@@ -41,4 +41,9 @@
     <string name="delay_unit_days">天</string>
     <string name="fav_add">加入收藏</string>
     <string name="fav_remove">取消收藏</string>
+    <string name="coupon_percent_off">立减 %1$d%%</string>
+    <string name="coupon_amount_off">立减 %1$s</string>
+    <string name="coupon_min_spend">满 %1$s 可用</string>
+    <string name="coupon_expires">有效期至 %1$s</string>
+    <string name="coupon_used">已使用</string>
 </resources>
