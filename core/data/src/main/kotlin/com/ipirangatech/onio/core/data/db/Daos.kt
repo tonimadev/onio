@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.RoomDatabase
+import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -27,18 +28,32 @@ internal interface CartDao {
 }
 
 @Dao
-internal interface OrderDao {
+internal abstract class OrderDao {
     @Query("SELECT * FROM orders ORDER BY placedAtMillis DESC")
-    fun observeAll(): Flow<List<OrderEntity>>
+    abstract fun observeAll(): Flow<List<OrderEntity>>
 
     @Query("SELECT * FROM orders WHERE id = :id")
-    fun observe(id: Long): Flow<OrderEntity?>
+    abstract fun observe(id: Long): Flow<OrderEntity?>
 
     @Insert
-    suspend fun insert(order: OrderEntity): Long
+    abstract suspend fun insert(order: OrderEntity): Long
 
-    @Query("UPDATE orders SET status = 'CANCELLED' WHERE status = 'PROCESSING' AND cancelAtMillis <= :now")
-    suspend fun cancelExpired(now: Long): Int
+    @Query("SELECT * FROM orders WHERE status = 'PROCESSING' AND cancelAtMillis <= :now")
+    abstract suspend fun expiredProcessing(now: Long): List<OrderEntity>
+
+    @Query("UPDATE orders SET status = 'CANCELLED' WHERE id IN (:ids)")
+    abstract suspend fun markCancelled(ids: List<Long>)
+
+    /**
+     * Cancels every overdue order and returns exactly the ones this call cancelled. Running in one
+     * transaction means concurrent callers (worker + app start) never both "win" the same order.
+     */
+    @Transaction
+    open suspend fun cancelExpired(now: Long): List<OrderEntity> {
+        val expired = expiredProcessing(now)
+        if (expired.isNotEmpty()) markCancelled(expired.map { it.id })
+        return expired
+    }
 }
 
 @Database(entities = [CartItemEntity::class, OrderEntity::class], version = 1, exportSchema = false)

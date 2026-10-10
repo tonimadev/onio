@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_name">Suivi des commandes</string>
+    <string name="notif_cancelled_title">Commande %1$s annulée</string>
+    <string name="notif_cancelled_text">Vous n\'avez pas été débité. Vous avez économisé %1$s.</string>
+    <string name="notif_cancelled_text_named">Bien joué, %1$s ! Vous n\'avez pas été débité et vous avez économisé %2$s.</string>
+</resources>

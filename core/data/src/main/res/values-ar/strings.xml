@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_name">تحديثات الطلبات</string>
+    <string name="notif_cancelled_title">تم إلغاء الطلب %1$s</string>
+    <string name="notif_cancelled_text">لم يتم خصم أي مبلغ. لقد وفّرت %1$s.</string>
+    <string name="notif_cancelled_text_named">قرار موفق يا %1$s! لم يتم خصم أي مبلغ ووفّرت %2$s.</string>
+</resources>

@@ -73,6 +73,7 @@ internal class OrderRepositoryImpl(
     private val dao: OrderDao,
     private val settings: SettingsRepository,
     private val scheduler: OrderCancellationScheduler,
+    private val notifier: CancelledOrderNotifier,
     private val clock: () -> Long = System::currentTimeMillis,
 ) : OrderRepository {
     override val orders: Flow<List<Order>> = dao.observeAll().map { list -> list.map { it.toDomain() } }
@@ -115,7 +116,10 @@ internal class OrderRepositoryImpl(
     }
 
     override suspend fun cancelExpiredOrders() {
-        dao.cancelExpired(clock())
+        dao.cancelExpired(clock()).forEach { entity ->
+            // A failed notification must never fail the cancellation itself.
+            runCatching { notifier.notifyCancelled(entity.toDomain()) }
+        }
     }
 }
 

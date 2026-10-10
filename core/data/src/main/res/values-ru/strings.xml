@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_name">Статусы заказов</string>
+    <string name="notif_cancelled_title">Заказ %1$s отменён</string>
+    <string name="notif_cancelled_text">Деньги не списаны. Вы сэкономили %1$s.</string>
+    <string name="notif_cancelled_text_named">Отличное решение, %1$s! Деньги не списаны, вы сэкономили %2$s.</string>
+</resources>

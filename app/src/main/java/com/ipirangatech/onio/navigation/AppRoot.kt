@@ -1,5 +1,9 @@
 package com.ipirangatech.onio.navigation
 
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -25,6 +29,8 @@ data object MainKey : NavKey
 @Composable
 fun AppRoot(startWithOnboarding: Boolean, modifier: Modifier = Modifier) {
     val root = rememberNavBackStack(if (startWithOnboarding) OnboardingKey else MainKey)
+    // Orders are cancelled in the background; the notification needs permission on Android 13+.
+    val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
     val mainViewModel = hiltViewModel<MainViewModel>()
     val cartCount by mainViewModel.cartCount.collectAsStateWithLifecycle()
 
@@ -41,6 +47,7 @@ fun AppRoot(startWithOnboarding: Boolean, modifier: Modifier = Modifier) {
                 OnboardingRoute(
                     viewModel = hiltViewModel<OnboardingViewModel>(),
                     onFinished = {
+                        if (Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
                         root.add(MainKey)
                         root.removeAll { it == OnboardingKey }
                     },

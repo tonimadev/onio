@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_name">ऑर्डर अपडेट</string>
+    <string name="notif_cancelled_title">ऑर्डर %1$s रद्द हुआ</string>
+    <string name="notif_cancelled_text">आपसे कोई शुल्क नहीं लिया गया। आपने %1$s बचाए।</string>
+    <string name="notif_cancelled_text_named">बढ़िया फ़ैसला, %1$s! आपसे कोई शुल्क नहीं लिया गया और आपने %2$s बचाए।</string>
+</resources>

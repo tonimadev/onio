@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_name">Novedades de pedidos</string>
+    <string name="notif_cancelled_title">Pedido %1$s cancelado</string>
+    <string name="notif_cancelled_text">No se te cobró nada. Ahorraste %1$s.</string>
+    <string name="notif_cancelled_text_named">¡Buena decisión, %1$s! No se te cobró nada y ahorraste %2$s.</string>
+</resources>

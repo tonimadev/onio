@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_name">订单动态</string>
+    <string name="notif_cancelled_title">订单 %1$s 已取消</string>
+    <string name="notif_cancelled_text">没有产生任何扣款，您节省了 %1$s。</string>
+    <string name="notif_cancelled_text_named">%1$s，做得好！没有产生任何扣款，您节省了 %2$s。</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_channel_name">অর্ডার আপডেট</string>
+    <string name="notif_cancelled_title">অর্ডার %1$s বাতিল হয়েছে</string>
+    <string name="notif_cancelled_text">আপনার কাছ থেকে কিছু কাটা হয়নি। আপনি %1$s বাঁচিয়েছেন।</string>
+    <string name="notif_cancelled_text_named">দারুণ সিদ্ধান্ত, %1$s! আপনার কাছ থেকে কিছু কাটা হয়নি, আপনি %2$s বাঁচিয়েছেন।</string>
+</resources>

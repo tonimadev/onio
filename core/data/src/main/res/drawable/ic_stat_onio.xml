@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="68"
+    android:viewportHeight="68">
+    <!-- Same bag as the launcher icon, cropped to its bounds; status icons only use the alpha channel. -->
+    <group android:translateX="-20" android:translateY="-22">
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:fillType="evenOdd"
+            android:pathData="M41,45 H67 Q70,45 70.6,48 L73.4,76 Q74,81 69,81 H39 Q34,81 34.6,76 L37.4,48 Q38,45 41,45 Z M46.5,50.5 a1.7,1.7 0 1,0 3.4,0 a1.7,1.7 0 1,0 -3.4,0 Z M61.5,50.5 a1.7,1.7 0 1,0 3.4,0 a1.7,1.7 0 1,0 -3.4,0 Z M43.3,62.7 L45.9,60.1 L51.5,65.7 L62.2,53.1 L64.9,55.7 L51.5,71.0 Z" />
+        <path
+            android:pathData="M44.5,47 C44.5,31 63.5,31 63.5,47"
+            android:strokeWidth="4"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeLineCap="round"
+            android:fillColor="#00000000" />
+    </group>
+</vector>
