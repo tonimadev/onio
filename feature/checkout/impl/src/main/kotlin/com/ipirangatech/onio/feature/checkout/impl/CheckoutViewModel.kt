@@ -121,23 +121,20 @@ class CheckoutViewModel @Inject constructor(
         if (s.name.isBlank()) add(CheckoutField.NAME)
         if (s.address.isBlank()) add(CheckoutField.ADDRESS)
         if (!CardValidation.passesLuhn(s.cardNumber)) add(CheckoutField.CARD_NUMBER)
-        val parts = s.expiry.split("/")
         val now = Calendar.getInstance()
-        val month = parts.getOrNull(0)?.toIntOrNull()
-        val year = parts.getOrNull(1)?.toIntOrNull()
+        val month = s.expiry.take(2).takeIf { it.length == 2 }?.toIntOrNull()
+        val year = s.expiry.drop(2).takeIf { it.length == 2 }?.toIntOrNull()
         if (month == null || year == null || !CardValidation.isValidExpiry(month, year, now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1)) {
             add(CheckoutField.EXPIRY)
         }
         if (!CardValidation.isValidCvv(s.cvv, CardValidation.brandOf(s.cardNumber))) add(CheckoutField.CVV)
     }
 
-    private fun formatCard(raw: String): String =
-        CardValidation.digitsOnly(raw).take(19).chunked(4).joinToString(" ")
+    // The state keeps digits only; the UI inserts spaces and the slash with a VisualTransformation, so the
+    // cursor never ends up in the wrong place while typing.
+    private fun formatCard(raw: String): String = CardValidation.digitsOnly(raw).take(19)
 
-    private fun formatExpiry(raw: String): String {
-        val d = CardValidation.digitsOnly(raw).take(4)
-        return if (d.length <= 2) d else d.take(2) + "/" + d.drop(2)
-    }
+    private fun formatExpiry(raw: String): String = CardValidation.digitsOnly(raw).take(4)
 
     private companion object {
         const val PROCESSING_MILLIS = 2_500L

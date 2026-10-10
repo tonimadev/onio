@@ -47,6 +47,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -101,10 +102,10 @@ internal fun CheckoutScreen(state: CheckoutState, onIntent: (CheckoutIntent) -> 
                 Field(state, CheckoutField.ADDRESS, state.address, R.string.checkout_address, onIntent, KeyboardType.Text)
                 Text(stringResource(R.string.checkout_payment), style = MaterialTheme.typography.titleMedium)
                 CardPreview(state)
-                Field(state, CheckoutField.CARD_NUMBER, state.cardNumber, R.string.checkout_card_number, onIntent, KeyboardType.Number, ltr = true)
+                Field(state, CheckoutField.CARD_NUMBER, state.cardNumber, R.string.checkout_card_number, onIntent, KeyboardType.Number, ltr = true, transformation = CardNumberTransformation)
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     Box(Modifier.weight(1f)) {
-                        Field(state, CheckoutField.EXPIRY, state.expiry, R.string.checkout_expiry, onIntent, KeyboardType.Number, ltr = true)
+                        Field(state, CheckoutField.EXPIRY, state.expiry, R.string.checkout_expiry, onIntent, KeyboardType.Number, ltr = true, transformation = ExpiryTransformation)
                     }
                     Box(Modifier.weight(1f)) {
                         Field(state, CheckoutField.CVV, state.cvv, R.string.checkout_cvv, onIntent, KeyboardType.NumberPassword, ltr = true)
@@ -149,6 +150,7 @@ private fun Field(
     onIntent: (CheckoutIntent) -> Unit,
     keyboard: KeyboardType,
     ltr: Boolean = false,
+    transformation: VisualTransformation = VisualTransformation.None,
 ) {
     OutlinedTextField(
         value = value,
@@ -157,6 +159,7 @@ private fun Field(
         isError = field in state.errors,
         supportingText = if (field in state.errors) ({ Text(stringResource(R.string.checkout_invalid)) }) else null,
         singleLine = true,
+        visualTransformation = transformation,
         enabled = !state.isProcessing,
         keyboardOptions = KeyboardOptions(keyboardType = keyboard),
         textStyle = if (ltr) TextStyle(textDirection = TextDirection.Ltr) else TextStyle.Default,
@@ -183,6 +186,7 @@ private fun CardPreview(state: CheckoutState) {
     val digits = CardValidation.digitsOnly(state.cardNumber)
     val brand = CardValidation.brandOf(digits)
     val shown = (digits + "•".repeat(16)).take(16).chunked(4).joinToString("  ")
+    val expiry = if (state.expiry.length > 2) state.expiry.take(2) + "/" + state.expiry.drop(2) else state.expiry
     Box(
         Modifier
             .fillMaxWidth()
@@ -215,7 +219,7 @@ private fun CardPreview(state: CheckoutState) {
                     modifier = Modifier.weight(1f),
                 )
                 Text(
-                    state.expiry.ifBlank { stringResource(R.string.checkout_expiry) },
+                    expiry.ifBlank { stringResource(R.string.checkout_expiry) },
                     color = Color.White.copy(alpha = 0.9f),
                     style = MaterialTheme.typography.labelLarge.copy(textDirection = TextDirection.Ltr),
                 )
