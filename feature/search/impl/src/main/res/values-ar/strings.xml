@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">بحث</string>
     <string name="search_hint">ابحث عن منتجات</string>
+    <string name="search_filters">تصفية</string>
+    <string name="search_favorites">المفضلة</string>
+    <string name="search_no_favorites">لا توجد مفضلات بعد. اضغط على القلب في أي منتج لحفظه.</string>
+    <string name="search_sort">ترتيب حسب</string>
+    <string name="sort_relevance">الأكثر صلة</string>
+    <string name="sort_price_asc">السعر: من الأقل إلى الأعلى</string>
+    <string name="sort_price_desc">السعر: من الأعلى إلى الأقل</string>
+    <string name="sort_discount">أكبر خصم</string>
+    <string name="sort_rating">الأعلى تقييمًا</string>
+    <string name="filter_on_sale">عليه خصم</string>
+    <string name="filter_top_rated">4★ فأكثر</string>
+    <string name="filter_price_range">نطاق السعر</string>
+    <string name="filter_reset">إعادة ضبط التصفية</string>
 </resources>

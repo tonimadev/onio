@@ -192,6 +192,8 @@ internal fun HomeScreen(
                                 discountPercent = product.discountPercent,
                                 onClick = { onIntent(HomeIntent.ProductClicked(product.id)) },
                                 onAddToCart = { onIntent(HomeIntent.AddToCart(product.id)) },
+                                isFavorite = product.id in state.favoriteIds,
+                                onToggleFavorite = { onIntent(HomeIntent.ToggleFavorite(product.id)) },
                                 modifier = Modifier.width(160.dp),
                             )
                         }
@@ -216,6 +218,8 @@ internal fun HomeScreen(
                     discountPercent = product.discountPercent,
                     onClick = { onIntent(HomeIntent.ProductClicked(product.id)) },
                     onAddToCart = { onIntent(HomeIntent.AddToCart(product.id)) },
+                    isFavorite = product.id in state.favoriteIds,
+                    onToggleFavorite = { onIntent(HomeIntent.ToggleFavorite(product.id)) },
                     modifier = Modifier.padding(horizontal = 8.dp),
                 )
             }

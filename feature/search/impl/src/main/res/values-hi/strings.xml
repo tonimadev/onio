@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">खोजें</string>
     <string name="search_hint">उत्पाद खोजें</string>
+    <string name="search_filters">फ़िल्टर</string>
+    <string name="search_favorites">पसंदीदा</string>
+    <string name="search_no_favorites">अभी कोई पसंदीदा नहीं। सहेजने के लिए उत्पाद पर दिल दबाएँ।</string>
+    <string name="search_sort">इसके अनुसार क्रमबद्ध करें</string>
+    <string name="sort_relevance">प्रासंगिकता</string>
+    <string name="sort_price_asc">कीमत: कम से ज़्यादा</string>
+    <string name="sort_price_desc">कीमत: ज़्यादा से कम</string>
+    <string name="sort_discount">सबसे ज़्यादा छूट</string>
+    <string name="sort_rating">सबसे अधिक रेटिंग</string>
+    <string name="filter_on_sale">छूट पर</string>
+    <string name="filter_top_rated">4★ और ऊपर</string>
+    <string name="filter_price_range">कीमत सीमा</string>
+    <string name="filter_reset">फ़िल्टर रीसेट करें</string>
 </resources>

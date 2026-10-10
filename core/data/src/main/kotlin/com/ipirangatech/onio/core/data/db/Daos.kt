@@ -56,8 +56,28 @@ internal abstract class OrderDao {
     }
 }
 
-@Database(entities = [CartItemEntity::class, OrderEntity::class], version = 1, exportSchema = false)
+@Dao
+internal interface FavoriteDao {
+    @Query("SELECT * FROM favorites ORDER BY addedAtMillis DESC")
+    fun observeAll(): Flow<List<FavoriteEntity>>
+
+    @Query("SELECT COUNT(*) FROM favorites WHERE productId = :productId")
+    suspend fun count(productId: Long): Int
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(favorite: FavoriteEntity)
+
+    @Query("DELETE FROM favorites WHERE productId = :productId")
+    suspend fun delete(productId: Long)
+}
+
+@Database(
+    entities = [CartItemEntity::class, OrderEntity::class, FavoriteEntity::class],
+    version = 2,
+    exportSchema = false,
+)
 internal abstract class OnioDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
     abstract fun orderDao(): OrderDao
+    abstract fun favoriteDao(): FavoriteDao
 }

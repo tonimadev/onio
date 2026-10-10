@@ -56,6 +56,7 @@ sealed interface ProductIntent {
     data object AddToCart : ProductIntent
     data object BuyNow : ProductIntent
     data object BackClicked : ProductIntent
+    data object ToggleFavorite : ProductIntent
     data object ConsumeEffect : ProductIntent
 }
 
@@ -64,6 +65,7 @@ data class ProductState(
     val isLoading: Boolean = true,
     val hasError: Boolean = false,
     val product: UiProductDetail? = null,
+    val isFavorite: Boolean = false,
     val effect: ProductEffect? = null,
     val reviews: ImmutableList<UiReview> = persistentListOf(),
 )

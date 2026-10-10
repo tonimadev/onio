@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import com.ipirangatech.onio.core.ui.component.DiscountBadge
+import com.ipirangatech.onio.core.ui.component.FavoriteButton
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -97,6 +98,9 @@ internal fun ProductScreen(
         topBar = {
             TopAppBar(
                 title = {},
+                actions = {
+                    if (state.product != null) FavoriteButton(state.isFavorite, { onIntent(ProductIntent.ToggleFavorite) }, Modifier.padding(end = 8.dp))
+                },
                 navigationIcon = {
                     IconButton(onClick = { onIntent(ProductIntent.BackClicked) }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(UiR.string.action_back))

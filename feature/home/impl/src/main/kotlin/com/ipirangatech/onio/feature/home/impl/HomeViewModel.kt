@@ -3,11 +3,13 @@ package com.ipirangatech.onio.feature.home.impl
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipirangatech.onio.core.model.CartRepository
+import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.Product
 import com.ipirangatech.onio.core.model.ProductRepository
 import com.ipirangatech.onio.core.model.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +23,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val products: ProductRepository,
     private val cart: CartRepository,
+    private val favorites: FavoritesRepository,
     settings: SettingsRepository,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeState())
@@ -31,6 +34,13 @@ class HomeViewModel @Inject constructor(
 
     init {
         onIntent(HomeIntent.Load)
+        viewModelScope.launch {
+            runCatching {
+                favorites.favorites.collect { list ->
+                    _uiState.update { it.copy(favoriteIds = list.map { f -> f.productId }.toImmutableSet()) }
+                }
+            }
+        }
         viewModelScope.launch {
             runCatching {
                 settings.settings.collect { value -> _uiState.update { it.copy(userName = value.userName) } }
@@ -45,6 +55,7 @@ class HomeViewModel @Inject constructor(
             HomeIntent.SearchClicked -> emit(HomeEffect.NavigateToSearch)
             HomeIntent.ViewCartClicked -> emit(HomeEffect.NavigateToCart)
             is HomeIntent.AddToCart -> addToCart(intent.productId)
+            is HomeIntent.ToggleFavorite -> toggleFavorite(intent.productId)
             is HomeIntent.ProductClicked -> emit(HomeEffect.NavigateToProduct(intent.productId))
             is HomeIntent.CategoryClicked -> emit(HomeEffect.NavigateToCategory(intent.slug))
             HomeIntent.ConsumeEffect -> _uiState.update { it.copy(effect = null) }
@@ -52,6 +63,13 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun emit(effect: HomeEffect) = _uiState.update { it.copy(effect = effect) }
+
+    private fun toggleFavorite(productId: Long) {
+        val product = loaded[productId] ?: return
+        viewModelScope.launch {
+            runCatching { favorites.toggle(product) }.onFailure { _uiState.update { s -> s.copy(hasError = true) } }
+        }
+    }
 
     private fun addToCart(productId: Long) {
         val product = loaded[productId] ?: return

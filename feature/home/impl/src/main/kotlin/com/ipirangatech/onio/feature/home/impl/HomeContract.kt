@@ -5,7 +5,9 @@ import com.ipirangatech.onio.core.model.Category
 import com.ipirangatech.onio.core.model.Money
 import com.ipirangatech.onio.core.model.Product
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentSetOf
 import kotlin.math.roundToInt
 
 @Immutable
@@ -48,6 +50,7 @@ sealed interface HomeIntent {
     data object SearchClicked : HomeIntent
     data object ViewCartClicked : HomeIntent
     data class AddToCart(val productId: Long) : HomeIntent
+    data class ToggleFavorite(val productId: Long) : HomeIntent
     data class ProductClicked(val productId: Long) : HomeIntent
     data class CategoryClicked(val slug: String) : HomeIntent
     data object ConsumeEffect : HomeIntent
@@ -63,5 +66,6 @@ data class HomeState(
     val products: ImmutableList<UiProduct> = persistentListOf(),
     val canLoadMore: Boolean = false,
     val userName: String? = null,
+    val favoriteIds: ImmutableSet<Long> = persistentSetOf(),
     val effect: HomeEffect? = null,
 )

@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">Поиск</string>
     <string name="search_hint">Поиск товаров</string>
+    <string name="search_filters">Фильтры</string>
+    <string name="search_favorites">Избранное</string>
+    <string name="search_no_favorites">Избранного пока нет. Нажмите на сердечко у товара, чтобы сохранить его.</string>
+    <string name="search_sort">Сортировка</string>
+    <string name="sort_relevance">По релевантности</string>
+    <string name="sort_price_asc">Цена: по возрастанию</string>
+    <string name="sort_price_desc">Цена: по убыванию</string>
+    <string name="sort_discount">Максимальная скидка</string>
+    <string name="sort_rating">С высоким рейтингом</string>
+    <string name="filter_on_sale">Со скидкой</string>
+    <string name="filter_top_rated">4★ и выше</string>
+    <string name="filter_price_range">Диапазон цен</string>
+    <string name="filter_reset">Сбросить фильтры</string>
 </resources>

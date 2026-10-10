@@ -39,4 +39,6 @@
     <string name="delay_unit_minutes">মিনিট</string>
     <string name="delay_unit_hours">ঘণ্টা</string>
     <string name="delay_unit_days">দিন</string>
+    <string name="fav_add">পছন্দের তালিকায় যোগ করুন</string>
+    <string name="fav_remove">পছন্দের তালিকা থেকে সরান</string>
 </resources>

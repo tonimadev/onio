@@ -3,6 +3,7 @@ package com.ipirangatech.onio.feature.search.impl
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipirangatech.onio.core.model.CartRepository
+import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.Product
 import com.ipirangatech.onio.core.model.ProductRepository
 import dagger.assisted.Assisted
@@ -10,6 +11,8 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableSet
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +28,7 @@ class SearchViewModel @AssistedInject constructor(
     @Assisted initialCategory: String?,
     private val products: ProductRepository,
     private val cart: CartRepository,
+    private val favorites: FavoritesRepository,
 ) : ViewModel() {
     @AssistedFactory
     interface Factory {
@@ -37,11 +41,22 @@ class SearchViewModel @AssistedInject constructor(
 
     private var searchJob: Job? = null
     private val loaded = HashMap<Long, Product>()
+    private var remote: List<UiResult> = emptyList()
+    private var saved: List<UiResult> = emptyList()
 
     init {
         viewModelScope.launch {
             runCatching { products.categories() }
                 .onSuccess { list -> _uiState.update { it.copy(categories = list.map { c -> c.toUiModel() }.toImmutableList()) } }
+        }
+        viewModelScope.launch {
+            runCatching {
+                favorites.favorites.collect { list ->
+                    saved = list.map { it.toUiModel() }
+                    _uiState.update { it.copy(favoriteIds = list.map { f -> f.productId }.toImmutableSet()) }
+                    recompute()
+                }
+            }
         }
         search(debounce = false)
     }
@@ -50,24 +65,69 @@ class SearchViewModel @AssistedInject constructor(
         when (intent) {
             is SearchIntent.QueryChanged -> {
                 _uiState.update { it.copy(query = intent.query) }
-                search(debounce = true)
+                if (_uiState.value.favoritesOnly) recompute() else search(debounce = true)
             }
             is SearchIntent.CategorySelected -> {
-                _uiState.update { it.copy(categorySlug = intent.slug) }
+                _uiState.update { it.copy(categorySlug = intent.slug, favoritesOnly = false) }
                 search(debounce = false)
             }
-            is SearchIntent.AddToCart -> {
-                val product = loaded[intent.productId] ?: return
-                viewModelScope.launch {
-                    runCatching { cart.add(product) }
-                        .onSuccess { _uiState.update { it.copy(effect = SearchEffect.ShowAdded) } }
-                        .onFailure { _uiState.update { it.copy(hasError = true) } }
-                }
+            SearchIntent.ToggleFavoritesOnly -> {
+                _uiState.update { it.copy(favoritesOnly = !it.favoritesOnly) }
+                recompute()
             }
-            SearchIntent.ViewCartClicked -> _uiState.update { it.copy(effect = SearchEffect.NavigateToCart) }
-            is SearchIntent.ProductClicked -> _uiState.update { it.copy(effect = SearchEffect.NavigateToProduct(intent.productId)) }
+            is SearchIntent.ToggleFavorite -> toggleFavorite(intent.productId)
+            is SearchIntent.AddToCart -> addToCart(intent.productId)
+            SearchIntent.ViewCartClicked -> emit(SearchEffect.NavigateToCart)
+            is SearchIntent.ProductClicked -> emit(SearchEffect.NavigateToProduct(intent.productId))
+            SearchIntent.ToggleFilterPanel -> _uiState.update { it.copy(filterPanelOpen = !it.filterPanelOpen) }
+            is SearchIntent.SortSelected -> updateFilters { it.copy(sort = intent.sort) }
+            SearchIntent.ToggleOnSale -> updateFilters { it.copy(onSaleOnly = !it.onSaleOnly) }
+            SearchIntent.ToggleTopRated -> updateFilters { it.copy(topRatedOnly = !it.topRatedOnly) }
+            is SearchIntent.PriceRangeChanged -> updateFilters { it.copy(minPriceCents = intent.minCents, maxPriceCents = intent.maxCents) }
+            SearchIntent.ResetFilters -> updateFilters { SearchFilters() }
             SearchIntent.Retry -> search(debounce = false)
             SearchIntent.ConsumeEffect -> _uiState.update { it.copy(effect = null) }
+        }
+    }
+
+    private fun emit(effect: SearchEffect) = _uiState.update { it.copy(effect = effect) }
+
+    private fun updateFilters(change: (SearchFilters) -> SearchFilters) {
+        _uiState.update { it.copy(filters = change(it.filters)) }
+        recompute()
+    }
+
+    /** Rebuilds the visible list from the right source (search results or saved items) and the filters. */
+    private fun recompute() {
+        _uiState.update { s ->
+            val source = if (s.favoritesOnly) {
+                saved.filter { s.query.isBlank() || it.title.contains(s.query.trim(), ignoreCase = true) }
+            } else {
+                remote
+            }
+            val prices = source.map(UiResult::priceCents)
+            s.copy(
+                results = source.applyFilters(s.filters).toImmutableList(),
+                priceBounds = if (prices.isEmpty()) null else prices.min()..prices.max(),
+            )
+        }
+    }
+
+    private fun toggleFavorite(productId: Long) {
+        viewModelScope.launch {
+            runCatching {
+                val product = loaded[productId]
+                if (product != null) favorites.toggle(product) else favorites.remove(productId)
+            }.onFailure { _uiState.update { it.copy(hasError = true) } }
+        }
+    }
+
+    private fun addToCart(productId: Long) {
+        val product = loaded[productId] ?: return
+        viewModelScope.launch {
+            runCatching { cart.add(product) }
+                .onSuccess { emit(SearchEffect.ShowAdded) }
+                .onFailure { _uiState.update { it.copy(hasError = true) } }
         }
     }
 
@@ -85,9 +145,11 @@ class SearchViewModel @AssistedInject constructor(
                 }
             }.onSuccess { page ->
                 page.products.forEach { loaded[it.id] = it }
-                _uiState.update { it.copy(isLoading = false, results = page.products.map { p -> p.toUiModel() }.toImmutableList()) }
+                remote = page.products.map { it.toUiModel() }
+                _uiState.update { it.copy(isLoading = false) }
+                recompute()
             }.onFailure { error ->
-                if (error is kotlinx.coroutines.CancellationException) throw error
+                if (error is CancellationException) throw error
                 _uiState.update { it.copy(isLoading = false, hasError = true) }
             }
         }

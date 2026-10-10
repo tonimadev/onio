@@ -3,6 +3,7 @@ package com.ipirangatech.onio.feature.product.impl
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipirangatech.onio.core.model.CartRepository
+import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.Product
 import com.ipirangatech.onio.core.model.ProductRepository
 import dagger.assisted.Assisted
@@ -22,6 +23,7 @@ class ProductViewModel @AssistedInject constructor(
     @Assisted private val productId: Long,
     private val products: ProductRepository,
     private val cart: CartRepository,
+    private val favorites: FavoritesRepository,
 ) : ViewModel() {
     @AssistedFactory
     interface Factory {
@@ -36,6 +38,13 @@ class ProductViewModel @AssistedInject constructor(
 
     init {
         onIntent(ProductIntent.Load)
+        viewModelScope.launch {
+            runCatching {
+                favorites.favorites.collect { list ->
+                    _uiState.update { it.copy(isFavorite = list.any { f -> f.productId == productId }) }
+                }
+            }
+        }
     }
 
     fun onIntent(intent: ProductIntent) {
@@ -43,6 +52,11 @@ class ProductViewModel @AssistedInject constructor(
             ProductIntent.Load -> load()
             ProductIntent.AddToCart -> addToCart(ProductEffect.ShowAdded)
             ProductIntent.BuyNow -> addToCart(ProductEffect.NavigateToCart)
+            ProductIntent.ToggleFavorite -> loaded?.let { product ->
+                viewModelScope.launch {
+                    runCatching { favorites.toggle(product) }.onFailure { _uiState.update { s -> s.copy(hasError = true) } }
+                }
+            }
             ProductIntent.BackClicked -> _uiState.update { it.copy(effect = ProductEffect.NavigateBack) }
             ProductIntent.ConsumeEffect -> _uiState.update { it.copy(effect = null) }
         }

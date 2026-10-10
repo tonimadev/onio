@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.room.Room
 import androidx.work.WorkManager
 import com.ipirangatech.onio.core.data.db.CartDao
+import com.ipirangatech.onio.core.data.db.FavoriteDao
+import com.ipirangatech.onio.core.data.db.MIGRATION_1_2
 import com.ipirangatech.onio.core.data.db.OnioDatabase
 import com.ipirangatech.onio.core.data.db.OrderDao
 import com.ipirangatech.onio.core.model.CartRepository
+import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.OrderRepository
 import com.ipirangatech.onio.core.model.ProductRepository
 import com.ipirangatech.onio.core.model.SettingsRepository
@@ -24,10 +27,16 @@ import javax.inject.Singleton
 internal object DataModule {
     @Provides @Singleton
     fun database(@ApplicationContext context: Context): OnioDatabase =
-        Room.databaseBuilder(context, OnioDatabase::class.java, "onio.db").build()
+        Room.databaseBuilder(context, OnioDatabase::class.java, "onio.db")
+            .addMigrations(MIGRATION_1_2)
+            .build()
 
     @Provides fun cartDao(db: OnioDatabase): CartDao = db.cartDao()
     @Provides fun orderDao(db: OnioDatabase): OrderDao = db.orderDao()
+    @Provides fun favoriteDao(db: OnioDatabase): FavoriteDao = db.favoriteDao()
+
+    @Provides @Singleton
+    fun favoritesRepository(dao: FavoriteDao): FavoritesRepository = FavoritesRepositoryImpl(dao)
 
     @Provides @Singleton
     fun remoteSource(): ProductRemoteSource = createDummyJsonSource()

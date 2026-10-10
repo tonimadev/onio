@@ -39,4 +39,6 @@
     <string name="delay_unit_minutes">minutes</string>
     <string name="delay_unit_hours">hours</string>
     <string name="delay_unit_days">days</string>
+    <string name="fav_add">Add to favorites</string>
+    <string name="fav_remove">Remove from favorites</string>
 </resources>

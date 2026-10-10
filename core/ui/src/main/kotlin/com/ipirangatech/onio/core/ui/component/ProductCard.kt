@@ -23,11 +23,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddShoppingCart
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -120,6 +123,8 @@ fun ProductCard(
     modifier: Modifier = Modifier,
     discountPercent: Int = 0,
     onAddToCart: (() -> Unit)? = null,
+    isFavorite: Boolean = false,
+    onToggleFavorite: (() -> Unit)? = null,
 ) {
     Card(
         onClick = onClick,
@@ -138,6 +143,9 @@ fun ProductCard(
                     .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
             )
             DiscountBadge(discountPercent, Modifier.align(Alignment.TopStart))
+            if (onToggleFavorite != null) {
+                FavoriteButton(isFavorite, onToggleFavorite, Modifier.align(Alignment.TopEnd).padding(6.dp))
+            }
             if (onAddToCart != null) {
                 FilledIconButton(
                     onClick = onAddToCart,
@@ -197,4 +205,19 @@ fun ProductCardSkeleton(modifier: Modifier = Modifier) {
 @Composable
 fun CircleIcon(modifier: Modifier = Modifier, container: Color = MaterialTheme.colorScheme.primaryContainer, content: @Composable () -> Unit) {
     Box(modifier.size(56.dp).clip(CircleShape).background(container), contentAlignment = Alignment.Center) { content() }
+}
+
+/** Heart toggle used on product cards and the product page. */
+@Composable
+fun FavoriteButton(isFavorite: Boolean, onToggle: () -> Unit, modifier: Modifier = Modifier) {
+    Surface(modifier = modifier.size(34.dp), shape = CircleShape, color = Color.White.copy(alpha = 0.92f)) {
+        IconButton(onClick = onToggle) {
+            Icon(
+                imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                contentDescription = stringResource(if (isFavorite) R.string.fav_remove else R.string.fav_add),
+                tint = if (isFavorite) SaleRed else Color(0xFF666666),
+                modifier = Modifier.size(20.dp),
+            )
+        }
+    }
 }

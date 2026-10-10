@@ -7,6 +7,8 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.ipirangatech.onio.core.data.db.CartDao
+import com.ipirangatech.onio.core.data.db.FavoriteDao
+import com.ipirangatech.onio.core.data.db.FavoriteEntity
 import com.ipirangatech.onio.core.data.db.OrderDao
 import com.ipirangatech.onio.core.data.db.OrderEntity
 import com.ipirangatech.onio.core.data.db.encode
@@ -16,6 +18,8 @@ import com.ipirangatech.onio.core.model.AppSettings
 import com.ipirangatech.onio.core.model.CartItem
 import com.ipirangatech.onio.core.model.CartRepository
 import com.ipirangatech.onio.core.model.Category
+import com.ipirangatech.onio.core.model.FavoriteItem
+import com.ipirangatech.onio.core.model.FavoritesRepository
 import com.ipirangatech.onio.core.model.CheckoutRequest
 import com.ipirangatech.onio.core.model.ExchangeRates
 import com.ipirangatech.onio.core.model.Money
@@ -42,6 +46,33 @@ internal class ProductRepositoryImpl(private val remote: ProductRemoteSource) : 
         remote.productsByCategory(slug, limit, skip)
     override suspend fun categories(): List<Category> = remote.categories()
     override suspend fun product(id: Long): Product = remote.product(id)
+}
+
+internal class FavoritesRepositoryImpl(
+    private val dao: FavoriteDao,
+    private val clock: () -> Long = System::currentTimeMillis,
+) : FavoritesRepository {
+    override val favorites: Flow<List<FavoriteItem>> = dao.observeAll().map { list -> list.map { it.toDomain() } }
+
+    override suspend fun toggle(product: Product) {
+        if (dao.count(product.id) > 0) {
+            dao.delete(product.id)
+        } else {
+            dao.upsert(
+                FavoriteEntity(
+                    productId = product.id,
+                    title = product.title,
+                    thumbnailUrl = product.thumbnailUrl,
+                    priceUsdCents = product.price.minorUnits,
+                    discountPercentage = product.discountPercentage,
+                    rating = product.rating,
+                    addedAtMillis = clock(),
+                ),
+            )
+        }
+    }
+
+    override suspend fun remove(productId: Long) = dao.delete(productId)
 }
 
 internal class CartRepositoryImpl(private val dao: CartDao) : CartRepository {

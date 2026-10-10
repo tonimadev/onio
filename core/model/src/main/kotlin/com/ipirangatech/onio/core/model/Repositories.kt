@@ -10,6 +10,26 @@ interface ProductRepository {
     suspend fun product(id: Long): Product
 }
 
+/** What a saved favourite needs to be shown offline (no catalog round trip). */
+data class FavoriteItem(
+    val productId: Long,
+    val title: String,
+    val thumbnailUrl: String,
+    val price: Money,
+    val discountPercentage: Double,
+    val rating: Double,
+)
+
+interface FavoritesRepository {
+    /** Most recently saved first. */
+    val favorites: Flow<List<FavoriteItem>>
+
+    /** Saves the product, or removes it if it was already a favourite. */
+    suspend fun toggle(product: Product)
+
+    suspend fun remove(productId: Long)
+}
+
 interface CartRepository {
     val items: Flow<List<CartItem>>
     suspend fun add(product: Product, quantity: Int = 1)

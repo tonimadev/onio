@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">অনুসন্ধান</string>
     <string name="search_hint">পণ্য খুঁজুন</string>
+    <string name="search_filters">ফিল্টার</string>
+    <string name="search_favorites">পছন্দের</string>
+    <string name="search_no_favorites">এখনও কোনো পছন্দের পণ্য নেই। সংরক্ষণ করতে পণ্যের হার্টে ট্যাপ করুন।</string>
+    <string name="search_sort">সাজান</string>
+    <string name="sort_relevance">প্রাসঙ্গিকতা</string>
+    <string name="sort_price_asc">দাম: কম থেকে বেশি</string>
+    <string name="sort_price_desc">দাম: বেশি থেকে কম</string>
+    <string name="sort_discount">সবচেয়ে বেশি ছাড়</string>
+    <string name="sort_rating">সর্বোচ্চ রেটিং</string>
+    <string name="filter_on_sale">ছাড়ে</string>
+    <string name="filter_top_rated">৪★ ও তার বেশি</string>
+    <string name="filter_price_range">দামের সীমা</string>
+    <string name="filter_reset">ফিল্টার রিসেট করুন</string>
 </resources>

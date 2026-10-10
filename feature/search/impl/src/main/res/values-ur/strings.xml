@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">تلاش</string>
     <string name="search_hint">مصنوعات تلاش کریں</string>
+    <string name="search_filters">فلٹرز</string>
+    <string name="search_favorites">پسندیدہ</string>
+    <string name="search_no_favorites">ابھی کوئی پسندیدہ نہیں۔ محفوظ کرنے کے لیے پروڈکٹ پر دل کو دبائیں۔</string>
+    <string name="search_sort">ترتیب دیں</string>
+    <string name="sort_relevance">مطابقت</string>
+    <string name="sort_price_asc">قیمت: کم سے زیادہ</string>
+    <string name="sort_price_desc">قیمت: زیادہ سے کم</string>
+    <string name="sort_discount">سب سے زیادہ رعایت</string>
+    <string name="sort_rating">سب سے زیادہ ریٹنگ</string>
+    <string name="filter_on_sale">رعایت پر</string>
+    <string name="filter_top_rated">4★ اور اس سے اوپر</string>
+    <string name="filter_price_range">قیمت کی حد</string>
+    <string name="filter_reset">فلٹرز ری سیٹ کریں</string>
 </resources>

@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ipirangatech.onio.core.model.CardBrand
 import com.ipirangatech.onio.core.model.CartItem
+import com.ipirangatech.onio.core.model.FavoriteItem
 import com.ipirangatech.onio.core.model.Money
 import com.ipirangatech.onio.core.model.Order
 import com.ipirangatech.onio.core.model.OrderItem
@@ -75,3 +76,17 @@ internal fun OrderEntity.toDomain() = Order(
     cancelAtMillis = cancelAtMillis,
     status = runCatching { OrderStatus.valueOf(status) }.getOrDefault(OrderStatus.CANCELLED),
 )
+
+@Entity(tableName = "favorites")
+internal data class FavoriteEntity(
+    @PrimaryKey val productId: Long,
+    val title: String,
+    val thumbnailUrl: String,
+    val priceUsdCents: Long,
+    val discountPercentage: Double,
+    val rating: Double,
+    val addedAtMillis: Long,
+)
+
+internal fun FavoriteEntity.toDomain() =
+    FavoriteItem(productId, title, thumbnailUrl, Money.usd(priceUsdCents), discountPercentage, rating)

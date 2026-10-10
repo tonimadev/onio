@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">Buscar</string>
     <string name="search_hint">Buscar productos</string>
+    <string name="search_filters">Filtros</string>
+    <string name="search_favorites">Favoritos</string>
+    <string name="search_no_favorites">Aún no tienes favoritos. Toca el corazón de un producto para guardarlo.</string>
+    <string name="search_sort">Ordenar por</string>
+    <string name="sort_relevance">Relevancia</string>
+    <string name="sort_price_asc">Precio: menor a mayor</string>
+    <string name="sort_price_desc">Precio: mayor a menor</string>
+    <string name="sort_discount">Mayor descuento</string>
+    <string name="sort_rating">Mejor valorados</string>
+    <string name="filter_on_sale">En oferta</string>
+    <string name="filter_top_rated">4★ o más</string>
+    <string name="filter_price_range">Rango de precio</string>
+    <string name="filter_reset">Restablecer filtros</string>
 </resources>

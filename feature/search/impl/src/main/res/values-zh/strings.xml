@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">搜索</string>
     <string name="search_hint">搜索商品</string>
+    <string name="search_filters">筛选</string>
+    <string name="search_favorites">收藏</string>
+    <string name="search_no_favorites">还没有收藏。点击商品上的爱心即可保存。</string>
+    <string name="search_sort">排序方式</string>
+    <string name="sort_relevance">相关度</string>
+    <string name="sort_price_asc">价格从低到高</string>
+    <string name="sort_price_desc">价格从高到低</string>
+    <string name="sort_discount">折扣最大</string>
+    <string name="sort_rating">评分最高</string>
+    <string name="filter_on_sale">特价</string>
+    <string name="filter_top_rated">4★ 及以上</string>
+    <string name="filter_price_range">价格区间</string>
+    <string name="filter_reset">重置筛选</string>
 </resources>

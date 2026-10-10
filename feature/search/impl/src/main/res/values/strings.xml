@@ -2,4 +2,17 @@
 <resources>
     <string name="search_title">Search</string>
     <string name="search_hint">Search products</string>
+    <string name="search_filters">Filters</string>
+    <string name="search_favorites">Favorites</string>
+    <string name="search_no_favorites">No favorites yet. Tap the heart on a product to save it.</string>
+    <string name="search_sort">Sort by</string>
+    <string name="sort_relevance">Relevance</string>
+    <string name="sort_price_asc">Price: low to high</string>
+    <string name="sort_price_desc">Price: high to low</string>
+    <string name="sort_discount">Biggest discount</string>
+    <string name="sort_rating">Top rated</string>
+    <string name="filter_on_sale">On sale</string>
+    <string name="filter_top_rated">4★ &amp; up</string>
+    <string name="filter_price_range">Price range</string>
+    <string name="filter_reset">Reset filters</string>
 </resources>

@@ -39,4 +39,6 @@
     <string name="delay_unit_minutes">минуты</string>
     <string name="delay_unit_hours">часы</string>
     <string name="delay_unit_days">дни</string>
+    <string name="fav_add">Добавить в избранное</string>
+    <string name="fav_remove">Убрать из избранного</string>
 </resources>
